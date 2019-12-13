@@ -17,7 +17,7 @@ namespace Data.Context
         {
             _entityConfigurations = new List<IEntityConfiguration>
             {
-                new PackageConfiguration(),
+                new ParcelConfiguration(),
                 new StorePlaceConfiguration(),
                 new WarehouseConfiguration(),
                 new SendingPointConfiguration(),
@@ -31,7 +31,7 @@ namespace Data.Context
             
             _entityConfigurations = new List<IEntityConfiguration>
             {
-                new PackageConfiguration(),
+                new ParcelConfiguration(),
                 new StorePlaceConfiguration(),
                 new WarehouseConfiguration(),
                 new SendingPointConfiguration(),
@@ -39,7 +39,7 @@ namespace Data.Context
             };
         }
 
-        public virtual DbSet<Package> Packages { get; set; }
+        public virtual DbSet<Parcel> Parcels { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<StorePlace> StorePlaces { get; set; }
 

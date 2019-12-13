@@ -8,6 +8,6 @@ namespace Model.ViewModels
     {
         // the most ridiculous example ever, but basicly it's just model used on View side
         // to pass parameters to Api with one class
-        public int PackageId { get; set; }
+        public int ParcelId { get; set; }
     }
 }

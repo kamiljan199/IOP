@@ -27,12 +27,12 @@ namespace View
             // most useless view model strikes again
             var testViewModel = new TestViewModel
             {
-                PackageId = (int)idPicker.Value
+                ParcelId = (int)idPicker.Value
             };
 
             // on daily basis we could as well use simple int here, but it was made for demontration purposes
             
-            var queryResult = _testController.GetAndWritePackageDetailsById(testViewModel);
+            var queryResult = _testController.GetAndWriteParcelDetailsById(testViewModel);
 
             if(queryResult.Status == TestStatus.Failure)
             {

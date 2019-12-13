@@ -10,27 +10,27 @@ namespace Api.Controllers
 {
     public class TestController
     {
-        private readonly IPackageService _packageService;
+        private readonly IParcelService _parcelService;
 
-        public TestController(IPackageService packageService)
+        public TestController(IParcelService parcelService)
         {
-            _packageService = packageService;
+            _parcelService = parcelService;
         }
 
-        public TestDTO GetAndWritePackageDetailsById(TestViewModel testViewModel)
+        public TestDTO GetAndWriteParcelDetailsById(TestViewModel testViewModel)
         {
             // this is where ViewModel validation is being arranged normally
 
             try
             {
-                var package = _packageService.GetById(testViewModel.PackageId);
+                var parcel = _parcelService.GetById(testViewModel.ParcelId);
 
                 var result = new TestDTO
                 {
                     Status = TestStatus.Success,
-                    SenderName = package.SenderName,
-                    ReceiverName = package.ReceiverName,
-                    StoragePointId = package.StorePlaceId
+                    SenderName = parcel.SenderName,
+                    ReceiverName = parcel.ReceiverName,
+                    StoragePointId = parcel.StorePlaceId
                 };
 
                 return result;

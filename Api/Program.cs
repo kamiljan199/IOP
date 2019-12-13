@@ -21,10 +21,10 @@ namespace Api
                 
                 var testViewModel = new TestViewModel
                 {
-                    PackageId = 1
+                    ParcelId = 1
                 };
 
-                controller.GetAndWritePackageDetailsById(testViewModel);
+                controller.GetAndWriteParcelDetailsById(testViewModel);
             }
         }
     }

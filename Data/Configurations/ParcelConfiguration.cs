@@ -3,12 +3,12 @@ using Model.Models;
 
 namespace Data.Configurations
 {
-    class PackageConfiguration : IEntityConfiguration
+    class ParcelConfiguration : IEntityConfiguration
     {
         public void AddConfiguration(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Entity<Package>(entity =>
+                .Entity<Parcel>(entity =>
                 {
                     entity
                         .HasKey(e => e.Id);
