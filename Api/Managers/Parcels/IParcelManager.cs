@@ -8,6 +8,5 @@ namespace Api.Managers
     public interface IParcelManager
     {
         public Parcel GetById(int id);
-        public Parcel GetByReceiverAddress(Address address);
     }
 }

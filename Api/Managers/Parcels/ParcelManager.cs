@@ -19,10 +19,5 @@ namespace Api.Managers
         {
             return _context.Parcels.FirstOrDefault(e => e.Id.Equals(id));
         }
-
-        public Parcel GetByReceiverAddress(Address address)
-        {
-            return _context.Parcels.FirstOrDefault(e => e.ReceiverAddress.Id.Equals(address.Id));
-        }
     }
 }

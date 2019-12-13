@@ -1,14 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using Model.Models;
 
 namespace Data.Configurations
 {
-    class StorePlaceConfiguration : IEntityConfiguration
+    class PersonalDataConfiguration : IEntityConfiguration
     {
         public void AddConfiguration(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Entity<StorePlace>(entity =>
+                .Entity<PersonalData>(entity =>
                 {
                     entity
                         .HasKey(e => e.Id);

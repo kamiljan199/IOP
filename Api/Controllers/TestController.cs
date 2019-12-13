@@ -28,8 +28,8 @@ namespace Api.Controllers
                 var result = new TestDTO
                 {
                     Status = TestStatus.Success,
-                    SenderName = parcel.SenderName,
-                    ReceiverName = parcel.ReceiverName,
+                    SenderName = parcel.SenderData.FirstName,
+                    ReceiverName = parcel.ReceiverData.FirstName,
                     StoragePointId = parcel.StorePlaceId
                 };
 
