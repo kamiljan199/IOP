@@ -26,7 +26,7 @@ namespace View
 
             using (var scope = container.BeginLifetimeScope())
             {
-                Application.Run(container.Resolve<TestForm>());
+                Application.Run(container.Resolve<MainForm>());
             }
         }
 
