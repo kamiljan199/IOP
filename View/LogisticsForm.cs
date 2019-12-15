@@ -10,9 +10,16 @@ namespace View
 {
     public partial class LogisticsForm : Form
     {
-        public LogisticsForm()
+        private readonly LogisticsNewRouteForm _form;
+        public LogisticsForm(LogisticsNewRouteForm form)
         {
+            _form = form;
             InitializeComponent();
+        }
+
+        private void buttonAddRoute_Click(object sender, EventArgs e)
+        {
+            Application.Run(_form);
         }
     }
 }
