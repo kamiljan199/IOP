@@ -8,5 +8,7 @@ namespace Api.Managers
     public interface IParcelManager
     {
         public Parcel GetById(int id);
+        public void PostParcel(Parcel newParcel);
+        public void ReturnParcel(Parcel oldParcel);
     }
 }
