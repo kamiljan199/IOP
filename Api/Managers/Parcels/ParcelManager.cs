@@ -42,7 +42,13 @@ namespace Api.Managers
             Parcel parcelToReturn = _context.Parcels.Find(oldParcel);
             if (parcelToReturn != null)
             {
-                Parcel newReturnParcel = new Parcel(parcelToReturn);
+                Parcel newReturnParcel = new Parcel
+                {
+                    ReferenceId = parcelToReturn.Id,
+                    ReceiverData = parcelToReturn.SenderData,
+                    SenderData = parcelToReturn.ReceiverData,
+                    StorePlaceId = parcelToReturn.StorePlaceId
+                };
                 _context.Parcels.Add(newReturnParcel);
                 return _context.SaveChanges();
             }

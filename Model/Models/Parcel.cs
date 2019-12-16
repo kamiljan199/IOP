@@ -9,13 +9,5 @@ namespace Model.Models
         public PersonalData SenderData { get; set; }
         public PersonalData ReceiverData { get; set; }
         public int ReferenceId { get; set; }
-
-        public Parcel(Parcel parcel)
-        {
-            StorePlaceId = parcel.StorePlaceId;
-            SenderData = parcel.SenderData;
-            ReceiverData = parcel.ReceiverData;
-            ReferenceId = parcel.Id;
-        }
     }
 }
