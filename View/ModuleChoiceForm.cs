@@ -14,11 +14,13 @@ namespace View
     public partial class ModuleChoiceForm : Form
     {
         private readonly CourierForm _courierForm;
+        private readonly LogisticsForm _logisticsForm;
         public LoginForm _loginForm;
 
-        public ModuleChoiceForm(CourierForm courierForm)
+        public ModuleChoiceForm(CourierForm courierForm, LogisticsForm logisticsForm)
         {
             _courierForm = courierForm;
+            _logisticsForm = logisticsForm;
             InitializeComponent();
         }
 
@@ -36,7 +38,7 @@ namespace View
 
         private void ButtonOpenLogisticsWindow_Click(object sender, EventArgs e)
         {
-
+            _logisticsForm.ShowDialog();
         }
 
         public void ButtonOpenCourierWindow_Click(object sender, EventArgs e)
