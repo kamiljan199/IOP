@@ -10,6 +10,7 @@ namespace Api.Managers
         public Employee GetEmployeeByPESEL(int employeePESEL);
         public void AddEmployee(Employee employee);
         public void RemoveEmployee(Employee employee);
-        public List<Employee> GetAllEmployees();
+        public ICollection<Employee> GetAllEmployees();
+        public int SaveChanges();
     }
 }
