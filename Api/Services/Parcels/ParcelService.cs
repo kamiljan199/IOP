@@ -25,5 +25,15 @@ namespace Api.Services
 
             return package;
         }
+
+        public void PostParcel(Parcel newParcel)
+        {
+            _packageManager.PostParcel(newParcel);
+        }
+
+        public void ReturnParcel(Parcel oldParcel)
+        {
+            _packageManager.ReturnParcel(oldParcel);
+        }
     }
 }
