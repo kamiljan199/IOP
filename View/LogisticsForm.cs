@@ -19,7 +19,7 @@ namespace View
 
         private void buttonAddRoute_Click(object sender, EventArgs e)
         {
-            Application.Run(_form);
+            _form.ShowDialog();
         }
     }
 }
