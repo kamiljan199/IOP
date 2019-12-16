@@ -9,6 +9,7 @@ namespace Api.Services
     public interface IParcelService
     {
         public Parcel GetById(int id);
+        public Parcel GetByReferenceId(int id);
         public void PostParcel(Parcel newParcel);
         public void ReturnParcel(Parcel oldParcel);
     }

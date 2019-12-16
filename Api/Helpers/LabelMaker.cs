@@ -9,19 +9,13 @@ using System.Drawing.Imaging;
 
 namespace Api.Managers.Labels
 {
-    public class LabelMaker : ILabelMaker
+    public class LabelMaker
     {
-        private readonly AppDbContext _context;
 
-        public LabelMaker()
-        {
-            //_context = context;
-        }
-
-        public void MakeLabel(string filePath)
+        public void MakeLabel(string filePath, string message)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode("Blablabla", QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(message, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
             using (FileStream fs = File.Create(filePath))

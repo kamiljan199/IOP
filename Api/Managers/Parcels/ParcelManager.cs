@@ -19,30 +19,36 @@ namespace Api.Managers
         {
             return _context.Parcels.FirstOrDefault(e => e.Id.Equals(id));
         }
-
-        public void PostParcel(Parcel newParcel)
+        public Parcel GetByReferenceId(int id)
         {
-            if (_context.Parcels.Find(newParcel) != null)
-            {
-                _context.Parcels.Add(newParcel);
-            }
-            else
-            {
-                throw new Model.Models.Exceptions.ParcelAlreadyPresentInDatabase(newParcel);
-            }
+            return _context.Parcels.FirstOrDefault(e => e.ReferenceId.Equals(id));
+        }
+        public Parcel[] GetParcelsByStorePlace(StorePlace storePlace)
+        {
+            var query = from e in _context.Parcels
+                        where e.StorePlaceId == storePlace.Id
+                        select e;
+            return query.ToArray();
         }
 
-        public void ReturnParcel(Parcel oldParcel)
+        public int PostParcel(Parcel newParcel)
+        {
+            _context.Parcels.Add(newParcel);
+            return _context.SaveChanges();
+        }
+
+        public int ReturnParcel(Parcel oldParcel)
         {
             Parcel parcelToReturn = _context.Parcels.Find(oldParcel);
             if (parcelToReturn != null)
             {
-                Parcel newReturnParcel = new Parcel(parcelToReturn.StorePlaceId, parcelToReturn.SenderData, parcelToReturn.ReceiverData, parcelToReturn.Id);
+                Parcel newReturnParcel = new Parcel(parcelToReturn);
                 _context.Parcels.Add(newReturnParcel);
+                return _context.SaveChanges();
             }
             else
             {
-                throw new Model.Models.Exceptions.ParcelNotFoundInDatabase(oldParcel);
+                return 0;
             }
         }
     }

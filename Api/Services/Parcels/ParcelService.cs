@@ -3,37 +3,56 @@ using System.Collections.Generic;
 using System.Text;
 using Api.Managers;
 using Model.Models;
+using Model.Models.Exceptions;
 
 namespace Api.Services
 {
     public class ParcelService : IParcelService
     {
-        private readonly IParcelManager _packageManager;
+        private readonly IParcelManager _parcelManager;
 
-        public ParcelService(IParcelManager packageManager)
+        public ParcelService(IParcelManager parcelManager)
         {
-            _packageManager = packageManager;
+            _parcelManager = parcelManager;
         }
         
         public Parcel GetById(int id)
         {
-            var package = _packageManager.GetById(id);
-            if(package == default(Parcel))
+            var parcel = _parcelManager.GetById(id);
+            if(parcel == default(Parcel))
             {
-                throw new Exception($"Parcel identified as { id } not found.");
+                throw new ParcelNotFoundInDatabaseException(id);
             }
 
-            return package;
+            return parcel;
+        }
+
+        public Parcel GetByReferenceId(int id)
+        {
+            var parcel = _parcelManager.GetByReferenceId(id);
+            if (parcel == default(Parcel))
+            {
+                throw new ParcelNotFoundInDatabaseException(id);
+            }
+
+            return parcel;
         }
 
         public void PostParcel(Parcel newParcel)
         {
-            _packageManager.PostParcel(newParcel);
+            if (_parcelManager.PostParcel(newParcel) == 0)
+            {
+                throw new NothingAddedToDatabaseException(newParcel);
+            }
         }
 
         public void ReturnParcel(Parcel oldParcel)
         {
-            _packageManager.ReturnParcel(oldParcel);
+            if (_parcelManager.ReturnParcel(oldParcel) == 0)
+            {
+                throw new NothingAddedToDatabaseException(oldParcel);
+            }
+            
         }
     }
 }
