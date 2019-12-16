@@ -12,6 +12,7 @@ namespace Api.Helpers
 {
     public static class QRLabelGenerator
     {
+        //TODO: Consider if this QRLabelGenerator helper class is what you look for
         public static void MakeLabel(string filePath)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
