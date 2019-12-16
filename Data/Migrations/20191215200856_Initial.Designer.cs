@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20191208124607_Initial")]
+    [Migration("20191215200856_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,57 +25,76 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("City")
-                        .HasColumnType("varchar(30) CHARACTER SET utf8mb4")
-                        .HasMaxLength(30);
+                    b.Property<int>("ApartmentNumber")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Number")
-                        .HasColumnType("varchar(30) CHARACTER SET utf8mb4")
-                        .HasMaxLength(30);
+                    b.Property<string>("City")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("HomeNumber")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("PostCode")
-                        .HasColumnType("varchar(15) CHARACTER SET utf8mb4")
-                        .HasMaxLength(15);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Street")
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("Model.Models.Package", b =>
+            modelBuilder.Entity("Model.Models.Parcel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("ReceiverAddressId")
+                    b.Property<int?>("ReceiverDataId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ReceiverName")
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
+                    b.Property<string>("ReferenceId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int?>("SenderAddressId")
+                    b.Property<int?>("SenderDataId")
                         .HasColumnType("int");
-
-                    b.Property<string>("SenderName")
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
 
                     b.Property<int>("StorePlaceId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ReceiverAddressId");
+                    b.HasIndex("ReceiverDataId");
 
-                    b.HasIndex("SenderAddressId");
+                    b.HasIndex("SenderDataId");
 
-                    b.ToTable("Packages");
+                    b.ToTable("Parcels");
+                });
+
+            modelBuilder.Entity("Model.Models.PersonalData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("PersonalAddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonalAddressId");
+
+                    b.ToTable("PersonalDatas");
                 });
 
             modelBuilder.Entity("Model.Models.StorePlace", b =>
@@ -92,14 +111,13 @@ namespace Data.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
 
-                    b.ToTable("StorePlace");
+                    b.ToTable("StorePlaces");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("StorePlace");
                 });
@@ -125,15 +143,22 @@ namespace Data.Migrations
                     b.HasDiscriminator().HasValue("Warehouse");
                 });
 
-            modelBuilder.Entity("Model.Models.Package", b =>
+            modelBuilder.Entity("Model.Models.Parcel", b =>
                 {
-                    b.HasOne("Model.Models.Address", "ReceiverAddress")
+                    b.HasOne("Model.Models.PersonalData", "ReceiverData")
                         .WithMany()
-                        .HasForeignKey("ReceiverAddressId");
+                        .HasForeignKey("ReceiverDataId");
 
-                    b.HasOne("Model.Models.Address", "SenderAddress")
+                    b.HasOne("Model.Models.PersonalData", "SenderData")
                         .WithMany()
-                        .HasForeignKey("SenderAddressId");
+                        .HasForeignKey("SenderDataId");
+                });
+
+            modelBuilder.Entity("Model.Models.PersonalData", b =>
+                {
+                    b.HasOne("Model.Models.Address", "PersonalAddress")
+                        .WithMany()
+                        .HasForeignKey("PersonalAddressId");
                 });
 
             modelBuilder.Entity("Model.Models.StorePlace", b =>

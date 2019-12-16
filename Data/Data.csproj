@@ -11,8 +11,12 @@
     <Compile Remove="Migrations\20191208013710_Initial.Designer.cs" />
     <Compile Remove="Migrations\20191208013845_Initial.cs" />
     <Compile Remove="Migrations\20191208013845_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191208124607_Initial.cs" />
+    <Compile Remove="Migrations\20191208124607_Initial.Designer.cs" />
     <Compile Remove="Migrations\20191212165455_SomeVirtualPropertiesAdded_test.cs" />
     <Compile Remove="Migrations\20191212165455_SomeVirtualPropertiesAdded_test.Designer.cs" />
+    <Compile Remove="Migrations\20191215195227_HrInitial.cs" />
+    <Compile Remove="Migrations\20191215195227_HrInitial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
