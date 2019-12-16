@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Api.Services;
 using Api.DTOs;
 using Api.Enums;
+using Model.Models;
 
 namespace Api.Controllers
 {
@@ -40,6 +41,18 @@ namespace Api.Controllers
 
                 return result;
             }
+        }
+
+        public void CreateVehicle(string brand, string model, string registation)
+        {
+            var vehicle = new Vehicle
+            {
+                Brand = brand,
+                Model = model,
+                Registration = registation
+            };
+
+            _vehicleService.CreateVehicle(vehicle);
         }
 
         

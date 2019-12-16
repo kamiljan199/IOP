@@ -14,9 +14,9 @@ namespace Api.Managers
             _context = context;
         }
 
-        public void AddVehicle(string brand, string model, string registration)
+        public void AddVehicle(Vehicle vehicle)
         {
-            throw new NotImplementedException();
+            _context.Vehicles.Add(vehicle);
         }
 
         public void ChangeDriver(Vehicle vehicle, int driverID)

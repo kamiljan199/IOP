@@ -18,9 +18,9 @@ namespace Api.Services
             _vehicleManager.ChangeDriver(vehicle, driverID);
         }
 
-        public void CreateVehicle(string brand, string model, string registration)
+        public void CreateVehicle(Vehicle vehicle)
         {
-            _vehicleManager.AddVehicle(brand, model, registration);
+            _vehicleManager.AddVehicle(vehicle);
         }
 
         public List<Vehicle> GetAllVehicles()

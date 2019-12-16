@@ -9,7 +9,7 @@ namespace Api.Services
     public interface IVehicleService
     {
         public List<Vehicle> GetAllVehicles();
-        public void CreateVehicle(string brand, string model, string registration);
+        public void CreateVehicle(Vehicle vehicle);
         public void ChangeDriver(Vehicle vehicle, int driverID);
     }
 }
