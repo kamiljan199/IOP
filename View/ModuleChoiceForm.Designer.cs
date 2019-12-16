@@ -37,11 +37,11 @@
             // buttonOpenPostingWindow
             // 
             this.buttonOpenPostingWindow.Enabled = false;
-            this.buttonOpenPostingWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonOpenPostingWindow.Location = new System.Drawing.Point(42, 39);
+            this.buttonOpenPostingWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonOpenPostingWindow.Location = new System.Drawing.Point(37, 37);
             this.buttonOpenPostingWindow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonOpenPostingWindow.Name = "buttonOpenPostingWindow";
-            this.buttonOpenPostingWindow.Size = new System.Drawing.Size(171, 34);
+            this.buttonOpenPostingWindow.Size = new System.Drawing.Size(150, 32);
             this.buttonOpenPostingWindow.TabIndex = 0;
             this.buttonOpenPostingWindow.Text = "Punkt nadania";
             this.buttonOpenPostingWindow.UseVisualStyleBackColor = true;
@@ -50,23 +50,24 @@
             // buttonOpenLogisticsWindow
             // 
             this.buttonOpenLogisticsWindow.Enabled = false;
-            this.buttonOpenLogisticsWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonOpenLogisticsWindow.Location = new System.Drawing.Point(42, 115);
+            this.buttonOpenLogisticsWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonOpenLogisticsWindow.Location = new System.Drawing.Point(37, 108);
             this.buttonOpenLogisticsWindow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonOpenLogisticsWindow.Name = "buttonOpenLogisticsWindow";
-            this.buttonOpenLogisticsWindow.Size = new System.Drawing.Size(171, 34);
+            this.buttonOpenLogisticsWindow.Size = new System.Drawing.Size(150, 32);
             this.buttonOpenLogisticsWindow.TabIndex = 1;
             this.buttonOpenLogisticsWindow.Text = "Logistyka";
             this.buttonOpenLogisticsWindow.UseVisualStyleBackColor = true;
+            this.buttonOpenLogisticsWindow.Click += new System.EventHandler(this.ButtonOpenLogisticsWindow_Click);
             // 
             // buttonOpenWarehouseWindow
             // 
             this.buttonOpenWarehouseWindow.Enabled = false;
-            this.buttonOpenWarehouseWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonOpenWarehouseWindow.Location = new System.Drawing.Point(42, 77);
+            this.buttonOpenWarehouseWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonOpenWarehouseWindow.Location = new System.Drawing.Point(37, 72);
             this.buttonOpenWarehouseWindow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonOpenWarehouseWindow.Name = "buttonOpenWarehouseWindow";
-            this.buttonOpenWarehouseWindow.Size = new System.Drawing.Size(171, 34);
+            this.buttonOpenWarehouseWindow.Size = new System.Drawing.Size(150, 32);
             this.buttonOpenWarehouseWindow.TabIndex = 2;
             this.buttonOpenWarehouseWindow.Text = "Magazyn";
             this.buttonOpenWarehouseWindow.UseVisualStyleBackColor = true;
@@ -74,27 +75,27 @@
             // buttonOpenCourierWindow
             // 
             this.buttonOpenCourierWindow.Enabled = false;
-            this.buttonOpenCourierWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonOpenCourierWindow.Location = new System.Drawing.Point(42, 153);
+            this.buttonOpenCourierWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonOpenCourierWindow.Location = new System.Drawing.Point(37, 143);
             this.buttonOpenCourierWindow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonOpenCourierWindow.Name = "buttonOpenCourierWindow";
-            this.buttonOpenCourierWindow.Size = new System.Drawing.Size(171, 34);
+            this.buttonOpenCourierWindow.Size = new System.Drawing.Size(150, 32);
             this.buttonOpenCourierWindow.TabIndex = 3;
             this.buttonOpenCourierWindow.Text = "Kurier";
             this.buttonOpenCourierWindow.UseVisualStyleBackColor = true;
             // 
-            // ModuleChoiceWindow
+            // ModuleChoiceForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(253, 230);
+            this.ClientSize = new System.Drawing.Size(221, 216);
             this.Controls.Add(this.buttonOpenCourierWindow);
             this.Controls.Add(this.buttonOpenWarehouseWindow);
             this.Controls.Add(this.buttonOpenLogisticsWindow);
             this.Controls.Add(this.buttonOpenPostingWindow);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "ModuleChoiceWindow";
+            this.Name = "ModuleChoiceForm";
             this.Text = "Moduły";
             this.Load += new System.EventHandler(this.ModuleChoiceWindow_Load);
             this.ResumeLayout(false);

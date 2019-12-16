@@ -18,7 +18,11 @@ namespace Data.Context
             new StorePlaceConfiguration(),
             new WarehouseConfiguration(),
             new SendingPointConfiguration(),
-            new AddressConfiguration()
+            new AddressConfiguration(),
+            new EmployeeConfiguration(),
+            new EmploymentConfiguration(),
+            new PositionConfiguration(),
+            new VehicleConfiguration()
         };
 
         public AppDbContext() : base()
@@ -35,6 +39,10 @@ namespace Data.Context
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<StorePlace> StorePlaces { get; set; }
         public virtual DbSet<PersonalData> PersonalDatas { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Employment> Employments { get; set; }
+        public virtual DbSet<Position> Positions { get; set; }
+        public virtual DbSet<Vehicle> Vehicles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
