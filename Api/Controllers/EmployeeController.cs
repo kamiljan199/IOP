@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Api.DTOs;
+using Api.Enums;
 
 namespace Api.Controllers
 {
@@ -19,6 +21,33 @@ namespace Api.Controllers
             catch(Exception ex)
             {
                 
+            }
+        }
+
+        public EmployeesDTO GetAllEmployees()
+        {
+            try
+            {
+                var employeesCollection = _employeeService.GetAllEmployees();
+
+                var result = new EmployeesDTO
+                {
+                    Employees = employeesCollection,
+                    Status = CollectionGetStatus.Success
+                };
+
+                return result;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+
+                var result = new EmployeesDTO
+                {
+                    Status = CollectionGetStatus.Failure
+                };
+
+                return result;
             }
         }
     }

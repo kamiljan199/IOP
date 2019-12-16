@@ -1,28 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Api.Services;
-using Api.DTOs;
 using Api.Enums;
+using Api.DTOs;
 
 namespace Api.Controllers
 {
-    public class VehicleController
+    public class PositionController
     {
-        private readonly IVehicleService _vehicleService;
-        public VehicleController(IVehicleService vehicleService)
+        private readonly IPositionService _positionService;
+        public PositionController(IPositionService positionService)
         {
-            _vehicleService = vehicleService;
+            _positionService = positionService;
         }
 
-        public VehiclesDTO GetAllVehicles()
+        public PositionsDTO GetAllPositions()
         {
             try
             {
-                var vehiclesList = _vehicleService.GetAllVehicles();
+                var positionsList = _positionService.GetAllPosition();
 
-                var result = new VehiclesDTO
+                var result = new PositionsDTO
                 {
-                    Vehicles = vehiclesList,
+                    Positions = positionsList,
                     Status = CollectionGetStatus.Success
 
                 };
@@ -33,7 +34,7 @@ namespace Api.Controllers
             {
                 Console.WriteLine(e.Message);
 
-                var result = new VehiclesDTO
+                var result = new PositionsDTO
                 {
                     Status = CollectionGetStatus.Failure
                 };
@@ -42,7 +43,5 @@ namespace Api.Controllers
             }
         }
 
-        
     }
 }
-
