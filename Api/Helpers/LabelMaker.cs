@@ -7,7 +7,7 @@ using System.Text;
 using System.IO;
 using System.Drawing.Imaging;
 
-namespace Api.Managers.Labels
+namespace Api.Helpers
 {
     public class LabelMaker
     {
