@@ -19,5 +19,43 @@ namespace Api.Managers
         {
             return _context.Parcels.FirstOrDefault(e => e.Id.Equals(id));
         }
+        public Parcel GetByReferenceId(int id)
+        {
+            return _context.Parcels.FirstOrDefault(e => e.ReferenceId.Equals(id));
+        }
+        public Parcel[] GetParcelsByStorePlace(StorePlace storePlace)
+        {
+            var query = from e in _context.Parcels
+                        where e.StorePlaceId == storePlace.Id
+                        select e;
+            return query.ToArray();
+        }
+
+        public int PostParcel(Parcel newParcel)
+        {
+            _context.Parcels.Add(newParcel);
+            return _context.SaveChanges();
+        }
+
+        public int ReturnParcel(Parcel oldParcel)
+        {
+            Parcel parcelToReturn = _context.Parcels.Find(oldParcel);
+            if (parcelToReturn != null)
+            {
+                Parcel newReturnParcel = new Parcel
+                {
+                    ReferenceId = parcelToReturn.Id,
+                    ReceiverData = parcelToReturn.SenderData,
+                    SenderData = parcelToReturn.ReceiverData,
+                    StorePlaceId = parcelToReturn.StorePlaceId
+                };
+                _context.Parcels.Add(newReturnParcel);
+                return _context.SaveChanges();
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }
