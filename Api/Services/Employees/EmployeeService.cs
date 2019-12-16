@@ -13,29 +13,55 @@ namespace Api.Services
         {
             _employeeManager = employeeManager;
         }
-        public void CreateEmployee(string name, string surname, int PESEL, DateTime birthday)
-        {
-            _employeeManager.AddEmployee(name, surname, PESEL, birthday);
-        }
 
-        public void FireEmployee(int employeeID)
-        {
-            _employeeManager.FireEmployee(employeeID);
-        }
-
-        public string GeneratePasswordForEmployee(int employeeID)
-        {
-            return _employeeManager.GeneratePasswordForEmployee(employeeID);
-        }
-
-        public List<Employee> GetAllEmployees()
+        public ICollection<Employee> GetAllEmployees()
         {
             var employeeList = _employeeManager.GetAllEmployees();
             if (employeeList.Count.Equals(0))
             {
                 throw new Exception($"No employee has been found");
             }
+
             return employeeList;
+        }
+
+        public Employee GetEmployeeById(int id)
+        {
+            var employee = _employeeManager.GetEmployeeById(id);
+            if(employee == default(Employee))
+            {
+                throw new Exception();
+            }
+
+            return employee;
+        }
+
+        public void AddEmployee(Employee employee)
+        {
+            _employeeManager.AddEmployee(employee);
+
+            var rowsChange = _employeeManager.SaveChanges();
+            if(rowsChange != 1)
+            {
+                throw new Exception();
+            }
+        }
+
+        public void RemoveEmployee(Employee employee)
+        {
+            _employeeManager.RemoveEmployee(employee);
+
+            var rowsChange = _employeeManager.SaveChanges();
+            if (rowsChange != 1)
+            {
+                throw new Exception();
+            }
+        }
+
+        public void RemoveEmployeeById(int id)
+        {
+            var employee = GetEmployeeById(id);
+            RemoveEmployee(employee);
         }
     }
 }

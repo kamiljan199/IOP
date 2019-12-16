@@ -8,9 +8,10 @@ namespace Api.Services
 {
     public interface IEmployeeService
     {
-        public string GeneratePasswordForEmployee(int employeeID);
-        public void CreateEmployee(string name, string surname, int PESEL, DateTime birthday);
-        public void FireEmployee(int employeeID);
-        public List<Employee> GetAllEmployees();
+        public Employee GetEmployeeById(int id);
+        public void AddEmployee(Employee employee);
+        public void RemoveEmployee(Employee employee);
+        public void RemoveEmployeeById(int id);
+        public ICollection<Employee> GetAllEmployees();
     }
 }

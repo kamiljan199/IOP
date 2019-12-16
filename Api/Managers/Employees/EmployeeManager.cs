@@ -15,34 +15,34 @@ namespace Api.Managers
             _context = context;
         }
         //Zwraca pracownika o żądanym numerze ID
-        public Employee GetEmployeeByID(int employeeID)
+        public Employee GetEmployeeById(int employeeId)
         {
-            return _context.Employees.FirstOrDefault(e => e.Id.Equals(employeeID));
+            return _context.Employees.FirstOrDefault(e => e.Id.Equals(employeeId));
         }
         //Zwraca pracownika o żądanym PESELu
         public Employee GetEmployeeByPESEL(int employeePESEL)
         {
             return _context.Employees.FirstOrDefault(e => e.Pesel.Equals(employeePESEL));
         }
-        //Generuje hasło dla pracownika (TODO)
-        public string GeneratePasswordForEmployee(int employeeID)
+
+        public void AddEmployee(Employee employee)
         {
-            throw new NotImplementedException();
-        }
-        //Dodaje pracownika
-        public void AddEmployee(string name, string surname, int PESEL, DateTime birthday)
-        {
-            throw new NotImplementedException();
-        }
-        //Zwalnia pracownika o podanym numerze ID
-        public void FireEmployee(int employeeID)
-        {
-            _context.Employees.Remove(GetEmployeeByID(employeeID));
+            _context.Employees.Add(employee);
         }
 
-        public List<Employee> GetAllEmployees()
+        public void RemoveEmployee(Employee employee)
+        {
+            _context.Employees.Remove(employee);
+        }
+
+        ICollection<Employee> IEmployeeManager.GetAllEmployees()
         {
             return _context.Employees.ToList();
+        }
+
+        public int SaveChanges()
+        {
+            return _context.SaveChanges();
         }
     }
 }
