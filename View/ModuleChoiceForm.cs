@@ -49,9 +49,6 @@ namespace View
       
         private void ModuleChoiceWindow_Load(object sender, EventArgs e)
         {
-            // enable buttons -> sprawdzanie kto jest zalogowany i na podstawie stanowiska te przyciski będą dostępne
-            //buttonOpenCourierWindow.Enabled = true;
-
             if (_loginForm.textBoxUsername.Text == "Courier")
             {
                 buttonOpenCourierWindow.Enabled = true;
@@ -63,6 +60,17 @@ namespace View
             if (_loginForm.textBoxUsername.Text == "Warehouse")
             {
                 buttonOpenWarehouseWindow.Enabled = true;
+            }
+            if (_loginForm.textBoxUsername.Text == "Registration")
+            {
+                buttonOpenPostingWindow.Enabled = true;
+            }
+            if (_loginForm.textBoxUsername.Text == "Admin")
+            {
+                buttonOpenWarehouseWindow.Enabled = true;
+                buttonOpenLogisticsWindow.Enabled = true;
+                buttonOpenCourierWindow.Enabled = true;
+                buttonOpenPostingWindow.Enabled = true;
             }
         }
     }
