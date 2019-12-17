@@ -12,6 +12,7 @@ namespace View
 {
     public partial class MainForm : Form
     {
+        private readonly Api.Controllers.ParcelController _parcelController;
         private readonly LoginForm _loginForm;
 
         public MainForm(LoginForm loginForm)
@@ -27,8 +28,9 @@ namespace View
             
             if(_loginForm.isClosed == true)
             {
-                _loginForm.Hide();
-                this.ShowDialog();
+                textBoxInsertNumber.Text = "";
+                TextBoxInsertNumber_Leave(sender, e);
+                this.Show();
             }
         }
 
@@ -60,21 +62,29 @@ namespace View
             }
         }
 
-        private void ButtonCheckStatus_Click(object sender, EventArgs e) // TO DO
+        private int ConvertStringToInt(string intString)
+        {
+            int i = 0;
+            if (!Int32.TryParse(intString, out i))
+            {
+                i = -1;
+            }
+            return i;
+        }
+
+        private void ButtonCheckStatus_Click(object sender, EventArgs e)
         {
             try
             {
                 if (!(textBoxInsertNumber.Text == "") && !(textBoxInsertNumber.Text == "Wpisz numer przesyłki"))
                 {
-                    //labelStatus.Text = PackageController::GetPackageStatusByID(textBoxInsertNumber.Text);
-                    
-                    // for testing
-                    labelStatus.Text = textBoxInsertNumber.Text;
+                    labelStatus.Text = _parcelController.GetParcelStatusById(ConvertStringToInt(textBoxInsertNumber.Text)).ToString();              
                 }
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message);
+                //MessageBox.Show(exc.Message);
+                labelStatus.Text = "Brak przesyłki o podanym numerze";
             }        
         }  
     }     

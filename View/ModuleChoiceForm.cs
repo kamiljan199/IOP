@@ -49,20 +49,40 @@ namespace View
       
         private void ModuleChoiceWindow_Load(object sender, EventArgs e)
         {
-            // enable buttons -> sprawdzanie kto jest zalogowany i na podstawie stanowiska te przyciski będą dostępne
-            //buttonOpenCourierWindow.Enabled = true;
-
             if (_loginForm.textBoxUsername.Text == "Courier")
             {
+                buttonOpenWarehouseWindow.Enabled = false;
+                buttonOpenLogisticsWindow.Enabled = false;
                 buttonOpenCourierWindow.Enabled = true;
+                buttonOpenPostingWindow.Enabled = false;
             }
             if (_loginForm.textBoxUsername.Text == "Logistic")
             {
+                buttonOpenWarehouseWindow.Enabled = false;
                 buttonOpenLogisticsWindow.Enabled = true;
+                buttonOpenCourierWindow.Enabled = false;
+                buttonOpenPostingWindow.Enabled = false;
             }
             if (_loginForm.textBoxUsername.Text == "Warehouse")
             {
                 buttonOpenWarehouseWindow.Enabled = true;
+                buttonOpenLogisticsWindow.Enabled = false;
+                buttonOpenCourierWindow.Enabled = false;
+                buttonOpenPostingWindow.Enabled = false;
+            }
+            if (_loginForm.textBoxUsername.Text == "Registration")
+            {
+                buttonOpenWarehouseWindow.Enabled = false;
+                buttonOpenLogisticsWindow.Enabled = false;
+                buttonOpenCourierWindow.Enabled = false;
+                buttonOpenPostingWindow.Enabled = true;
+            }
+            if (_loginForm.textBoxUsername.Text == "Admin")
+            {
+                buttonOpenWarehouseWindow.Enabled = true;
+                buttonOpenLogisticsWindow.Enabled = true;
+                buttonOpenCourierWindow.Enabled = true;
+                buttonOpenPostingWindow.Enabled = true;
             }
         }
     }
