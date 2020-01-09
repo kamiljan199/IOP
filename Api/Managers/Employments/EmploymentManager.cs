@@ -16,9 +16,9 @@ namespace Api.Managers
             _context = context;
         }
 
-        public void AddEmployment(int employeeID, DateTime startTime, int position, double salary, int warehouseID)
+        public void AddEmployment(Employment employment)
         {
-            throw new NotImplementedException();
+            _context.Employments.Add(employment);
         }
 
         public List<Employment> GetAllEmployments()
@@ -29,6 +29,10 @@ namespace Api.Managers
         public Employment GetEmploymentByID(int employmentID)
         {
             return _context.Employments.FirstOrDefault(e => e.Id.Equals(employmentID));
+        }
+        public int SaveChanges()
+        {
+            return _context.SaveChanges();
         }
     }
 }

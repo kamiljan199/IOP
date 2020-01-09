@@ -12,6 +12,6 @@ namespace Api.Managers
         public void AddVehicle(Vehicle vehicle);
         public void ChangeDriver(Vehicle vehicle, int driverID);
         public List<Vehicle> GetAllVehicles();
-
+        public int SaveChanges();
     }
 }

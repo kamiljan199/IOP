@@ -14,9 +14,15 @@ namespace Api.Services
         {
             _employmentManager = employmentManager;
         }
-        public void CreateEmployement(int employeeID, DateTime startDate, int position, double salary, int warehouseID)
+        public void CreateEmployement(Employment employment)
         {
-            _employmentManager.AddEmployment(employeeID, startDate, position, salary, warehouseID);
+            _employmentManager.AddEmployment(employment);
+
+            var rowsChange = _employmentManager.SaveChanges();
+            if (rowsChange != 1)
+            {
+                throw new Exception();
+            }
         }
 
         public List<Employment> GetAllEmployments()

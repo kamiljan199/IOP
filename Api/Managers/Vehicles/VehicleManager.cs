@@ -38,5 +38,9 @@ namespace Api.Managers
         {
             return _context.Vehicles.FirstOrDefault(e => e.Id.Equals(vehicleID));
         }
+        public int SaveChanges()
+        {
+            return _context.SaveChanges();
+        }
     }
 }

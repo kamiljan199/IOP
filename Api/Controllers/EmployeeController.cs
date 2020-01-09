@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Api.DTOs;
 using Api.Enums;
+using Model.Models;
 
 namespace Api.Controllers
 {
@@ -22,6 +23,19 @@ namespace Api.Controllers
             {
                 
             }
+        }
+
+        public void CreateEmployee(string name, string surname, string PESEL, DateTime birthday)
+        {
+            var employee = new Employee
+            {
+                Name = name,
+                Surname = surname,
+                Pesel = PESEL,
+                Birthday = birthday
+            };
+
+            _employeeService.AddEmployee(employee);
         }
 
         public EmployeesDTO GetAllEmployees()

@@ -4,6 +4,7 @@ using System.Text;
 using Api.Services;
 using Api.DTOs;
 using Api.Enums;
+using Model.Models;
 
 namespace Api.Controllers
 {
@@ -40,6 +41,20 @@ namespace Api.Controllers
 
                 return result;
             }
+        }
+
+        public void CreateEmployment(int employeeID, DateTime startDate, Position position, float salary, Warehouse warehouse)
+        {
+            var employment = new Employment
+            {
+                Id = employeeID,
+                StartDate = startDate,
+                Position = position,
+                Salary = salary,
+                Warehouse = warehouse
+            };
+
+            _employmentService.CreateEmployement(employment);
         }
     }
 }
