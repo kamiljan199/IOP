@@ -19,9 +19,9 @@ namespace Api.Managers
             _context.Vehicles.Add(vehicle);
         }
 
-        public void ChangeDriver(Vehicle vehicle, int driverID)
+        public void ChangeDriver(int vehicleID, Employee driver)
         {
-            throw new NotImplementedException();
+            GetVehicleByID(vehicleID).Driver = driver;
         }
 
         public List<Vehicle> GetAllVehicles()

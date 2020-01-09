@@ -34,5 +34,16 @@ namespace Api.Services
             }
             return employmentsList;
         }
+
+        public void ChangePosition(int employmentID, Position position)
+        {
+            _employmentManager.ChangePosition(employmentID, position);
+
+            var rowsChange = _employmentManager.SaveChanges();
+            if (rowsChange != 1)
+            {
+                throw new Exception();
+            }
+        }
     }
 }

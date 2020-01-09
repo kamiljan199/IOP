@@ -10,5 +10,6 @@ namespace Api.Services
     {
         public List<Employment> GetAllEmployments();
         public void CreateEmployement(Employment employment);
+        public void ChangePosition(int employmentID, Position position);
     }
 }

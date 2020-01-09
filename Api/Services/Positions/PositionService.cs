@@ -24,5 +24,10 @@ namespace Api.Services
             }
             return positionsList;
         }
+
+        public Position GetPositionByID(int positionID)
+        {
+            return _positionManager.GetPositionByID(positionID);
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace Api.Managers
         public void AddEmployment(Employment employment);
         public List<Employment> GetAllEmployments();
         public int SaveChanges();
+        public void ChangePosition(int employmentID, Position position);
     }
 }

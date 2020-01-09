@@ -10,9 +10,11 @@ namespace Api.Controllers
     public class VehicleController
     {
         private readonly IVehicleService _vehicleService;
-        public VehicleController(IVehicleService vehicleService)
+        private readonly IEmployeeService _employeeService;
+        public VehicleController(IVehicleService vehicleService, IEmployeeService employeeService)
         {
             _vehicleService = vehicleService;
+            _employeeService = employeeService;
         }
 
         public VehiclesDTO GetAllVehicles()
@@ -53,6 +55,11 @@ namespace Api.Controllers
             };
 
             _vehicleService.CreateVehicle(vehicle);
+        }
+
+        public void ChangeDriver(int vehicleID, int driverID)
+        {
+            _vehicleService.ChangeDriver(_vehicleService.GetVehicleByID(vehicleID), _employeeService.GetEmployeeById(driverID));
         }
 
         

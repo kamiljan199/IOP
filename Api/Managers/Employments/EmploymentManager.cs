@@ -21,6 +21,11 @@ namespace Api.Managers
             _context.Employments.Add(employment);
         }
 
+        public void ChangePosition(int employmentID, Position position)
+        {
+            GetEmploymentByID(employmentID).Position = position;
+        }
+
         public List<Employment> GetAllEmployments()
         {
             return _context.Employments.ToList();

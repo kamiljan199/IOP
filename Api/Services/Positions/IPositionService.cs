@@ -9,5 +9,6 @@ namespace Api.Services
     public interface IPositionService
     {
         public List<Position> GetAllPosition();
+        public Position GetPositionByID(int positionID);
     }
 }

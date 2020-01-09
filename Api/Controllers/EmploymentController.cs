@@ -11,9 +11,11 @@ namespace Api.Controllers
     public class EmploymentController
     {
         private readonly IEmploymentService _employmentService;
-        public EmploymentController(IEmploymentService employmentService)
+        private readonly IPositionService _positionService;
+        public EmploymentController(IEmploymentService employmentService, IPositionService positionService)
         {
             _employmentService = employmentService;
+            _positionService = positionService;
         }
 
         public EmploymentsDTO GetAllEmployments()
@@ -55,6 +57,11 @@ namespace Api.Controllers
             };
 
             _employmentService.CreateEmployement(employment);
+        }
+
+        public void ChangePosition(int employmentID, int positionID)
+        {
+            _employmentService.ChangePosition(employmentID, _positionService.GetPositionByID(positionID));
         }
     }
 }
