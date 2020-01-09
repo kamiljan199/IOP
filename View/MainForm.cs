@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Api.Enums;
 
 namespace View
 {
@@ -78,13 +79,25 @@ namespace View
             {
                 if (!(textBoxInsertNumber.Text == "") && !(textBoxInsertNumber.Text == "Wpisz numer przesyłki"))
                 {
-                    labelStatus.Text = _parcelController.GetParcelStatusById(ConvertStringToInt(textBoxInsertNumber.Text)).ToString();              
+                    ParcelStatus theStatus = _parcelController.GetParcelStatusById(ConvertStringToInt(textBoxInsertNumber.Text));
+                   
+                    switch(theStatus)
+                    {
+                        case ParcelStatus.Unknown:
+                            labelStatus.Text = "Brak przesyłki o podanym numerze";
+                            break;
+                        case ParcelStatus.Posted:
+                            labelStatus.Text = "Przeyłka wysłana";
+                            break;
+                        case ParcelStatus.Returned:
+                            labelStatus.Text = "Przesyłka zwrócona";
+                            break;
+                    }             
                 }
             }
             catch (Exception exc)
             {
-                //MessageBox.Show(exc.Message);
-                labelStatus.Text = "Brak przesyłki o podanym numerze";
+                MessageBox.Show(exc.Message);
             }        
         }  
     }     
