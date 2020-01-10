@@ -10,7 +10,7 @@ namespace Api.Managers
         public Vehicle GetVehicleByID(int vehicleID);
         public Vehicle GetVehicleByDriverID(int driverID);
         public void AddVehicle(Vehicle vehicle);
-        public void ChangeDriver(int vehicleID, Employee driver);
+        public void ChangeDriver(Vehicle vehicle, Employee driver);
         public List<Vehicle> GetAllVehicles();
         public int SaveChanges();
     }

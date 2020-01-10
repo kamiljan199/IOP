@@ -11,7 +11,7 @@ namespace Api.Services
         public List<Vehicle> GetAllVehicles();
         public Vehicle GetVehicleByID(int vehicleID);
         public void CreateVehicle(Vehicle vehicle);
-        public void ChangeDriver(int vehicleID, Employee driver);
+        public void ChangeDriver(Vehicle vehicleID, Employee driver);
         
     }
 }

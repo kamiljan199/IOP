@@ -13,9 +13,9 @@ namespace Api.Services
         {
             _vehicleManager = vehicleManager;
         }
-        public void ChangeDriver(int vehicleID, Employee driver)
+        public void ChangeDriver(Vehicle vehicle, Employee driver)
         {
-            _vehicleManager.ChangeDriver(vehicleID, driver);
+            _vehicleManager.ChangeDriver(vehicle, driver);
             var rowsChange = _vehicleManager.SaveChanges();
             if (rowsChange != 1)
             {

@@ -19,9 +19,9 @@ namespace Api.Managers
             _context.Vehicles.Add(vehicle);
         }
 
-        public void ChangeDriver(int vehicleID, Employee driver)
+        public void ChangeDriver(Vehicle vehicle, Employee driver)
         {
-            GetVehicleByID(vehicleID).Driver = driver;
+            vehicle.Driver = driver;
         }
 
         public List<Vehicle> GetAllVehicles()
