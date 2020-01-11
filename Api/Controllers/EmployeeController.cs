@@ -11,6 +11,12 @@ namespace Api.Controllers
     public class EmployeeController
     {
         private readonly IEmployeeService _employeeService;
+
+        public EmployeeController(IEmployeeService employeeService)
+        {
+            _employeeService = employeeService;
+        }
+
         //TODO: Zwalnia pracownika o podanym numerze ID
         public void FireEmployeeById(int employeeId)
         {
@@ -56,13 +62,23 @@ namespace Api.Controllers
             {
                 Console.WriteLine(e.Message);
 
-                var result = new EmployeesDTO
+                    var result = new EmployeesDTO
                 {
                     Status = CollectionGetStatus.Failure
                 };
 
                 return result;
             }
+        }
+
+        public void RemoveEmployee(Employee employee)
+        {
+            _employeeService.RemoveEmployee(employee);
+        }
+
+        public void AddEmployee(Employee employee)
+        {
+            _employeeService.AddEmployee(employee);
         }
     }
 }

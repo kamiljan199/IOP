@@ -41,6 +41,7 @@
             this.EmployeesButton.TabIndex = 0;
             this.EmployeesButton.Text = "Pracownicy";
             this.EmployeesButton.UseVisualStyleBackColor = true;
+            this.EmployeesButton.Click += new System.EventHandler(this.EmployeesButton_Click);
             // 
             // PositionsButton
             // 

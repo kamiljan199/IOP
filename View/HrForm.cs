@@ -11,9 +11,11 @@ namespace View
     public partial class HrForm : Form
     {
         private readonly PositionListForm _positionListForm;
-        public HrForm(PositionListForm positionListForm)
+        private readonly EmployeeListForm _employeeListForm;
+        public HrForm(PositionListForm positionListForm, EmployeeListForm employeeListForm)
         {
             _positionListForm = positionListForm;
+            _employeeListForm = employeeListForm;
             InitializeComponent();
         }
 
@@ -26,6 +28,12 @@ namespace View
         {
             this.Hide();
             _positionListForm.ShowDialog();
+        }
+
+        private void EmployeesButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            _employeeListForm.ShowDialog();
         }
     }
 }

@@ -12,6 +12,10 @@ namespace Model.Models
 
         public string Pesel { get; set; }
 
+        public string Login { get; set; }
+
+        public string Password { get; set; }
+
         public DateTime Birthday { get; set; }
 
         public Employment ActiveEmployment { get; set; }
