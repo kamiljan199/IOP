@@ -19,15 +19,17 @@ namespace View
         [STAThread]
         static void Main()
         {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Bootstrap();
+            //Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Bootstrap();
 
-            using (var scope = container.BeginLifetimeScope())
-            {
-                Application.Run(container.Resolve<MainForm>());
-            }
+            //using (var scope = container.BeginLifetimeScope())
+            //{
+            //    Application.Run(container.Resolve<MainForm>());
+            //}
+            Api.Helpers.QRLabelGenerator lab = new Api.Helpers.QRLabelGenerator();
+            lab.MakeLabel("text.pdf", "xDDD");
         }
 
         private static void Bootstrap()
