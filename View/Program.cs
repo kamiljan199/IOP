@@ -28,8 +28,9 @@ namespace View
             //{
             //    Application.Run(container.Resolve<MainForm>());
             //}
+            Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
             Api.Helpers.QRLabelGenerator lab = new Api.Helpers.QRLabelGenerator();
-            lab.MakeLabel("text.pdf", "xDDD");
+            lab.MakeLabel("text.pdf", "xDDD", null);
         }
 
         private static void Bootstrap()
