@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Api.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,11 @@ namespace View
     public partial class MainForm : Form
     {
         private readonly LoginForm _loginForm;
+        private readonly ParcelController _parcelController;
 
-        public MainForm(LoginForm loginForm)
+        public MainForm(LoginForm loginForm, ParcelController parcelController)
         {
+            _parcelController = parcelController;
             _loginForm = loginForm;
             InitializeComponent();
         }
@@ -66,10 +69,7 @@ namespace View
             {
                 if (!(textBoxInsertNumber.Text == "") && !(textBoxInsertNumber.Text == "Wpisz numer przesyłki"))
                 {
-                    //labelStatus.Text = PackageController::GetPackageStatusByID(textBoxInsertNumber.Text);
-                    
-                    // for testing
-                    labelStatus.Text = textBoxInsertNumber.Text;
+                    labelStatus.Text = _parcelController.GetParcelStatusById(int.Parse(textBoxInsertNumber.Text)).ToString();
                 }
             }
             catch (Exception exc)

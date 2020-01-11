@@ -23,7 +23,6 @@ namespace View
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Bootstrap();
-
             //using (var scope = container.BeginLifetimeScope())
             //{
             //    Application.Run(container.Resolve<MainForm>());
@@ -31,6 +30,7 @@ namespace View
             Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
             Api.Helpers.QRLabelGenerator lab = new Api.Helpers.QRLabelGenerator();
             lab.MakeLabel("text.pdf", "xDDD", null);
+
         }
 
         private static void Bootstrap()

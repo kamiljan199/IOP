@@ -11,6 +11,7 @@ namespace Api.Managers
         public Parcel GetByReferenceId(int id);
         public Parcel[] GetParcelsByStorePlace(StorePlace storePlace);
         public int PostParcel(Parcel newParcel);
+        public int DeliverParcel(Parcel oldParcel);
         public int ReturnParcel(Parcel oldParcel);
     }
 }
