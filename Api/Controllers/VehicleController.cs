@@ -59,7 +59,7 @@ namespace Api.Controllers
 
         public void ChangeDriver(int vehicleID, int driverID)
         {
-            _vehicleService.ChangeDriver(_vehicleService.GetVehicleByID(vehicleID), _employeeService.GetEmployeeById(driverID));
+            //_vehicleService.ChangeDriver(_vehicleService.GetVehicleByID(vehicleID), _employeeService.GetEmployeeById(driverID));
         }
 
         
