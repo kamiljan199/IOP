@@ -4,6 +4,7 @@
     {
         Posted,
         Returned,
+        Delivered,
         Unknown
     }
 }
