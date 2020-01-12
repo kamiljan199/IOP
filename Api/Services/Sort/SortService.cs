@@ -11,14 +11,16 @@ namespace Api.Services
     class SortService : ISortService
     {
         private List<Parcel> _parcels;
+        private List<Parcel> _parcelsToClients;
+        private List<Parcel> _parcelsToOtherStorePlace;
         private readonly IParcelManager _parcelManager;
-        private readonly ParcelController _parcelController;
 
-        public SortService(IParcelManager parcelManager, ParcelController parcelController)
+        public SortService(IParcelManager parcelManager)
         {
             _parcelManager = parcelManager;
             _parcels = new List<Parcel>();
-            _parcelController = parcelController;
+            _parcelsToClients = new List<Parcel>();
+            _parcelsToOtherStorePlace = new List<Parcel>();
         }
 
         public void GetParcelsInMagazine(StorePlace store)
@@ -30,10 +32,10 @@ namespace Api.Services
             }
         }
 
-        public void Sort()
+        public void Sort(int storePlaceId)
         {
             SortParcelsByAddress();
-            SortParcelsByStatus();
+            SortParcelsByStorePlace(storePlaceId);
         }
 
         public void SortParcelsByAddress()
@@ -47,13 +49,23 @@ namespace Api.Services
                 .ToList();
         }
 
-        public void SortParcelsByStatus()
+        public void SortParcelsByStorePlace(int storePlaceId)
         {
             List<Parcel> sortedParcels = new List<Parcel>();
 
-            sortedParcels = _parcels
-                .OrderBy(e => _parcelController.GetParcelStatusById(e.Id))
-                .ToList();
+            foreach(var parcel in _parcels)
+            {
+                if (parcel.StorePlaceId == storePlaceId)
+                {
+                    _parcelsToClients.Add(parcel);
+                    _parcels.Remove(parcel);
+                }
+                else
+                {
+                    _parcelsToOtherStorePlace.Add(parcel);
+                    _parcels.Remove(parcel);
+                }
+            }
         }
     }
 }
