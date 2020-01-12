@@ -14,7 +14,6 @@ namespace View
 {
     public partial class MainForm : Form
     {
-        private readonly Api.Controllers.ParcelController _parcelController;
         private readonly LoginForm _loginForm;
         private readonly ParcelController _parcelController;
 
