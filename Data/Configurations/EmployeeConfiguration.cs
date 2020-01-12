@@ -25,10 +25,12 @@ namespace Data.Configurations
                         .Property(e => e.Pesel)
                         .HasMaxLength(11)
                         .IsFixedLength();
-                    /*entity
-                        .HasOne(emplee => emplee.ActiveEmployment)
-                        .WithOne(emplmt => emplmt.Employee)
-                        .HasForeignKey<Employment>(emplmt => emplmt.EmployeeForeignKey);*/
+                    /*
+                    entity
+                        .HasOne(e => e.ActiveEmployment)
+                        .WithOne(e => e.Employee)
+                        .HasForeignKey<Employee>(e => e.EmploymentId);
+                        */
                 });
         }
     }

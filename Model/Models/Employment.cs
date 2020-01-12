@@ -18,6 +18,6 @@ namespace Model.Models
         public Warehouse Warehouse { get; set; }
 
         public int EmployeeId { get; set; }
-        public Employee Employee { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

@@ -18,7 +18,6 @@ namespace Model.Models
         public string Password { get; set; }
 
         public DateTime Birthday { get; set; }
-
-        public Employment ActiveEmployment { get; set; }
+        public virtual Employment ActiveEmployment { get; set; }
     }
 }

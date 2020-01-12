@@ -31,6 +31,20 @@
     <Compile Remove="Migrations\20200112095104_HrEmploymentUpdate.Designer.cs" />
     <Compile Remove="Migrations\20200112095526_HrEmployeeUpdate.cs" />
     <Compile Remove="Migrations\20200112095526_HrEmployeeUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200112112619_AddedOneToOneForEmployeeAndEmployment.cs" />
+    <Compile Remove="Migrations\20200112112619_AddedOneToOneForEmployeeAndEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112112940_AddedOneToOneForEmployeeAndEmployment.cs" />
+    <Compile Remove="Migrations\20200112112940_AddedOneToOneForEmployeeAndEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112113814_AddedOneToOneForEmployeeAndEmployment.cs" />
+    <Compile Remove="Migrations\20200112113814_AddedOneToOneForEmployeeAndEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112114216_AddedOneToOneForEmployeeAndEmployment.cs" />
+    <Compile Remove="Migrations\20200112114216_AddedOneToOneForEmployeeAndEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112114812_AddedOneToOneForEmployeeAndEmployment.cs" />
+    <Compile Remove="Migrations\20200112114812_AddedOneToOneForEmployeeAndEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112114933_AddedEmployeeFKToEmployment.cs" />
+    <Compile Remove="Migrations\20200112114933_AddedEmployeeFKToEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112115502_AddedEmployeeFKToEmployment.cs" />
+    <Compile Remove="Migrations\20200112115502_AddedEmployeeFKToEmployment.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
