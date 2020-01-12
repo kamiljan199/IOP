@@ -31,6 +31,8 @@
     <Compile Remove="Migrations\20200112095104_HrEmploymentUpdate.Designer.cs" />
     <Compile Remove="Migrations\20200112095526_HrEmployeeUpdate.cs" />
     <Compile Remove="Migrations\20200112095526_HrEmployeeUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200112105339_HrEmployeeFKUpdate.cs" />
+    <Compile Remove="Migrations\20200112105339_HrEmployeeFKUpdate.Designer.cs" />
     <Compile Remove="Migrations\20200112112619_AddedOneToOneForEmployeeAndEmployment.cs" />
     <Compile Remove="Migrations\20200112112619_AddedOneToOneForEmployeeAndEmployment.Designer.cs" />
     <Compile Remove="Migrations\20200112112940_AddedOneToOneForEmployeeAndEmployment.cs" />

@@ -17,6 +17,7 @@ namespace Api.Managers
         public void AddVehicle(Vehicle vehicle)
         {
             _context.Vehicles.Add(vehicle);
+            _context.SaveChanges();
         }
 
         public void ChangeDriver(int vehicleID, Employee driver)
@@ -41,6 +42,12 @@ namespace Api.Managers
         public int SaveChanges()
         {
             return _context.SaveChanges();
+        }
+
+        public void RemoveVehicle(Vehicle vehicle)
+        {
+            _context.Vehicles.Remove(vehicle);
+            _context.SaveChanges();
         }
     }
 }

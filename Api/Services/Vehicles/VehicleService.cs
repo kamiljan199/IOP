@@ -42,5 +42,10 @@ namespace Api.Services
             }
             return vehiclesList;
         }
+
+        public void RemoveVehicle(Vehicle vehicle)
+        {
+            _vehicleManager.RemoveVehicle(vehicle);
+        }
     }
 }

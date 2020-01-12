@@ -91,7 +91,7 @@ namespace View
             {
                 //_employmentController.AddPosition(position);
                 //Employment.EmployeeForeignKey = Employee.Id;
-                Employment.Employee = Employee;
+                Employment.EmployeeId = Employee.Id;
                 _employmentController.CreateEmployment(Employment);
                 //_employeeController.HireEmployee(Employee, Employment);
             }

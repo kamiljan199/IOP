@@ -12,10 +12,13 @@ namespace View
     {
         private readonly PositionListForm _positionListForm;
         private readonly EmployeeListForm _employeeListForm;
-        public HrForm(PositionListForm positionListForm, EmployeeListForm employeeListForm)
+        private readonly VehicleListForm _vehicleListForm;
+
+        public HrForm(PositionListForm positionListForm, EmployeeListForm employeeListForm, VehicleListForm vehicleListForm)
         {
             _positionListForm = positionListForm;
             _employeeListForm = employeeListForm;
+            _vehicleListForm = vehicleListForm;
             InitializeComponent();
         }
 
@@ -34,6 +37,12 @@ namespace View
         {
             this.Hide();
             _employeeListForm.ShowDialog();
+        }
+
+        private void VehiclesButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            _vehicleListForm.ShowDialog();
         }
     }
 }

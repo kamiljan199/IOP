@@ -13,5 +13,7 @@ namespace Api.Managers
         public void ChangeDriver(int vehicleID, Employee driver);
         public List<Vehicle> GetAllVehicles();
         public int SaveChanges();
+
+        public void RemoveVehicle(Vehicle vehicle);
     }
 }

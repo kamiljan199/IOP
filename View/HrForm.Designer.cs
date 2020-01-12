@@ -61,6 +61,7 @@
             this.VehiclesButton.TabIndex = 0;
             this.VehiclesButton.Text = "Pojazdy";
             this.VehiclesButton.UseVisualStyleBackColor = true;
+            this.VehiclesButton.Click += new System.EventHandler(this.VehiclesButton_Click);
             // 
             // HrForm
             // 

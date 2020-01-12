@@ -62,7 +62,15 @@ namespace Api.Controllers
             //_vehicleService.ChangeDriver(_vehicleService.GetVehicleByID(vehicleID), _employeeService.GetEmployeeById(driverID));
         }
 
-        
+        public void AddVehicle(Vehicle vehicle)
+        {
+            _vehicleService.CreateVehicle(vehicle);
+        }
+
+        public void RemoveVehicle(Vehicle vehicle)
+        {
+            _vehicleService.RemoveVehicle(vehicle);
+        }
     }
 }
 
