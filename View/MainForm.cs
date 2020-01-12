@@ -8,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Api.Enums;
 
 namespace View
 {
     public partial class MainForm : Form
     {
+        private readonly Api.Controllers.ParcelController _parcelController;
         private readonly LoginForm _loginForm;
         private readonly ParcelController _parcelController;
 
@@ -30,8 +32,9 @@ namespace View
             
             if(_loginForm.isClosed == true)
             {
-                _loginForm.Hide();
-                this.ShowDialog();
+                textBoxInsertNumber.Text = "";
+                TextBoxInsertNumber_Leave(sender, e);
+                this.Show();
             }
         }
 
@@ -63,13 +66,23 @@ namespace View
             }
         }
 
-        private void ButtonCheckStatus_Click(object sender, EventArgs e) // TO DO
+        private int ConvertStringToInt(string intString)
+        {
+            int i = 0;
+            if (!Int32.TryParse(intString, out i))
+            {
+                i = -1;
+            }
+            return i;
+        }
+
+        private void ButtonCheckStatus_Click(object sender, EventArgs e)
         {
             try
             {
                 if (!(textBoxInsertNumber.Text == "") && !(textBoxInsertNumber.Text == "Wpisz numer przesyłki"))
                 {
-                    labelStatus.Text = _parcelController.GetParcelStatusById(int.Parse(textBoxInsertNumber.Text)).ToString();
+                    labelStatus.Text = _parcelController.GetParcelStatusById(int.Parse(textBoxInsertNumber.Text)).ToString();             
                 }
             }
             catch (Exception exc)

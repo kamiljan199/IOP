@@ -23,12 +23,12 @@ namespace View
 
         private void LoginWindow_Load(object sender, EventArgs e)
         {
-
+            textBoxUsername.Text = "";
+            textBoxPassword.Text = "";
         }
 
         public void ButtonLogin_Click(object sender, EventArgs e) // TO DO
         {
-           
             try
             {
                 if (!(textBoxUsername.Text == ""))
@@ -62,7 +62,6 @@ namespace View
 
         private void LoginWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // show MainWindow // relacja dziecko-rodzic ?(otworzyć poprzednie okno przy zamknięciu tego)
             this.Hide(); 
             isClosed = true;
         }
