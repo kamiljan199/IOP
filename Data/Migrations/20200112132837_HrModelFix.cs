@@ -2,7 +2,7 @@
 
 namespace Data.Migrations
 {
-    public partial class HrRelationsFix : Migration
+    public partial class HrModelFix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,18 +14,6 @@ namespace Data.Migrations
                 name: "FK_Employments_Positions_PositionId",
                 table: "Employments");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Employments_StorePlaces_WarehouseId",
-                table: "Employments");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Vehicles_Employees_DriverId",
-                table: "Vehicles");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Vehicles_StorePlaces_WarehouseId",
-                table: "Vehicles");
-
             migrationBuilder.DropIndex(
                 name: "IX_Employees_ActiveEmploymentId",
                 table: "Employees");
@@ -33,30 +21,6 @@ namespace Data.Migrations
             migrationBuilder.DropColumn(
                 name: "ActiveEmploymentId",
                 table: "Employees");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "WarehouseId",
-                table: "Vehicles",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<int>(
-                name: "DriverId",
-                table: "Vehicles",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<int>(
-                name: "WarehouseId",
-                table: "Employments",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int",
-                oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "PositionId",
@@ -103,30 +67,6 @@ namespace Data.Migrations
                 principalTable: "Positions",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Employments_StorePlaces_WarehouseId",
-                table: "Employments",
-                column: "WarehouseId",
-                principalTable: "StorePlaces",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Vehicles_Employees_DriverId",
-                table: "Vehicles",
-                column: "DriverId",
-                principalTable: "Employees",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Vehicles_StorePlaces_WarehouseId",
-                table: "Vehicles",
-                column: "WarehouseId",
-                principalTable: "StorePlaces",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -138,18 +78,6 @@ namespace Data.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Employments_Positions_PositionId",
                 table: "Employments");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Employments_StorePlaces_WarehouseId",
-                table: "Employments");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Vehicles_Employees_DriverId",
-                table: "Vehicles");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Vehicles_StorePlaces_WarehouseId",
-                table: "Vehicles");
 
             migrationBuilder.DropIndex(
                 name: "IX_Employments_EmployeeId",
@@ -166,27 +94,6 @@ namespace Data.Migrations
             migrationBuilder.DropColumn(
                 name: "Password",
                 table: "Employees");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "WarehouseId",
-                table: "Vehicles",
-                type: "int",
-                nullable: true,
-                oldClrType: typeof(int));
-
-            migrationBuilder.AlterColumn<int>(
-                name: "DriverId",
-                table: "Vehicles",
-                type: "int",
-                nullable: true,
-                oldClrType: typeof(int));
-
-            migrationBuilder.AlterColumn<int>(
-                name: "WarehouseId",
-                table: "Employments",
-                type: "int",
-                nullable: true,
-                oldClrType: typeof(int));
 
             migrationBuilder.AlterColumn<int>(
                 name: "PositionId",
@@ -219,30 +126,6 @@ namespace Data.Migrations
                 table: "Employments",
                 column: "PositionId",
                 principalTable: "Positions",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Employments_StorePlaces_WarehouseId",
-                table: "Employments",
-                column: "WarehouseId",
-                principalTable: "StorePlaces",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Vehicles_Employees_DriverId",
-                table: "Vehicles",
-                column: "DriverId",
-                principalTable: "Employees",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Vehicles_StorePlaces_WarehouseId",
-                table: "Vehicles",
-                column: "WarehouseId",
-                principalTable: "StorePlaces",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }

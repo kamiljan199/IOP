@@ -48,6 +48,7 @@ namespace View
         private void SynchronizePositions()
         {
             _positionsDTO = _positionController.GetAllPositions();
+            positionComboBox.Items.Clear();
 
             if (_positionsDTO.Positions != null)
             {
@@ -61,6 +62,7 @@ namespace View
         private void SynchronizeEmployments()
         {
             _employmentsDTO = _employmentController.GetAllEmploymentsByEmployee(Employee);
+            employmentListView.Items.Clear();
 
             if (_employmentsDTO.Employments != null)
             {
@@ -82,7 +84,7 @@ namespace View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Employment.Position = _positionsDTO.Positions.Find(p => { return p.Name.Equals(positionComboBox.SelectedItem.ToString()); });
+            Employment.PositionId = _positionsDTO.Positions.Find(p => { return p.Name.Equals(positionComboBox.SelectedItem.ToString()); }).Id;
             //TODO: magazyny
             Employment.Salary = float.Parse(salaryTextBox.Text);
             Employment.StartDate = DateTime.Parse(startDateTextBox.Text);

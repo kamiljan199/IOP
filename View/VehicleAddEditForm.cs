@@ -77,6 +77,7 @@ namespace View
         private void SynchronizeDrivers()
         {
             _employeesDTO = _employeeController.GetAllEmployees();
+            driverComboBox.Items.Clear();
 
             if (_employeesDTO.Employees != null)
             {

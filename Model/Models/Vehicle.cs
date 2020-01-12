@@ -10,10 +10,10 @@
 
         public string Registration { get; set; }
 
-        public int DriverId { get; set; }
+        public int? DriverId { get; set; }
         public virtual Employee Driver { get; set; }
 
-        public int WarehouseId { get; set; }
+        public int? WarehouseId { get; set; }
         public virtual Warehouse Warehouse { get; set; }
     }
 }
