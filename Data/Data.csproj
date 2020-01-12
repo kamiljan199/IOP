@@ -51,6 +51,10 @@
     <Compile Remove="Migrations\20200112131901_HrRelationsFix.Designer.cs" />
     <Compile Remove="Migrations\20200112132551_HrRelationsFix2.cs" />
     <Compile Remove="Migrations\20200112132551_HrRelationsFix2.Designer.cs" />
+    <Compile Remove="Migrations\20200112132837_HrModelFix.cs" />
+    <Compile Remove="Migrations\20200112132837_HrModelFix.Designer.cs" />
+    <Compile Remove="Migrations\20200112145755_HrModelUpdate.cs" />
+    <Compile Remove="Migrations\20200112145755_HrModelUpdate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

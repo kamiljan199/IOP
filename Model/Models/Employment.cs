@@ -13,6 +13,8 @@ namespace Model.Models
 
         public float Salary { get; set; }
 
+        public bool IsActive { get; set; }
+
         public int PositionId { get; set; }
         public virtual Position Position { get; set; }
 

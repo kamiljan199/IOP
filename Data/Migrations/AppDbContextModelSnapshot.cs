@@ -88,6 +88,9 @@ namespace Data.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("PositionId")
                         .HasColumnType("int");
 
@@ -102,8 +105,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId")
-                        .IsUnique();
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("PositionId");
 
@@ -267,8 +269,8 @@ namespace Data.Migrations
             modelBuilder.Entity("Model.Models.Employment", b =>
                 {
                     b.HasOne("Model.Models.Employee", "Employee")
-                        .WithOne("ActiveEmployment")
-                        .HasForeignKey("Model.Models.Employment", "EmployeeId")
+                        .WithMany("ActiveEmployments")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

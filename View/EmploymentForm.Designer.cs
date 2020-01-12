@@ -31,6 +31,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.employmentListView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.label3 = new System.Windows.Forms.Label();
             this.positionComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,12 +51,6 @@
             this.fireButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.forksxDLabel = new System.Windows.Forms.Label();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // label1
@@ -90,6 +90,30 @@
             this.employmentListView.UseCompatibleStateImageBehavior = false;
             this.employmentListView.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "#";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Stanowisko";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Płaca";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Początek";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Koniec";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Magazyn";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -106,6 +130,7 @@
             this.positionComboBox.Name = "positionComboBox";
             this.positionComboBox.Size = new System.Drawing.Size(186, 23);
             this.positionComboBox.TabIndex = 4;
+            this.positionComboBox.SelectedIndexChanged += new System.EventHandler(this.positionComboBox_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -190,6 +215,7 @@
             this.fireButton.TabIndex = 8;
             this.fireButton.Text = "Zwolnij";
             this.fireButton.UseVisualStyleBackColor = true;
+            this.fireButton.Click += new System.EventHandler(this.fireButton_Click);
             // 
             // button3
             // 
@@ -209,30 +235,6 @@
             this.forksxDLabel.Size = new System.Drawing.Size(58, 15);
             this.forksxDLabel.TabIndex = 10;
             this.forksxDLabel.Text = "( widełki )";
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "#";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Stanowisko";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Płaca";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Początek";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Koniec";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Magazyn";
             // 
             // EmploymentForm
             // 

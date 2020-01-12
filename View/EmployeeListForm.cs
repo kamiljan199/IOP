@@ -22,6 +22,7 @@ namespace View
             _employeeAddEditFOrm = employeeAddEditFOrm;
             _employeeAddEditFOrm.FormClosed += delegate { SynchronizeEmployees(); };
             _employmentForm = employmentForm;
+            _employmentForm.FormClosed += delegate { SynchronizeEmployees(); };
             InitializeComponent();
         }
 
@@ -39,7 +40,7 @@ namespace View
             {
                 foreach (var e in _employeesDTO.Employees)
                 {
-                    string[] lv = { e.Id.ToString(), e.Name, e.Surname, e.Pesel, e.Birthday.ToString(), (e.ActiveEmployment == null) ? "Nie" : "Tak" };
+                    string[] lv = { e.Id.ToString(), e.Name, e.Surname, e.Pesel, e.Birthday.ToString(), (e.ActiveEmployments != null && e.ActiveEmployments.Count > 0) ? "Tak" : "Nie" };
                     listView1.Items.Add(new ListViewItem(lv));
                 }
             }
@@ -69,9 +70,9 @@ namespace View
             if (listView1.SelectedItems.Count > 0)
             {
                 var selectedEmployee = ((List<Model.Models.Employee>)_employeesDTO.Employees)[listView1.Items.IndexOf(listView1.SelectedItems[0])];
-                if (selectedEmployee.ActiveEmployment != null)
+                if (selectedEmployee.ActiveEmployments != null && selectedEmployee.ActiveEmployments.Count > 0)
                 {
-                    _employmentForm.Employment = selectedEmployee.ActiveEmployment;
+                    _employmentForm.Employment = selectedEmployee.ActiveEmployments[0];
                 } else
                 {
                     _employmentForm.Employment = new Model.Models.Employment();

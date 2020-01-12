@@ -45,5 +45,10 @@ namespace Api.Services
                 throw new Exception();
             }
         }
+
+        public void UpdateEmployment(Employment employment)
+        {
+            _employmentManager.UpdateEmployment(employment);
+        }
     }
 }

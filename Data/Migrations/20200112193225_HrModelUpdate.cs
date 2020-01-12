@@ -2,7 +2,7 @@
 
 namespace Data.Migrations
 {
-    public partial class HrModelFix : Migration
+    public partial class HrModelUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,6 +36,12 @@ namespace Data.Migrations
                 nullable: false,
                 defaultValue: 0);
 
+            migrationBuilder.AddColumn<bool>(
+                name: "IsActive",
+                table: "Employments",
+                nullable: false,
+                defaultValue: false);
+
             migrationBuilder.AddColumn<string>(
                 name: "Login",
                 table: "Employees",
@@ -49,8 +55,7 @@ namespace Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Employments_EmployeeId",
                 table: "Employments",
-                column: "EmployeeId",
-                unique: true);
+                column: "EmployeeId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Employments_Employees_EmployeeId",
@@ -85,6 +90,10 @@ namespace Data.Migrations
 
             migrationBuilder.DropColumn(
                 name: "EmployeeId",
+                table: "Employments");
+
+            migrationBuilder.DropColumn(
+                name: "IsActive",
                 table: "Employments");
 
             migrationBuilder.DropColumn(

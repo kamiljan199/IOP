@@ -64,6 +64,18 @@ namespace Api.Controllers
             _employmentService.CreateEmployement(employment);
         }
 
+        public void DeactivateEmployment(Employment employment)
+        {
+            _employmentService.GetAllEmploymentsByEmployee(employment.Employee).ForEach(e =>
+            {
+                if (e.Id.Equals(employment.Id))
+                {
+                    e.IsActive = false;
+                    _employmentService.UpdateEmployment(e);
+                }
+            });
+        }
+
         public void ChangePosition(int employmentID, int positionID)
         {
             _employmentService.ChangePosition(employmentID, _positionService.GetPositionByID(positionID));

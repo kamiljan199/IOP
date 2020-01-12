@@ -37,12 +37,14 @@ namespace View
             SynchronizeEmployments();
             if (!Employment.Id.Equals(0))
             {
-                positionComboBox.SelectedIndex = _positionsDTO.Positions.FindIndex(p => { return p.Name.Equals(Employment.Position.Name); });
+                var positionName = _positionsDTO.Positions.Find(p => { return p.Id.Equals(Employment.PositionId); }).Name;
+                positionComboBox.SelectedIndex = _positionsDTO.Positions.FindIndex(p => { return p.Name.Equals(positionName); });
                 //TODO: magazyny
                 salaryTextBox.Text = Employment.Salary.ToString();
                 startDateTextBox.Text = Employment.StartDate.ToString();
                 endDateTextBox.Text = Employment.EndDate.ToString();
             }
+            UpdateForks();
         }
 
         private void SynchronizePositions()
@@ -91,17 +93,61 @@ namespace View
             Employment.EndDate = DateTime.Parse(endDateTextBox.Text);
             if (Employment.Id.Equals(0))
             {
-                //_employmentController.AddPosition(position);
-                //Employment.EmployeeForeignKey = Employee.Id;
                 Employment.EmployeeId = Employee.Id;
+                Employment.IsActive = true;
                 _employmentController.CreateEmployment(Employment);
-                //_employeeController.HireEmployee(Employee, Employment);
+                ClearForm();
             }
             else
             {
                 //_positionController.UpdatePosition(position);
             }
             this.Close();
+        }
+
+        private void fireButton_Click(object sender, EventArgs e)
+        {
+            if (!Employment.Id.Equals(0))
+            {
+                _employmentController.DeactivateEmployment(Employment);
+                ClearForm();
+                this.Close();
+            }
+        }
+
+        private void ClearForm()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else if (control is ComboBox)
+                        (control as ComboBox).SelectedIndex = -1;
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
+        }
+
+        private void UpdateForks()
+        {
+            if (positionComboBox.SelectedIndex > -1)
+            {
+                var position = _positionsDTO.Positions.Find(p => { return p.Name.Equals(positionComboBox.SelectedItem.ToString()); });
+                forksxDLabel.Text = "( " + position.MinSalary + " - " + position.MaxSalary + " )";
+            } else
+            {
+                forksxDLabel.Text = "( widełki )";
+            }
+        }
+
+        private void positionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateForks();
         }
     }
 }

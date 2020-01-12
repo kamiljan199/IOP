@@ -43,5 +43,10 @@ namespace Api.Managers
         {
             return _context.SaveChanges();
         }
+
+        public void UpdateEmployment(Employment employment)
+        {
+            _context.SaveChanges();
+        }
     }
 }

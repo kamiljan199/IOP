@@ -13,6 +13,5 @@ namespace Api.Services
         public ICollection<Employee> GetAllEmployees();
         public void RemoveEmployee(Employee employee);
         public void AddEmployee(Employee employee);
-        public void HireEmployee(Employee employee, Employment employment);
     }
 }

@@ -12,5 +12,7 @@ namespace Api.Managers
         public List<Employment> GetAllEmploymentsByEmployee(Employee employee);
         public int SaveChanges();
         public void ChangePosition(int employmentID, Position position);
+
+        public void UpdateEmployment(Employment employment);
     }
 }

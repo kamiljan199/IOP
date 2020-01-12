@@ -11,5 +11,6 @@ namespace Api.Services
         public List<Employment> GetAllEmploymentsByEmployee(Employee employee);
         public void CreateEmployement(Employment employment);
         public void ChangePosition(int employmentID, Position position);
+        public void UpdateEmployment(Employment employment);
     }
 }
