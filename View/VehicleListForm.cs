@@ -70,5 +70,11 @@ namespace View
                 _vehicleAddEditForm.ShowDialog();
             }
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            button2.Enabled = listView1.SelectedItems.Count > 0;
+            button3.Enabled = listView1.SelectedItems.Count > 0;
+        }
     }
 }

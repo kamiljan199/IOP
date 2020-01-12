@@ -86,6 +86,7 @@ namespace View
         {
             button4.Enabled = listView1.SelectedItems.Count > 0;
             button2.Enabled = listView1.SelectedItems.Count > 0;
+            button3.Enabled = listView1.SelectedItems.Count > 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
