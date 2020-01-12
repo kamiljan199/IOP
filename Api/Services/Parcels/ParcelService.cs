@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Api.Managers;
+using Model.Enums;
 using Model.Models;
 using Model.Models.Exceptions;
 
@@ -45,12 +46,19 @@ namespace Api.Services
                 throw new NothingAddedToDatabaseException(newParcel);
             }
         }
-
-        public void DeliverParcel(Parcel oldParcel)
+        public void ChangeParcelPriority(Parcel parcelToChange, int priority)
         {
-            if (_parcelManager.DeliverParcel(oldParcel) == 0)
+            if (_parcelManager.ChangeParcelPriority(parcelToChange, priority) == 0)
             {
-                throw new NothingAddedToDatabaseException(oldParcel);
+                throw new NothingAddedToDatabaseException(parcelToChange);
+            }
+        }
+
+        public void ChangeParcelStatus(Parcel parcelToChange, ParcelStatus status)
+        {
+            if (_parcelManager.ChangeParcelStatus(parcelToChange, status) == 0)
+            {
+                throw new NothingAddedToDatabaseException(parcelToChange);
             }
         }
 

@@ -2,7 +2,10 @@
 {
     public enum ParcelStatus
     {
-        Posted,
+        AtPostingPoint,
+        OnWayToWarehouse,
+        InWarehouse,
+        OnWayToTheCustomer,
         Returned,
         Delivered,
         Unknown
