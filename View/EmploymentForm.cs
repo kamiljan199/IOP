@@ -72,7 +72,8 @@ namespace View
                 {
                     if (!e.Id.Equals(Employment.Id))
                     {
-                        string[] lv = { e.Id.ToString(), /*e.Position.Name*/ "TODO", e.Salary.ToString(), e.StartDate.ToString(), e.EndDate.ToString() }; //position = null
+                        var position = _positionsDTO.Positions.Find(p => p.Id.Equals(e.PositionId));
+                        string[] lv = { e.Id.ToString(), (position != null) ? position.Name : "jak to tu jest to niefajnie", e.Salary.ToString(), e.StartDate.ToString(), e.EndDate.ToString() };
                         employmentListView.Items.Add(new ListViewItem(lv));
                     }
                 }

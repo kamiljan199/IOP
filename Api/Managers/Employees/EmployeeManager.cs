@@ -48,5 +48,11 @@ namespace Api.Managers
         {
             return _context.SaveChanges();
         }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            _context.Entry(employee).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
     }
 }

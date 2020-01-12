@@ -31,6 +31,7 @@ namespace View
             employee.Login = loginTextbox.Text;
             if (employee.Id.Equals(0))
             {
+                //TODO:szyfr hasło
                 _employeeController.AddEmployee(employee);
             }
             else
@@ -39,7 +40,7 @@ namespace View
                 {
                     //...
                 }
-                //_employeeController.UpdateEmployee(employee);
+                _employeeController.UpdateEmployee(employee);
             }
             this.Close();
         }

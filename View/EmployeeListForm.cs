@@ -85,6 +85,13 @@ namespace View
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             button4.Enabled = listView1.SelectedItems.Count > 0;
+            button2.Enabled = listView1.SelectedItems.Count > 0;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            _employeeAddEditFOrm.employee = ((List<Model.Models.Employee>)_employeesDTO.Employees)[listView1.Items.IndexOf(listView1.SelectedItems[0])];
+            _employeeAddEditFOrm.ShowDialog();
         }
     }
 }

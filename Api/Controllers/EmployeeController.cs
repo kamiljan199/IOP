@@ -80,5 +80,10 @@ namespace Api.Controllers
         {
             _employeeService.AddEmployee(employee);
         }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            _employeeService.UpdateEmployee(employee);
+        }
     }
 }
