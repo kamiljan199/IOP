@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Model.Models;
 using System.Linq;
 using Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Managers
 {
@@ -33,16 +34,26 @@ namespace Api.Managers
         public void RemoveEmployee(Employee employee)
         {
             _context.Employees.Remove(employee);
+            _context.SaveChanges();
         }
 
         ICollection<Employee> IEmployeeManager.GetAllEmployees()
         {
-            return _context.Employees.ToList();
+            var list = _context.Employees.ToList();
+            list.ForEach(e => e.ActiveEmployments = _context.Employments.Where(em => em.EmployeeId.Equals(e.Id) && em.IsActive.Equals(true)).ToList());
+            return list;
+
         }
 
         public int SaveChanges()
         {
             return _context.SaveChanges();
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            _context.Entry(employee).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

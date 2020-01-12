@@ -3,14 +3,16 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200112193225_HrModelUpdate")]
+    partial class HrModelUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,21 +121,6 @@ namespace Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsDelivered")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<float>("ParcelHeight")
-                        .HasColumnType("float");
-
-                    b.Property<float>("ParcelLength")
-                        .HasColumnType("float");
-
-                    b.Property<string>("ParcelType")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<float>("ParcelWidth")
-                        .HasColumnType("float");
 
                     b.Property<int?>("ReceiverDataId")
                         .HasColumnType("int");

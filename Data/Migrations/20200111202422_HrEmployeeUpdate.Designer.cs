@@ -3,14 +3,16 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200111202422_HrEmployeeUpdate")]
+    partial class HrEmployeeUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,6 +51,9 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("ActiveEmploymentId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime(6)");
 
@@ -73,6 +78,8 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ActiveEmploymentId");
+
                     b.ToTable("Employees");
                 });
 
@@ -82,16 +89,10 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("PositionId")
+                    b.Property<int?>("PositionId")
                         .HasColumnType("int");
 
                     b.Property<float>("Salary")
@@ -105,8 +106,6 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
-
                     b.HasIndex("PositionId");
 
                     b.HasIndex("WarehouseId");
@@ -119,21 +118,6 @@ namespace Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsDelivered")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<float>("ParcelHeight")
-                        .HasColumnType("float");
-
-                    b.Property<float>("ParcelLength")
-                        .HasColumnType("float");
-
-                    b.Property<string>("ParcelType")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<float>("ParcelWidth")
-                        .HasColumnType("float");
 
                     b.Property<int?>("ReceiverDataId")
                         .HasColumnType("int");
@@ -281,19 +265,18 @@ namespace Data.Migrations
                     b.HasDiscriminator().HasValue("Warehouse");
                 });
 
+            modelBuilder.Entity("Model.Models.Employee", b =>
+                {
+                    b.HasOne("Model.Models.Employment", "ActiveEmployment")
+                        .WithMany()
+                        .HasForeignKey("ActiveEmploymentId");
+                });
+
             modelBuilder.Entity("Model.Models.Employment", b =>
                 {
-                    b.HasOne("Model.Models.Employee", "Employee")
-                        .WithMany("ActiveEmployments")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Model.Models.Position", "Position")
                         .WithMany()
-                        .HasForeignKey("PositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PositionId");
 
                     b.HasOne("Model.Models.Warehouse", "Warehouse")
                         .WithMany()
