@@ -44,5 +44,11 @@ namespace Api.Managers
         {
             return _context.SaveChanges();
         }
+
+        public void HireEmployee(Employee employee, Employment employment)
+        {
+            employee.ActiveEmployment = employment;
+            _context.SaveChanges();
+        }
     }
 }

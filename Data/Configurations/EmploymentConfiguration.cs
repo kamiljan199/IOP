@@ -15,7 +15,6 @@ namespace Data.Configurations
                     entity
                         .Property(e => e.Id)
                         .ValueGeneratedOnAdd();
-                    
                 });
         }
     }

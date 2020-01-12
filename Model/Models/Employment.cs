@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Models
 {
@@ -15,5 +16,8 @@ namespace Model.Models
         public Position Position { get; set; }
 
         public Warehouse Warehouse { get; set; }
+
+        public int EmployeeId { get; set; }
+        public Employee Employee { get; set; }
     }
 }

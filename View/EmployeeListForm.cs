@@ -13,13 +13,15 @@ namespace View
     {
         private readonly EmployeeController _employeeController;
         private readonly EmployeeAddEditForm _employeeAddEditFOrm;
+        private readonly EmploymentForm _employmentForm;
 
         private Api.DTOs.EmployeesDTO _employeesDTO;
-        public EmployeeListForm(EmployeeController employeeController, EmployeeAddEditForm employeeAddEditFOrm)
+        public EmployeeListForm(EmployeeController employeeController, EmployeeAddEditForm employeeAddEditFOrm, EmploymentForm employmentForm)
         {
             _employeeController = employeeController;
             _employeeAddEditFOrm = employeeAddEditFOrm;
             _employeeAddEditFOrm.FormClosed += delegate { SynchronizeEmployees(); };
+            _employmentForm = employmentForm;
             InitializeComponent();
         }
 
@@ -33,10 +35,13 @@ namespace View
             _employeesDTO = _employeeController.GetAllEmployees();
 
             listView1.Items.Clear();
-            foreach (var e in _employeesDTO.Employees)
+            if (_employeesDTO.Employees != null)
             {
-                string[] lv = { e.Id.ToString(), e.Name, e.Surname, e.Pesel, e.Birthday.ToString(), (e.ActiveEmployment == null) ? "Nie" : "Tak" };
-                listView1.Items.Add(new ListViewItem(lv));
+                foreach (var e in _employeesDTO.Employees)
+                {
+                    string[] lv = { e.Id.ToString(), e.Name, e.Surname, e.Pesel, e.Birthday.ToString(), (e.ActiveEmployment == null) ? "Nie" : "Tak" };
+                    listView1.Items.Add(new ListViewItem(lv));
+                }
             }
         }
 
@@ -56,6 +61,29 @@ namespace View
         {
             _employeeAddEditFOrm.employee = new Model.Models.Employee();
             _employeeAddEditFOrm.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // ustaw employment jako nowy lub aktywny istniejący
+            if (listView1.SelectedItems.Count > 0)
+            {
+                var selectedEmployee = ((List<Model.Models.Employee>)_employeesDTO.Employees)[listView1.Items.IndexOf(listView1.SelectedItems[0])];
+                if (selectedEmployee.ActiveEmployment != null)
+                {
+                    _employmentForm.Employment = selectedEmployee.ActiveEmployment;
+                } else
+                {
+                    _employmentForm.Employment = new Model.Models.Employment();
+                }
+                _employmentForm.Employee = selectedEmployee;
+                _employmentForm.ShowDialog();
+            }
+        }
+
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            button4.Enabled = listView1.SelectedItems.Count > 0;
         }
     }
 }

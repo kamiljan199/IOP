@@ -18,16 +18,16 @@ namespace Api.Services
         {
             _employmentManager.AddEmployment(employment);
 
-            var rowsChange = _employmentManager.SaveChanges();
+            /*var rowsChange = _employmentManager.SaveChanges();
             if (rowsChange != 1)
             {
                 throw new Exception();
-            }
+            }*/
         }
 
-        public List<Employment> GetAllEmployments()
+        public List<Employment> GetAllEmploymentsByEmployee(Employee employee)
         {
-            var employmentsList = _employmentManager.GetAllEmployments();
+            var employmentsList = _employmentManager.GetAllEmploymentsByEmployee(employee);
             if (employmentsList.Count.Equals(0))
             {
                 throw new Exception($"No employment has been found");

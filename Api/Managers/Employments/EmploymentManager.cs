@@ -19,6 +19,7 @@ namespace Api.Managers
         public void AddEmployment(Employment employment)
         {
             _context.Employments.Add(employment);
+            _context.SaveChanges();
         }
 
         public void ChangePosition(int employmentID, Position position)
@@ -26,9 +27,12 @@ namespace Api.Managers
             GetEmploymentByID(employmentID).Position = position;
         }
 
-        public List<Employment> GetAllEmployments()
+        public List<Employment> GetAllEmploymentsByEmployee(Employee employee)
         {
-            return _context.Employments.ToList();
+            var query = from e in _context.Employments
+                        where e.Employee.Id == employee.Id
+                        select e;
+            return query.ToList();
         }
 
         public Employment GetEmploymentByID(int employmentID)

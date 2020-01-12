@@ -63,5 +63,10 @@ namespace Api.Services
             var employee = GetEmployeeById(id);
             RemoveEmployee(employee);
         }
+
+        public void HireEmployee(Employee employee, Employment employment)
+        {
+            _employeeManager.HireEmployee(employee, employment);
+        }
     }
 }

@@ -17,6 +17,12 @@ namespace Api.Controllers
             _employeeService = employeeService;
         }
 
+        public void HireEmployee(Employee employee, Employment employment)
+        {
+            //TODO: jeśli activeEmployment jest to except
+            _employeeService.HireEmployee(employee, employment);
+        }
+
         //TODO: Zwalnia pracownika o podanym numerze ID
         public void FireEmployeeById(int employeeId)
         {

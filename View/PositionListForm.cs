@@ -39,10 +39,13 @@ namespace View
 
             listView1.Items.Clear();
 
-            foreach (var p in _positionsDTO.Positions)
+            if (_positionsDTO.Positions != null)
             {
-                string[] lv = { p.Id.ToString(), p.Name, p.MinSalary.ToString(), p.MaxSalary.ToString() };
-                listView1.Items.Add(new ListViewItem(lv));
+                foreach (var p in _positionsDTO.Positions)
+                {
+                    string[] lv = { p.Id.ToString(), p.Name, p.MinSalary.ToString(), p.MaxSalary.ToString() };
+                    listView1.Items.Add(new ListViewItem(lv));
+                }
             }
         }
 
@@ -62,6 +65,11 @@ namespace View
         {
             _positionAddEditForm.position = new Model.Models.Position();
             _positionAddEditForm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

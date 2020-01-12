@@ -17,6 +17,20 @@
     <Compile Remove="Migrations\20191212165455_SomeVirtualPropertiesAdded_test.Designer.cs" />
     <Compile Remove="Migrations\20191215195227_HrInitial.cs" />
     <Compile Remove="Migrations\20191215195227_HrInitial.Designer.cs" />
+    <Compile Remove="Migrations\20200111202422_HrEmployeeUpdate.cs" />
+    <Compile Remove="Migrations\20200111202422_HrEmployeeUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200111223659_HrEmploymentUpdate.cs" />
+    <Compile Remove="Migrations\20200111223659_HrEmploymentUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200111231340_HrEmploymentUpdate.cs" />
+    <Compile Remove="Migrations\20200111231340_HrEmploymentUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200111233145_HrEmploymentUpdate.cs" />
+    <Compile Remove="Migrations\20200111233145_HrEmploymentUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200112094546_HrEmployeeFKUpdate.cs" />
+    <Compile Remove="Migrations\20200112094546_HrEmployeeFKUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200112095104_HrEmploymentUpdate.cs" />
+    <Compile Remove="Migrations\20200112095104_HrEmploymentUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200112095526_HrEmployeeUpdate.cs" />
+    <Compile Remove="Migrations\20200112095526_HrEmployeeUpdate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

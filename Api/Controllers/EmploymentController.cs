@@ -18,11 +18,11 @@ namespace Api.Controllers
             _positionService = positionService;
         }
 
-        public EmploymentsDTO GetAllEmployments()
+        public EmploymentsDTO GetAllEmploymentsByEmployee(Employee employee)
         {
             try
             {
-                var employmentsList = _employmentService.GetAllEmployments();
+                var employmentsList = _employmentService.GetAllEmploymentsByEmployee(employee);
 
                 var result = new EmploymentsDTO
                 {
@@ -56,6 +56,11 @@ namespace Api.Controllers
                 Warehouse = warehouse
             };
 
+            //_employmentService.CreateEmployement(employment);
+        }
+
+        public void CreateEmployment(Employment employment)
+        {
             _employmentService.CreateEmployement(employment);
         }
 

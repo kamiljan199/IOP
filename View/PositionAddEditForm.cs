@@ -23,7 +23,7 @@ namespace View
 
         private void PositionAddEditForm_Load(object sender, EventArgs e)
         {
-            if (position.Id != null)
+            if (!position.Id.Equals(0))
             {
                 nameTextBox.Text = position.Name;
                 minSalaryTextBox.Text = position.MinSalary.ToString();
