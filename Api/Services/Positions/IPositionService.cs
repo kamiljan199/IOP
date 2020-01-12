@@ -14,5 +14,7 @@ namespace Api.Services
         public void RemovePosition(Position position);
 
         public void AddPosition(Position position);
+
+        public void UpdatePosition(Position position);
     }
 }

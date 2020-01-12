@@ -39,5 +39,10 @@ namespace Api.Services
         {
             _positionManager.AddPosition(position);
         }
+
+        public void UpdatePosition(Position position)
+        {
+            _positionManager.UpdatePosition(position);
+        }
     }
 }

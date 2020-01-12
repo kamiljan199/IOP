@@ -38,7 +38,7 @@ namespace View
             {
                 foreach (var v in _vehiclesDTO.Vehicles)
                 {
-                    string[] lv = { v.Id.ToString(), v.Registration, v.Brand, v.Model, "TODO", "TODO" };
+                    string[] lv = { v.Id.ToString(), v.Registration, v.Brand, v.Model, (v.DriverId != null) ? (v.Driver.Name + " " + v.Driver.Surname + " (" + v.Driver.Pesel + ")") : "Brak", "TODO" };
                     listView1.Items.Add(new ListViewItem(lv));
                 }
             }
@@ -60,6 +60,15 @@ namespace View
         {
             _vehicleAddEditForm.vehicle = new Model.Models.Vehicle();
             _vehicleAddEditForm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                _vehicleAddEditForm.vehicle = _vehiclesDTO.Vehicles[listView1.Items.IndexOf(listView1.SelectedItems[0])];
+                _vehicleAddEditForm.ShowDialog();
+            }
         }
     }
 }

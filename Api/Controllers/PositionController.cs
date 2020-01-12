@@ -54,6 +54,9 @@ namespace Api.Controllers
             _positionService.AddPosition(position);
         }
 
-
+        public void UpdatePosition(Position position)
+        {
+            _positionService.UpdatePosition(position);
+        }
     }
 }

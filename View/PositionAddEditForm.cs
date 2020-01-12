@@ -46,7 +46,7 @@ namespace View
                 _positionController.AddPosition(position);
             } else
             {
-                //_positionController.UpdatePosition(position);
+                _positionController.UpdatePosition(position);
             }
             this.Close();
         }

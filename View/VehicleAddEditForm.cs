@@ -42,9 +42,9 @@ namespace View
                 registrationTextBox.Text = vehicle.Registration;
                 brandTextBox.Text = vehicle.Brand;
                 modelTextBox.Text = vehicle.Model;
-                if (vehicle.Driver != null)
+                if (vehicle.DriverId != null)
                 {
-                    driverComboBox.SelectedIndex = ((List<Employee>)_employeesDTO.Employees).FindIndex(e => { return e.Pesel.Equals(vehicle.Driver.Pesel); });
+                    driverComboBox.SelectedIndex = ((List<Employee>)_employeesDTO.Employees).FindIndex(e => { return e.Id.Equals(vehicle.DriverId); });
                 }
                 //mag
             }
@@ -54,7 +54,7 @@ namespace View
         {
             if (driverComboBox.SelectedIndex > -1)
             {
-                //vehicle.Driver = ((List<Employee>)_employeesDTO.Employees).Find(e => { return e.Pesel.Equals(driverComboBox.SelectedItem.ToString()); });
+                vehicle.DriverId = ((List<Employee>)_employeesDTO.Employees)[driverComboBox.SelectedIndex].Id;//((List<Employee>)_employeesDTO.Employees).Find(e => { return e.Pesel.Equals(driverComboBox.SelectedItem.ToString()); }).Id;
             } else
             {
                 vehicle.Driver = null;
@@ -62,14 +62,14 @@ namespace View
             vehicle.Registration = registrationTextBox.Text;
             vehicle.Brand = brandTextBox.Text;
             vehicle.Model = modelTextBox.Text;
-            //driver + mag
+            //mag
             if (vehicle.Id.Equals(0))
             {
                 _vehicleController.AddVehicle(vehicle);
             }
             else
             {
-                //_vehicleController.UpdateVehicle(vehicle);
+                _vehicleController.UpdateVehicle(vehicle);
             }
             this.Close();
         }
@@ -83,7 +83,7 @@ namespace View
             {
                 foreach (var e in _employeesDTO.Employees)
                 {
-                    driverComboBox.Items.Add(e.Pesel);
+                    driverComboBox.Items.Add(e.Name + " " + e.Surname + " (" + e.Pesel + ")");
                 }
             }
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Model.Models;
 using System.Linq;
 using Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Managers
 {
@@ -27,7 +28,7 @@ namespace Api.Managers
 
         public List<Vehicle> GetAllVehicles()
         {
-            return _context.Vehicles.ToList();
+            return _context.Vehicles.Include(v => v.Driver).ToList();
         }
 
         public Vehicle GetVehicleByDriverID(int driverID)
@@ -47,6 +48,12 @@ namespace Api.Managers
         public void RemoveVehicle(Vehicle vehicle)
         {
             _context.Vehicles.Remove(vehicle);
+            _context.SaveChanges();
+        }
+
+        public void UpdateVehicle(Vehicle vehicle)
+        {
+            _context.Entry(vehicle).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
         }
     }

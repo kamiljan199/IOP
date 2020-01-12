@@ -36,5 +36,11 @@ namespace Api.Managers
             _context.Positions.Add(position);
             _context.SaveChanges();
         }
+
+        public void UpdatePosition(Position position)
+        {
+            _context.Entry(position).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
+        }
     }
 }

@@ -47,5 +47,10 @@ namespace Api.Services
         {
             _vehicleManager.RemoveVehicle(vehicle);
         }
+
+        public void UpdateVehicle(Vehicle vehicle)
+        {
+            _vehicleManager.UpdateVehicle(vehicle);
+        }
     }
 }
