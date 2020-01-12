@@ -1,4 +1,4 @@
-﻿namespace Api.Enums
+﻿namespace Model.Enums
 {
     public enum ParcelStatus
     {
