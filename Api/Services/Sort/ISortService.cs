@@ -10,5 +10,6 @@ namespace Api.Services
         void GetParcelsInMagazine(StorePlace store);
         void Sort();
         void SortParcelsByAddress();
+        void SortParcelsByStatus();
     }
 }
