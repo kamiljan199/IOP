@@ -34,6 +34,7 @@ namespace Api.Managers
         public void RemoveEmployee(Employee employee)
         {
             _context.Employees.Remove(employee);
+            _context.SaveChanges();
         }
 
         ICollection<Employee> IEmployeeManager.GetAllEmployees()
