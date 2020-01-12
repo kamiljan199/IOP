@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Model.Enums;
+
 
 namespace Model.Models
 {
@@ -12,7 +14,8 @@ namespace Model.Models
         public float ParcelHeight { get; set; }
         public float ParcelLength { get; set; }
         public string ParcelType { get; set; }
+        public int Priority { get; set; }
         public int ReferenceId { get; set; }
-        public bool IsDelivered { get; set; }
+        public ParcelStatus ParcelStatus { get; set; }
     }
 }

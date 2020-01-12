@@ -16,19 +16,37 @@ namespace Api.Managers
             _context = context;
         }
 
-        public void AddEmployment(int employeeID, DateTime startTime, int position, double salary, int warehouseID)
+        public void AddEmployment(Employment employment)
         {
-            throw new NotImplementedException();
+            _context.Employments.Add(employment);
+            _context.SaveChanges();
         }
 
-        public List<Employment> GetAllEmployments()
+        public void ChangePosition(int employmentID, Position position)
         {
-            return _context.Employments.ToList();
+            GetEmploymentByID(employmentID).Position = position;
+        }
+
+        public List<Employment> GetAllEmploymentsByEmployee(Employee employee)
+        {
+            var query = from e in _context.Employments
+                        where e.Employee.Id == employee.Id
+                        select e;
+            return query.ToList();
         }
 
         public Employment GetEmploymentByID(int employmentID)
         {
             return _context.Employments.FirstOrDefault(e => e.Id.Equals(employmentID));
+        }
+        public int SaveChanges()
+        {
+            return _context.SaveChanges();
+        }
+
+        public void UpdateEmployment(Employment employment)
+        {
+            _context.SaveChanges();
         }
     }
 }

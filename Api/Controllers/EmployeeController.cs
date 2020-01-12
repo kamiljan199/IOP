@@ -4,12 +4,19 @@ using System.Collections.Generic;
 using System.Text;
 using Api.DTOs;
 using Api.Enums;
+using Model.Models;
 
 namespace Api.Controllers
 {
     public class EmployeeController
     {
         private readonly IEmployeeService _employeeService;
+
+        public EmployeeController(IEmployeeService employeeService)
+        {
+            _employeeService = employeeService;
+        }
+
         //TODO: Zwalnia pracownika o podanym numerze ID
         public void FireEmployeeById(int employeeId)
         {
@@ -22,6 +29,19 @@ namespace Api.Controllers
             {
                 
             }
+        }
+
+        public void CreateEmployee(string name, string surname, string PESEL, DateTime birthday)
+        {
+            var employee = new Employee
+            {
+                Name = name,
+                Surname = surname,
+                Pesel = PESEL,
+                Birthday = birthday
+            };
+
+            _employeeService.AddEmployee(employee);
         }
 
         public EmployeesDTO GetAllEmployees()
@@ -42,13 +62,28 @@ namespace Api.Controllers
             {
                 Console.WriteLine(e.Message);
 
-                var result = new EmployeesDTO
+                    var result = new EmployeesDTO
                 {
                     Status = CollectionGetStatus.Failure
                 };
 
                 return result;
             }
+        }
+
+        public void RemoveEmployee(Employee employee)
+        {
+            _employeeService.RemoveEmployee(employee);
+        }
+
+        public void AddEmployee(Employee employee)
+        {
+            _employeeService.AddEmployee(employee);
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            _employeeService.UpdateEmployee(employee);
         }
     }
 }

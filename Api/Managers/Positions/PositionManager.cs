@@ -24,5 +24,23 @@ namespace Api.Managers
         {
             return _context.Positions.FirstOrDefault(e => e.Id.Equals(positionID));
         }
+
+        public void RemovePosition(Position position)
+        {
+            _context.Positions.Remove(position);
+            _context.SaveChanges();
+        }
+
+        public void AddPosition(Position position)
+        {
+            _context.Positions.Add(position);
+            _context.SaveChanges();
+        }
+
+        public void UpdatePosition(Position position)
+        {
+            _context.Entry(position).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
+        }
     }
 }

@@ -50,18 +50,17 @@ namespace Api.Services
         public void RemoveEmployee(Employee employee)
         {
             _employeeManager.RemoveEmployee(employee);
-
-            var rowsChange = _employeeManager.SaveChanges();
-            if (rowsChange != 1)
-            {
-                throw new Exception();
-            }
         }
 
         public void RemoveEmployeeById(int id)
         {
             var employee = GetEmployeeById(id);
             RemoveEmployee(employee);
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            _employeeManager.UpdateEmployee(employee);
         }
     }
 }

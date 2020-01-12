@@ -49,15 +49,18 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("ActiveEmploymentId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Login")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(20) CHARACTER SET utf8mb4")
                         .HasMaxLength(20);
+
+                    b.Property<string>("Password")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Pesel")
                         .HasColumnType("char(11) CHARACTER SET utf8mb4")
@@ -70,8 +73,6 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ActiveEmploymentId");
-
                     b.ToTable("Employees");
                 });
 
@@ -81,10 +82,16 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("PositionId")
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("PositionId")
                         .HasColumnType("int");
 
                     b.Property<float>("Salary")
@@ -97,6 +104,8 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("PositionId");
 
@@ -111,20 +120,23 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDelivered")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<float>("ParcelHeight")
                         .HasColumnType("float");
 
                     b.Property<float>("ParcelLength")
                         .HasColumnType("float");
 
+                    b.Property<int>("ParcelStatus")
+                        .HasColumnType("int");
+
                     b.Property<string>("ParcelType")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<float>("ParcelWidth")
                         .HasColumnType("float");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ReceiverDataId")
                         .HasColumnType("int");
@@ -272,18 +284,19 @@ namespace Data.Migrations
                     b.HasDiscriminator().HasValue("Warehouse");
                 });
 
-            modelBuilder.Entity("Model.Models.Employee", b =>
-                {
-                    b.HasOne("Model.Models.Employment", "ActiveEmployment")
-                        .WithMany()
-                        .HasForeignKey("ActiveEmploymentId");
-                });
-
             modelBuilder.Entity("Model.Models.Employment", b =>
                 {
+                    b.HasOne("Model.Models.Employee", "Employee")
+                        .WithMany("ActiveEmployments")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Model.Models.Position", "Position")
                         .WithMany()
-                        .HasForeignKey("PositionId");
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Model.Models.Warehouse", "Warehouse")
                         .WithMany()

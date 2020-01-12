@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Model.Models;
 using Data.Context;
+using Model.Enums;
 
 namespace Api.Managers
 {
@@ -37,13 +38,28 @@ namespace Api.Managers
             return _context.SaveChanges();
         }
 
-        public int DeliverParcel(Parcel oldParcel)
+        public int ChangeParcelPriority(Parcel parcelToChange, int priority)
         {
-            Parcel parcelToDeliver = _context.Parcels.Find(oldParcel);
-            if (parcelToDeliver != null)
+            Parcel parcel = _context.Parcels.Find(parcelToChange);
+            if (parcel != null)
             {
-                parcelToDeliver.IsDelivered = true;
-                _context.Parcels.Update(parcelToDeliver);
+                parcel.Priority = priority;
+                _context.Parcels.Update(parcel);
+                return _context.SaveChanges();
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public int ChangeParcelStatus(Parcel parcelToChange, ParcelStatus status)
+        {
+            Parcel parcel = _context.Parcels.Find(parcelToChange);
+            if (parcel != null)
+            {
+                parcel.ParcelStatus = status;
+                _context.Parcels.Update(parcel);
                 return _context.SaveChanges();
             }
             else
@@ -57,12 +73,21 @@ namespace Api.Managers
             Parcel parcelToReturn = _context.Parcels.Find(oldParcel);
             if (parcelToReturn != null)
             {
+                parcelToReturn.ParcelStatus = ParcelStatus.Returned;
+                _context.Parcels.Update(parcelToReturn);
+
                 Parcel newReturnParcel = new Parcel
                 {
                     ReferenceId = parcelToReturn.Id,
                     ReceiverData = parcelToReturn.SenderData,
                     SenderData = parcelToReturn.ReceiverData,
-                    StorePlaceId = parcelToReturn.StorePlaceId
+                    StorePlaceId = parcelToReturn.StorePlaceId,
+                    ParcelWidth = parcelToReturn.ParcelWidth,
+                    ParcelLength = parcelToReturn.ParcelLength,
+                    ParcelHeight = parcelToReturn.ParcelHeight,
+                    Priority = parcelToReturn.Priority,
+                    ParcelType = parcelToReturn.ParcelType,
+                    ParcelStatus = ParcelStatus.OnWayToWarehouse
                 };
                 _context.Parcels.Add(newReturnParcel);
                 return _context.SaveChanges();
