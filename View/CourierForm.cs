@@ -12,15 +12,23 @@ namespace View
 {
     public partial class CourierForm : Form
     {
+        private List<int> test = new List<int>();
+       
         public CourierForm()
         {
             InitializeComponent();
+            for (int i = 0; i < 5; i++)
+            {
+                test.Add(i);
+            }
+
+            for(int i = 0; i < test.Count; i ++)
+            {
+                pickParcel.Items.Add(test[i]);
+            }
         }
 
-        private void CourierWindow_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void ButtonLogout_Click(object sender, EventArgs e)
         {
@@ -33,5 +41,51 @@ namespace View
         {
 
         }
+        private void CourierWindow_Load(object sender, EventArgs e)
+        {
+            buttonLogout.Enabled = false;
+            
+        }
+
+        private void changeStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            if (changeStatus.SelectedIndex == 1)
+            {
+                buttonLogout.Enabled = true; // DZIAŁA
+                // tutaj zamienić na ta ChangeStatus funkcję z ParcelStatus
+            }
+        }
+
+       
+        private void Status_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StatusLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonLogout_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pickParcel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //private void changeStatusButton_Click(object sender, EventArgs e)// przycisk usunąć!
+        //{
+        //    if(changeStatus.SelectedIndex > 0)
+        //    {
+        //        string getChangedStatus = changeStatus.SelectedItem.ToString();
+        //        MessageBox.Show(getChangedStatus);
+        //    }
+
+        //}
     }
 }

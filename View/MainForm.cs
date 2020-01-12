@@ -16,7 +16,7 @@ namespace View
     {
         private readonly Api.Controllers.ParcelController _parcelController;
         private readonly LoginForm _loginForm;
-        private readonly ParcelController _parcelController;
+        //private readonly ParcelController _parcelController;
 
         public MainForm(LoginForm loginForm, ParcelController parcelController)
         {
@@ -89,6 +89,11 @@ namespace View
             {
                 MessageBox.Show(exc.Message);
             }        
-        }  
+        }
+
+        private void textBoxInsertNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }     
 }
