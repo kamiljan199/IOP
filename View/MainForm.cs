@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Api.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +16,11 @@ namespace View
     {
         private readonly Api.Controllers.ParcelController _parcelController;
         private readonly LoginForm _loginForm;
+        private readonly ParcelController _parcelController;
 
-        public MainForm(LoginForm loginForm)
+        public MainForm(LoginForm loginForm, ParcelController parcelController)
         {
+            _parcelController = parcelController;
             _loginForm = loginForm;
             InitializeComponent();
         }
@@ -79,20 +82,7 @@ namespace View
             {
                 if (!(textBoxInsertNumber.Text == "") && !(textBoxInsertNumber.Text == "Wpisz numer przesyłki"))
                 {
-                    ParcelStatus theStatus = _parcelController.GetParcelStatusById(ConvertStringToInt(textBoxInsertNumber.Text));
-                   
-                    switch(theStatus)
-                    {
-                        case ParcelStatus.Unknown:
-                            labelStatus.Text = "Brak przesyłki o podanym numerze";
-                            break;
-                        case ParcelStatus.Posted:
-                            labelStatus.Text = "Przeyłka wysłana";
-                            break;
-                        case ParcelStatus.Returned:
-                            labelStatus.Text = "Przesyłka zwrócona";
-                            break;
-                    }             
+                    labelStatus.Text = _parcelController.GetParcelStatusById(int.Parse(textBoxInsertNumber.Text)).ToString();             
                 }
             }
             catch (Exception exc)

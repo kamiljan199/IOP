@@ -15,7 +15,7 @@ namespace Api.Services
         {
             _parcelManager = parcelManager;
         }
-        
+
         public Parcel GetById(int id)
         {
             var parcel = _parcelManager.GetById(id);
@@ -43,6 +43,14 @@ namespace Api.Services
             if (_parcelManager.PostParcel(newParcel) == 0)
             {
                 throw new NothingAddedToDatabaseException(newParcel);
+            }
+        }
+
+        public void DeliverParcel(Parcel oldParcel)
+        {
+            if (_parcelManager.DeliverParcel(oldParcel) == 0)
+            {
+                throw new NothingAddedToDatabaseException(oldParcel);
             }
         }
 

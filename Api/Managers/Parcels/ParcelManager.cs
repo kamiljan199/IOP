@@ -37,6 +37,21 @@ namespace Api.Managers
             return _context.SaveChanges();
         }
 
+        public int DeliverParcel(Parcel oldParcel)
+        {
+            Parcel parcelToDeliver = _context.Parcels.Find(oldParcel);
+            if (parcelToDeliver != null)
+            {
+                parcelToDeliver.IsDelivered = true;
+                _context.Parcels.Update(parcelToDeliver);
+                return _context.SaveChanges();
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public int ReturnParcel(Parcel oldParcel)
         {
             Parcel parcelToReturn = _context.Parcels.Find(oldParcel);
