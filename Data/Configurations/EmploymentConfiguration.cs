@@ -15,7 +15,11 @@ namespace Data.Configurations
                     entity
                         .Property(e => e.Id)
                         .ValueGeneratedOnAdd();
-                    
+                    /*entity
+                        .HasOne(e => e.Employee)
+                        .WithOne(e => e.ActiveEmployment)
+                        .HasForeignKey<Employment>(e => e.EmployeeId);
+                        */
                 });
         }
     }

@@ -20,5 +20,9 @@ namespace Api.Managers
         {
             return _context.StorePlaces.FirstOrDefault(e => e.Id.Equals(id));
         }
+        public List<StorePlace> GetAll()
+        {
+            return _context.StorePlaces.ToList();
+        }
     }
 }

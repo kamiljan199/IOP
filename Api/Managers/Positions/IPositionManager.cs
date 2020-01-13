@@ -9,5 +9,9 @@ namespace Api.Managers
     {
         public Position GetPositionByID(int positionID);
         public List<Position> GetAllPositions();
+        public void RemovePosition(Position position);
+        public void AddPosition(Position position);
+
+        public void UpdatePosition(Position position);
     }
 }

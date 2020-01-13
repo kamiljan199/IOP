@@ -24,5 +24,25 @@ namespace Api.Services
             }
             return positionsList;
         }
+
+        public Position GetPositionByID(int positionID)
+        {
+            return _positionManager.GetPositionByID(positionID);
+        }
+
+        public void RemovePosition(Position position)
+        {
+            _positionManager.RemovePosition(position);
+        }
+
+        public void AddPosition(Position position)
+        {
+            _positionManager.AddPosition(position);
+        }
+
+        public void UpdatePosition(Position position)
+        {
+            _positionManager.UpdatePosition(position);
+        }
     }
 }
