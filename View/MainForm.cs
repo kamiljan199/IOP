@@ -16,11 +16,13 @@ namespace View
     {
         private readonly LoginForm _loginForm;
         private readonly ParcelController _parcelController;
+        private readonly CourierForm _courierForm;
 
-        public MainForm(LoginForm loginForm, ParcelController parcelController)
+        public MainForm(LoginForm loginForm, ParcelController parcelController, CourierForm courierForm)
         {
             _parcelController = parcelController;
             _loginForm = loginForm;
+            _courierForm = courierForm;
             InitializeComponent();
         }
 
@@ -35,12 +37,18 @@ namespace View
                 TextBoxInsertNumber_Leave(sender, e);
                 this.Show();
             }
+            
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
             TextBoxInsertNumber_Leave(sender, e);
             labelStatus.Text = "";
+
+            if(_courierForm.isClosed == true)
+            {
+                this.Show();
+            }
         }
 
         private void TextBoxInsertNumber_Leave(object sender, EventArgs e)

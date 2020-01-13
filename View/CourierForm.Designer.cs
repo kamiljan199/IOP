@@ -31,7 +31,6 @@
             this.buttonLogout = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.pickParcel = new System.Windows.Forms.ComboBox();
-            this.result = new System.Windows.Forms.Label();
             this.changeStatus = new System.Windows.Forms.ComboBox();
             this.StatusLabel = new System.Windows.Forms.Label();
             this.listBox1.SuspendLayout();
@@ -47,12 +46,11 @@
             this.buttonLogout.TabIndex = 0;
             this.buttonLogout.Text = "Wyloguj się";
             this.buttonLogout.UseVisualStyleBackColor = true;
-            this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click_1);
+            this.buttonLogout.Click += new System.EventHandler(this.ButtonLogout_Click);
             // 
             // listBox1
             // 
             this.listBox1.Controls.Add(this.pickParcel);
-            this.listBox1.Controls.Add(this.result);
             this.listBox1.Controls.Add(this.changeStatus);
             this.listBox1.Controls.Add(this.StatusLabel);
             this.listBox1.FormattingEnabled = true;
@@ -73,28 +71,20 @@
             this.pickParcel.TabIndex = 2;
             this.pickParcel.SelectedIndexChanged += new System.EventHandler(this.pickParcel_SelectedIndexChanged);
             // 
-            // result
-            // 
-            this.result.AutoSize = true;
-            this.result.Location = new System.Drawing.Point(194, 35);
-            this.result.Name = "result";
-            this.result.Size = new System.Drawing.Size(39, 15);
-            this.result.TabIndex = 2;
-            this.result.Text = "Result";
-            // 
             // changeStatus
             // 
             this.changeStatus.FormattingEnabled = true;
             this.changeStatus.Items.AddRange(new object[] {
-            "Status1",
-            "Status2",
-            "Status3",
-            "Status4",
-            "Status5",
-            "Status6"});
-            this.changeStatus.Location = new System.Drawing.Point(54, 87);
+            "Przesyłka w punkcie nadania",
+            "Przeyłka w drodze do magazynu",
+            "Przesyłka w magazynie",
+            "Przesyłka w drodze do odbiorcy",
+            "Przesyłka zwrócona",
+            "Przesyłka dostarczona",
+            "Brak przesyłki o podanym numerze"});
+            this.changeStatus.Location = new System.Drawing.Point(39, 87);
             this.changeStatus.Name = "changeStatus";
-            this.changeStatus.Size = new System.Drawing.Size(141, 23);
+            this.changeStatus.Size = new System.Drawing.Size(168, 23);
             this.changeStatus.TabIndex = 2;
             this.changeStatus.SelectedIndexChanged += new System.EventHandler(this.changeStatus_SelectedIndexChanged);
             // 
@@ -131,7 +121,6 @@
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ComboBox pickParcel;
-        private System.Windows.Forms.Label result;
         private System.Windows.Forms.ComboBox changeStatus;
         private System.Windows.Forms.Label StatusLabel;
     }

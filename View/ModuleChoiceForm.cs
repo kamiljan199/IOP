@@ -43,6 +43,7 @@ namespace View
 
         public void ButtonOpenCourierWindow_Click(object sender, EventArgs e)
         {
+            this.Close();
             _courierForm.ShowDialog();
         }
 
