@@ -7,9 +7,11 @@ namespace Api.Services
 {
     public interface ISortService
     {
-        void GetParcelsInMagazine(StorePlace store);
-        void Sort(int storePlaceId);
-        void SortParcelsByAddress();
-        void SortParcelsByStorePlace(int storePlaceId);
+        void GetParcelsInMagazine();
+        void Sort();
+        void SortParcelsByAddress(List<Parcel> parcels);
+        void SortParcelsByStorePlace();
+        void SortParcelsByPrivilage();
+        void PrintGuidelines();
     }
 }
