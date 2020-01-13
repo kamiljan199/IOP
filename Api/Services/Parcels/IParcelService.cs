@@ -15,7 +15,7 @@ namespace Api.Services
         public void ChangeParcelPriority(Parcel parcelToChange, int priority);
         public void ChangeParcelStatus(Parcel parcelToChange, ParcelStatus status);
         public void ReturnParcel(Parcel oldParcel);
-        public void AssignCourier(Parcel parcelToChange, int? courierId);
+        public void AssignCourier(Parcel parcelToChange, int courierId);
         public void UnassignCourier(Parcel parcelToChange);
     }
 }

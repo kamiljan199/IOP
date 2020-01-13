@@ -9,5 +9,6 @@ namespace Api.Services
         public StorePlace GetById(int id);
         public Type GetTypeById(int id);
         public List<StorePlace> GetAll();
+        public List<Parcel> GetCouriersParcels(StorePlace storePlace, int courierId);
     }
 }
