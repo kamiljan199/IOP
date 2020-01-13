@@ -32,5 +32,7 @@ namespace Api.Services
 
             return storePlace.GetType();
         }
+
+        public List<StorePlace> GetAll() => _storePlaceManager.GetAll();
     }
 }

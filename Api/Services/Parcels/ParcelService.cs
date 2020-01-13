@@ -11,6 +11,7 @@ namespace Api.Services
     public class ParcelService : IParcelService
     {
         private readonly IParcelManager _parcelManager;
+        private readonly IEmployeeManager _employeeManager;
 
         public ParcelService(IParcelManager parcelManager)
         {
@@ -69,6 +70,50 @@ namespace Api.Services
                 throw new NothingAddedToDatabaseException(oldParcel);
             }
             
+        }
+
+        public void AssignCourier(Parcel parcelToChange, int? courierId)
+        {
+            if( courierId == null )
+            {
+                throw new Exception("Trying to assing courier with NULL id, if you want to unassgn courier use ParcelService.UnassignCourier() instead.");
+            }
+
+            int id = (int)courierId;
+            var emploee = _employeeManager.GetEmployeeById(id);
+
+            if ( emploee == null )
+            {
+                throw new Exception("Emploee of id " + id + " not found in database.");
+            }
+
+            bool isCourier = false;
+            foreach ( var employment in emploee.ActiveEmployments )
+            {
+                if( employment.IsActive && employment.Position.Name.ToLower() == "courier" )
+                {
+                    isCourier = true;
+                    break;
+                }
+            }
+
+            if (!isCourier)
+            {
+                throw new Exception("Emploee of id " + id + " is not a courier.");
+            }
+
+            if (_parcelManager.SetCourierId(parcelToChange, courierId) == 0)
+            {
+                throw new NothingAddedToDatabaseException(parcelToChange);
+            }
+        }
+
+        public void UnassignCourier(Parcel parcelToChange)
+        {
+            if (_parcelManager.SetCourierId(parcelToChange, null) == 0)
+            {
+                throw new NothingAddedToDatabaseException(parcelToChange);
+            }
         }
     }
 }

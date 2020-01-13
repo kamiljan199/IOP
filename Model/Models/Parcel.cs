@@ -17,5 +17,6 @@ namespace Model.Models
         public int Priority { get; set; }
         public int ReferenceId { get; set; }
         public ParcelStatus ParcelStatus { get; set; }
+        public int? CourierID { get; set; }
     }
 }

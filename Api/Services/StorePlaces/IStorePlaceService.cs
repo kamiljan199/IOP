@@ -1,5 +1,6 @@
 ﻿using Model.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Api.Services
 {
@@ -7,5 +8,6 @@ namespace Api.Services
     {
         public StorePlace GetById(int id);
         public Type GetTypeById(int id);
+        public List<StorePlace> GetAll();
     }
 }

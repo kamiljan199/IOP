@@ -15,5 +15,6 @@ namespace Api.Managers
         public int ChangeParcelPriority(Parcel parcelToChange, int priority);
         public int ChangeParcelStatus(Parcel parcelToChange, ParcelStatus status);
         public int ReturnParcel(Parcel oldParcel);
+        public int SetCourierId(Parcel parcelToChange, int? courierId);
     }
 }
