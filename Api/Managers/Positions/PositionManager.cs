@@ -4,6 +4,7 @@ using System.Text;
 using Model.Models;
 using Data.Context;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Managers
 {
@@ -17,7 +18,7 @@ namespace Api.Managers
 
         public List<Position> GetAllPositions()
         {
-            return _context.Positions.ToList();
+            return _context.Positions.AsNoTracking().ToList();
         }
 
         public Position GetPositionByID(int positionID)
@@ -31,10 +32,14 @@ namespace Api.Managers
             _context.SaveChanges();
         }
 
-        public void AddPosition(Position position)
+        public void AddPosition(Position position, bool detach = false)
         {
             _context.Positions.Add(position);
             _context.SaveChanges();
+            if (detach)
+            {
+                _context.Entry(position).State = EntityState.Detached;
+            }
         }
 
         public void UpdatePosition(Position position)

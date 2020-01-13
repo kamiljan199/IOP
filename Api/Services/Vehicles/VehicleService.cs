@@ -13,24 +13,15 @@ namespace Api.Services
         {
             _vehicleManager = vehicleManager;
         }
-        public void ChangeDriver(int vehicleID, Employee driver)
-        {
-            _vehicleManager.ChangeDriver(vehicleID, driver);
-            var rowsChange = _vehicleManager.SaveChanges();
-            if (rowsChange != 1)
-            {
-                throw new Exception();
-            }
-        }
 
         public Vehicle GetVehicleByID(int vehicleID)
         {
             return _vehicleManager.GetVehicleByID(vehicleID);
         }
 
-        public void CreateVehicle(Vehicle vehicle)
+        public void CreateVehicle(Vehicle vehicle, bool detach = false)
         {
-            _vehicleManager.AddVehicle(vehicle);
+            _vehicleManager.AddVehicle(vehicle, detach);
         }
 
         public List<Vehicle> GetAllVehicles()

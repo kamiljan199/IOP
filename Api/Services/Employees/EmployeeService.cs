@@ -47,15 +47,9 @@ namespace Api.Services
             return employee;
         }
 
-        public void AddEmployee(Employee employee)
+        public void AddEmployee(Employee employee, bool detach = false)
         {
-            _employeeManager.AddEmployee(employee);
-
-            var rowsChange = _employeeManager.SaveChanges();
-            if(rowsChange != 1)
-            {
-                throw new Exception();
-            }
+            _employeeManager.AddEmployee(employee, detach);
         }
 
         public void RemoveEmployee(Employee employee)

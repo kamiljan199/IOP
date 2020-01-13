@@ -12,13 +12,15 @@ namespace View
     public partial class EmployeeListForm : Form
     {
         private readonly EmployeeController _employeeController;
+        private readonly EmploymentController _employmentController;
         private readonly EmployeeAddEditForm _employeeAddEditFOrm;
         private readonly EmploymentForm _employmentForm;
 
         private Api.DTOs.EmployeesDTO _employeesDTO;
-        public EmployeeListForm(EmployeeController employeeController, EmployeeAddEditForm employeeAddEditFOrm, EmploymentForm employmentForm)
+        public EmployeeListForm(EmployeeController employeeController, EmploymentController employmentController, EmployeeAddEditForm employeeAddEditFOrm, EmploymentForm employmentForm)
         {
             _employeeController = employeeController;
+            _employmentController = employmentController;
             _employeeAddEditFOrm = employeeAddEditFOrm;
             _employeeAddEditFOrm.FormClosed += delegate { SynchronizeEmployees(); };
             _employmentForm = employmentForm;
@@ -72,12 +74,12 @@ namespace View
                 var selectedEmployee = ((List<Model.Models.Employee>)_employeesDTO.Employees)[listView1.Items.IndexOf(listView1.SelectedItems[0])];
                 if (selectedEmployee.ActiveEmployments != null && selectedEmployee.ActiveEmployments.Count > 0)
                 {
-                    _employmentForm.Employment = selectedEmployee.ActiveEmployments[0];
+                    _employmentForm.Employment = _employmentController.GetEmploymentById(selectedEmployee.ActiveEmployments[0].Id);
                 } else
                 {
                     _employmentForm.Employment = new Model.Models.Employment();
                 }
-                _employmentForm.Employee = selectedEmployee;
+                _employmentForm.Employee = selectedEmployee;// _employeeController.GetEmployeeById(selectedEmployee.Id);
                 _employmentForm.ShowDialog();
             }
         }
@@ -91,7 +93,8 @@ namespace View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            _employeeAddEditFOrm.employee = ((List<Model.Models.Employee>)_employeesDTO.Employees)[listView1.Items.IndexOf(listView1.SelectedItems[0])];
+            var employeeId = ((List<Model.Models.Employee>)_employeesDTO.Employees)[listView1.Items.IndexOf(listView1.SelectedItems[0])].Id;
+            _employeeAddEditFOrm.employee = _employeeController.GetEmployeeById(employeeId);
             _employeeAddEditFOrm.ShowDialog();
         }
     }
