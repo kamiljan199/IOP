@@ -15,16 +15,16 @@ namespace View
     {
         private readonly CourierForm _courierForm;
         private readonly LogisticsForm _logisticsForm;
+        private readonly HrForm _hrForm;
         public LoginForm _loginForm;
 
-        public ModuleChoiceForm(CourierForm courierForm, LogisticsForm logisticsForm)
+        public ModuleChoiceForm(CourierForm courierForm, LogisticsForm logisticsForm, HrForm hrForm)
         {
             _courierForm = courierForm;
             _logisticsForm = logisticsForm;
+            _hrForm = hrForm;
             InitializeComponent();
-        }
-
-   
+        }   
 
         private void ButtonOpenPostingWindow_Click(object sender, EventArgs e)
         {
@@ -46,7 +46,11 @@ namespace View
             _courierForm.ShowDialog();
         }
 
-      
+        private void ButtonOpenHRWindow_Click(object sender, EventArgs e)
+        {
+            _hrForm.ShowDialog();
+        }
+              
         private void ModuleChoiceWindow_Load(object sender, EventArgs e)
         {
             if (_loginForm.textBoxUsername.Text == "Courier")
@@ -55,6 +59,7 @@ namespace View
                 buttonOpenLogisticsWindow.Enabled = false;
                 buttonOpenCourierWindow.Enabled = true;
                 buttonOpenPostingWindow.Enabled = false;
+                buttonOpenHRWindow.Enabled = false;
             }
             if (_loginForm.textBoxUsername.Text == "Logistic")
             {
@@ -62,6 +67,7 @@ namespace View
                 buttonOpenLogisticsWindow.Enabled = true;
                 buttonOpenCourierWindow.Enabled = false;
                 buttonOpenPostingWindow.Enabled = false;
+                buttonOpenHRWindow.Enabled = false;
             }
             if (_loginForm.textBoxUsername.Text == "Warehouse")
             {
@@ -69,6 +75,7 @@ namespace View
                 buttonOpenLogisticsWindow.Enabled = false;
                 buttonOpenCourierWindow.Enabled = false;
                 buttonOpenPostingWindow.Enabled = false;
+                buttonOpenHRWindow.Enabled = false;
             }
             if (_loginForm.textBoxUsername.Text == "Registration")
             {
@@ -76,6 +83,7 @@ namespace View
                 buttonOpenLogisticsWindow.Enabled = false;
                 buttonOpenCourierWindow.Enabled = false;
                 buttonOpenPostingWindow.Enabled = true;
+                buttonOpenHRWindow.Enabled = false;
             }
             if (_loginForm.textBoxUsername.Text == "Admin")
             {
@@ -83,6 +91,7 @@ namespace View
                 buttonOpenLogisticsWindow.Enabled = true;
                 buttonOpenCourierWindow.Enabled = true;
                 buttonOpenPostingWindow.Enabled = true;
+                buttonOpenHRWindow.Enabled = true;
             }
         }
     }
