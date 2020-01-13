@@ -71,6 +71,7 @@
             this.buttonOpenWarehouseWindow.TabIndex = 2;
             this.buttonOpenWarehouseWindow.Text = "Magazyn";
             this.buttonOpenWarehouseWindow.UseVisualStyleBackColor = true;
+            this.buttonOpenWarehouseWindow.Click += new System.EventHandler(this.ButtonOpenWarehouseWindow_Click);
             // 
             // buttonOpenCourierWindow
             // 

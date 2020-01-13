@@ -14,5 +14,10 @@ namespace View
         {
             InitializeComponent();
         }
+
+        public void ButtonLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
