@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Api.Enums;
+using Model.Enums;
 
 namespace View
 {
@@ -16,11 +16,13 @@ namespace View
     {
         private readonly LoginForm _loginForm;
         private readonly ParcelController _parcelController;
+        private readonly CourierForm _courierForm;
 
-        public MainForm(LoginForm loginForm, ParcelController parcelController)
+        public MainForm(LoginForm loginForm, ParcelController parcelController, CourierForm courierForm)
         {
             _parcelController = parcelController;
             _loginForm = loginForm;
+            _courierForm = courierForm;
             InitializeComponent();
         }
 
@@ -35,12 +37,18 @@ namespace View
                 TextBoxInsertNumber_Leave(sender, e);
                 this.Show();
             }
+            
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
             TextBoxInsertNumber_Leave(sender, e);
             labelStatus.Text = "";
+
+            if(_courierForm.isClosed == true)
+            {
+                this.Show();
+            }
         }
 
         private void TextBoxInsertNumber_Leave(object sender, EventArgs e)
@@ -81,13 +89,58 @@ namespace View
             {
                 if (!(textBoxInsertNumber.Text == "") && !(textBoxInsertNumber.Text == "Wpisz numer przesyłki"))
                 {
-                    labelStatus.Text = _parcelController.GetParcelStatusById(int.Parse(textBoxInsertNumber.Text)).ToString();             
+                    ParcelStatus theStatus = _parcelController.GetParcelStatusById(ConvertStringToInt(textBoxInsertNumber.Text));
+
+                    switch (theStatus)
+                    {
+                        case ParcelStatus.AtPostingPoint:
+                            {
+                                labelStatus.Text = "Przesyłka w punkcie nadania";
+                                break;
+                            }                            
+                        case ParcelStatus.OnWayToWarehouse:
+                            {
+                                labelStatus.Text = "Przeyłka w drodze do magazynu";
+                                break;
+                            }
+                        case ParcelStatus.InWarehouse:
+                            {
+                                labelStatus.Text = "Przesyłka w magazynie";
+                                break;
+                            }
+                        case ParcelStatus.OnWayToTheCustomer:
+                            {
+                                labelStatus.Text = "Przesyłka w drodze do odbiorcy";
+                                break;
+                            }
+                        case ParcelStatus.Returned:
+                            {
+                                labelStatus.Text = "Przesyłka zwrócona";
+                                break;
+                            }
+                        case ParcelStatus.Delivered:
+                            {
+                                labelStatus.Text = "Przesyłka dostarczona";
+                                break;
+                            }
+                        default:
+                            {
+                                labelStatus.Text = "Brak przesyłki o podanym numerze";
+                                break;
+                            }
+
+                    }
                 }
             }
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
             }        
-        }  
+        }
+
+        private void textBoxInsertNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }     
 }

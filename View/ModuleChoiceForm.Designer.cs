@@ -32,13 +32,14 @@
             this.buttonOpenLogisticsWindow = new System.Windows.Forms.Button();
             this.buttonOpenWarehouseWindow = new System.Windows.Forms.Button();
             this.buttonOpenCourierWindow = new System.Windows.Forms.Button();
+            this.buttonOpenHRWindow = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonOpenPostingWindow
             // 
             this.buttonOpenPostingWindow.Enabled = false;
             this.buttonOpenPostingWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonOpenPostingWindow.Location = new System.Drawing.Point(42, 49);
+            this.buttonOpenPostingWindow.Location = new System.Drawing.Point(85, 47);
             this.buttonOpenPostingWindow.Name = "buttonOpenPostingWindow";
             this.buttonOpenPostingWindow.Size = new System.Drawing.Size(171, 43);
             this.buttonOpenPostingWindow.TabIndex = 0;
@@ -50,7 +51,7 @@
             // 
             this.buttonOpenLogisticsWindow.Enabled = false;
             this.buttonOpenLogisticsWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonOpenLogisticsWindow.Location = new System.Drawing.Point(42, 144);
+            this.buttonOpenLogisticsWindow.Location = new System.Drawing.Point(85, 145);
             this.buttonOpenLogisticsWindow.Name = "buttonOpenLogisticsWindow";
             this.buttonOpenLogisticsWindow.Size = new System.Drawing.Size(171, 43);
             this.buttonOpenLogisticsWindow.TabIndex = 1;
@@ -62,7 +63,7 @@
             // 
             this.buttonOpenWarehouseWindow.Enabled = false;
             this.buttonOpenWarehouseWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonOpenWarehouseWindow.Location = new System.Drawing.Point(42, 96);
+            this.buttonOpenWarehouseWindow.Location = new System.Drawing.Point(85, 96);
             this.buttonOpenWarehouseWindow.Name = "buttonOpenWarehouseWindow";
             this.buttonOpenWarehouseWindow.Size = new System.Drawing.Size(171, 43);
             this.buttonOpenWarehouseWindow.TabIndex = 2;
@@ -73,7 +74,7 @@
             // 
             this.buttonOpenCourierWindow.Enabled = false;
             this.buttonOpenCourierWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonOpenCourierWindow.Location = new System.Drawing.Point(42, 191);
+            this.buttonOpenCourierWindow.Location = new System.Drawing.Point(85, 194);
             this.buttonOpenCourierWindow.Name = "buttonOpenCourierWindow";
             this.buttonOpenCourierWindow.Size = new System.Drawing.Size(171, 43);
             this.buttonOpenCourierWindow.TabIndex = 3;
@@ -81,14 +82,26 @@
             this.buttonOpenCourierWindow.UseVisualStyleBackColor = true;
             this.buttonOpenCourierWindow.Click += new System.EventHandler(this.ButtonOpenCourierWindow_Click);
             // 
+            // buttonOpenHRWindow
+            // 
+            this.buttonOpenHRWindow.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonOpenHRWindow.Location = new System.Drawing.Point(85, 243);
+            this.buttonOpenHRWindow.Name = "buttonOpenHRWindow";
+            this.buttonOpenHRWindow.Size = new System.Drawing.Size(171, 43);
+            this.buttonOpenHRWindow.TabIndex = 4;
+            this.buttonOpenHRWindow.Text = "HR";
+            this.buttonOpenHRWindow.UseVisualStyleBackColor = true;
+            this.buttonOpenHRWindow.Click += new System.EventHandler(this.ButtonOpenHRWindow_Click);
+            // 
             // ModuleChoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(253, 288);
+            this.ClientSize = new System.Drawing.Size(331, 344);
+            this.Controls.Add(this.buttonOpenHRWindow);
             this.Controls.Add(this.buttonOpenCourierWindow);
-            this.Controls.Add(this.buttonOpenWarehouseWindow);
             this.Controls.Add(this.buttonOpenLogisticsWindow);
+            this.Controls.Add(this.buttonOpenWarehouseWindow);
             this.Controls.Add(this.buttonOpenPostingWindow);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ModuleChoiceForm";
@@ -104,5 +117,6 @@
         private System.Windows.Forms.Button buttonOpenLogisticsWindow;
         private System.Windows.Forms.Button buttonOpenWarehouseWindow;
         private System.Windows.Forms.Button buttonOpenCourierWindow;
+        private System.Windows.Forms.Button buttonOpenHRWindow;
     }
 }

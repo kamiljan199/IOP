@@ -97,5 +97,20 @@ namespace Api.Managers
                 return 0;
             }
         }
+
+        public int SetCourierId(Parcel parcelToChange, int? courierId)
+        {
+            Parcel parcel = _context.Parcels.Find(parcelToChange);
+            if (parcel != null)
+            {
+                parcel.CourierID = courierId;
+                _context.Parcels.Update(parcel);
+                return _context.SaveChanges();
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }
