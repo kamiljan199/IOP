@@ -16,13 +16,16 @@ namespace View
         private readonly CourierForm _courierForm;
         private readonly LogisticsForm _logisticsForm;
         private readonly HrForm _hrForm;
+        private readonly WarehouseForm _warehouseForm;
         public LoginForm _loginForm;
 
-        public ModuleChoiceForm(CourierForm courierForm, LogisticsForm logisticsForm, HrForm hrForm)
+        public ModuleChoiceForm(CourierForm courierForm, LogisticsForm logisticsForm,
+            HrForm hrForm, WarehouseForm warehouseForm)
         {
             _courierForm = courierForm;
             _logisticsForm = logisticsForm;
             _hrForm = hrForm;
+            _warehouseForm = warehouseForm;
             InitializeComponent();
         }   
 
@@ -33,7 +36,7 @@ namespace View
 
         private void ButtonOpenWarehouseWindow_Click(object sender, EventArgs e)
         {
-
+            _warehouseForm.ShowDialog();
         }
 
         private void ButtonOpenLogisticsWindow_Click(object sender, EventArgs e)
