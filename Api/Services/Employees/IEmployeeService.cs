@@ -9,6 +9,7 @@ namespace Api.Services
     public interface IEmployeeService
     {
         public Employee GetEmployeeById(int id);
+        public Employee GetEmployeeByLogin(string login);
         public void RemoveEmployeeById(int id);
         public ICollection<Employee> GetAllEmployees();
         public void RemoveEmployee(Employee employee);

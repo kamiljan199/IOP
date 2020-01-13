@@ -31,16 +31,18 @@ namespace View
             employee.Login = loginTextbox.Text;
             if (employee.Id.Equals(0))
             {
-                //TODO:szyfr hasło
+                employee.Password = passwordTextBox.Text;
                 _employeeController.AddEmployee(employee);
             }
             else
             {
+                bool IsPasswordModified = false;
                 if (passwordTextBox.Text.Length > 0)
                 {
-                    //...
+                    employee.Password = passwordTextBox.Text;
+                    IsPasswordModified = true;
                 }
-                _employeeController.UpdateEmployee(employee);
+                _employeeController.UpdateEmployee(employee, IsPasswordModified);
             }
             this.Close();
         }
@@ -52,13 +54,17 @@ namespace View
 
         private void EmployeeAddEditForm_Load(object sender, EventArgs e)
         {
-            if (employee.Id != null)
+            if (!employee.Id.Equals(0))
             {
                 nameTextBox.Text = employee.Name;
                 surnameTextBox.Text = employee.Surname;
                 peselTextBox.Text = employee.Pesel;
                 birthdayTextBox.Text = employee.Birthday.ToString();
                 loginTextbox.Text = employee.Login;
+                passwordInfoLabel.Visible = true;
+            } else
+            {
+                passwordInfoLabel.Visible = false;
             }
         }
     }

@@ -36,6 +36,17 @@ namespace Api.Services
             return employee;
         }
 
+        public Employee GetEmployeeByLogin(string login)
+        {
+            var employee = _employeeManager.GetEmployeeByLogin(login);
+            if (employee == default(Employee))
+            {
+                throw new Exception();
+            }
+
+            return employee;
+        }
+
         public void AddEmployee(Employee employee)
         {
             _employeeManager.AddEmployee(employee);

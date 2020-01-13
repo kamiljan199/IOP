@@ -20,6 +20,12 @@ namespace Api.Managers
         {
             return _context.Employees.FirstOrDefault(e => e.Id.Equals(employeeId));
         }
+
+        public Employee GetEmployeeByLogin(string login)
+        {
+            return _context.Employees.FirstOrDefault(e => e.Login.Equals(login));
+        }
+
         //Zwraca pracownika o żądanym PESELu
         public Employee GetEmployeeByPESEL(int employeePESEL)
         {
