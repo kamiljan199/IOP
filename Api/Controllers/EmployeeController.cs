@@ -5,12 +5,14 @@ using System.Text;
 using Api.DTOs;
 using Api.Enums;
 using Model.Models;
+using System.Security.Cryptography;
 
 namespace Api.Controllers
 {
     public class EmployeeController
     {
         private readonly IEmployeeService _employeeService;
+        private static int? _loggedEmployeeId;
 
         public EmployeeController(IEmployeeService employeeService)
         {
@@ -29,19 +31,6 @@ namespace Api.Controllers
             {
                 
             }
-        }
-
-        public void CreateEmployee(string name, string surname, string PESEL, DateTime birthday)
-        {
-            var employee = new Employee
-            {
-                Name = name,
-                Surname = surname,
-                Pesel = PESEL,
-                Birthday = birthday
-            };
-
-            _employeeService.AddEmployee(employee);
         }
 
         public EmployeesDTO GetAllEmployees()
@@ -78,12 +67,55 @@ namespace Api.Controllers
 
         public void AddEmployee(Employee employee)
         {
+            employee.Password = HashPassword(employee.Password);
             _employeeService.AddEmployee(employee);
         }
 
-        public void UpdateEmployee(Employee employee)
+        public void UpdateEmployee(Employee employee, bool IsPasswordModified)
         {
+            if (IsPasswordModified)
+            {
+                employee.Password = HashPassword(employee.Password);
+            }
             _employeeService.UpdateEmployee(employee);
+        }
+
+        public bool Login(string login, string password)
+        {
+            var employee = _employeeService.GetEmployeeByLogin(login);
+            if (employee != null)
+            {
+                var hashedPassword = HashPassword(password);
+                if (employee.Password.Equals(hashedPassword))
+                {
+                    _loggedEmployeeId = employee.Id;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public Employee GetLoggedEmployee()
+        {
+            if (_loggedEmployeeId != null)
+            {
+                return _employeeService.GetEmployeeById(_loggedEmployeeId.GetValueOrDefault());
+            }
+
+            return null;
+        }
+
+        public void Logout()
+        {
+            _loggedEmployeeId = null;
+        }
+
+        private string HashPassword(string password)
+        {
+            var sha1 = new SHA1CryptoServiceProvider();
+            var passwordBytes = Encoding.UTF8.GetBytes(password);
+            return System.Convert.ToBase64String(sha1.ComputeHash(passwordBytes));
         }
     }
 }

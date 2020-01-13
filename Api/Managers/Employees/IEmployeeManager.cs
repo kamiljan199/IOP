@@ -7,6 +7,7 @@ namespace Api.Managers
     public interface IEmployeeManager
     {
         public Employee GetEmployeeById(int employeeId);
+        public Employee GetEmployeeByLogin(string login);
         public Employee GetEmployeeByPESEL(int employeePESEL);
         public ICollection<Employee> GetAllEmployees();
         public int SaveChanges();
