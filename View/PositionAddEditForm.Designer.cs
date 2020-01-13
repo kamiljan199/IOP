@@ -110,7 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 235);
+            this.ClientSize = new System.Drawing.Size(396, 161);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.nameTextBox);
@@ -121,6 +121,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PositionAddEditForm";
             this.Text = "Dodaj/Edytuj stanowisko";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PositionAddEditForm_FormClosing);
             this.Load += new System.EventHandler(this.PositionAddEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

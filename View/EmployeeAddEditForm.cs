@@ -32,7 +32,7 @@ namespace View
             if (employee.Id.Equals(0))
             {
                 employee.Password = passwordTextBox.Text;
-                _employeeController.AddEmployee(employee);
+                _employeeController.AddEmployee(employee, true);
             }
             else
             {
@@ -66,6 +66,29 @@ namespace View
             {
                 passwordInfoLabel.Visible = false;
             }
+        }
+
+        private void EmployeeAddEditForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ClearForm();
+        }
+
+        private void ClearForm()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else if (control is ComboBox)
+                        (control as ComboBox).SelectedIndex = -1;
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
         }
     }
 }

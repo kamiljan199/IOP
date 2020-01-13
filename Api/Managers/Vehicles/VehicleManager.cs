@@ -15,20 +15,19 @@ namespace Api.Managers
             _context = context;
         }
 
-        public void AddVehicle(Vehicle vehicle)
+        public void AddVehicle(Vehicle vehicle, bool detach = false)
         {
             _context.Vehicles.Add(vehicle);
             _context.SaveChanges();
-        }
-
-        public void ChangeDriver(int vehicleID, Employee driver)
-        {
-            GetVehicleByID(vehicleID).Driver = driver;
+            if (detach)
+            {
+                _context.Entry(vehicle).State = EntityState.Detached;
+            }
         }
 
         public List<Vehicle> GetAllVehicles()
         {
-            return _context.Vehicles.Include(v => v.Driver).ToList();
+            return _context.Vehicles.AsNoTracking().Include(v => v.Driver).ToList();
         }
 
         public Vehicle GetVehicleByDriverID(int driverID)

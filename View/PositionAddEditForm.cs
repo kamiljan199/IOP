@@ -43,12 +43,35 @@ namespace View
             position.MaxSalary = float.Parse(maxSalaryTextBox.Text);
             if (position.Id.Equals(0))
             {
-                _positionController.AddPosition(position);
+                _positionController.AddPosition(position, true);
             } else
             {
                 _positionController.UpdatePosition(position);
             }
             this.Close();
+        }
+
+        private void PositionAddEditForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ClearForm();
+        }
+
+        private void ClearForm()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else if (control is ComboBox)
+                        (control as ComboBox).SelectedIndex = -1;
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
         }
     }
 }

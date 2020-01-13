@@ -55,7 +55,7 @@
             // 
             this.registrationTextBox.Location = new System.Drawing.Point(97, 10);
             this.registrationTextBox.Name = "registrationTextBox";
-            this.registrationTextBox.Size = new System.Drawing.Size(147, 23);
+            this.registrationTextBox.Size = new System.Drawing.Size(190, 23);
             this.registrationTextBox.TabIndex = 1;
             // 
             // label2
@@ -71,7 +71,7 @@
             // 
             this.brandTextBox.Location = new System.Drawing.Point(97, 39);
             this.brandTextBox.Name = "brandTextBox";
-            this.brandTextBox.Size = new System.Drawing.Size(147, 23);
+            this.brandTextBox.Size = new System.Drawing.Size(190, 23);
             this.brandTextBox.TabIndex = 1;
             // 
             // label3
@@ -87,7 +87,7 @@
             // 
             this.modelTextBox.Location = new System.Drawing.Point(97, 68);
             this.modelTextBox.Name = "modelTextBox";
-            this.modelTextBox.Size = new System.Drawing.Size(147, 23);
+            this.modelTextBox.Size = new System.Drawing.Size(190, 23);
             this.modelTextBox.TabIndex = 1;
             // 
             // label4
@@ -104,7 +104,7 @@
             this.driverComboBox.FormattingEnabled = true;
             this.driverComboBox.Location = new System.Drawing.Point(97, 100);
             this.driverComboBox.Name = "driverComboBox";
-            this.driverComboBox.Size = new System.Drawing.Size(147, 23);
+            this.driverComboBox.Size = new System.Drawing.Size(190, 23);
             this.driverComboBox.TabIndex = 3;
             // 
             // warehouseComboBox
@@ -112,7 +112,7 @@
             this.warehouseComboBox.FormattingEnabled = true;
             this.warehouseComboBox.Location = new System.Drawing.Point(97, 129);
             this.warehouseComboBox.Name = "warehouseComboBox";
-            this.warehouseComboBox.Size = new System.Drawing.Size(147, 23);
+            this.warehouseComboBox.Size = new System.Drawing.Size(190, 23);
             this.warehouseComboBox.TabIndex = 3;
             // 
             // label5
@@ -148,7 +148,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 262);
+            this.ClientSize = new System.Drawing.Size(330, 222);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
@@ -163,6 +163,7 @@
             this.Controls.Add(this.label1);
             this.Name = "VehicleAddEditForm";
             this.Text = "Dodaj/Edytuj pojazd";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VehicleAddEditForm_FormClosing);
             this.Load += new System.EventHandler(this.VehicleAddEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

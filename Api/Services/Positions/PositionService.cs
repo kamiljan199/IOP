@@ -35,9 +35,9 @@ namespace Api.Services
             _positionManager.RemovePosition(position);
         }
 
-        public void AddPosition(Position position)
+        public void AddPosition(Position position, bool detach = false)
         {
-            _positionManager.AddPosition(position);
+            _positionManager.AddPosition(position, detach);
         }
 
         public void UpdatePosition(Position position)

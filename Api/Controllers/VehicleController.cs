@@ -10,11 +10,10 @@ namespace Api.Controllers
     public class VehicleController
     {
         private readonly IVehicleService _vehicleService;
-        private readonly IEmployeeService _employeeService;
-        public VehicleController(IVehicleService vehicleService, IEmployeeService employeeService)
+
+        public VehicleController(IVehicleService vehicleService)
         {
             _vehicleService = vehicleService;
-            _employeeService = employeeService;
         }
 
         public VehiclesDTO GetAllVehicles()
@@ -45,26 +44,9 @@ namespace Api.Controllers
             }
         }
 
-        public void CreateVehicle(string brand, string model, string registation)
+        public void AddVehicle(Vehicle vehicle, bool detach = false)
         {
-            var vehicle = new Vehicle
-            {
-                Brand = brand,
-                Model = model,
-                Registration = registation
-            };
-
-            _vehicleService.CreateVehicle(vehicle);
-        }
-
-        public void ChangeDriver(int vehicleID, int driverID)
-        {
-            //_vehicleService.ChangeDriver(_vehicleService.GetVehicleByID(vehicleID), _employeeService.GetEmployeeById(driverID));
-        }
-
-        public void AddVehicle(Vehicle vehicle)
-        {
-            _vehicleService.CreateVehicle(vehicle);
+            _vehicleService.CreateVehicle(vehicle, detach);
         }
 
         public void RemoveVehicle(Vehicle vehicle)
@@ -75,6 +57,11 @@ namespace Api.Controllers
         public void UpdateVehicle(Vehicle vehicle)
         {
             _vehicleService.UpdateVehicle(vehicle);
+        }
+
+        public Vehicle GetVehicleById(int id)
+        {
+            return _vehicleService.GetVehicleByID(id);
         }
     }
 }

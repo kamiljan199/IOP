@@ -4,6 +4,7 @@ using System.Text;
 using Model.Models;
 using Data.Context;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Managers
 {
@@ -16,10 +17,14 @@ namespace Api.Managers
             _context = context;
         }
 
-        public void AddEmployment(Employment employment)
+        public void AddEmployment(Employment employment, bool detach = false)
         {
             _context.Employments.Add(employment);
             _context.SaveChanges();
+            if (detach)
+            {
+                _context.Entry(employment).State = EntityState.Detached;
+            }
         }
 
         public void ChangePosition(int employmentID, Position position)
@@ -27,12 +32,9 @@ namespace Api.Managers
             GetEmploymentByID(employmentID).Position = position;
         }
 
-        public List<Employment> GetAllEmploymentsByEmployee(Employee employee)
+        public List<Employment> GetAllEmploymentsByEmployeeId(int id)
         {
-            var query = from e in _context.Employments
-                        where e.Employee.Id == employee.Id
-                        select e;
-            return query.ToList();
+            return _context.Employments.Where(e => e.EmployeeId == id).AsNoTracking().ToList();
         }
 
         public Employment GetEmploymentByID(int employmentID)
@@ -46,6 +48,7 @@ namespace Api.Managers
 
         public void UpdateEmployment(Employment employment)
         {
+            _context.Entry(employment).State = EntityState.Modified;
             _context.SaveChanges();
         }
     }

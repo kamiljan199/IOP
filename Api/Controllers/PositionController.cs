@@ -49,14 +49,19 @@ namespace Api.Controllers
             _positionService.RemovePosition(position);
         }
 
-        public void AddPosition(Position position)
+        public void AddPosition(Position position, bool detach = false)
         {
-            _positionService.AddPosition(position);
+            _positionService.AddPosition(position, detach);
         }
 
         public void UpdatePosition(Position position)
         {
             _positionService.UpdatePosition(position);
+        }
+
+        public Position GetPositionById(int id)
+        {
+            return _positionService.GetPositionByID(id);
         }
     }
 }
