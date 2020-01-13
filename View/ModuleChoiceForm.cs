@@ -86,6 +86,14 @@ namespace View
                 buttonOpenPostingWindow.Enabled = true;
                 buttonOpenHRWindow.Enabled = false;
             }
+            if (_loginForm.textBoxUsername.Text == "HR")
+            {
+                buttonOpenWarehouseWindow.Enabled = false;
+                buttonOpenLogisticsWindow.Enabled = false;
+                buttonOpenCourierWindow.Enabled = false;
+                buttonOpenPostingWindow.Enabled = false;
+                buttonOpenHRWindow.Enabled = true;
+            }
             if (_loginForm.textBoxUsername.Text == "Admin")
             {
                 buttonOpenWarehouseWindow.Enabled = true;
