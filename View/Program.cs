@@ -6,6 +6,9 @@ using System.Windows.Forms;
 using Autofac;
 using Api;
 using System.Reflection;
+using System.Text;
+
+using Model.Models;
 
 namespace View
 {
@@ -19,11 +22,13 @@ namespace View
         [STAThread]
         static void Main()
         {
+            //That is important shit for QR Label generator - please, don't remove
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Bootstrap();
-
             using (var scope = container.BeginLifetimeScope())
             {
                 Application.Run(container.Resolve<MainForm>());

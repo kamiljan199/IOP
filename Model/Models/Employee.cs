@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Models
 {
@@ -12,8 +14,11 @@ namespace Model.Models
 
         public string Pesel { get; set; }
 
-        public DateTime Birthday { get; set; }
+        public string Login { get; set; }
 
-        public Employment ActiveEmployment { get; set; }
+        public string Password { get; set; }
+
+        public DateTime Birthday { get; set; }
+        public virtual List<Employment> ActiveEmployments { get; set; }
     }
 }
