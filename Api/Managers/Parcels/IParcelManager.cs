@@ -11,7 +11,6 @@ namespace Api.Managers
         public Parcel GetById(int id);
         public Parcel GetByReferenceId(int id);
         public Parcel[] GetParcelsByStorePlace(StorePlace storePlace);
-        public Parcel[] GetParcelsFromStorePlaceByStatus(StorePlace storePlace, ParcelStatus status);
         public int PostParcel(Parcel newParcel);
         public int ChangeParcelPriority(Parcel parcelToChange, int priority);
         public int ChangeParcelStatus(Parcel parcelToChange, ParcelStatus status);
