@@ -40,6 +40,30 @@ namespace Api.Services
             return parcel;
         }
 
+
+        public Parcel[] GetParcelsByStorePlace(StorePlace storePlace)
+        {
+            Parcel[] parcels = _parcelManager.GetParcelsByStorePlace(storePlace);
+            if(parcels.Length == 0)
+            {
+                throw new ParcelNotFoundInDatabaseException(storePlace);
+            }
+
+
+            return parcels;
+        }
+
+        public Parcel[] GetParcelsFromStorePlaceByStatus(StorePlace storePlace, ParcelStatus status)
+        {
+            Parcel[] parcels = _parcelManager.GetParcelsFromStorePlaceByStatus(storePlace, status);
+            if (parcels.Length == 0)
+            {
+                throw new ParcelNotFoundInDatabaseException(storePlace);
+            }
+
+            return parcels;
+        }
+
         public void PostParcel(Parcel newParcel)
         {
             if (_parcelManager.PostParcel(newParcel) == 0)

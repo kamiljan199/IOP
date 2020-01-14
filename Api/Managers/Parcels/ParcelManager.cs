@@ -24,10 +24,19 @@ namespace Api.Managers
         {
             return _context.Parcels.FirstOrDefault(e => e.ReferenceId.Equals(id));
         }
+
         public Parcel[] GetParcelsByStorePlace(StorePlace storePlace)
         {
             var query = from e in _context.Parcels
                         where e.StorePlaceId == storePlace.Id
+                        select e;
+            return query.ToArray();
+        }
+
+        public Parcel[] GetParcelsFromStorePlaceByStatus(StorePlace storePlace, ParcelStatus status)
+        {
+            var query = from e in _context.Parcels
+                        where e.StorePlaceId == storePlace.Id && e.ParcelStatus == status
                         select e;
             return query.ToArray();
         }
