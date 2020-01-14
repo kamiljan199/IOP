@@ -53,7 +53,6 @@ namespace Api.Controllers
             Parcel[] parcels = { };
             try
             {
-
                 parcels = _parcelService.GetParcelsFromStorePlaceByStatus(storePlace, status);
             }
             catch (ParcelNotFoundInDatabaseException e)
