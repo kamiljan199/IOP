@@ -33,36 +33,6 @@ namespace Api.Controllers
             return status;
         }
 
-        public Parcel[] GetParcelsByStorePlace(StorePlace storePlace)
-        {
-            Parcel[] parcels = { };
-            try
-            {
-                parcels = _parcelService.GetByStorePlace(storePlace);
-            }
-            catch(ParcelNotFoundInDatabaseException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            return parcels;
-        }
-
-        public Parcel[] GetParcelsFromStorePlaceByStatus(StorePlace storePlace, ParcelStatus status)
-        {
-            Parcel[] parcels = { };
-            try
-            {
-                parcels = _parcelService.GetFromStorePlaceByStatus(storePlace, status);
-            }
-            catch (ParcelNotFoundInDatabaseException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            return parcels;
-        }
-
         public bool PostParcel(StorePlace storePlace, PersonalData senderData, PersonalData receiverData, float height, float length, float width, int priority, string type)
         {
             var parcel = new Parcel
