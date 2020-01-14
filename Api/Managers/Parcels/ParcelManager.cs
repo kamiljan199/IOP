@@ -24,6 +24,7 @@ namespace Api.Managers
         {
             return _context.Parcels.FirstOrDefault(e => e.ReferenceId.Equals(id));
         }
+
         public Parcel[] GetParcelsByStorePlace(StorePlace storePlace)
         {
             var query = from e in _context.Parcels

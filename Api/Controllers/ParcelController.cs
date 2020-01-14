@@ -38,7 +38,7 @@ namespace Api.Controllers
             Parcel[] parcels = { };
             try
             {
-                parcels = _parcelService.GetByStorePlace(storePlace);
+                parcels = _parcelService.GetParcelsByStorePlace(storePlace);
             }
             catch(ParcelNotFoundInDatabaseException e)
             {
@@ -53,7 +53,8 @@ namespace Api.Controllers
             Parcel[] parcels = { };
             try
             {
-                parcels = _parcelService.GetFromStorePlaceByStatus(storePlace, status);
+
+                parcels = _parcelService.GetParcelsFromStorePlaceByStatus(storePlace, status);
             }
             catch (ParcelNotFoundInDatabaseException e)
             {
