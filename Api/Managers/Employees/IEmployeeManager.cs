@@ -12,7 +12,7 @@ namespace Api.Managers
         public ICollection<Employee> GetAllEmployees();
         public int SaveChanges();
         public void RemoveEmployee(Employee employee);
-        public void AddEmployee(Employee employee);
+        public void AddEmployee(Employee employee, bool detach = false);
         public void UpdateEmployee(Employee employee);
     }
 }

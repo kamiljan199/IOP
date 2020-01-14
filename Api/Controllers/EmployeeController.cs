@@ -19,20 +19,6 @@ namespace Api.Controllers
             _employeeService = employeeService;
         }
 
-        //TODO: Zwalnia pracownika o podanym numerze ID
-        public void FireEmployeeById(int employeeId)
-        {
-            try
-            {
-                //TODO: do what's necessary to end this man whole career
-                _employeeService.RemoveEmployeeById(employeeId);
-            }
-            catch(Exception ex)
-            {
-                
-            }
-        }
-
         public EmployeesDTO GetAllEmployees()
         {
             try
@@ -65,10 +51,10 @@ namespace Api.Controllers
             _employeeService.RemoveEmployee(employee);
         }
 
-        public void AddEmployee(Employee employee)
+        public void AddEmployee(Employee employee, bool detach = false)
         {
             employee.Password = HashPassword(employee.Password);
-            _employeeService.AddEmployee(employee);
+            _employeeService.AddEmployee(employee, detach);
         }
 
         public void UpdateEmployee(Employee employee, bool IsPasswordModified)
@@ -109,6 +95,11 @@ namespace Api.Controllers
         public void Logout()
         {
             _loggedEmployeeId = null;
+        }
+
+        public Employee GetEmployeeById(int id)
+        {
+            return _employeeService.GetEmployeeById(id);
         }
 
         private string HashPassword(string password)

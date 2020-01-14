@@ -63,7 +63,7 @@ namespace View
 
         private void SynchronizeEmployments()
         {
-            _employmentsDTO = _employmentController.GetAllEmploymentsByEmployee(Employee);
+            _employmentsDTO = _employmentController.GetAllEmploymentsByEmployeeId(Employee.Id);
             employmentListView.Items.Clear();
 
             if (_employmentsDTO.Employments != null)
@@ -82,6 +82,7 @@ namespace View
 
         private void button3_Click(object sender, EventArgs e)
         {
+            ClearForm();
             this.Close();
         }
 
@@ -96,12 +97,11 @@ namespace View
             {
                 Employment.EmployeeId = Employee.Id;
                 Employment.IsActive = true;
-                _employmentController.CreateEmployment(Employment);
-                ClearForm();
+                _employmentController.CreateEmployment(Employment, true);
             }
             else
             {
-                //_positionController.UpdatePosition(position);
+                _employmentController.UpdateEmployment(Employment);
             }
             this.Close();
         }
@@ -111,7 +111,6 @@ namespace View
             if (!Employment.Id.Equals(0))
             {
                 _employmentController.DeactivateEmployment(Employment);
-                ClearForm();
                 this.Close();
             }
         }
@@ -149,6 +148,11 @@ namespace View
         private void positionComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateForks();
+        }
+
+        private void EmploymentForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ClearForm();
         }
     }
 }

@@ -81,7 +81,7 @@
             this.parcelsListView.TabIndex = 3;
             this.parcelsListView.UseCompatibleStateImageBehavior = false;
             this.parcelsListView.View = System.Windows.Forms.View.Details;
-            this.parcelsListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ParcelListView_ItemSelectionChanged);
+            //this.parcelsListView.SelectedIndexChanged += new System.EventHandler(this.parcelsListView_SelectedIndexChanged);
             // 
             // columnHeader1
             // 

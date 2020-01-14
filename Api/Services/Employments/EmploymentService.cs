@@ -14,20 +14,14 @@ namespace Api.Services
         {
             _employmentManager = employmentManager;
         }
-        public void CreateEmployement(Employment employment)
+        public void CreateEmployement(Employment employment, bool detach = false)
         {
-            _employmentManager.AddEmployment(employment);
-
-            /*var rowsChange = _employmentManager.SaveChanges();
-            if (rowsChange != 1)
-            {
-                throw new Exception();
-            }*/
+            _employmentManager.AddEmployment(employment, detach);
         }
 
-        public List<Employment> GetAllEmploymentsByEmployee(Employee employee)
+        public List<Employment> GetAllEmploymentsByEmployeeId(int id)
         {
-            var employmentsList = _employmentManager.GetAllEmploymentsByEmployee(employee);
+            var employmentsList = _employmentManager.GetAllEmploymentsByEmployeeId(id);
             if (employmentsList.Count.Equals(0))
             {
                 throw new Exception($"No employment has been found");
@@ -35,20 +29,14 @@ namespace Api.Services
             return employmentsList;
         }
 
-        public void ChangePosition(int employmentID, Position position)
-        {
-            _employmentManager.ChangePosition(employmentID, position);
-
-            var rowsChange = _employmentManager.SaveChanges();
-            if (rowsChange != 1)
-            {
-                throw new Exception();
-            }
-        }
-
         public void UpdateEmployment(Employment employment)
         {
             _employmentManager.UpdateEmployment(employment);
+        }
+
+        public Employment GetEmploymentById(int id)
+        {
+            return _employmentManager.GetEmploymentByID(id);
         }
     }
 }

@@ -65,7 +65,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(366, 13);
+            this.label2.Location = new System.Drawing.Point(346, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(121, 15);
             this.label2.TabIndex = 1;
@@ -82,10 +82,10 @@
             this.columnHeader6});
             this.employmentListView.Enabled = false;
             this.employmentListView.HideSelection = false;
-            this.employmentListView.Location = new System.Drawing.Point(366, 44);
+            this.employmentListView.Location = new System.Drawing.Point(346, 44);
             this.employmentListView.MultiSelect = false;
             this.employmentListView.Name = "employmentListView";
-            this.employmentListView.Size = new System.Drawing.Size(422, 164);
+            this.employmentListView.Size = new System.Drawing.Size(442, 182);
             this.employmentListView.TabIndex = 2;
             this.employmentListView.UseCompatibleStateImageBehavior = false;
             this.employmentListView.View = System.Windows.Forms.View.Details;
@@ -93,10 +93,12 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "#";
+            this.columnHeader1.Width = 35;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Stanowisko";
+            this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
@@ -105,14 +107,17 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "Początek";
+            this.columnHeader4.Width = 80;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Koniec";
+            this.columnHeader5.Width = 80;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Magazyn";
+            this.columnHeader6.Width = 80;
             // 
             // label3
             // 
@@ -241,6 +246,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 307);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.forksxDLabel);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.fireButton);
@@ -256,10 +262,10 @@
             this.Controls.Add(this.positionComboBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.employmentListView);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "EmploymentForm";
             this.Text = "Edytuj zatrudnienia";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmploymentForm_FormClosing);
             this.Load += new System.EventHandler(this.EmploymentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
