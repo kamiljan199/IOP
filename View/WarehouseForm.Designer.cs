@@ -65,7 +65,7 @@
             this.storePlaceTextbox.Name = "storePlaceTextbox";
             this.storePlaceTextbox.Size = new System.Drawing.Size(320, 31);
             this.storePlaceTextbox.TabIndex = 2;
-            this.storePlaceTextbox.Text = "Magazyn: ";
+            this.storePlaceTextbox.Text = "Id pracownika: Magazyn: ";
             // 
             // parcelsListView
             // 

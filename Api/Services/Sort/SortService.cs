@@ -14,24 +14,22 @@ namespace Api.Services
         private List<Parcel> _parcelsToClients;
         private List<Parcel> _parcelsToOtherStorePlace;
         private readonly IParcelManager _parcelManager;
-        private StorePlace _storePlace;
 
-        public SortService(IParcelManager parcelManager, StorePlace storePlace)
+        public SortService(IParcelManager parcelManager)
         {
             _parcelManager = parcelManager;
             _parcels = new List<Parcel>();
             _parcelsToClients = new List<Parcel>();
             _parcelsToOtherStorePlace = new List<Parcel>();
-            _storePlace = storePlace;
         }
 
         public void GetParcelsInMagazine()
         {
-            Parcel[] parcels = _parcelManager.GetParcelsByStorePlace(_storePlace);
-            for(int  i = 0; i < parcels.Length; i++)
-            {
-                _parcels.Add(parcels[i]);
-            }
+            //Parcel[] parcels = _parcelManager.GetParcelsByStorePlace(_storePlace);
+            //for(int  i = 0; i < parcels.Length; i++)
+            //{
+            //    _parcels.Add(parcels[i]);
+            //}
         }
 
         public void PrintGuidelines()
@@ -57,14 +55,17 @@ namespace Api.Services
             //System.IO.File.WriteAllLines(@"..\..\..\Data\Instructions.txt", instructions);
         }
 
-        public void Sort()
+        public List<Parcel> Sort(List<Parcel> parcelsToSort)
         {
-            SortParcelsByStorePlace();
-            SortParcelsByAddress(_parcelsToClients);
-            SortParcelsByAddress(_parcelsToOtherStorePlace);
+            List<Parcel> sortedParcels;
+            //SortParcelsByStorePlace();
+            sortedParcels = SortParcelsByAddress(parcelsToSort);
+            //SortParcelsByAddress(_parcelsToOtherStorePlace);
+
+            return sortedParcels;
         }
 
-        public void SortParcelsByAddress(List<Parcel> sortedParcels)
+        public List<Parcel> SortParcelsByAddress(List<Parcel> sortedParcels)
         {
             sortedParcels = sortedParcels
                 .OrderBy(e => e.ReceiverData.PersonalAddress.City)
@@ -73,29 +74,31 @@ namespace Api.Services
                 .ThenBy(e => e.StorePlaceId)
                 .ToList();
 
-            if (sortedParcels[0].StorePlaceId == _storePlace.Id)
-            {
-                _parcelsToClients = sortedParcels;
-            }
-            else
-            {
-                _parcelsToOtherStorePlace = sortedParcels;
-            }
+            return sortedParcels;
+
+            //if (sortedParcels[0].StorePlaceId == _storePlace.Id)
+            //{
+            //    _parcelsToClients = sortedParcels;
+            //}
+            //else
+            //{
+            //    _parcelsToOtherStorePlace = sortedParcels;
+            //}
         }
 
         public void SortParcelsByStorePlace()
         {
-            foreach(var parcel in _parcels)
-            {
-                if (parcel.StorePlaceId == _storePlace.Id)
-                {
-                    _parcelsToClients.Add(parcel);
-                }
-                else
-                {
-                    _parcelsToOtherStorePlace.Add(parcel);
-                }
-            }
+            //foreach(var parcel in _parcels)
+            //{
+            //    if (parcel.StorePlaceId == _storePlace.Id)
+            //    {
+            //        _parcelsToClients.Add(parcel);
+            //    }
+            //    else
+            //    {
+            //        _parcelsToOtherStorePlace.Add(parcel);
+            //    }
+            //}
         }
 
         public void SortParcelsByPrivilage()
