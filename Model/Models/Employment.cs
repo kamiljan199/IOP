@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Models
 {
@@ -12,8 +13,15 @@ namespace Model.Models
 
         public float Salary { get; set; }
 
-        public Position Position { get; set; }
+        public bool IsActive { get; set; }
 
-        public Warehouse Warehouse { get; set; }
+        public int PositionId { get; set; }
+        public virtual Position Position { get; set; }
+
+        public int? WarehouseId { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
+
+        public int EmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

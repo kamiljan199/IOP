@@ -4,22 +4,25 @@ using System.Text;
 using Api.Services;
 using Api.DTOs;
 using Api.Enums;
+using Model.Models;
 
 namespace Api.Controllers
 {
     public class EmploymentController
     {
         private readonly IEmploymentService _employmentService;
-        public EmploymentController(IEmploymentService employmentService)
+        private readonly IPositionService _positionService;
+        public EmploymentController(IEmploymentService employmentService, IPositionService positionService)
         {
             _employmentService = employmentService;
+            _positionService = positionService;
         }
 
-        public EmploymentsDTO GetAllEmployments()
+        public EmploymentsDTO GetAllEmploymentsByEmployeeId(int id)
         {
             try
             {
-                var employmentsList = _employmentService.GetAllEmployments();
+                var employmentsList = _employmentService.GetAllEmploymentsByEmployeeId(id);
 
                 var result = new EmploymentsDTO
                 {
@@ -40,6 +43,33 @@ namespace Api.Controllers
 
                 return result;
             }
+        }
+
+        public void CreateEmployment(Employment employment, bool detach = false)
+        {
+            _employmentService.CreateEmployement(employment, detach);
+        }
+
+        public void DeactivateEmployment(Employment employment)
+        {
+            _employmentService.GetAllEmploymentsByEmployeeId(employment.EmployeeId).ForEach(e =>
+            {
+                if (e.Id.Equals(employment.Id))
+                {
+                    e.IsActive = false;
+                    _employmentService.UpdateEmployment(e);
+                }
+            });
+        }
+
+        public void UpdateEmployment(Employment employment)
+        {
+            _employmentService.UpdateEmployment(employment);
+        }
+
+        public Employment GetEmploymentById(int id)
+        {
+            return _employmentService.GetEmploymentById(id);
         }
     }
 }

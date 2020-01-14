@@ -8,7 +8,9 @@ namespace Api.Services
 {
     public interface IEmploymentService
     {
-        public List<Employment> GetAllEmployments();
-        public void CreateEmployement(int employeeID, DateTime startDate, int position, double salary, int warehouseID);
+        public List<Employment> GetAllEmploymentsByEmployeeId(int id);
+        public void CreateEmployement(Employment employment, bool detach = false);
+        public void UpdateEmployment(Employment employment);
+        public Employment GetEmploymentById(int id);
     }
 }

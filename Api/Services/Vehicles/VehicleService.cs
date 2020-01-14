@@ -13,14 +13,15 @@ namespace Api.Services
         {
             _vehicleManager = vehicleManager;
         }
-        public void ChangeDriver(Vehicle vehicle, int driverID)
+
+        public Vehicle GetVehicleByID(int vehicleID)
         {
-            _vehicleManager.ChangeDriver(vehicle, driverID);
+            return _vehicleManager.GetVehicleByID(vehicleID);
         }
 
-        public void CreateVehicle(Vehicle vehicle)
+        public void CreateVehicle(Vehicle vehicle, bool detach = false)
         {
-            _vehicleManager.AddVehicle(vehicle);
+            _vehicleManager.AddVehicle(vehicle, detach);
         }
 
         public List<Vehicle> GetAllVehicles()
@@ -31,6 +32,16 @@ namespace Api.Services
                 throw new Exception($"No vehicle has been found");
             }
             return vehiclesList;
+        }
+
+        public void RemoveVehicle(Vehicle vehicle)
+        {
+            _vehicleManager.RemoveVehicle(vehicle);
+        }
+
+        public void UpdateVehicle(Vehicle vehicle)
+        {
+            _vehicleManager.UpdateVehicle(vehicle);
         }
     }
 }

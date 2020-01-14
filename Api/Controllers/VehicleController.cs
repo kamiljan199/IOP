@@ -10,6 +10,7 @@ namespace Api.Controllers
     public class VehicleController
     {
         private readonly IVehicleService _vehicleService;
+
         public VehicleController(IVehicleService vehicleService)
         {
             _vehicleService = vehicleService;
@@ -43,19 +44,25 @@ namespace Api.Controllers
             }
         }
 
-        public void CreateVehicle(string brand, string model, string registation)
+        public void AddVehicle(Vehicle vehicle, bool detach = false)
         {
-            var vehicle = new Vehicle
-            {
-                Brand = brand,
-                Model = model,
-                Registration = registation
-            };
-
-            _vehicleService.CreateVehicle(vehicle);
+            _vehicleService.CreateVehicle(vehicle, detach);
         }
 
-        
+        public void RemoveVehicle(Vehicle vehicle)
+        {
+            _vehicleService.RemoveVehicle(vehicle);
+        }
+
+        public void UpdateVehicle(Vehicle vehicle)
+        {
+            _vehicleService.UpdateVehicle(vehicle);
+        }
+
+        public Vehicle GetVehicleById(int id)
+        {
+            return _vehicleService.GetVehicleByID(id);
+        }
     }
 }
 

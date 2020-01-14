@@ -8,7 +8,9 @@ namespace Api.Managers
     public interface IEmploymentManager
     {
         public Employment GetEmploymentByID(int employmentID);
-        public void AddEmployment(int employeeID, DateTime startTime, int position, double salary, int warehouseID);
-        public List<Employment> GetAllEmployments();
+        public void AddEmployment(Employment employment, bool detach = false);
+        public List<Employment> GetAllEmploymentsByEmployeeId(int id);
+        public int SaveChanges();
+        public void UpdateEmployment(Employment employment);
     }
 }

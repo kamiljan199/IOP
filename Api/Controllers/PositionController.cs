@@ -4,6 +4,7 @@ using System.Text;
 using Api.Services;
 using Api.Enums;
 using Api.DTOs;
+using Model.Models;
 
 namespace Api.Controllers
 {
@@ -43,5 +44,24 @@ namespace Api.Controllers
             }
         }
 
+        public void RemovePosition(Position position)
+        {
+            _positionService.RemovePosition(position);
+        }
+
+        public void AddPosition(Position position, bool detach = false)
+        {
+            _positionService.AddPosition(position, detach);
+        }
+
+        public void UpdatePosition(Position position)
+        {
+            _positionService.UpdatePosition(position);
+        }
+
+        public Position GetPositionById(int id)
+        {
+            return _positionService.GetPositionByID(id);
+        }
     }
 }

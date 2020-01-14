@@ -14,19 +14,29 @@ namespace Api.Services
         {
             _employmentManager = employmentManager;
         }
-        public void CreateEmployement(int employeeID, DateTime startDate, int position, double salary, int warehouseID)
+        public void CreateEmployement(Employment employment, bool detach = false)
         {
-            _employmentManager.AddEmployment(employeeID, startDate, position, salary, warehouseID);
+            _employmentManager.AddEmployment(employment, detach);
         }
 
-        public List<Employment> GetAllEmployments()
+        public List<Employment> GetAllEmploymentsByEmployeeId(int id)
         {
-            var employmentsList = _employmentManager.GetAllEmployments();
+            var employmentsList = _employmentManager.GetAllEmploymentsByEmployeeId(id);
             if (employmentsList.Count.Equals(0))
             {
                 throw new Exception($"No employment has been found");
             }
             return employmentsList;
+        }
+
+        public void UpdateEmployment(Employment employment)
+        {
+            _employmentManager.UpdateEmployment(employment);
+        }
+
+        public Employment GetEmploymentById(int id)
+        {
+            return _employmentManager.GetEmploymentByID(id);
         }
     }
 }

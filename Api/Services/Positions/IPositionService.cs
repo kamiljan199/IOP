@@ -9,5 +9,12 @@ namespace Api.Services
     public interface IPositionService
     {
         public List<Position> GetAllPosition();
+        public Position GetPositionByID(int positionID);
+
+        public void RemovePosition(Position position);
+
+        public void AddPosition(Position position, bool detach = false);
+
+        public void UpdatePosition(Position position);
     }
 }

@@ -36,32 +36,36 @@ namespace Api.Services
             return employee;
         }
 
-        public void AddEmployee(Employee employee)
+        public Employee GetEmployeeByLogin(string login)
         {
-            _employeeManager.AddEmployee(employee);
-
-            var rowsChange = _employeeManager.SaveChanges();
-            if(rowsChange != 1)
+            var employee = _employeeManager.GetEmployeeByLogin(login);
+            if (employee == default(Employee))
             {
                 throw new Exception();
             }
+
+            return employee;
+        }
+
+        public void AddEmployee(Employee employee, bool detach = false)
+        {
+            _employeeManager.AddEmployee(employee, detach);
         }
 
         public void RemoveEmployee(Employee employee)
         {
             _employeeManager.RemoveEmployee(employee);
-
-            var rowsChange = _employeeManager.SaveChanges();
-            if (rowsChange != 1)
-            {
-                throw new Exception();
-            }
         }
 
         public void RemoveEmployeeById(int id)
         {
             var employee = GetEmployeeById(id);
             RemoveEmployee(employee);
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            _employeeManager.UpdateEmployee(employee);
         }
     }
 }

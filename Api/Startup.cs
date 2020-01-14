@@ -54,6 +54,10 @@ namespace Api
             builder.RegisterAssemblyTypes(Assembly.Load(nameof(Api)))
                 .Where(t => t.Namespace.Contains("Controllers"))
                 .AsSelf();
+
+            builder.RegisterAssemblyTypes(Assembly.Load(nameof(Api)))
+                .Where(t => t.Namespace.Contains("Helpers"))
+                .AsSelf();
         }
     }
 }

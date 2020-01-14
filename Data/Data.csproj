@@ -17,6 +17,44 @@
     <Compile Remove="Migrations\20191212165455_SomeVirtualPropertiesAdded_test.Designer.cs" />
     <Compile Remove="Migrations\20191215195227_HrInitial.cs" />
     <Compile Remove="Migrations\20191215195227_HrInitial.Designer.cs" />
+    <Compile Remove="Migrations\20200111202422_HrEmployeeUpdate.cs" />
+    <Compile Remove="Migrations\20200111202422_HrEmployeeUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200111223659_HrEmploymentUpdate.cs" />
+    <Compile Remove="Migrations\20200111223659_HrEmploymentUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200111231340_HrEmploymentUpdate.cs" />
+    <Compile Remove="Migrations\20200111231340_HrEmploymentUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200111233145_HrEmploymentUpdate.cs" />
+    <Compile Remove="Migrations\20200111233145_HrEmploymentUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200112094546_HrEmployeeFKUpdate.cs" />
+    <Compile Remove="Migrations\20200112094546_HrEmployeeFKUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200112095104_HrEmploymentUpdate.cs" />
+    <Compile Remove="Migrations\20200112095104_HrEmploymentUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200112095526_HrEmployeeUpdate.cs" />
+    <Compile Remove="Migrations\20200112095526_HrEmployeeUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200112105339_HrEmployeeFKUpdate.cs" />
+    <Compile Remove="Migrations\20200112105339_HrEmployeeFKUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200112112619_AddedOneToOneForEmployeeAndEmployment.cs" />
+    <Compile Remove="Migrations\20200112112619_AddedOneToOneForEmployeeAndEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112112940_AddedOneToOneForEmployeeAndEmployment.cs" />
+    <Compile Remove="Migrations\20200112112940_AddedOneToOneForEmployeeAndEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112113814_AddedOneToOneForEmployeeAndEmployment.cs" />
+    <Compile Remove="Migrations\20200112113814_AddedOneToOneForEmployeeAndEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112114216_AddedOneToOneForEmployeeAndEmployment.cs" />
+    <Compile Remove="Migrations\20200112114216_AddedOneToOneForEmployeeAndEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112114812_AddedOneToOneForEmployeeAndEmployment.cs" />
+    <Compile Remove="Migrations\20200112114812_AddedOneToOneForEmployeeAndEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112114933_AddedEmployeeFKToEmployment.cs" />
+    <Compile Remove="Migrations\20200112114933_AddedEmployeeFKToEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112115502_AddedEmployeeFKToEmployment.cs" />
+    <Compile Remove="Migrations\20200112115502_AddedEmployeeFKToEmployment.Designer.cs" />
+    <Compile Remove="Migrations\20200112131901_HrRelationsFix.cs" />
+    <Compile Remove="Migrations\20200112131901_HrRelationsFix.Designer.cs" />
+    <Compile Remove="Migrations\20200112132551_HrRelationsFix2.cs" />
+    <Compile Remove="Migrations\20200112132551_HrRelationsFix2.Designer.cs" />
+    <Compile Remove="Migrations\20200112132837_HrModelFix.cs" />
+    <Compile Remove="Migrations\20200112132837_HrModelFix.Designer.cs" />
+    <Compile Remove="Migrations\20200112145755_HrModelUpdate.cs" />
+    <Compile Remove="Migrations\20200112145755_HrModelUpdate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,12 +62,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
