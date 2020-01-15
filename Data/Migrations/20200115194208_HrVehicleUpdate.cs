@@ -18,10 +18,10 @@ namespace Data.Migrations
                 nullable: false,
                 defaultValue: 0f);
 
-            /*migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<int>(
                 name: "CourierID",
                 table: "Parcels",
-                nullable: true);*/
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -34,9 +34,9 @@ namespace Data.Migrations
                 name: "MaxLoad",
                 table: "Vehicles");
 
-            /*migrationBuilder.DropColumn(
+            migrationBuilder.DropColumn(
                 name: "CourierID",
-                table: "Parcels");*/
+                table: "Parcels");
         }
     }
 }
