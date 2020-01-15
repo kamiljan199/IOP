@@ -56,6 +56,13 @@ namespace Api.Managers
 
         }
 
+        public List<Employee> GetEmployeesByPositionId(int positionId)
+        {
+            var list = _context.Employees.ToList();
+            list.ForEach(e => e.ActiveEmployments = _context.Employments.Where(em => em.EmployeeId.Equals(e.Id) && em.IsActive.Equals(true)).ToList());
+            return list.FindAll(e => e.ActiveEmployments.Count > 0 && e.ActiveEmployments[0].PositionId == positionId);
+        }
+
         public int SaveChanges()
         {
             return _context.SaveChanges();
