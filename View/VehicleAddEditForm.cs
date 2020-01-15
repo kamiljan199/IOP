@@ -42,6 +42,8 @@ namespace View
                 registrationTextBox.Text = vehicle.Registration;
                 brandTextBox.Text = vehicle.Brand;
                 modelTextBox.Text = vehicle.Model;
+                maxLoadTextBox.Text = vehicle.MaxLoad.ToString();
+                maxCapacityTextBox.Text = vehicle.MaxCapacity.ToString();
                 if (vehicle.DriverId != null)
                 {
                     driverComboBox.SelectedIndex = ((List<Employee>)_employeesDTO.Employees).FindIndex(e => { return e.Id.Equals(vehicle.DriverId); });
@@ -62,6 +64,8 @@ namespace View
             vehicle.Registration = registrationTextBox.Text;
             vehicle.Brand = brandTextBox.Text;
             vehicle.Model = modelTextBox.Text;
+            vehicle.MaxLoad = float.Parse(maxLoadTextBox.Text);
+            vehicle.MaxCapacity = float.Parse(maxCapacityTextBox.Text);
             //mag
             if (vehicle.Id.Equals(0))
             {

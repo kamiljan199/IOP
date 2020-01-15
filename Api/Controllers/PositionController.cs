@@ -63,5 +63,10 @@ namespace Api.Controllers
         {
             return _positionService.GetPositionByID(id);
         }
+
+        public Position GetPositionByName(string name)
+        {
+            return _positionService.GetPositionByName(name);
+        }
     }
 }
