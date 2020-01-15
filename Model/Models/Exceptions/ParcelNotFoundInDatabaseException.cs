@@ -17,5 +17,11 @@ namespace Model.Models.Exceptions
         {
 
         }
+
+        public ParcelNotFoundInDatabaseException(StorePlace store) :
+            base("Parcel from store place" + store.Name +  "not found in the database.\n")
+        {
+
+        }
     }
 }

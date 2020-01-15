@@ -3,14 +3,16 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200115010524_RouteTables")]
+    partial class RouteTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -289,12 +291,6 @@ namespace Data.Migrations
 
                     b.Property<int?>("DriverId")
                         .HasColumnType("int");
-
-                    b.Property<float>("MaxCapacity")
-                        .HasColumnType("float");
-
-                    b.Property<float>("MaxLoad")
-                        .HasColumnType("float");
 
                     b.Property<string>("Model")
                         .HasColumnType("varchar(20) CHARACTER SET utf8mb4")

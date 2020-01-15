@@ -12,6 +12,7 @@ namespace Api.Services
         public Employee GetEmployeeByLogin(string login);
         public void RemoveEmployeeById(int id);
         public ICollection<Employee> GetAllEmployees();
+        public List<Employee> GetEmployeesByPositionId(int positionId);
         public void RemoveEmployee(Employee employee);
         public void AddEmployee(Employee employee, bool detach = false);
         public void UpdateEmployee(Employee employee);
