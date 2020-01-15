@@ -26,6 +26,11 @@ namespace Api.Managers
             return _context.Positions.FirstOrDefault(e => e.Id.Equals(positionID));
         }
 
+        public Position GetPositionByName(string name)
+        {
+            return _context.Positions.FirstOrDefault(e => e.Name.Equals(name));
+        }
+
         public void RemovePosition(Position position)
         {
             _context.Positions.Remove(position);

@@ -30,6 +30,11 @@ namespace Api.Services
             return _positionManager.GetPositionByID(positionID);
         }
 
+        public Position GetPositionByName(string name)
+        {
+            return _positionManager.GetPositionByName(name);
+        }
+
         public void RemovePosition(Position position)
         {
             _positionManager.RemovePosition(position);

@@ -10,6 +10,10 @@
 
         public string Registration { get; set; }
 
+        public float MaxCapacity { get; set; }
+
+        public float MaxLoad { get; set; }
+
         public int? DriverId { get; set; }
         public virtual Employee Driver { get; set; }
 

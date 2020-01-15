@@ -25,6 +25,13 @@ namespace Api.Services
             return employeeList;
         }
 
+        public List<Employee> GetEmployeesByPositionId(int positionId)
+        {
+            var employeeList = _employeeManager.GetEmployeesByPositionId(positionId);
+
+            return employeeList;
+        }
+
         public Employee GetEmployeeById(int id)
         {
             var employee = _employeeManager.GetEmployeeById(id);

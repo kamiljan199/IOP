@@ -46,6 +46,33 @@ namespace Api.Controllers
             }
         }
 
+        public EmployeesDTO GetEmployeesByPositionId(int positionId)
+        {
+            try
+            {
+                var employeesCollection = _employeeService.GetEmployeesByPositionId(positionId);
+
+                var result = new EmployeesDTO
+                {
+                    Employees = employeesCollection,
+                    Status = CollectionGetStatus.Success
+                };
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+
+                var result = new EmployeesDTO
+                {
+                    Status = CollectionGetStatus.Failure
+                };
+
+                return result;
+            }
+        }
+
         public void RemoveEmployee(Employee employee)
         {
             _employeeService.RemoveEmployee(employee);

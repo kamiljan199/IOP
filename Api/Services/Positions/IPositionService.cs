@@ -10,11 +10,9 @@ namespace Api.Services
     {
         public List<Position> GetAllPosition();
         public Position GetPositionByID(int positionID);
-
+        public Position GetPositionByName(string name);
         public void RemovePosition(Position position);
-
         public void AddPosition(Position position, bool detach = false);
-
         public void UpdatePosition(Position position);
     }
 }
