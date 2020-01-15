@@ -22,7 +22,9 @@ namespace Data.Context
             new EmployeeConfiguration(),
             new EmploymentConfiguration(),
             new PositionConfiguration(),
-            new VehicleConfiguration()
+            new VehicleConfiguration(),
+            new RouteConfiguration(),
+            new RoutePointConfiguration()
         };
 
         public AppDbContext() : base()
@@ -43,6 +45,8 @@ namespace Data.Context
         public virtual DbSet<Employment> Employments { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<Vehicle> Vehicles { get; set; }
+        public virtual DbSet<Route> Routes { get; set; }
+        public virtual DbSet<RoutePoint> RoutePoints { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

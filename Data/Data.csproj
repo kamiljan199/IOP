@@ -55,6 +55,10 @@
     <Compile Remove="Migrations\20200112132837_HrModelFix.Designer.cs" />
     <Compile Remove="Migrations\20200112145755_HrModelUpdate.cs" />
     <Compile Remove="Migrations\20200112145755_HrModelUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200115005847_RouteTables.cs" />
+    <Compile Remove="Migrations\20200115005847_RouteTables.Designer.cs" />
+    <Compile Remove="Migrations\20200115010319_RouteTables.cs" />
+    <Compile Remove="Migrations\20200115010319_RouteTables.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
