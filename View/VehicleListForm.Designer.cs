@@ -38,6 +38,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // listView1
@@ -46,6 +48,8 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
+            this.columnHeader7,
+            this.columnHeader8,
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
@@ -53,7 +57,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(16, 13);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(772, 234);
+            this.listView1.Size = new System.Drawing.Size(746, 251);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -62,30 +66,36 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "#";
+            this.columnHeader1.Width = 40;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Rejestracja";
+            this.columnHeader2.Width = 80;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Marka";
+            this.columnHeader3.Width = 90;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Model";
+            this.columnHeader4.Width = 90;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Kierowca";
+            this.columnHeader5.Width = 120;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Magazyn";
+            this.columnHeader6.Width = 100;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(16, 262);
+            this.button1.Location = new System.Drawing.Point(16, 283);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -96,7 +106,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(106, 262);
+            this.button2.Location = new System.Drawing.Point(106, 283);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -107,7 +117,7 @@
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(198, 262);
+            this.button3.Location = new System.Drawing.Point(198, 283);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 3;
@@ -115,14 +125,24 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Maks. ładowność";
+            this.columnHeader7.Width = 110;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Maks. obciążenie";
+            this.columnHeader8.Width = 110;
+            // 
             // VehicleListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(774, 355);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.listView1);
             this.Name = "VehicleListForm";
             this.Text = "Pojazdy";
@@ -143,5 +163,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
     }
 }

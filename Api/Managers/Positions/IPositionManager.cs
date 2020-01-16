@@ -8,9 +8,11 @@ namespace Api.Managers
     public interface IPositionManager
     {
         public Position GetPositionByID(int positionID);
+
+        public Position GetPositionByName(string name);
         public List<Position> GetAllPositions();
         public void RemovePosition(Position position);
-        public void AddPosition(Position position);
+        public void AddPosition(Position position, bool detach = false);
 
         public void UpdatePosition(Position position);
     }

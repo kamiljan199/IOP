@@ -40,6 +40,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.maxLoadTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.maxCapacityTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -53,9 +57,9 @@
             // 
             // registrationTextBox
             // 
-            this.registrationTextBox.Location = new System.Drawing.Point(97, 10);
+            this.registrationTextBox.Location = new System.Drawing.Point(131, 10);
             this.registrationTextBox.Name = "registrationTextBox";
-            this.registrationTextBox.Size = new System.Drawing.Size(147, 23);
+            this.registrationTextBox.Size = new System.Drawing.Size(190, 23);
             this.registrationTextBox.TabIndex = 1;
             // 
             // label2
@@ -69,9 +73,9 @@
             // 
             // brandTextBox
             // 
-            this.brandTextBox.Location = new System.Drawing.Point(97, 39);
+            this.brandTextBox.Location = new System.Drawing.Point(131, 39);
             this.brandTextBox.Name = "brandTextBox";
-            this.brandTextBox.Size = new System.Drawing.Size(147, 23);
+            this.brandTextBox.Size = new System.Drawing.Size(190, 23);
             this.brandTextBox.TabIndex = 1;
             // 
             // label3
@@ -85,15 +89,15 @@
             // 
             // modelTextBox
             // 
-            this.modelTextBox.Location = new System.Drawing.Point(97, 68);
+            this.modelTextBox.Location = new System.Drawing.Point(131, 68);
             this.modelTextBox.Name = "modelTextBox";
-            this.modelTextBox.Size = new System.Drawing.Size(147, 23);
+            this.modelTextBox.Size = new System.Drawing.Size(190, 23);
             this.modelTextBox.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 103);
+            this.label4.Location = new System.Drawing.Point(25, 166);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 15);
             this.label4.TabIndex = 2;
@@ -102,23 +106,23 @@
             // driverComboBox
             // 
             this.driverComboBox.FormattingEnabled = true;
-            this.driverComboBox.Location = new System.Drawing.Point(97, 100);
+            this.driverComboBox.Location = new System.Drawing.Point(131, 166);
             this.driverComboBox.Name = "driverComboBox";
-            this.driverComboBox.Size = new System.Drawing.Size(147, 23);
+            this.driverComboBox.Size = new System.Drawing.Size(190, 23);
             this.driverComboBox.TabIndex = 3;
             // 
             // warehouseComboBox
             // 
             this.warehouseComboBox.FormattingEnabled = true;
-            this.warehouseComboBox.Location = new System.Drawing.Point(97, 129);
+            this.warehouseComboBox.Location = new System.Drawing.Point(131, 195);
             this.warehouseComboBox.Name = "warehouseComboBox";
-            this.warehouseComboBox.Size = new System.Drawing.Size(147, 23);
+            this.warehouseComboBox.Size = new System.Drawing.Size(190, 23);
             this.warehouseComboBox.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 132);
+            this.label5.Location = new System.Drawing.Point(25, 198);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 15);
             this.label5.TabIndex = 2;
@@ -126,7 +130,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(25, 174);
+            this.button1.Location = new System.Drawing.Point(25, 240);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -136,7 +140,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(121, 174);
+            this.button2.Location = new System.Drawing.Point(121, 240);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -144,25 +148,62 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // maxLoadTextBox
+            // 
+            this.maxLoadTextBox.Location = new System.Drawing.Point(131, 99);
+            this.maxLoadTextBox.Name = "maxLoadTextBox";
+            this.maxLoadTextBox.Size = new System.Drawing.Size(190, 23);
+            this.maxLoadTextBox.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(25, 102);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(101, 15);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Maks. ładowność:";
+            // 
+            // maxCapacityTextBox
+            // 
+            this.maxCapacityTextBox.Location = new System.Drawing.Point(131, 128);
+            this.maxCapacityTextBox.Name = "maxCapacityTextBox";
+            this.maxCapacityTextBox.Size = new System.Drawing.Size(190, 23);
+            this.maxCapacityTextBox.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(25, 131);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(100, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Maks. obciążenie:";
+            // 
             // VehicleAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 262);
+            this.ClientSize = new System.Drawing.Size(464, 331);
+            this.Controls.Add(this.registrationTextBox);
+            this.Controls.Add(this.brandTextBox);
+            this.Controls.Add(this.modelTextBox);
+            this.Controls.Add(this.maxLoadTextBox);
+            this.Controls.Add(this.driverComboBox);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.warehouseComboBox);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.warehouseComboBox);
-            this.Controls.Add(this.driverComboBox);
-            this.Controls.Add(this.modelTextBox);
+            this.Controls.Add(this.maxCapacityTextBox);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.brandTextBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.registrationTextBox);
             this.Controls.Add(this.label1);
             this.Name = "VehicleAddEditForm";
             this.Text = "Dodaj/Edytuj pojazd";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VehicleAddEditForm_FormClosing);
             this.Load += new System.EventHandler(this.VehicleAddEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -183,5 +224,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox maxLoadTextBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox maxCapacityTextBox;
+        private System.Windows.Forms.Label label7;
     }
 }

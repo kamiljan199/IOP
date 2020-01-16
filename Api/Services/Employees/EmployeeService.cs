@@ -25,6 +25,13 @@ namespace Api.Services
             return employeeList;
         }
 
+        public List<Employee> GetEmployeesByPositionId(int positionId)
+        {
+            var employeeList = _employeeManager.GetEmployeesByPositionId(positionId);
+
+            return employeeList;
+        }
+
         public Employee GetEmployeeById(int id)
         {
             var employee = _employeeManager.GetEmployeeById(id);
@@ -47,15 +54,9 @@ namespace Api.Services
             return employee;
         }
 
-        public void AddEmployee(Employee employee)
+        public void AddEmployee(Employee employee, bool detach = false)
         {
-            _employeeManager.AddEmployee(employee);
-
-            var rowsChange = _employeeManager.SaveChanges();
-            if(rowsChange != 1)
-            {
-                throw new Exception();
-            }
+            _employeeManager.AddEmployee(employee, detach);
         }
 
         public void RemoveEmployee(Employee employee)

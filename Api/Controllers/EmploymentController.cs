@@ -18,11 +18,11 @@ namespace Api.Controllers
             _positionService = positionService;
         }
 
-        public EmploymentsDTO GetAllEmploymentsByEmployee(Employee employee)
+        public EmploymentsDTO GetAllEmploymentsByEmployeeId(int id)
         {
             try
             {
-                var employmentsList = _employmentService.GetAllEmploymentsByEmployee(employee);
+                var employmentsList = _employmentService.GetAllEmploymentsByEmployeeId(id);
 
                 var result = new EmploymentsDTO
                 {
@@ -45,28 +45,14 @@ namespace Api.Controllers
             }
         }
 
-        public void CreateEmployment(int employeeID, DateTime startDate, Position position, float salary, Warehouse warehouse)
+        public void CreateEmployment(Employment employment, bool detach = false)
         {
-            var employment = new Employment
-            {
-                Id = employeeID,
-                StartDate = startDate,
-                Position = position,
-                Salary = salary,
-                Warehouse = warehouse
-            };
-
-            //_employmentService.CreateEmployement(employment);
-        }
-
-        public void CreateEmployment(Employment employment)
-        {
-            _employmentService.CreateEmployement(employment);
+            _employmentService.CreateEmployement(employment, detach);
         }
 
         public void DeactivateEmployment(Employment employment)
         {
-            _employmentService.GetAllEmploymentsByEmployee(employment.Employee).ForEach(e =>
+            _employmentService.GetAllEmploymentsByEmployeeId(employment.EmployeeId).ForEach(e =>
             {
                 if (e.Id.Equals(employment.Id))
                 {
@@ -76,9 +62,14 @@ namespace Api.Controllers
             });
         }
 
-        public void ChangePosition(int employmentID, int positionID)
+        public void UpdateEmployment(Employment employment)
         {
-            _employmentService.ChangePosition(employmentID, _positionService.GetPositionByID(positionID));
+            _employmentService.UpdateEmployment(employment);
+        }
+
+        public Employment GetEmploymentById(int id)
+        {
+            return _employmentService.GetEmploymentById(id);
         }
     }
 }

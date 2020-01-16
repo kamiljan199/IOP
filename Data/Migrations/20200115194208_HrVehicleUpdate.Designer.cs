@@ -3,14 +3,16 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200115194208_HrVehicleUpdate")]
+    partial class HrVehicleUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,50 +210,6 @@ namespace Data.Migrations
                     b.ToTable("Positions");
                 });
 
-            modelBuilder.Entity("Model.Models.Route", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreationDateTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int?>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("VehicleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("VehicleId");
-
-                    b.ToTable("Routes");
-                });
-
-            modelBuilder.Entity("Model.Models.RoutePoint", b =>
-                {
-                    b.Property<int>("RouteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Index")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ParcelId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RouteId", "Index");
-
-                    b.HasIndex("ParcelId");
-
-                    b.HasIndex("RouteId");
-
-                    b.ToTable("RoutePoints");
-                });
-
             modelBuilder.Entity("Model.Models.StorePlace", b =>
                 {
                     b.Property<int>("Id")
@@ -372,30 +330,6 @@ namespace Data.Migrations
                     b.HasOne("Model.Models.Address", "PersonalAddress")
                         .WithMany()
                         .HasForeignKey("PersonalAddressId");
-                });
-
-            modelBuilder.Entity("Model.Models.Route", b =>
-                {
-                    b.HasOne("Model.Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId");
-
-                    b.HasOne("Model.Models.Vehicle", "Vehicle")
-                        .WithMany()
-                        .HasForeignKey("VehicleId");
-                });
-
-            modelBuilder.Entity("Model.Models.RoutePoint", b =>
-                {
-                    b.HasOne("Model.Models.Parcel", "Parcel")
-                        .WithMany()
-                        .HasForeignKey("ParcelId");
-
-                    b.HasOne("Model.Models.Route", "Route")
-                        .WithMany("RoutePoints")
-                        .HasForeignKey("RouteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Models.StorePlace", b =>

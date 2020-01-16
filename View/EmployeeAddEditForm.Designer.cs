@@ -58,7 +58,7 @@
             // 
             this.nameTextBox.Location = new System.Drawing.Point(123, 10);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(132, 23);
+            this.nameTextBox.Size = new System.Drawing.Size(164, 23);
             this.nameTextBox.TabIndex = 1;
             // 
             // label2
@@ -74,7 +74,7 @@
             // 
             this.surnameTextBox.Location = new System.Drawing.Point(123, 42);
             this.surnameTextBox.Name = "surnameTextBox";
-            this.surnameTextBox.Size = new System.Drawing.Size(132, 23);
+            this.surnameTextBox.Size = new System.Drawing.Size(164, 23);
             this.surnameTextBox.TabIndex = 1;
             // 
             // label3
@@ -90,7 +90,7 @@
             // 
             this.peselTextBox.Location = new System.Drawing.Point(123, 71);
             this.peselTextBox.Name = "peselTextBox";
-            this.peselTextBox.Size = new System.Drawing.Size(132, 23);
+            this.peselTextBox.Size = new System.Drawing.Size(164, 23);
             this.peselTextBox.TabIndex = 1;
             // 
             // label4
@@ -106,7 +106,7 @@
             // 
             this.birthdayTextBox.Location = new System.Drawing.Point(123, 100);
             this.birthdayTextBox.Name = "birthdayTextBox";
-            this.birthdayTextBox.Size = new System.Drawing.Size(132, 23);
+            this.birthdayTextBox.Size = new System.Drawing.Size(164, 23);
             this.birthdayTextBox.TabIndex = 1;
             // 
             // label5
@@ -122,7 +122,7 @@
             // 
             this.loginTextbox.Location = new System.Drawing.Point(123, 155);
             this.loginTextbox.Name = "loginTextbox";
-            this.loginTextbox.Size = new System.Drawing.Size(132, 23);
+            this.loginTextbox.Size = new System.Drawing.Size(164, 23);
             this.loginTextbox.TabIndex = 1;
             // 
             // label6
@@ -138,12 +138,12 @@
             // 
             this.passwordTextBox.Location = new System.Drawing.Point(123, 184);
             this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(132, 23);
+            this.passwordTextBox.Size = new System.Drawing.Size(164, 23);
             this.passwordTextBox.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(28, 280);
+            this.button1.Location = new System.Drawing.Point(28, 258);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -153,7 +153,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(123, 280);
+            this.button2.Location = new System.Drawing.Point(123, 258);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -175,10 +175,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(311, 354);
-            this.Controls.Add(this.passwordInfoLabel);
+            this.ClientSize = new System.Drawing.Size(322, 307);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.passwordInfoLabel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.loginTextbox);
             this.Controls.Add(this.passwordTextBox);
@@ -193,6 +193,7 @@
             this.Controls.Add(this.label1);
             this.Name = "EmployeeAddEditForm";
             this.Text = "Dodaj/Edytuj pracownika";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeAddEditForm_FormClosing);
             this.Load += new System.EventHandler(this.EmployeeAddEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

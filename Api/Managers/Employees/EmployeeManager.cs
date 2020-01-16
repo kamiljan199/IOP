@@ -32,9 +32,14 @@ namespace Api.Managers
             return _context.Employees.FirstOrDefault(e => e.Pesel.Equals(employeePESEL));
         }
 
-        public void AddEmployee(Employee employee)
+        public void AddEmployee(Employee employee, bool detach = false)
         {
             _context.Employees.Add(employee);
+            _context.SaveChanges();
+            if (detach)
+            {
+                _context.Entry(employee).State = EntityState.Detached;
+            }
         }
 
         public void RemoveEmployee(Employee employee)
@@ -45,10 +50,17 @@ namespace Api.Managers
 
         ICollection<Employee> IEmployeeManager.GetAllEmployees()
         {
-            var list = _context.Employees.ToList();
+            var list = _context.Employees.AsNoTracking().ToList();
             list.ForEach(e => e.ActiveEmployments = _context.Employments.Where(em => em.EmployeeId.Equals(e.Id) && em.IsActive.Equals(true)).ToList());
             return list;
 
+        }
+
+        public List<Employee> GetEmployeesByPositionId(int positionId)
+        {
+            var list = _context.Employees.ToList();
+            list.ForEach(e => e.ActiveEmployments = _context.Employments.Where(em => em.EmployeeId.Equals(e.Id) && em.IsActive.Equals(true)).ToList());
+            return list.FindAll(e => e.ActiveEmployments.Count > 0 && e.ActiveEmployments[0].PositionId == positionId);
         }
 
         public int SaveChanges()

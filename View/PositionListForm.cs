@@ -72,7 +72,7 @@ namespace View
         {
             if (listView1.SelectedItems.Count > 0)
             {
-                _positionAddEditForm.position = _positionsDTO.Positions[listView1.Items.IndexOf(listView1.SelectedItems[0])];
+                _positionAddEditForm.position = _positionController.GetPositionById(_positionsDTO.Positions[listView1.Items.IndexOf(listView1.SelectedItems[0])].Id);
                 _positionAddEditForm.ShowDialog();
             }
         }
