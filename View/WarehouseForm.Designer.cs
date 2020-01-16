@@ -161,6 +161,7 @@
             this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.informationTextbox);
             this.Name = "WarehouseForm";
+            this.Load += WarehouseForm_Load;
             this.ResumeLayout(false);
             this.PerformLayout();
 

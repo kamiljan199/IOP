@@ -52,13 +52,24 @@ namespace View
             _availableParcels.Add(parcelsListView.Items[0]);
             _availableParcels.Add(parcelsListView.Items[1]);
 
-            //List<Parcel> parcels = parcelController.getParcelsByStoreId(storeId).asList();
+            //StorePlace storePlace = employeeController.GetemployeesStorePlace(_employeeController.GetLoggedEmployee());
+            //List<Parcel> parcels = parcelController.GetParcelsByStorePlace(storePlace);
 
-            //foreach(var parcel in parcels)
+            //foreach (var parcel in parcels)
             //{
-            //    string[] parcelInfo = { parcel.Id, parcel.SenderData.PersonalAddress.Street,
-            //    parcel.ReceiverData.PersonalAddress.Street};
+            //    string[] parcelInfo = { parcel.Id.ToString(),
+            //        parcel.SenderData.PersonalAddress.Street +", "+
+            //        parcel.SenderData.PersonalAddress.ApartmentNumber+"/"+
+            //        parcel.SenderData.PersonalAddress.HomeNumber + ", "+
+            //        parcel.SenderData.PersonalAddress.PostCode+" "+
+            //        parcel.SenderData.PersonalAddress.City,
+            //    parcel.ReceiverData.PersonalAddress.Street +", "+
+            //        parcel.ReceiverData.PersonalAddress.ApartmentNumber+"/"+
+            //        parcel.ReceiverData.PersonalAddress.HomeNumber + ", "+
+            //        parcel.ReceiverData.PersonalAddress.PostCode+" "+
+            //        parcel.ReceiverData.PersonalAddress.City};
             //    parcelsListView.Items.Add(new ListViewItem(parcelInfo));
+            //    _availableParcels.Add(parcelsListView.Items[parcelsListView.Items.Count-1]);
             //}
 
             //load Vehicles to combobox
@@ -126,7 +137,6 @@ namespace View
             parcels.Add(a);
             parcels.Add(b);//getting our parcels
 
-            //List<Parcel> parcels = parcelController.getParcelsByStoreId(storeId);
             List<Parcel> sortedParcels;
             sortedParcels = _sortController.Sort(parcels);
 
