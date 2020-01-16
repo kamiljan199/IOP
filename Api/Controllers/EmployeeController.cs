@@ -37,7 +37,7 @@ namespace Api.Controllers
             {
                 Console.WriteLine(e.Message);
 
-                    var result = new EmployeesDTO
+                var result = new EmployeesDTO
                 {
                     Status = CollectionGetStatus.Failure
                 };
