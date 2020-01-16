@@ -15,10 +15,12 @@ namespace Api.Managers
         {
             _context = context;
         }
-        //Zwraca pracownika o żądanym numerze ID
+
         public Employee GetEmployeeById(int employeeId)
         {
-            return _context.Employees.FirstOrDefault(e => e.Id.Equals(employeeId));
+            var e = _context.Employees.FirstOrDefault(e => e.Id.Equals(employeeId));
+            e.ActiveEmployments = _context.Employments.Where(em => em.EmployeeId.Equals(e.Id) && em.IsActive.Equals(true)).ToList();
+            return e;
         }
 
         public Employee GetEmployeeByLogin(string login)
