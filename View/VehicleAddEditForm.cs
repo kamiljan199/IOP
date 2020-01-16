@@ -17,14 +17,15 @@ namespace View
 
         private readonly VehicleController _vehicleController;
         private readonly EmployeeController _employeeController;
+        private readonly StorePlaceController _storePlaceController;
 
-        //private readonly WarehousesDTO warehouseDTO;
-
+        private StorePlacesDTO _storePlacesDTO;
         private EmployeesDTO _employeesDTO;
-        public VehicleAddEditForm(VehicleController vehicleController, EmployeeController employeeController)
+        public VehicleAddEditForm(VehicleController vehicleController, EmployeeController employeeController, StorePlaceController storePlaceController)
         {
             _vehicleController = vehicleController;
             _employeeController = employeeController;
+            _storePlaceController = storePlaceController;
             InitializeComponent();
         }
 
@@ -36,7 +37,7 @@ namespace View
         private void VehicleAddEditForm_Load(object sender, EventArgs e)
         {
             SynchronizeDrivers();
-            //Magazyny
+            SynchronizeStorePlaces();
             if (!vehicle.Id.Equals(0))
             {
                 registrationTextBox.Text = vehicle.Registration;
@@ -47,6 +48,10 @@ namespace View
                 if (vehicle.DriverId != null)
                 {
                     driverComboBox.SelectedIndex = ((List<Employee>)_employeesDTO.Employees).FindIndex(e => { return e.Id.Equals(vehicle.DriverId); });
+                }
+                if (vehicle.StorePlaceId != null)
+                {
+                    warehouseComboBox.SelectedIndex = _storePlacesDTO.StorePlaces.FindIndex(s => { return s.Id.Equals(vehicle.StorePlaceId); });
                 }
                 //mag
             }
@@ -60,6 +65,14 @@ namespace View
             } else
             {
                 vehicle.DriverId = null;
+            }
+            if (warehouseComboBox.SelectedIndex > -1)
+            {
+                vehicle.StorePlaceId = _storePlacesDTO.StorePlaces[warehouseComboBox.SelectedIndex].Id;
+            }
+            else
+            {
+                vehicle.StorePlaceId = null;
             }
             vehicle.Registration = registrationTextBox.Text;
             vehicle.Brand = brandTextBox.Text;
@@ -88,6 +101,20 @@ namespace View
                 foreach (var e in _employeesDTO.Employees)
                 {
                     driverComboBox.Items.Add(e.Name + " " + e.Surname + " (" + e.Pesel + ")");
+                }
+            }
+        }
+
+        private void SynchronizeStorePlaces()
+        {
+            _storePlacesDTO = _storePlaceController.GetAllStorePlaces();
+            warehouseComboBox.Items.Clear();
+
+            if (_storePlacesDTO.StorePlaces!= null)
+            {
+                foreach (var s in _storePlacesDTO.StorePlaces)
+                {
+                    warehouseComboBox.Items.Add(s.Name);
                 }
             }
         }
