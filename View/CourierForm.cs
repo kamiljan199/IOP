@@ -16,32 +16,28 @@ namespace View
 {
     public partial class CourierForm : Form
     {
-        private List<int> courierParcels = new List<int>();
-        private EmployeeController _employeeController;
-        private Employee _empolyee;
+        private readonly EmployeeController _employeeController;
+        private readonly Employee _employee;
         public bool isClosed = false;
-        private IStorePlaceService _storePlaceService;
-        private ParcelController _parcelController;
-       
-        public CourierForm(IStorePlaceService storePlaceService, ParcelController parcelController, EmployeeController employeeController, Employee employee)
+        private readonly StorePlaceService _storePlaceService;
+        private readonly ParcelController _parcelController;
+        List<Parcel> courierParcels; 
+
+        public CourierForm(StorePlaceService storePlaceService, ParcelController parcelController, EmployeeController employeeController)
         {
             _storePlaceService = storePlaceService;
             _parcelController = parcelController;
             _employeeController = employeeController;
-            _empolyee = employee;
+            courierParcels = _storePlaceService.GetCouriersParcels(_storePlaceService.GetById(_employee.ActiveEmployments[0].WarehouseId), _employee.Id);
 
-            _empolyee = _employeeController.GetLoggedEmployee();
+            _employee = _employeeController.GetLoggedEmployee();
+           
+
+            for (int i = 0; i < courierParcels.Count; i++)
+            {
+                listBox1.Items.Add(courierParcels[i]);
+            }
             InitializeComponent();
-            for (int i = 0; i < 5; i++)
-            {
-                courierParcels.Add(i);
-            }
-
-            
-            for (int i = 0; i < _storePlaceService.GetCouriersParcels(_empolyee.ActiveEmployments, _empolyee.Id).Count; i++)
-            {
-                listBox1.Items.Add(_storePlaceService.GetCouriersParcels(_empolyee.ActiveEmployments, _empolyee.Id)[i]);
-            }
         }
 
 
@@ -55,7 +51,7 @@ namespace View
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < _storePlaceService.GetCouriersParcels(_empolyee.ActiveEmployments, _empolyee.Id).Count; i++)
+            for (int i = 0; i < courierParcels.Count; i++)
             {
                 if (listBox1.SelectedIndex == i)
                 {
@@ -66,7 +62,6 @@ namespace View
         private void CourierWindow_Load(object sender, EventArgs e)
         {
             changeStatus.Enabled = false;
-           // buttonLogout.Enabled = false;  
         }
 
         private int ConvertStringToInt(string intString)
