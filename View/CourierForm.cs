@@ -1,5 +1,6 @@
 ﻿using Api.Services;
 using Api.Controllers;
+using Api.Enums;
 using Model.Enums;
 using Model.Models;
 using Api.DTOs;
@@ -22,22 +23,26 @@ namespace View
         public bool isClosed = false;
         private StorePlaceController _storePlaceController;
         private ParcelController _parcelController;
-        private ParcelsDTO _parcelsDTO;
-        private List<ParcelsDTO> courierParcels;
+        private readonly Employment employment;
+        private readonly StorePlace storePlace;
+        private readonly ParcelsDTO parcelsDTO;
 
-        public CourierForm(StorePlaceController storePlaceController, ParcelController parcelController,EmployeeController employeeController,ParcelsDTO parcelsDTO)
+        public CourierForm(StorePlaceController storePlaceController, ParcelController parcelController,EmployeeController employeeController)
         {
             _storePlaceController = storePlaceController;
             _parcelController = parcelController;
             _employeeController = employeeController;
             _employee = _employeeController.GetLoggedEmployee();
-            _parcelsDTO = parcelsDTO;
+
+           employment = _employee.ActiveEmployments[0];
+           storePlace = _storePlaceController.GetById(employment.StorePlaceId);
+           parcelsDTO = _storePlaceController.GetCouriersParcels(storePlace, _employee.Id);
     
-            if(_storePlaceController.GetCouriersParcels(_storePlaceController.GetById(_employee.ActiveEmployments[0].StorePlaceId), _employee.Id).Status == Api.Enums.CollectionGetStatus.Success)
+            if(parcelsDTO.Status == CollectionGetStatus.Success)
             {
-                for (int i = 0; i < _storePlaceController.GetCouriersParcels(_storePlaceController.GetById(_employee.ActiveEmployments[0].StorePlaceId), _employee.Id).StorePlaces.Count; i++)
+                for (int i = 0; i < parcelsDTO.StorePlaces.Count; i++)
                 {
-                    listBox1.Items.Add(_storePlaceController.GetCouriersParcels(_storePlaceController.GetById(_employee.ActiveEmployments[0].StorePlaceId), _employee.Id).StorePlaces[i]);
+                    listBox1.Items.Add(parcelsDTO.StorePlaces[i]);
                 }
             }
             InitializeComponent();
@@ -54,7 +59,7 @@ namespace View
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < courierParcels.Count; i++)
+            for (int i = 0; i < parcelsDTO.StorePlaces.Count; i++)
             {
                 if (listBox1.SelectedIndex == i)
                 {
