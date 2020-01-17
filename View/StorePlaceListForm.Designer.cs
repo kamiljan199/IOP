@@ -50,21 +50,25 @@
             this.listView1.Size = new System.Drawing.Size(776, 364);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // indexColumn
             // 
             this.indexColumn.Name = "indexColumn";
             this.indexColumn.Text = "#";
+            this.indexColumn.Width = 40;
             // 
             // nameColumn
             // 
             this.nameColumn.Name = "nameColumn";
             this.nameColumn.Text = "Nazwa Placówki";
+            this.nameColumn.Width = 500;
             // 
             // typeColumn
             // 
             this.typeColumn.Name = "typeColumn";
             this.typeColumn.Text = "Typ placówki";
+            this.typeColumn.Width = 200;
             // 
             // editButton
             // 
