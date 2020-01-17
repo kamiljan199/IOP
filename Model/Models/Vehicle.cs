@@ -14,9 +14,6 @@
 
         public float MaxLoad { get; set; }
 
-        public int? DriverId { get; set; }
-        public virtual Employee Driver { get; set; }
-
         public int? StorePlaceId { get; set; }
         public virtual StorePlace StorePlace{ get; set; }
     }
