@@ -54,7 +54,6 @@ namespace View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            vehicle.DriverId = null;
             if (warehouseComboBox.SelectedIndex > -1)
             {
                 vehicle.StorePlaceId = _storePlacesDTO.StorePlaces[warehouseComboBox.SelectedIndex].Id;

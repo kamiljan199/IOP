@@ -38,7 +38,7 @@ namespace View
             {
                 foreach (var v in _vehiclesDTO.Vehicles)
                 {
-                    string[] lv = { v.Id.ToString(), v.Registration, v.Brand, v.Model, v.MaxLoad.ToString(), v.MaxCapacity.ToString(), (v.DriverId != null) ? (v.Driver.Name + " " + v.Driver.Surname + " (" + v.Driver.Pesel + ")") : "Brak", v.StorePlaceId != null ? v.StorePlace.Name : "Brak" };
+                    string[] lv = { v.Id.ToString(), v.Registration, v.Brand, v.Model, v.MaxLoad.ToString(), v.MaxCapacity.ToString(), v.StorePlaceId != null ? v.StorePlace.Name : "Brak" };
                     listView1.Items.Add(new ListViewItem(lv));
                 }
             }
