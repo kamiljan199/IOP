@@ -68,7 +68,7 @@ namespace View
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = false;
             }
-            if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Logistyk")) != null)
+            else if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Logistyk")) != null)
             {
                 buttonOpenWarehouseWindow.Enabled = false;
                 buttonOpenLogisticsWindow.Enabled = true;
@@ -76,7 +76,7 @@ namespace View
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = false;
             }
-            if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Magazynier")) != null)
+            else if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Magazynier")) != null)
             {
                 buttonOpenWarehouseWindow.Enabled = true;
                 buttonOpenLogisticsWindow.Enabled = false;
@@ -84,7 +84,7 @@ namespace View
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = false;
             }
-            if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Rejestracja")) != null)
+            else if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Rejestracja")) != null)
             {
                 buttonOpenWarehouseWindow.Enabled = false;
                 buttonOpenLogisticsWindow.Enabled = false;
@@ -92,7 +92,7 @@ namespace View
                 buttonOpenPostingWindow.Enabled = true;
                 buttonOpenHRWindow.Enabled = false;
             }
-            if(_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("HR")) != null)
+            else if(_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("HR")) != null)
             {
                 buttonOpenWarehouseWindow.Enabled = false;
                 buttonOpenLogisticsWindow.Enabled = false;
@@ -100,13 +100,21 @@ namespace View
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = true;
             }
-            if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Administrator")) != null)
+            else if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Administrator")) != null)
             {
                 buttonOpenWarehouseWindow.Enabled = true;
                 buttonOpenLogisticsWindow.Enabled = true;
                 buttonOpenCourierWindow.Enabled = true;
                 buttonOpenPostingWindow.Enabled = true;
                 buttonOpenHRWindow.Enabled = true;
+            }
+            else
+            {
+                buttonOpenWarehouseWindow.Enabled = false;
+                buttonOpenLogisticsWindow.Enabled = false;
+                buttonOpenCourierWindow.Enabled = false;
+                buttonOpenPostingWindow.Enabled = false;
+                buttonOpenHRWindow.Enabled = false;
             }
         }
     }

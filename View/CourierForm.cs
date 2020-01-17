@@ -19,33 +19,19 @@ namespace View
     public partial class CourierForm : Form
     {
         private readonly EmployeeController _employeeController;
-        private readonly Employee _employee;
+        private Employee _employee;
         public bool isClosed = false;
         private StorePlaceController _storePlaceController;
         private ParcelController _parcelController;
-        private readonly Employment employment;
-        private readonly StorePlace storePlace;
-        private readonly ParcelsDTO parcelsDTO;
+        private Employment _employment;
+        private StorePlace _storePlace;
+        private ParcelsDTO _parcelsDTO;
 
         public CourierForm(StorePlaceController storePlaceController, ParcelController parcelController,EmployeeController employeeController)
         {
             _storePlaceController = storePlaceController;
             _parcelController = parcelController;
             _employeeController = employeeController;
-            if(_employee != null)
-            {
-                _employee = _employeeController.GetLoggedEmployee();
-                employment = _employee.ActiveEmployments[0];
-                storePlace = _storePlaceController.GetById(employment.StorePlaceId);
-                parcelsDTO = _storePlaceController.GetCouriersParcels(storePlace, _employee.Id);
-                if (parcelsDTO.Status == CollectionGetStatus.Success)
-                {
-                    for (int i = 0; i < parcelsDTO.StorePlaces.Count; i++)
-                    {
-                        listBox1.Items.Add(parcelsDTO.StorePlaces[i]);
-                    }
-                }
-            }
 
     
            
@@ -63,7 +49,7 @@ namespace View
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < parcelsDTO.StorePlaces.Count; i++)
+            for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
             {
                 if (listBox1.SelectedIndex == i)
                 {
@@ -112,7 +98,22 @@ namespace View
         }
         private void CourierWindow_Load(object sender, EventArgs e)
         {
+            listBox1.Enabled = true;
             changeStatus.Enabled = false;
+            _employee = _employeeController.GetLoggedEmployee();
+            if (_employee != null)
+            {
+                _employment = _employee.ActiveEmployments[0];
+                _storePlace = _storePlaceController.GetById(_employment.StorePlaceId);
+                _parcelsDTO = _storePlaceController.GetCouriersParcels(_storePlace, _employee.Id);
+                if (_parcelsDTO.Status == CollectionGetStatus.Success)
+                {
+                    for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
+                    {
+                        listBox1.Items.Add(_parcelsDTO.StorePlaces[i]);
+                    }
+                }
+            }
         }
 
         private int ConvertStringToInt(string intString)
