@@ -49,5 +49,7 @@ namespace Api.Services
             return _parcelManager.GetParcelsByStorePlace(storePlace).Where( parcel => parcel.CourierID == courierId ).ToList();
         }
 
+
+
     }
 }
