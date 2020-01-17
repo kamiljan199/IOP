@@ -32,19 +32,23 @@ namespace View
             _storePlaceController = storePlaceController;
             _parcelController = parcelController;
             _employeeController = employeeController;
-            _employee = _employeeController.GetLoggedEmployee();
-
-           employment = _employee.ActiveEmployments[0];
-           storePlace = _storePlaceController.GetById(employment.StorePlaceId);
-           parcelsDTO = _storePlaceController.GetCouriersParcels(storePlace, _employee.Id);
-    
-            if(parcelsDTO.Status == CollectionGetStatus.Success)
+            if(_employee != null)
             {
-                for (int i = 0; i < parcelsDTO.StorePlaces.Count; i++)
+                _employee = _employeeController.GetLoggedEmployee();
+                employment = _employee.ActiveEmployments[0];
+                storePlace = _storePlaceController.GetById(employment.StorePlaceId);
+                parcelsDTO = _storePlaceController.GetCouriersParcels(storePlace, _employee.Id);
+                if (parcelsDTO.Status == CollectionGetStatus.Success)
                 {
-                    listBox1.Items.Add(parcelsDTO.StorePlaces[i]);
+                    for (int i = 0; i < parcelsDTO.StorePlaces.Count; i++)
+                    {
+                        listBox1.Items.Add(parcelsDTO.StorePlaces[i]);
+                    }
                 }
             }
+
+    
+           
             InitializeComponent();
         }
 
