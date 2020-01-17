@@ -56,6 +56,45 @@ namespace View
                 if (listBox1.SelectedIndex == i)
                 {
                     changeStatus.Enabled = true;
+                    ParcelStatus status = _parcelController.GetParcelStatusById(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)));
+                    switch (status)
+                    {
+                        case ParcelStatus.AtPostingPoint:
+                            {
+                                changeStatus.SelectedIndex = 0;
+                                break;
+                            }
+                        case ParcelStatus.OnWayToWarehouse:
+                            {
+                                changeStatus.SelectedIndex = 1;
+                                break;
+                            }
+                        case ParcelStatus.InWarehouse:
+                            {
+                                changeStatus.SelectedIndex = 2;
+                                break;
+                            }
+                        case ParcelStatus.OnWayToTheCustomer:
+                            {
+                                changeStatus.SelectedIndex = 3;
+                                break;
+                            }
+                        case ParcelStatus.Returned:
+                            {
+                                changeStatus.SelectedIndex = 4;
+                                break;
+                            }
+                        case ParcelStatus.Delivered:
+                            {
+                                changeStatus.SelectedIndex = 5;
+                                break;
+                            }
+                        default:
+                            {
+                                changeStatus.SelectedIndex = 6;
+                                break;
+                            }
+                    }
                 }
             }
         }
@@ -76,8 +115,6 @@ namespace View
 
         private void changeStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-           
             switch (changeStatus.SelectedIndex)
             {
                 case 0:
