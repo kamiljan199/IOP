@@ -14,5 +14,10 @@ namespace View
         {
             InitializeComponent();
         }
+
+        private void labelStreet_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

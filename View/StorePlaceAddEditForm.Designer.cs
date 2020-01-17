@@ -38,6 +38,7 @@
             this.labelAdressCity = new System.Windows.Forms.Label();
             this.labelPostCode = new System.Windows.Forms.Label();
             this.labelStreet = new System.Windows.Forms.Label();
+            this.labelHomeNumber = new System.Windows.Forms.Label();
             this.textBoxWarehouseManagerName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.counterSendingPointWorkersCount)).BeginInit();
             this.SuspendLayout();
@@ -113,7 +114,7 @@
             // labelPostCode
             // 
             this.labelPostCode.AutoSize = true;
-            this.labelPostCode.Location = new System.Drawing.Point(25, 232);
+            this.labelPostCode.Location = new System.Drawing.Point(25, 231);
             this.labelPostCode.Name = "labelPostCode";
             this.labelPostCode.Size = new System.Drawing.Size(104, 20);
             this.labelPostCode.TabIndex = 7;
@@ -122,17 +123,28 @@
             // labelStreet
             // 
             this.labelStreet.AutoSize = true;
-            this.labelStreet.Location = new System.Drawing.Point(25, 267);
+            this.labelStreet.Location = new System.Drawing.Point(25, 263);
             this.labelStreet.Name = "labelStreet";
             this.labelStreet.Size = new System.Drawing.Size(42, 20);
             this.labelStreet.TabIndex = 8;
             this.labelStreet.Text = "Ulica";
+            this.labelStreet.Click += new System.EventHandler(this.labelStreet_Click);
+            // 
+            // labelHomeNumber
+            // 
+            this.labelHomeNumber.AutoSize = true;
+            this.labelHomeNumber.Location = new System.Drawing.Point(25, 297);
+            this.labelHomeNumber.Name = "labelHomeNumber";
+            this.labelHomeNumber.Size = new System.Drawing.Size(104, 20);
+            this.labelHomeNumber.TabIndex = 9;
+            this.labelHomeNumber.Text = "Numer posesji";
             // 
             // StorePlaceAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 391);
+            this.Controls.Add(this.labelHomeNumber);
             this.Controls.Add(this.labelStreet);
             this.Controls.Add(this.labelPostCode);
             this.Controls.Add(this.labelAdressCity);
@@ -165,5 +177,6 @@
         private System.Windows.Forms.Label labelAdressCity;
         private System.Windows.Forms.Label labelPostCode;
         private System.Windows.Forms.Label labelStreet;
+        private System.Windows.Forms.Label labelHomeNumber;
     }
 }
