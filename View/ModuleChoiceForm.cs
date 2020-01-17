@@ -17,15 +17,17 @@ namespace View
         private readonly LogisticsForm _logisticsForm;
         private readonly HrForm _hrForm;
         private readonly WarehouseForm _warehouseForm;
+        private readonly StorePlaceListForm _storePlaceListForm;
         public LoginForm _loginForm;
 
         public ModuleChoiceForm(CourierForm courierForm, LogisticsForm logisticsForm,
-            HrForm hrForm, WarehouseForm warehouseForm)
+            HrForm hrForm, WarehouseForm warehouseForm, StorePlaceListForm storePlaceListForm)
         {
             _courierForm = courierForm;
             _logisticsForm = logisticsForm;
             _hrForm = hrForm;
             _warehouseForm = warehouseForm;
+            _storePlaceListForm = storePlaceListForm;
             InitializeComponent();
         }   
 
@@ -54,7 +56,13 @@ namespace View
         {
             _hrForm.ShowDialog();
         }
-              
+
+        private void storePlaceListButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            _storePlaceListForm.ShowDialog();
+        }
+
         private void ModuleChoiceWindow_Load(object sender, EventArgs e)
         {
             if (_loginForm.textBoxUsername.Text == "Courier")
@@ -64,7 +72,9 @@ namespace View
                 buttonOpenCourierWindow.Enabled = true;
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = false;
+                buttonOpenStorePlaceList.Enabled = false;
             }
+
             if (_loginForm.textBoxUsername.Text == "Logistic")
             {
                 buttonOpenWarehouseWindow.Enabled = false;
@@ -72,7 +82,9 @@ namespace View
                 buttonOpenCourierWindow.Enabled = false;
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = false;
+                buttonOpenStorePlaceList.Enabled = false;
             }
+
             if (_loginForm.textBoxUsername.Text == "Warehouse")
             {
                 buttonOpenWarehouseWindow.Enabled = true;
@@ -80,7 +92,9 @@ namespace View
                 buttonOpenCourierWindow.Enabled = false;
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = false;
+                buttonOpenStorePlaceList.Enabled = true;
             }
+
             if (_loginForm.textBoxUsername.Text == "Registration")
             {
                 buttonOpenWarehouseWindow.Enabled = false;
@@ -88,7 +102,9 @@ namespace View
                 buttonOpenCourierWindow.Enabled = false;
                 buttonOpenPostingWindow.Enabled = true;
                 buttonOpenHRWindow.Enabled = false;
+                buttonOpenStorePlaceList.Enabled = false;
             }
+
             if (_loginForm.textBoxUsername.Text == "HR")
             {
                 buttonOpenWarehouseWindow.Enabled = false;
@@ -96,7 +112,9 @@ namespace View
                 buttonOpenCourierWindow.Enabled = false;
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = true;
+                buttonOpenStorePlaceList.Enabled = false;
             }
+
             if (_loginForm.textBoxUsername.Text == "Admin")
             {
                 buttonOpenWarehouseWindow.Enabled = true;
@@ -104,6 +122,7 @@ namespace View
                 buttonOpenCourierWindow.Enabled = true;
                 buttonOpenPostingWindow.Enabled = true;
                 buttonOpenHRWindow.Enabled = true;
+                buttonOpenStorePlaceList.Enabled = true;
             }
         }
     }
