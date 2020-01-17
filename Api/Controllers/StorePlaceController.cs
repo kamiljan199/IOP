@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Api.Controllers
 {
-    class StorePlaceController
+    public class StorePlaceController
     {
         private IStorePlaceService _storePlaceService;
 

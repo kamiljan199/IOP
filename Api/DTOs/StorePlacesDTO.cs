@@ -6,7 +6,7 @@ using Api.Enums;
 
 namespace Api.DTOs
 {
-    class StorePlacesDTO
+    public class StorePlacesDTO
     {
         public List<StorePlace> StorePlaces { get; set; }
         public CollectionGetStatus Status;
