@@ -27,7 +27,7 @@ namespace Api.Managers
 
         public List<Vehicle> GetAllVehicles()
         {
-            return _context.Vehicles.AsNoTracking().Include(v => v.Driver).ToList();
+            return _context.Vehicles.AsNoTracking().Include(v => v.Driver).Include(v => v.StorePlace).ToList();
         }
 
         public Vehicle GetVehicleByDriverID(int driverID)

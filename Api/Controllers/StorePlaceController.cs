@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Api.Controllers
 {
-    class StorePlaceController
+    public class StorePlaceController
     {
         private IStorePlaceService _storePlaceService;
 
@@ -89,6 +89,54 @@ namespace Api.Controllers
             }
 
             return result;
+        }
+        public ParcelsDTO GetCouriersParcels(StorePlace storePlace, int courierId)
+        {
+            ParcelsDTO result;
+            try
+            {
+                var collection = _storePlaceService.GetCouriersParcels(storePlace, courierId);
+
+                result = new ParcelsDTO
+                {
+                    StorePlaces = collection,
+                    Status = collection.Count > 0 ? CollectionGetStatus.Success : CollectionGetStatus.Empty
+                };
+            }
+            catch
+            {
+                result = new ParcelsDTO
+                {
+                    StorePlaces = null,
+                    Status = CollectionGetStatus.Failure
+                };
+            }
+
+            return result;
+        }
+
+        public StorePlace GetById(int id)
+        {
+            try
+            {
+                return _storePlaceService.GetById(id);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public Type GetTypeById(int id)
+        {
+            try
+            {
+                return _storePlaceService.GetTypeById(id);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

@@ -17,12 +17,12 @@ namespace View
     {
         private List<int> courierParcels = new List<int>();
         public bool isClosed = false;
-        private IStorePlaceService _storePlaceService;
+        private StorePlaceController _storePlaceController;
         private ParcelController _parcelController;
        
-        public CourierForm(IStorePlaceService storePlaceService, ParcelController parcelController)
+        public CourierForm(StorePlaceController storePlaceController, ParcelController parcelController)
         {
-            _storePlaceService = storePlaceService;
+            _storePlaceController = storePlaceController;
             _parcelController = parcelController;
             InitializeComponent();
             for (int i = 0; i < 5; i++)
@@ -34,10 +34,10 @@ namespace View
             {
                 pickParcel.Items.Add(courierParcels[i]);
             }
-            //for (int i = 0; i < _storePlaceService.GetCouriersParcels().Count; i ++)
+            //for (int i = 0; i < _storePlaceController.GetCouriersParcels().Count; i ++)
             //{
             //    //pickParcel.Items.Add(test[i]);
-            //    //pickParcel.Items.Add(_storePlaceService.GetCouriersParcels()[i]);
+            //    //pickParcel.Items.Add(_storePlaceController.GetCouriersParcels()[i]);
             //}
         }
 
