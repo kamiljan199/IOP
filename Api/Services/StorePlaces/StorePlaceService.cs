@@ -12,9 +12,11 @@ namespace Api.Services
         private readonly IEmployeeManager _employeeManager;
         private readonly IParcelManager _parcelManager;
 
-        public StorePlaceService(IStorePlaceManager storePlaceManager)
+        public StorePlaceService(IStorePlaceManager storePlaceManager, IEmployeeManager employeeManager, IParcelManager parcelManager)
         {
-            _storePlaceManager = storePlaceManager;
+            _storePlaceManager = storePlaceManager; 
+            _employeeManager = employeeManager;
+            _parcelManager = parcelManager;
         }
 
         public StorePlace GetById(int id)
@@ -48,6 +50,8 @@ namespace Api.Services
 
             return _parcelManager.GetParcelsByStorePlace(storePlace).Where( parcel => parcel.CourierID == courierId ).ToList();
         }
+
+
 
     }
 }

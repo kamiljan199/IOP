@@ -22,13 +22,8 @@ namespace View
         public bool isClosed = false;
         private StorePlaceController _storePlaceController;
         private ParcelController _parcelController;
-        private ParcelsDTO _parcelsDTO;
-        private List<ParcelsDTO> courierParcels;
-
-        public CourierForm(StorePlaceController storePlaceController,
-            ParcelController parcelController,
-            EmployeeController employeeController,
-            ParcelsDTO parcelsDTO)
+       
+        public CourierForm(StorePlaceController storePlaceController, ParcelController parcelController)
         {
             _storePlaceController = storePlaceController;
             _parcelController = parcelController;
@@ -43,7 +38,11 @@ namespace View
                     listBox1.Items.Add(_storePlaceController.GetCouriersParcels(_storePlaceController.GetById(_employee.ActiveEmployments[0].StorePlaceId), _employee.Id).StorePlaces[i]);
                 }
             }
-            InitializeComponent();
+            //for (int i = 0; i < _storePlaceController.GetCouriersParcels().Count; i ++)
+            //{
+            //    //pickParcel.Items.Add(test[i]);
+            //    //pickParcel.Items.Add(_storePlaceController.GetCouriersParcels()[i]);
+            //}
         }
 
 
