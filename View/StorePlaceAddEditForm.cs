@@ -19,5 +19,10 @@ namespace View
         {
 
         }
+
+        private void labelAdressCity_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
