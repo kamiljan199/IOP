@@ -33,5 +33,10 @@ namespace Data.Configurations
                         */
                 });
         }
+
+        public void SeedData(ModelBuilder modelBuilder)
+        {
+            
+        }
     }
 }

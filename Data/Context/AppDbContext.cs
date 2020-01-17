@@ -60,6 +60,7 @@ namespace Data.Context
             foreach(var configuration in _entityConfigurations)
             {
                 configuration.AddConfiguration(modelBuilder);
+                configuration.SeedData(modelBuilder);
             }
 
             base.OnModelCreating(modelBuilder);

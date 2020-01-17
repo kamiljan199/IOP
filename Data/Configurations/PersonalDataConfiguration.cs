@@ -20,5 +20,10 @@ namespace Data.Configurations
                         .ValueGeneratedOnAdd();
                 });
         }
+
+        public void SeedData(ModelBuilder modelBuilder)
+        {
+            
+        }
     }
 }

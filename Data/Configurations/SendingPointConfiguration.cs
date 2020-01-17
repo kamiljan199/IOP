@@ -11,5 +11,10 @@ namespace Data.Configurations
                 .Entity<SendingPoint>()
                 .HasBaseType<StorePlace>();
         }
+
+        public void SeedData(ModelBuilder modelBuilder)
+        {
+            
+        }
     }
 }
