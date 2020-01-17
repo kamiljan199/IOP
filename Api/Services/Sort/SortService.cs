@@ -55,14 +55,33 @@ namespace Api.Services
             //System.IO.File.WriteAllLines(@"..\..\..\Data\Instructions.txt", instructions);
         }
 
-        public List<Parcel> Sort(List<Parcel> parcelsToSort)
+        public void Sort(StorePlace _storePlace)
         {
-            List<Parcel> sortedParcels;
+
+            _parcels = _parcels
+                .OrderBy(e => e.StorePlaceId)
+                .ThenBy(e => e.ReceiverData.PersonalAddress.City)
+                .ThenBy(e => e.ReceiverData.PersonalAddress.Street)
+                .ThenBy(e => e.ReceiverData.PersonalAddress.HomeNumber)
+                .ToList();
+
+            int index = 0;
+
+            for (int i = 0; i < _parcels.Count; i++)
+            {
+                if (_parcels[i].StorePlaceId == _storePlace.Id)
+                {
+                    _parcels.Insert(index++, _parcels[i]);
+                    _parcels.RemoveAt(i + 1);
+                }
+            }
+
+            //List<Parcel> sortedParcels;
             //SortParcelsByStorePlace();
-            sortedParcels = SortParcelsByAddress(parcelsToSort);
+            //sortedParcels = SortParcelsByAddress(parcelsToSort);
             //SortParcelsByAddress(_parcelsToOtherStorePlace);
 
-            return sortedParcels;
+            //return sortedParcels;
         }
 
         public List<Parcel> SortParcelsByAddress(List<Parcel> sortedParcels)
