@@ -36,7 +36,6 @@ namespace View
 
         private void VehicleAddEditForm_Load(object sender, EventArgs e)
         {
-            SynchronizeDrivers();
             SynchronizeStorePlaces();
             if (!vehicle.Id.Equals(0))
             {
@@ -45,10 +44,6 @@ namespace View
                 modelTextBox.Text = vehicle.Model;
                 maxLoadTextBox.Text = vehicle.MaxLoad.ToString();
                 maxCapacityTextBox.Text = vehicle.MaxCapacity.ToString();
-                if (vehicle.DriverId != null)
-                {
-                    driverComboBox.SelectedIndex = ((List<Employee>)_employeesDTO.Employees).FindIndex(e => { return e.Id.Equals(vehicle.DriverId); });
-                }
                 if (vehicle.StorePlaceId != null)
                 {
                     warehouseComboBox.SelectedIndex = _storePlacesDTO.StorePlaces.FindIndex(s => { return s.Id.Equals(vehicle.StorePlaceId); });
@@ -59,13 +54,7 @@ namespace View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (driverComboBox.SelectedIndex > -1)
-            {
-                vehicle.DriverId = ((List<Employee>)_employeesDTO.Employees)[driverComboBox.SelectedIndex].Id;
-            } else
-            {
-                vehicle.DriverId = null;
-            }
+            vehicle.DriverId = null;
             if (warehouseComboBox.SelectedIndex > -1)
             {
                 vehicle.StorePlaceId = _storePlacesDTO.StorePlaces[warehouseComboBox.SelectedIndex].Id;
@@ -89,20 +78,6 @@ namespace View
                 _vehicleController.UpdateVehicle(vehicle);
             }
             this.Close();
-        }
-
-        private void SynchronizeDrivers()
-        {
-            _employeesDTO = _employeeController.GetAllEmployees();
-            driverComboBox.Items.Clear();
-
-            if (_employeesDTO.Employees != null)
-            {
-                foreach (var e in _employeesDTO.Employees)
-                {
-                    driverComboBox.Items.Add(e.Name + " " + e.Surname + " (" + e.Pesel + ")");
-                }
-            }
         }
 
         private void SynchronizeStorePlaces()
