@@ -63,6 +63,8 @@
     <Compile Remove="Migrations\20200115010524_RouteTables.Designer.cs" />
     <Compile Remove="Migrations\20200115201224_RouteTables.cs" />
     <Compile Remove="Migrations\20200115201224_RouteTables.Designer.cs" />
+    <Compile Remove="Migrations\20200116214710_HrVehicleEmploymentUpdate.cs" />
+    <Compile Remove="Migrations\20200116214710_HrVehicleEmploymentUpdate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

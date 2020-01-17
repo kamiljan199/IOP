@@ -34,7 +34,7 @@ namespace Api.Managers
 
         public List<Employment> GetAllEmploymentsByEmployeeId(int id)
         {
-            return _context.Employments.Where(e => e.EmployeeId == id).AsNoTracking().ToList();
+            return _context.Employments.Where(e => e.EmployeeId == id).Include(e => e.StorePlace).AsNoTracking().ToList();
         }
 
         public Employment GetEmploymentByID(int employmentID)

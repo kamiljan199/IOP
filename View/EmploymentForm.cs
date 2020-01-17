@@ -19,15 +19,18 @@ namespace View
         private readonly EmploymentController _employmentController;
         private readonly EmployeeController _employeeController;
         private readonly PositionController _positionController;
-        //private readonly WarehousesDTO warehouseDTO;
+        private readonly StorePlaceController _storePlaceController;
 
+        private StorePlacesDTO _storePlacesDTO;
         private PositionsDTO _positionsDTO;
         private EmploymentsDTO _employmentsDTO;
-        public EmploymentForm(EmploymentController employmentController, EmployeeController employeeController, PositionController positionController)
+
+        public EmploymentForm(EmploymentController employmentController, EmployeeController employeeController, PositionController positionController, StorePlaceController storePlaceController)
         {
             _employmentController = employmentController;
             _employeeController = employeeController;
             _positionController = positionController;
+            _storePlaceController = storePlaceController;
             InitializeComponent();
         }
 
@@ -35,11 +38,15 @@ namespace View
         {
             SynchronizePositions();
             SynchronizeEmployments();
+            SynchronizeStorePlaces();
             if (!Employment.Id.Equals(0))
             {
                 var positionName = _positionsDTO.Positions.Find(p => { return p.Id.Equals(Employment.PositionId); }).Name;
                 positionComboBox.SelectedIndex = _positionsDTO.Positions.FindIndex(p => { return p.Name.Equals(positionName); });
-                //TODO: magazyny
+                if (Employment.StorePlaceId != null)
+                {
+                    warehouseComboBox.SelectedIndex = _storePlacesDTO.StorePlaces.FindIndex(s => { return s.Id.Equals(Employment.StorePlaceId); });
+                }
                 salaryTextBox.Text = Employment.Salary.ToString();
                 startDateTextBox.Text = Employment.StartDate.ToString();
                 endDateTextBox.Text = Employment.EndDate.ToString();
@@ -61,6 +68,20 @@ namespace View
             }
         }
 
+        private void SynchronizeStorePlaces()
+        {
+            _storePlacesDTO = _storePlaceController.GetAllStorePlaces();
+            warehouseComboBox.Items.Clear();
+
+            if (_storePlacesDTO.StorePlaces != null)
+            {
+                foreach (var s in _storePlacesDTO.StorePlaces)
+                {
+                    warehouseComboBox.Items.Add(s.Name);
+                }
+            }
+        }
+
         private void SynchronizeEmployments()
         {
             _employmentsDTO = _employmentController.GetAllEmploymentsByEmployeeId(Employee.Id);
@@ -73,7 +94,7 @@ namespace View
                     if (!e.Id.Equals(Employment.Id))
                     {
                         var position = _positionsDTO.Positions.Find(p => p.Id.Equals(e.PositionId));
-                        string[] lv = { e.Id.ToString(), (position != null) ? position.Name : "jak to tu jest to niefajnie", e.Salary.ToString(), e.StartDate.ToString(), e.EndDate.ToString() };
+                        string[] lv = { e.Id.ToString(), (position != null) ? position.Name : "jak to tu jest to niefajnie", e.Salary.ToString(), e.StartDate.ToString(), e.EndDate.ToString(), e.StorePlaceId != null ? e.StorePlace.Name : "BRAK" };
                         employmentListView.Items.Add(new ListViewItem(lv));
                     }
                 }
@@ -89,7 +110,7 @@ namespace View
         private void button1_Click(object sender, EventArgs e)
         {
             Employment.PositionId = _positionsDTO.Positions.Find(p => { return p.Name.Equals(positionComboBox.SelectedItem.ToString()); }).Id;
-            //TODO: magazyny
+            Employment.StorePlaceId = _storePlacesDTO.StorePlaces.Find(s => { return s.Name.Equals(warehouseComboBox.SelectedItem.ToString()); }).Id;
             Employment.Salary = float.Parse(salaryTextBox.Text);
             Employment.StartDate = DateTime.Parse(startDateTextBox.Text);
             Employment.EndDate = DateTime.Parse(endDateTextBox.Text);
