@@ -28,7 +28,7 @@ namespace View
             _storePlaceService = storePlaceService;
             _parcelController = parcelController;
             _employeeController = employeeController;
-            courierParcels = _storePlaceService.GetCouriersParcels(_storePlaceService.GetById(_employee.ActiveEmployments[0].WarehouseId), _employee.Id);
+            courierParcels = _storePlaceService.GetCouriersParcels(_storePlaceService.GetById(_employee.ActiveEmployments[0].StorePlaceId), _employee.Id);
 
             _employee = _employeeController.GetLoggedEmployee();
            
