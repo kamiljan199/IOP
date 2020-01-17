@@ -35,7 +35,6 @@ namespace View
 
         private void VehicleAddEditForm_Load(object sender, EventArgs e)
         {
-            SynchronizeDrivers();
             //Magazyny
             if (!vehicle.Id.Equals(0))
             {
@@ -44,23 +43,13 @@ namespace View
                 modelTextBox.Text = vehicle.Model;
                 maxLoadTextBox.Text = vehicle.MaxLoad.ToString();
                 maxCapacityTextBox.Text = vehicle.MaxCapacity.ToString();
-                if (vehicle.DriverId != null)
-                {
-                    driverComboBox.SelectedIndex = ((List<Employee>)_employeesDTO.Employees).FindIndex(e => { return e.Id.Equals(vehicle.DriverId); });
-                }
                 //mag
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (driverComboBox.SelectedIndex > -1)
-            {
-                vehicle.DriverId = ((List<Employee>)_employeesDTO.Employees)[driverComboBox.SelectedIndex].Id;
-            } else
-            {
-                vehicle.DriverId = null;
-            }
+            vehicle.DriverId = null;
             vehicle.Registration = registrationTextBox.Text;
             vehicle.Brand = brandTextBox.Text;
             vehicle.Model = modelTextBox.Text;
@@ -77,21 +66,6 @@ namespace View
             }
             this.Close();
         }
-
-        private void SynchronizeDrivers()
-        {
-            _employeesDTO = _employeeController.GetAllEmployees();
-            driverComboBox.Items.Clear();
-
-            if (_employeesDTO.Employees != null)
-            {
-                foreach (var e in _employeesDTO.Employees)
-                {
-                    driverComboBox.Items.Add(e.Name + " " + e.Surname + " (" + e.Pesel + ")");
-                }
-            }
-        }
-
         private void VehicleAddEditForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             ClearForm();
