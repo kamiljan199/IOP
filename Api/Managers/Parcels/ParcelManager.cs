@@ -4,6 +4,7 @@ using System.Linq;
 using Model.Models;
 using Data.Context;
 using Model.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Managers
 {
@@ -38,7 +39,7 @@ namespace Api.Managers
             var query = from e in _context.Parcels
                         where e.StorePlaceId == storePlace.Id && e.ParcelStatus == status
                         select e;
-            return query.ToArray();
+            return query.Include(s => s.ReceiverData).ThenInclude(s => s.PersonalAddress).ToArray();
         }
 
         public int PostParcel(Parcel newParcel)
