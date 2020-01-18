@@ -37,7 +37,7 @@ namespace Api.Services
             var employee = _employeeManager.GetEmployeeById(id);
             if(employee == default(Employee))
             {
-                throw new Exception();
+                throw new Exception($"No employee with given ID has been found");
             }
 
             return employee;
@@ -48,7 +48,7 @@ namespace Api.Services
             var employee = _employeeManager.GetEmployeeByLogin(login);
             if (employee == default(Employee))
             {
-                throw new Exception();
+                throw new Exception($"No employee with given login has been found");
             }
 
             return employee;

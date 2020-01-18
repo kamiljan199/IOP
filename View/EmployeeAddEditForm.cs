@@ -27,7 +27,18 @@ namespace View
             employee.Name = nameTextBox.Text;
             employee.Surname = surnameTextBox.Text;
             employee.Pesel = peselTextBox.Text;
-            employee.Birthday = DateTime.Parse(birthdayTextBox.Text);
+            try
+            {
+                employee.Birthday = DateTime.Parse(birthdayTextBox.Text);
+            }
+            catch (FormatException exception)
+            {
+                Console.WriteLine(exception.Message.ToString());
+                Console.WriteLine("Employee now have default Birthday date - 1970-01-01");
+                employee.Birthday = DateTime.Parse("1970-01-01");
+
+            }
+            
             employee.Login = loginTextbox.Text;
             if (employee.Id.Equals(0))
             {
