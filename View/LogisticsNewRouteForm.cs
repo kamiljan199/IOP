@@ -8,11 +8,13 @@ using System.Windows.Forms;
 using Api.Controllers;
 using Api.DTOs;
 using Model.Models;
+using System.Linq;
 
 namespace View
 {
     public partial class LogisticsNewRouteForm : Form
     {
+        private readonly RouteController _routeController;
         private readonly VehicleController _vehicleController;
         private readonly EmployeeController _employeeController;
         private readonly StorePlaceController _storePlaceController;
@@ -26,6 +28,7 @@ namespace View
         StorePlace currentWarehouse;
 
         public LogisticsNewRouteForm(
+            RouteController routeController,
             VehicleController vehicleController,
             EmployeeController employeeController,
             StorePlaceController storePlaceController,
@@ -33,6 +36,7 @@ namespace View
             ParcelController parcelController
             )
         {
+            _routeController = routeController;
             _vehicleController = vehicleController;
             _employeeController = employeeController;
             _storePlaceController = storePlaceController;
@@ -193,6 +197,23 @@ namespace View
             {
                 MessageBox.Show("Wybierz paczki.", "Nieprawdiłowy formularz", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
+
+            int driverId = couriers.Employees.ToArray()[comboBoxDriver.SelectedIndex].Id;
+            int carId = vehicles.Vehicles.ToArray()[comboBoxVehicle.SelectedIndex].Id;
+            List<int> parcelIds = new List<int>();
+            foreach (ListViewItem item in listViewVehicleParcels.Items)
+                parcelIds.Add((int)item.Tag);
+
+            NewRouteDTO dto = _routeController.CreateRoute(driverId, carId, parcelIds.ToArray());
+            if (dto.Status == Api.Enums.NewRouteStatus.Failure)
+            {
+                MessageBox.Show(dto.ErrorMessage, "Problem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (dto.Status == Api.Enums.NewRouteStatus.Success)
+            {
+                MessageBox.Show("Trasa została utworzona", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
             }
         }
 
