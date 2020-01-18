@@ -7,19 +7,22 @@ using System.Text;
 using System.Windows.Forms;
 using Api.Controllers;
 using Api.DTOs;
+using System.Linq;
 
 namespace View
 {
     public partial class LogisticsForm : Form
     {
         private readonly LogisticsNewRouteForm _form;
+        private readonly LogisticsRouteViewForm _routeView;
         private readonly RouteController _routeController;
 
-        RoutesDTO routes;
+        RoutesDTO _routesDTO;
 
-        public LogisticsForm(LogisticsNewRouteForm form, RouteController routeController)
+        public LogisticsForm(LogisticsNewRouteForm form, LogisticsRouteViewForm routeView, RouteController routeController)
         {
             _form = form;
+            _routeView = routeView;
             _routeController = routeController;
 
             InitializeComponent();
@@ -31,6 +34,15 @@ namespace View
                 RefreshRoutes();
         }
 
+        private void buttonShowRoute_Click(object sender, EventArgs e)
+        {
+            var routeId = ((List<Model.Models.Route>)_routesDTO.Routes)[listRoute.Items.IndexOf(listRoute.SelectedItems[0])].Id;
+            RoutesDTO routeDto = _routeController.GetRouteById(routeId); ;
+
+            _routeView.route = routeDto.Routes.First();
+            _routeView.ShowDialog();
+        }
+
         private void LogisticsForm_Shown(object sender, EventArgs e)
         {
             RefreshRoutes();
@@ -38,11 +50,11 @@ namespace View
 
         void RefreshRoutes()
         {
-            routes = _routeController.GetAllRoutes();
+            _routesDTO = _routeController.GetAllRoutes();
             listRoute.Items.Clear();
 
             int ordin = 1;
-            foreach (var route in routes.Routes)
+            foreach (var route in _routesDTO.Routes)
             {
                 string name = string.Format("{0} {1}, {2} {3} - {4} {5} ({6})",
                     route.CreationDateTime.ToShortDateString(),

@@ -81,6 +81,7 @@
             this.buttonShowRoute.TabIndex = 2;
             this.buttonShowRoute.Text = "Wyświetl trasę";
             this.buttonShowRoute.UseVisualStyleBackColor = true;
+            this.buttonShowRoute.Click += new System.EventHandler(this.buttonShowRoute_Click);
             // 
             // textRouteCounter
             // 
@@ -96,7 +97,7 @@
             this.labelRouteCounter.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelRouteCounter.Location = new System.Drawing.Point(595, 264);
             this.labelRouteCounter.Name = "labelRouteCounter";
-            this.labelRouteCounter.Size = new System.Drawing.Size(22, 25);
+            this.labelRouteCounter.Size = new System.Drawing.Size(26, 31);
             this.labelRouteCounter.TabIndex = 4;
             this.labelRouteCounter.Text = "0";
             // 
