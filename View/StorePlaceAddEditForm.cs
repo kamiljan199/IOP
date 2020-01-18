@@ -6,15 +6,18 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Model.Models;
+using Api.Controllers;
 
 namespace View
 {
     public partial class StorePlaceAddEditForm : Form
     {
+        private readonly StorePlaceController _storePlaceController;
         public StorePlace storePlace;
 
-        public StorePlaceAddEditForm()
+        public StorePlaceAddEditForm(StorePlaceController storePlaceController)
         {
+            _storePlaceController = storePlaceController;
             InitializeComponent();
         }
 
@@ -26,6 +29,11 @@ namespace View
         private void labelAdressCity_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void StorePlaceAddEditForm_Load(object sender, EventArgs e)
+        {
+            textBoxStorePlaceName.Text = storePlace.Name;
         }
     }
 }

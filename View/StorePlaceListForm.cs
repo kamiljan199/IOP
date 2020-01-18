@@ -76,9 +76,6 @@ namespace View
 
                     break;
             }
-
-
-            if(_storePlacesDTO.Status == C)
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -102,17 +99,14 @@ namespace View
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            var storePlace = _storePlacesDTO.StorePlaces[listStorePlace.SelectedItems[0].Index];
-
             if (MessageBox.Show("Czy na pewno chcesz usunąć wybrane rekordy?", "Potwierdzenie", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 foreach (ListViewItem s in listStorePlace.SelectedItems)
                 {
-                    
-
-                    _storePlaceContro.RemoveEmployee(((List<Model.Models.Employee>)_employeesDTO.Employees)[listView1.Items.IndexOf(s)]);
+                    _storePlaceController.RemoveStoreplace(_storePlacesDTO.StorePlaces[listStorePlace.Items.IndexOf(s)].Id);
                 }
-                SynchronizeEmployees();
+
+                SynchronizeStorePlaces();
             }
         }
 

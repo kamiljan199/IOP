@@ -77,6 +77,9 @@
             // comboBoxStorePlaceType
             // 
             this.comboBoxStorePlaceType.FormattingEnabled = true;
+            this.comboBoxStorePlaceType.Items.AddRange(new object[] {
+            "Magazyn",
+            "Punkt wysyłki"});
             this.comboBoxStorePlaceType.Location = new System.Drawing.Point(148, 79);
             this.comboBoxStorePlaceType.Name = "comboBoxStorePlaceType";
             this.comboBoxStorePlaceType.Size = new System.Drawing.Size(292, 28);
@@ -214,7 +217,8 @@
             this.Controls.Add(this.labelStorePlaceName);
             this.Controls.Add(this.textBoxStorePlaceName);
             this.Name = "StorePlaceAddEditForm";
-            this.Text = "Edycja/dodawanie placówki";
+            this.Text = "Edycja placówki";
+            this.Load += new System.EventHandler(this.StorePlaceAddEditForm_Load);
             this.textBoxWarehouseManagerName.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.counterSendingPointWorkersCount)).EndInit();
             this.ResumeLayout(false);
