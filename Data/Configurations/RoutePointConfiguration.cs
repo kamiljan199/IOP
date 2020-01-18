@@ -20,5 +20,10 @@ namespace Data.Configurations
                 .HasOne(r => r.Route)
                 .WithMany(p => p.RoutePoints);
         }
+
+        public void SeedData(ModelBuilder modelBuilder)
+        {
+            
+        }
     }
 }

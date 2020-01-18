@@ -33,5 +33,21 @@ namespace Data.Configurations
                         */
                 });
         }
+
+        public void SeedData(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Employee>().HasData(
+                new Employee
+                {
+                    Id = 1,
+                    Name = "Mariusz",
+                    Surname = "Pudzianowski",
+                    Pesel = "EZG 34XD23",
+                    Login = "admin",
+                    Password = "0DPiKuNIrrVmD8IUCuw1hQxNqZc=",
+                    Birthday = new System.DateTime(1978, 3, 8)
+                }
+            );
+        }
     }
 }
