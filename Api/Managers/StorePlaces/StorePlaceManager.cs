@@ -4,6 +4,7 @@ using System.Text;
 using Model.Models;
 using Data.Context;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Managers
 {
@@ -38,6 +39,12 @@ namespace Api.Managers
         {
             return _context.StorePlaces.FirstOrDefault(e => e.Id.Equals(id));
         }
+
+        public StorePlace GetByIdWithAddress(int id)
+        {
+            return _context.StorePlaces.Include(e => e.Address).FirstOrDefault(e => e.Id.Equals(id));
+        }
+
         public List<StorePlace> GetAll()
         {
             return _context.StorePlaces.ToList();

@@ -9,6 +9,7 @@ namespace Api.Managers
         public int UpdateStoreplace(StorePlace storeplace);
         public int RemoveStoreplace(int id);
         public StorePlace GetById(int id);
+        public StorePlace GetByIdWithAddress(int id);
         public List<StorePlace> GetAll();
     }
 }

@@ -7,6 +7,7 @@ namespace Api.Services
     public interface IStorePlaceService
     {
         public StorePlace GetById(int id);
+        public StorePlace GetByIdWithAddress(int id);
         public Type GetTypeById(int id);
         public void AddStoreplace(StorePlace storeplace);
         public void UpdateStoreplace(StorePlace storeplace);

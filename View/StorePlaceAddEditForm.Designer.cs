@@ -194,6 +194,7 @@
             this.buttonBack.TabIndex = 15;
             this.buttonBack.Text = "Wyjdź";
             this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // StorePlaceAddEditForm
             // 
@@ -218,6 +219,7 @@
             this.Controls.Add(this.textBoxStorePlaceName);
             this.Name = "StorePlaceAddEditForm";
             this.Text = "Edycja placówki";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StorePlaceAddEditForm_FormClosing);
             this.Load += new System.EventHandler(this.StorePlaceAddEditForm_Load);
             this.textBoxWarehouseManagerName.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.counterSendingPointWorkersCount)).EndInit();

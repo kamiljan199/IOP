@@ -30,6 +30,17 @@ namespace Api.Services
             return storePlace;
         }
 
+        public StorePlace GetByIdWithAddress(int id)
+        {
+            var storePlace = _storePlaceManager.GetByIdWithAddress(id);
+            if (storePlace == default(StorePlace))
+            {
+                throw new Exception($"Store place identified as ${ id } not found.");
+            }
+
+            return storePlace;
+        }
+
         public Type GetTypeById(int id)
         {
             var storePlace = GetById(id);
