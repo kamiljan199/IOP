@@ -63,7 +63,7 @@ namespace Api.Controllers
             return parcels;
         }
 
-        public bool PostParcel(StorePlace storePlace, PersonalData senderData, PersonalData receiverData, float height, float length, float width, int priority, string type)
+        public bool PostParcel(StorePlace storePlace, PersonalData senderData, PersonalData receiverData, float height, float length, float width, float weight, int priority, string type)
         {
             var parcel = new Parcel
             {
@@ -73,6 +73,7 @@ namespace Api.Controllers
                 ParcelHeight = height,
                 ParcelWidth = width,
                 ParcelLength = length,
+                ParcelWeight = weight,
                 Priority = priority,
                 ReferenceId = 0,
                 ParcelStatus = ParcelStatus.AtPostingPoint
