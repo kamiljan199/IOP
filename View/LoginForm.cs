@@ -63,7 +63,7 @@ namespace View
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message);
+                MessageBox.Show("Nieprawidłowe hasło lub login", "Błąd logowania", 0, MessageBoxIcon.Error);
             }
         }
 
