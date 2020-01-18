@@ -99,19 +99,27 @@ namespace View
         }
         private void CourierWindow_Load(object sender, EventArgs e)
         {
+            listBox1.Enabled = true;
             _employee = _employeeController.GetLoggedEmployee();
             if (_employee != null)
             {
-                listBox1.Items.Clear();
-                _employment = _employee.ActiveEmployments[0];
-                _storePlace = _employment.StorePlaceId != null ? _storePlaceController.GetById(_employment.StorePlaceId.GetValueOrDefault()) : null ;
-                _parcelsDTO = _storePlaceController.GetCouriersParcels(_storePlace, _employee.Id);
-                if (_parcelsDTO.Status == CollectionGetStatus.Success)
+                try
                 {
-                    for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
+                    listBox1.Items.Clear();
+                    _employment = _employee.ActiveEmployments[0];
+                    _storePlace = _employment.StorePlaceId != null ? _storePlaceController.GetById(_employment.StorePlaceId.GetValueOrDefault()) : null;
+                    _parcelsDTO = _storePlaceController.GetCouriersParcels(_storePlace, _employee.Id);
+                    if (_parcelsDTO.Status == CollectionGetStatus.Success)
                     {
-                        listBox1.Items.Add(_parcelsDTO.StorePlaces[i].Id);
+                        for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
+                        {
+                            listBox1.Items.Add(_parcelsDTO.StorePlaces[i].Id);
+                        }
                     }
+                }
+                catch(Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
                 }
             }
         }
