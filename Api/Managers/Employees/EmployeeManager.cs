@@ -15,7 +15,7 @@ namespace Api.Managers
         {
             _context = context;
         }
-        //Zwraca pracownika o żądanym numerze ID
+
         public Employee GetEmployeeById(int employeeId)
         {
             var e = _context.Employees.FirstOrDefault(e => e.Id.Equals(employeeId));

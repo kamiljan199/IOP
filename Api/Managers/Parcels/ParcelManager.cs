@@ -64,7 +64,7 @@ namespace Api.Managers
 
         public int ChangeParcelStatus(Parcel parcelToChange, ParcelStatus status)
         {
-            Parcel parcel = _context.Parcels.Find(parcelToChange);
+            Parcel parcel = _context.Parcels.Find(parcelToChange.Id);
             if (parcel != null)
             {
                 parcel.ParcelStatus = status;
