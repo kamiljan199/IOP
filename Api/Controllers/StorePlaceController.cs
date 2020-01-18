@@ -138,5 +138,43 @@ namespace Api.Controllers
                 return null;
             }
         }
+
+        public bool AddStoreplace(StorePlace storeplace)
+        {
+            try
+            {
+                _storePlaceService.AddStoreplace(storeplace);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateStoreplace(StorePlace storeplace)
+        {
+            try
+            {
+                _storePlaceService.UpdateStoreplace(storeplace);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool RemoveStoreplace(int id)
+        {
+            try
+            {
+                _storePlaceService.RemoveStoreplace(id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
