@@ -51,7 +51,40 @@ namespace Api.Services
             return _parcelManager.GetParcelsByStorePlace(storePlace).Where( parcel => parcel.CourierID == courierId ).ToList();
         }
 
+        public void AddStoreplace(StorePlace storeplace)
+        {
+            int result;
 
+            result = _storePlaceManager.AddStoreplace(storeplace);
+            
+            if(result == 0)
+            {
+                throw new Exception("Databse wasn't changed");
+            }
+        }
 
+        public void UpdateStoreplace(StorePlace storeplace)
+        {
+            int result;
+
+            result = _storePlaceManager.UpdateStoreplace(storeplace);
+
+            if (result == 0)
+            {
+                throw new Exception("Databse wasn't changed");
+            }
+        }
+
+        public void RemoveStoreplace(int id)
+        {
+            int result;
+
+            result = _storePlaceManager.RemoveStoreplace(id);
+
+            if (result == 0)
+            {
+                throw new Exception("Databse wasn't changed");
+            }
+        }
     }
 }

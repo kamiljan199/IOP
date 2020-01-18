@@ -65,7 +65,7 @@ namespace Api.Managers
 
         public int ChangeParcelStatus(Parcel parcelToChange, ParcelStatus status)
         {
-            Parcel parcel = _context.Parcels.Find(parcelToChange);
+            Parcel parcel = _context.Parcels.Find(parcelToChange.Id);
             if (parcel != null)
             {
                 parcel.ParcelStatus = status;
@@ -121,6 +121,29 @@ namespace Api.Managers
             {
                 return 0;
             }
+        }
+
+        public decimal CalculateParcelCost(Parcel parcel)
+        {
+            decimal cost = 0;
+
+            // Took the criteria from official DHL site
+            float edgeSum = Math.Min(parcel.ParcelHeight, Math.Min(parcel.ParcelLength, parcel.ParcelWidth)) +
+                            Math.Max(parcel.ParcelHeight, Math.Max(parcel.ParcelLength, parcel.ParcelWidth));
+            if (edgeSum < 35.0 && parcel.ParcelWeight < 1.0)
+            {
+                cost = 16.90M;
+            }
+            else if (edgeSum < 75.0 && parcel.ParcelWeight < 10.0)
+            {
+                cost = 19.90M;
+            }
+            else if (edgeSum < 180.0 && parcel.ParcelWeight < 31.5)
+            {
+                cost = 29.90M;
+            }
+
+            return cost;
         }
     }
 }
