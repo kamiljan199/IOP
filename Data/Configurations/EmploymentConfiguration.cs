@@ -59,7 +59,8 @@ namespace Data.Configurations
                     Salary = 2800,
                     IsActive = true,
                     PositionId = 4,
-                    EmployeeId = 4
+                    EmployeeId = 4,
+                    StorePlaceId = 1
                 },
 
                 new Employment
