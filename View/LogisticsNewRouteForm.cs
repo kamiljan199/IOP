@@ -81,8 +81,9 @@ namespace View
             {
                 Address addr = parcel.ReceiverData.PersonalAddress;
                 string addressText = string.Format("{0} {1}/{2}, {3}, {4}", addr.Street, addr.HomeNumber, addr.ApartmentNumber, addr.PostCode, addr.City);
+                int weight = (int)parcel.ParcelWeight;
                 int volume = (int)(parcel.ParcelLength * parcel.ParcelHeight * parcel.ParcelWidth);
-                ListViewItem item = new ListViewItem(new string[] { "", addressText, "0", volume.ToString() });
+                ListViewItem item = new ListViewItem(new string[] { "", addressText, weight.ToString(), volume.ToString() });
                 item.Tag = parcel.Id;
                 if (parcel.Priority > 0)
                     item.BackColor = Color.LightGoldenrodYellow;

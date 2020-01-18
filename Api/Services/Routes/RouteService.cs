@@ -87,7 +87,7 @@ namespace Api.Services
             double totalWeight = 0, totalVolume = 0;
             foreach (Parcel parcel in parcels)
             {
-                //totalWeight += parcel.ParcelWeight;
+                totalWeight += parcel.ParcelWeight;
                 totalVolume += parcel.ParcelHeight * parcel.ParcelLength * parcel.ParcelWidth;
             }
             return new CargoDetails(totalWeight, maxWeight, totalVolume, maxVolume);
