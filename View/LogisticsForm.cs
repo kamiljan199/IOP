@@ -36,7 +36,10 @@ namespace View
 
         private void buttonShowRoute_Click(object sender, EventArgs e)
         {
-            var routeId = ((List<Model.Models.Route>)_routesDTO.Routes)[listRoute.Items.IndexOf(listRoute.SelectedItems[0])].Id;
+            if (listRoute.SelectedIndices.Count == 0)
+                return;
+
+            int routeId = (int)listRoute.Items[listRoute.SelectedIndices[0]].Tag;
             RoutesDTO routeDto = _routeController.GetRouteById(routeId); ;
 
             _routeView.route = routeDto.Routes.First();

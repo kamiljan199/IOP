@@ -85,11 +85,9 @@ namespace Api.Controllers
             try
             {
                 var route = _routeService.GetRouteByID(id);
-                List<Route> routes = new List<Route>();
-                routes.Add(route);
                 dto = new RoutesDTO
                 {
-                    Routes = routes,
+                    Routes = new [] { route },
                     Status = route == default(Route) ? Enums.CollectionGetStatus.Empty : Enums.CollectionGetStatus.Success
                 };
             }
