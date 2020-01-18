@@ -145,5 +145,20 @@ namespace Api.Controllers
             }
             return true;
         }
+
+        public decimal GetParcelCost(Parcel parcel)
+        {
+            decimal cost = 0;
+            try
+            {
+                cost = _parcelService.CalculateParcelCost(parcel);
+            }
+            catch (InvalidParcelDimensionsOrWeight e)
+            {
+                Console.WriteLine(e);
+                return 0;
+            }
+            return cost;
+        }
     }
 }
