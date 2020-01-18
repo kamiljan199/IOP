@@ -16,15 +16,12 @@ namespace View
         public Vehicle vehicle;
 
         private readonly VehicleController _vehicleController;
-        private readonly EmployeeController _employeeController;
         private readonly StorePlaceController _storePlaceController;
 
         private StorePlacesDTO _storePlacesDTO;
-        private EmployeesDTO _employeesDTO;
-        public VehicleAddEditForm(VehicleController vehicleController, EmployeeController employeeController, StorePlaceController storePlaceController)
+        public VehicleAddEditForm(VehicleController vehicleController, StorePlaceController storePlaceController)
         {
             _vehicleController = vehicleController;
-            _employeeController = employeeController;
             _storePlaceController = storePlaceController;
             InitializeComponent();
         }
@@ -65,8 +62,26 @@ namespace View
             vehicle.Registration = registrationTextBox.Text;
             vehicle.Brand = brandTextBox.Text;
             vehicle.Model = modelTextBox.Text;
-            vehicle.MaxLoad = float.Parse(maxLoadTextBox.Text);
-            vehicle.MaxCapacity = float.Parse(maxCapacityTextBox.Text);
+            try
+            {
+                vehicle.MaxLoad = float.Parse(maxLoadTextBox.Text);
+            }
+            catch (FormatException exception)
+            {
+                Console.WriteLine(exception.Message.ToString());
+                Console.WriteLine("Vehicle max load set to default - 500");
+                vehicle.MaxLoad = 500.0f;
+            }
+            try
+            {
+                vehicle.MaxCapacity = float.Parse(maxCapacityTextBox.Text);
+            }            
+            catch (FormatException exception)
+            {
+                Console.WriteLine(exception.Message.ToString());
+                Console.WriteLine("Vehicle max capacity set to default - 500");
+                vehicle.MaxCapacity = 500.0f;
+            }
             //mag
             if (vehicle.Id.Equals(0))
             {
