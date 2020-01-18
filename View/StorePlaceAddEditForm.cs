@@ -33,7 +33,11 @@ namespace View
 
         private void StorePlaceAddEditForm_Load(object sender, EventArgs e)
         {
-            storePlace = _storePlaceController.GetByIdWithAddress(storePlace.Id);
+            if(storePlace.Id != -1)
+            {
+                storePlace = _storePlaceController.GetByIdWithAddress(storePlace.Id);
+            }
+            
             textBoxStorePlaceName.Text = storePlace.Name;
             
             switch(storePlace.GetType().Name)
@@ -48,9 +52,9 @@ namespace View
                     labelStorePlaceDetail.Text = "Menadżer";
                     counterSendingPointWorkersCount.Enabled = false;
                     counterSendingPointWorkersCount.Visible = false;
-                    textBoxStorePlaceManagerName.Enabled = true;
-                    textBoxStorePlaceManagerName.Visible = true;
-                    textBoxStorePlaceManagerName.Text = warehouse.ManagerName;
+                    textBoxWarehouseManagerName.Enabled = true;
+                    textBoxWarehouseManagerName.Visible = true;
+                    textBoxWarehouseManagerName.Text = warehouse.ManagerName;
 
                     break;
 
@@ -59,8 +63,8 @@ namespace View
                     var sendingPoint = storePlace as SendingPoint;
 
                     labelStorePlaceDetail.Text = "Ilość pracowników";
-                    textBoxStorePlaceManagerName.Enabled = false;
-                    textBoxStorePlaceManagerName.Visible = false;
+                    textBoxWarehouseManagerName.Enabled = false;
+                    textBoxWarehouseManagerName.Visible = false;
                     counterSendingPointWorkersCount.Enabled = true;
                     counterSendingPointWorkersCount.Visible = true;
                     counterSendingPointWorkersCount.Value = sendingPoint.WorkersCount;
@@ -108,5 +112,54 @@ namespace View
             this.Close();
         }
 
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            StorePlace editedStorePlace = null;
+            var address = new Address
+            {
+                Id = storePlace.AddressId,
+                City = textBoxCity.Text,
+                PostCode = textBoxPostCode.Text,
+                Street = textBoxStreet.Text,
+                ApartmentNumber = Int32.Parse(textBoxHomeNumber.Text)
+            };
+
+            switch(comboBoxStorePlaceType.SelectedIndex)
+            {
+                case 0:
+                    var warehouse = storePlace as Warehouse;
+
+                    editedStorePlace = new Warehouse()
+                    {
+                        Name = warehouse.Name,
+                        Address = address,
+                        ManagerName = textBoxStorePlaceManagerName.Text
+                    };
+
+                    break;
+
+                case 1:
+                    var sendingPoint = storePlace as SendingPoint;
+
+                    editedStorePlace = new SendingPoint()
+                    {
+                        Name = sendingPoint.Name,
+                        Address = address,
+                        WorkersCount = (int) counterSendingPointWorkersCount.Value
+                    };
+
+                    break;
+            }
+
+            if(storePlace.Id == -1)
+            {
+                _storePlaceController.AddStoreplace(editedStorePlace);
+            }
+            else
+            {
+                editedStorePlace.Id = storePlace.Id;
+                _storePlaceController.UpdateStoreplace(editedStorePlace);
+            }
+        }
     }
 }

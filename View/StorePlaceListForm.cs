@@ -93,7 +93,7 @@ namespace View
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            _storePlaceAddEditForm.storePlace = new Warehouse();
+            _storePlaceAddEditForm.storePlace = new StorePlace() { Id = -1 };
             _storePlaceAddEditForm.ShowDialog();
         }
 
