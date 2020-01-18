@@ -33,10 +33,15 @@ namespace View
 
         private void StorePlaceAddEditForm_Load(object sender, EventArgs e)
         {
-            if(storePlace.Id != -1)
+            if(storePlace.Type != -1)
             {
                 storePlace = _storePlaceController.GetByIdWithAddress(storePlace.Id);
                 textBoxStorePlaceName.Text = storePlace.Name;
+
+                textBoxCity.Text = storePlace.Address.City;
+                textBoxPostCode.Text = storePlace.Address.PostCode;
+                textBoxStreet.Text = storePlace.Address.Street;
+                textBoxHomeNumber.Text = storePlace.Address.ApartmentNumber.ToString();
             }
 
             switch(storePlace.Type)
@@ -54,6 +59,11 @@ namespace View
                     textBoxWarehouseManagerName.Enabled = true;
                     textBoxWarehouseManagerName.Visible = true;
 
+                    if(storePlace.Type != -1)
+                    {
+                        textBoxWarehouseManagerName.Text = warehouse.ManagerName;
+                    }
+
                     break;
 
                 case 1:
@@ -69,11 +79,6 @@ namespace View
 
                     break;
             }
-
-            textBoxCity.Text = storePlace.Address.City;
-            textBoxPostCode.Text = storePlace.Address.PostCode;
-            textBoxStreet.Text = storePlace.Address.Street;
-            textBoxHomeNumber.Text = storePlace.Address.ApartmentNumber.ToString();
         }
 
         private void StorePlaceAddEditForm_FormClosing(object sender, FormClosingEventArgs e)

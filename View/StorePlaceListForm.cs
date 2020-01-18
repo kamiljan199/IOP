@@ -85,17 +85,20 @@ namespace View
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            var storePlace = _storePlacesDTO.StorePlaces[listStorePlace.SelectedItems[0].Index];
+            if(listStorePlace.SelectedItems.Count >= 1)
+            {
+                var storePlace = _storePlacesDTO.StorePlaces[listStorePlace.SelectedItems[0].Index];
 
-            _storePlaceAddEditForm.storePlace = storePlace;
-            _storePlaceAddEditForm.ShowDialog();
+                _storePlaceAddEditForm.storePlace = storePlace;
+                _storePlaceAddEditForm.ShowDialog();
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
             _storePlaceAddEditForm.storePlace = new StorePlace()
             {
-                Type = -1
+                Type = -1,
             };
             _storePlaceAddEditForm.ShowDialog();
         }
