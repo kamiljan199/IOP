@@ -30,6 +30,7 @@
         {
             this.buttonLogout = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.pickParcel = new System.Windows.Forms.ComboBox();
             this.changeStatus = new System.Windows.Forms.ComboBox();
             this.StatusLabel = new System.Windows.Forms.Label();
             this.listBox1.SuspendLayout();
@@ -49,15 +50,26 @@
             // 
             // listBox1
             // 
+            this.listBox1.Controls.Add(this.pickParcel);
+            this.listBox1.Controls.Add(this.changeStatus);
             this.listBox1.Controls.Add(this.StatusLabel);
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(2, 50);
+            this.listBox1.Location = new System.Drawing.Point(69, 35);
             this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(245, 229);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
+            // 
+            // pickParcel
+            // 
+            this.pickParcel.FormattingEnabled = true;
+            this.pickParcel.Location = new System.Drawing.Point(124, -2);
+            this.pickParcel.Name = "pickParcel";
+            this.pickParcel.Size = new System.Drawing.Size(119, 23);
+            this.pickParcel.TabIndex = 2;
+            this.pickParcel.SelectedIndexChanged += new System.EventHandler(this.pickParcel_SelectedIndexChanged);
             // 
             // changeStatus
             // 
@@ -70,7 +82,7 @@
             "Przesyłka zwrócona",
             "Przesyłka dostarczona",
             "Brak przesyłki o podanym numerze"});
-            this.changeStatus.Location = new System.Drawing.Point(328, 128);
+            this.changeStatus.Location = new System.Drawing.Point(39, 87);
             this.changeStatus.Name = "changeStatus";
             this.changeStatus.Size = new System.Drawing.Size(168, 23);
             this.changeStatus.TabIndex = 2;
@@ -84,6 +96,7 @@
             this.StatusLabel.Size = new System.Drawing.Size(7, 15);
             this.StatusLabel.TabIndex = 2;
             this.StatusLabel.Text = "\r\n";
+            this.StatusLabel.Click += new System.EventHandler(this.StatusLabel_Click);
             // 
             // CourierForm
             // 
@@ -91,7 +104,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 322);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.changeStatus);
             this.Controls.Add(this.buttonLogout);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -108,6 +120,7 @@
 
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ComboBox pickParcel;
         private System.Windows.Forms.ComboBox changeStatus;
         private System.Windows.Forms.Label StatusLabel;
     }

@@ -19,7 +19,7 @@ namespace View
         public bool isClosed = false;
         private StorePlaceController _storePlaceController;
         private ParcelController _parcelController;
-
+       
         public CourierForm(StorePlaceController storePlaceController, ParcelController parcelController)
         {
             _storePlaceController = storePlaceController;
@@ -30,7 +30,7 @@ namespace View
                 courierParcels.Add(i);
             }
 
-            for (int i = 0; i < courierParcels.Count; i++)
+            for(int i = 0; i < courierParcels.Count; i++)
             {
                 pickParcel.Items.Add(courierParcels[i]);
             }
@@ -40,6 +40,8 @@ namespace View
             //    //pickParcel.Items.Add(_storePlaceController.GetCouriersParcels()[i]);
             //}
         }
+
+
 
         private void ButtonLogout_Click(object sender, EventArgs e)
         {
@@ -54,12 +56,12 @@ namespace View
         private void CourierWindow_Load(object sender, EventArgs e)
         {
             changeStatus.Enabled = false;
-            buttonLogout.Enabled = false;
+            buttonLogout.Enabled = false;  
         }
 
         private void changeStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < changeStatus.Items.Count; i++)
+            for(int i = 0; i < changeStatus.Items.Count; i++)
             {
                 if (changeStatus.SelectedIndex == i)
                 {
@@ -77,15 +79,15 @@ namespace View
 
         private void pickParcel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < courierParcels.Count; i++)
+            for(int i = 0; i < courierParcels.Count; i++)
             {
-                if (pickParcel.SelectedIndex == i)
+                if(pickParcel.SelectedIndex == i)
                 {
                     changeStatus.Enabled = true;
                 }
             }
         }
-
+       
         private void Status_Click(object sender, EventArgs e)
         {
 
