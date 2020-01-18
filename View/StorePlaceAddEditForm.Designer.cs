@@ -84,6 +84,7 @@
             this.comboBoxStorePlaceType.Name = "comboBoxStorePlaceType";
             this.comboBoxStorePlaceType.Size = new System.Drawing.Size(292, 28);
             this.comboBoxStorePlaceType.TabIndex = 3;
+            this.comboBoxStorePlaceType.SelectionChangeCommitted += new System.EventHandler(this.comboBoxStorePlaceType_SelectionChangeCommitted);
             // 
             // labelStorePlaceDetail
             // 

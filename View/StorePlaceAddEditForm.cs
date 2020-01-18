@@ -160,6 +160,40 @@ namespace View
                 editedStorePlace.Id = storePlace.Id;
                 _storePlaceController.UpdateStoreplace(editedStorePlace);
             }
+
+            this.Close();
+        }
+
+        private void comboBoxStorePlaceType_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            switch(comboBoxStorePlaceType.SelectedIndex)
+            {
+                case 0:
+
+                    labelStorePlaceDetail.Text = "Menadżer";
+                    counterSendingPointWorkersCount.Enabled = false;
+                    counterSendingPointWorkersCount.Visible = false;
+                    textBoxWarehouseManagerName.Enabled = true;
+                    textBoxWarehouseManagerName.Visible = true;
+
+                    if (storePlace.Type != -1)
+                    {
+                        textBoxWarehouseManagerName.Text = (storePlace as Warehouse).ManagerName;
+                    }
+
+                    break;
+
+                case 1:
+
+                    labelStorePlaceDetail.Text = "Ilość pracowników";
+                    textBoxWarehouseManagerName.Enabled = false;
+                    textBoxWarehouseManagerName.Visible = false;
+                    counterSendingPointWorkersCount.Enabled = true;
+                    counterSendingPointWorkersCount.Visible = true;
+                    counterSendingPointWorkersCount.Value = (storePlace as SendingPoint).WorkersCount;
+
+                    break;
+            }
         }
     }
 }
