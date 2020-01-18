@@ -3,14 +3,16 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200118123816_ParcelWeight")]
+    partial class ParcelWeight
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -349,14 +351,15 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -364,7 +367,7 @@ namespace Data.Migrations
 
                     b.ToTable("StorePlaces");
 
-                    b.HasDiscriminator<int>("Type").HasValue(2);
+                    b.HasDiscriminator<string>("Discriminator").HasValue("StorePlace");
                 });
 
             modelBuilder.Entity("Model.Models.Vehicle", b =>
@@ -408,7 +411,7 @@ namespace Data.Migrations
                     b.Property<int>("WorkersCount")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue(1);
+                    b.HasDiscriminator().HasValue("SendingPoint");
                 });
 
             modelBuilder.Entity("Model.Models.Warehouse", b =>
@@ -419,7 +422,7 @@ namespace Data.Migrations
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
-                    b.HasDiscriminator().HasValue(0);
+                    b.HasDiscriminator().HasValue("Warehouse");
                 });
 
             modelBuilder.Entity("Model.Models.Employment", b =>
@@ -487,9 +490,7 @@ namespace Data.Migrations
                 {
                     b.HasOne("Model.Models.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AddressId");
                 });
 
             modelBuilder.Entity("Model.Models.Vehicle", b =>
