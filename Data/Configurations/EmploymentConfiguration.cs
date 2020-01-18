@@ -20,7 +20,17 @@ namespace Data.Configurations
 
         public void SeedData(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Employment>().HasData(
+                new Employment
+                {
+                    Id = 1,
+                    StartDate = new System.DateTime(),
+                    Salary = 20000,
+                    IsActive = true,
+                    PositionId = 1,
+                    EmployeeId = 1
+                }
+            );
         }
     }
 }
