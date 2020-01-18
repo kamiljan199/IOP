@@ -36,14 +36,13 @@ namespace View
             if(storePlace.Id != -1)
             {
                 storePlace = _storePlaceController.GetByIdWithAddress(storePlace.Id);
+                textBoxStorePlaceName.Text = storePlace.Name;
             }
-            
-            textBoxStorePlaceName.Text = storePlace.Name;
-            
-            switch(storePlace.GetType().Name)
+
+            switch(storePlace.Type)
             {
-                case "StorePlace":
-                case "Warehouse":
+                case -1:
+                case 0:
 
                     var warehouse = storePlace as Warehouse;
                     
@@ -54,11 +53,10 @@ namespace View
                     counterSendingPointWorkersCount.Visible = false;
                     textBoxWarehouseManagerName.Enabled = true;
                     textBoxWarehouseManagerName.Visible = true;
-                    textBoxWarehouseManagerName.Text = warehouse.ManagerName;
 
                     break;
 
-                case "SendingPoint":
+                case 1:
 
                     var sendingPoint = storePlace as SendingPoint;
 
@@ -117,7 +115,6 @@ namespace View
             StorePlace editedStorePlace = null;
             var address = new Address
             {
-                Id = storePlace.AddressId,
                 City = textBoxCity.Text,
                 PostCode = textBoxPostCode.Text,
                 Street = textBoxStreet.Text,
@@ -127,31 +124,29 @@ namespace View
             switch(comboBoxStorePlaceType.SelectedIndex)
             {
                 case 0:
-                    var warehouse = storePlace as Warehouse;
-
                     editedStorePlace = new Warehouse()
                     {
-                        Name = warehouse.Name,
+                        Name = textBoxStorePlaceName.Text,
                         Address = address,
-                        ManagerName = textBoxStorePlaceManagerName.Text
+                        ManagerName = textBoxStorePlaceManagerName.Text,
+                        Type = 0
                     };
 
                     break;
 
                 case 1:
-                    var sendingPoint = storePlace as SendingPoint;
-
                     editedStorePlace = new SendingPoint()
                     {
-                        Name = sendingPoint.Name,
+                        Name = textBoxStorePlaceName.Text,
                         Address = address,
-                        WorkersCount = (int) counterSendingPointWorkersCount.Value
+                        WorkersCount = (int) counterSendingPointWorkersCount.Value,
+                        Type = 1
                     };
 
                     break;
             }
 
-            if(storePlace.Id == -1)
+            if(storePlace.Type == -1)
             {
                 _storePlaceController.AddStoreplace(editedStorePlace);
             }

@@ -44,8 +44,22 @@ namespace Api.Services
         public Type GetTypeById(int id)
         {
             var storePlace = GetById(id);
+            if(storePlace == default(StorePlace))
+            {
+                throw new Exception($"Store place identified as ${ id } not found.");
+            }
 
-            return storePlace.GetType();
+
+            switch(storePlace.Type)
+            {
+                case 0:
+                    return typeof(Warehouse);
+
+                case 1:
+                    return typeof(SendingPoint);
+            }
+
+            return typeof(StorePlace);
         }
 
         public List<StorePlace> GetAll() => _storePlaceManager.GetAll();
