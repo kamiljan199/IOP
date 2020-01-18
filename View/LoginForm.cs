@@ -27,13 +27,13 @@ namespace View
             textBoxPassword.Text = "";
         }
 
-        public void ButtonLogin_Click(object sender, EventArgs e) // TO DO
+        private void LoginTry()
         {
             try
             {
                 if (!(textBoxUsername.Text == ""))
                 {
-                   
+
                     if (!(textBoxPassword.Text == ""))
                     {
                         //if(EmployeeController::Login(textBoxUsername.Text, textBoxPassword.Text))
@@ -60,10 +60,31 @@ namespace View
             }
         }
 
+        public void ButtonLogin_Click(object sender, EventArgs e) // TO DO
+        {
+            LoginTry();
+        }
+
         private void LoginWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide(); 
             isClosed = true;
+        }
+
+        private void textBoxUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode.Equals(Keys.Enter))
+            {
+                LoginTry();
+            }
+        }
+
+        private void textBoxPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.Equals(Keys.Enter))
+            {
+                LoginTry();
+            }
         }
     }
 }
