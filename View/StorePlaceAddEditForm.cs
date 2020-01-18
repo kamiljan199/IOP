@@ -190,7 +190,11 @@ namespace View
                     textBoxWarehouseManagerName.Visible = false;
                     counterSendingPointWorkersCount.Enabled = true;
                     counterSendingPointWorkersCount.Visible = true;
-                    counterSendingPointWorkersCount.Value = (storePlace as SendingPoint).WorkersCount;
+
+                    if(storePlace.Type != -1)
+                    {
+                        counterSendingPointWorkersCount.Value = (storePlace as SendingPoint).WorkersCount;
+                    }
 
                     break;
             }
