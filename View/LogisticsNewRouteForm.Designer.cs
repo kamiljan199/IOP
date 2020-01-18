@@ -33,19 +33,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxVehicle = new System.Windows.Forms.ComboBox();
             this.listViewWarehouseParcels = new System.Windows.Forms.ListView();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.listViewVehicleParcels = new System.Windows.Forms.ListView();
+            this.columnHeader12 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader12 = new System.Windows.Forms.ColumnHeader();
             this.buttonMoveToVehicle = new System.Windows.Forms.Button();
             this.buttonMoveToWarehouse = new System.Windows.Forms.Button();
             this.buttonMoveParcelUp = new System.Windows.Forms.Button();
@@ -72,6 +72,7 @@
             // 
             // comboBoxDriver
             // 
+            this.comboBoxDriver.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxDriver.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBoxDriver.FormattingEnabled = true;
             this.comboBoxDriver.Items.AddRange(new object[] {
@@ -95,6 +96,7 @@
             // 
             // comboBoxVehicle
             // 
+            this.comboBoxVehicle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVehicle.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBoxVehicle.FormattingEnabled = true;
             this.comboBoxVehicle.Items.AddRange(new object[] {
@@ -105,6 +107,7 @@
             this.comboBoxVehicle.Name = "comboBoxVehicle";
             this.comboBoxVehicle.Size = new System.Drawing.Size(250, 26);
             this.comboBoxVehicle.TabIndex = 1;
+            this.comboBoxVehicle.SelectedIndexChanged += new System.EventHandler(this.comboBoxVehicle_SelectedIndexChanged);
             // 
             // listViewWarehouseParcels
             // 
@@ -117,7 +120,6 @@
             this.listViewWarehouseParcels.FullRowSelect = true;
             this.listViewWarehouseParcels.GridLines = true;
             this.listViewWarehouseParcels.HideSelection = false;
-            this.listViewWarehouseParcels.HoverSelection = true;
             this.listViewWarehouseParcels.Location = new System.Drawing.Point(12, 95);
             this.listViewWarehouseParcels.MultiSelect = false;
             this.listViewWarehouseParcels.Name = "listViewWarehouseParcels";
@@ -125,6 +127,11 @@
             this.listViewWarehouseParcels.TabIndex = 2;
             this.listViewWarehouseParcels.UseCompatibleStateImageBehavior = false;
             this.listViewWarehouseParcels.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "#";
+            this.columnHeader4.Width = 40;
             // 
             // columnHeader1
             // 
@@ -141,11 +148,6 @@
             this.columnHeader3.Text = "Objętość";
             this.columnHeader3.Width = 80;
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "#";
-            this.columnHeader4.Width = 40;
-            // 
             // listViewVehicleParcels
             // 
             this.listViewVehicleParcels.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -157,7 +159,6 @@
             this.listViewVehicleParcels.FullRowSelect = true;
             this.listViewVehicleParcels.GridLines = true;
             this.listViewVehicleParcels.HideSelection = false;
-            this.listViewVehicleParcels.HoverSelection = true;
             this.listViewVehicleParcels.Location = new System.Drawing.Point(621, 95);
             this.listViewVehicleParcels.MultiSelect = false;
             this.listViewVehicleParcels.Name = "listViewVehicleParcels";
@@ -165,6 +166,11 @@
             this.listViewVehicleParcels.TabIndex = 2;
             this.listViewVehicleParcels.UseCompatibleStateImageBehavior = false;
             this.listViewVehicleParcels.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "#";
+            this.columnHeader12.Width = 40;
             // 
             // columnHeader9
             // 
@@ -181,11 +187,6 @@
             this.columnHeader11.Text = "Objętość";
             this.columnHeader11.Width = 80;
             // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "#";
-            this.columnHeader12.Width = 40;
-            // 
             // buttonMoveToVehicle
             // 
             this.buttonMoveToVehicle.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -195,6 +196,7 @@
             this.buttonMoveToVehicle.TabIndex = 3;
             this.buttonMoveToVehicle.Text = ">>";
             this.buttonMoveToVehicle.UseVisualStyleBackColor = true;
+            this.buttonMoveToVehicle.Click += new System.EventHandler(this.buttonMoveToVehicle_Click);
             // 
             // buttonMoveToWarehouse
             // 
@@ -205,6 +207,7 @@
             this.buttonMoveToWarehouse.TabIndex = 3;
             this.buttonMoveToWarehouse.Text = "<<";
             this.buttonMoveToWarehouse.UseVisualStyleBackColor = true;
+            this.buttonMoveToWarehouse.Click += new System.EventHandler(this.buttonMoveToWarehouse_Click);
             // 
             // buttonMoveParcelUp
             // 
@@ -215,6 +218,7 @@
             this.buttonMoveParcelUp.TabIndex = 3;
             this.buttonMoveParcelUp.Text = "/\\";
             this.buttonMoveParcelUp.UseVisualStyleBackColor = true;
+            this.buttonMoveParcelUp.Click += new System.EventHandler(this.buttonMoveParcelUp_Click);
             // 
             // buttonMoveParcelDown
             // 
@@ -225,6 +229,7 @@
             this.buttonMoveParcelDown.TabIndex = 3;
             this.buttonMoveParcelDown.Text = "\\/";
             this.buttonMoveParcelDown.UseVisualStyleBackColor = true;
+            this.buttonMoveParcelDown.Click += new System.EventHandler(this.buttonMoveParcelDown_Click);
             // 
             // buttonCreateRoute
             // 
@@ -235,6 +240,7 @@
             this.buttonCreateRoute.TabIndex = 4;
             this.buttonCreateRoute.Text = "Dodaj trasę";
             this.buttonCreateRoute.UseVisualStyleBackColor = true;
+            this.buttonCreateRoute.Click += new System.EventHandler(this.buttonCreateRoute_Click);
             // 
             // button1
             // 

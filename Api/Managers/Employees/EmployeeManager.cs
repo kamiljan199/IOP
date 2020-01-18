@@ -19,7 +19,7 @@ namespace Api.Managers
         public Employee GetEmployeeById(int employeeId)
         {
             var e = _context.Employees.FirstOrDefault(e => e.Id.Equals(employeeId));
-            e.ActiveEmployments = _context.Employments.Where(em => em.EmployeeId.Equals(e.Id) && em.IsActive.Equals(true)).ToList();
+            e.ActiveEmployments = _context.Employments.Where(em => em.EmployeeId.Equals(e.Id) && em.IsActive.Equals(true)).Include(e => e.Position).ToList();
             return e;
         }
 
