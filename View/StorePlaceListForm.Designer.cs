@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listStorePlace = new System.Windows.Forms.ListView();
             this.indexColumn = new System.Windows.Forms.ColumnHeader();
             this.nameColumn = new System.Windows.Forms.ColumnHeader();
             this.typeColumn = new System.Windows.Forms.ColumnHeader();
@@ -38,19 +38,20 @@
             this.backButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listView1
+            // listStorePlace
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listStorePlace.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.indexColumn,
             this.nameColumn,
             this.typeColumn});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(776, 364);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listStorePlace.HideSelection = false;
+            this.listStorePlace.Location = new System.Drawing.Point(12, 12);
+            this.listStorePlace.Name = "listStorePlace";
+            this.listStorePlace.Size = new System.Drawing.Size(776, 364);
+            this.listStorePlace.TabIndex = 0;
+            this.listStorePlace.UseCompatibleStateImageBehavior = false;
+            this.listStorePlace.View = System.Windows.Forms.View.Details;
+            this.listStorePlace.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listStorePlace_ItemSelectionChanged);
             // 
             // indexColumn
             // 
@@ -78,6 +79,7 @@
             this.editButton.TabIndex = 1;
             this.editButton.Text = "Edytuj";
             this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // addButton
             // 
@@ -87,6 +89,7 @@
             this.addButton.TabIndex = 2;
             this.addButton.Text = "Dodaj";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // removeButton
             // 
@@ -96,6 +99,7 @@
             this.removeButton.TabIndex = 3;
             this.removeButton.Text = "Usuń";
             this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
             // backButton
             // 
@@ -105,6 +109,7 @@
             this.backButton.TabIndex = 4;
             this.backButton.Text = "Wstecz";
             this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // StorePlaceListForm
             // 
@@ -115,16 +120,17 @@
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.editButton);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listStorePlace);
             this.Name = "StorePlaceListForm";
             this.Text = "StorePlaceListForm";
+            this.Load += new System.EventHandler(this.StorePlaceListForm_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listStorePlace;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button removeButton;

@@ -5,11 +5,14 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Model.Models;
 
 namespace View
 {
     public partial class StorePlaceAddEditForm : Form
     {
+        public StorePlace storePlace;
+
         public StorePlaceAddEditForm()
         {
             InitializeComponent();
