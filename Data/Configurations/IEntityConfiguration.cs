@@ -6,5 +6,6 @@ namespace Data.Configurations
     public interface IEntityConfiguration
     {
         void AddConfiguration(ModelBuilder modelBuilder);
+        void SeedData(ModelBuilder modelBuilder);
     }
 }

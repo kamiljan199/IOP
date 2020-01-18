@@ -18,7 +18,7 @@ namespace Model.Models
         public int PositionId { get; set; }
         public virtual Position Position { get; set; }
 
-        public int StorePlaceId { get; set; }
+        public int? StorePlaceId { get; set; }
         public virtual StorePlace StorePlace { get; set; }
 
         public int EmployeeId { get; set; }

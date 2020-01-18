@@ -22,5 +22,10 @@ namespace Data.Configurations
                 .WithOne(r => r.Route)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+
+        public void SeedData(ModelBuilder modelBuilder)
+        {
+            
+        }
     }
 }

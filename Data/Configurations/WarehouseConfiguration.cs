@@ -18,5 +18,10 @@ namespace Data.Configurations
                         .HasMaxLength(50);
                 });
         }
+
+        public void SeedData(ModelBuilder modelBuilder)
+        {
+            
+        }
     }
 }

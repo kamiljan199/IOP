@@ -3,14 +3,16 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200117191014_HrVehicleRemoveDriver")]
+    partial class HrVehicleRemoveDriver
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,26 +43,6 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Addresses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 2137,
-                            ApartmentNumber = 420,
-                            City = "Wadowice",
-                            HomeNumber = "JP2/GMD",
-                            PostCode = "69-666",
-                            Street = "Papieżowa"
-                        },
-                        new
-                        {
-                            Id = 666,
-                            ApartmentNumber = 666,
-                            City = "Piekło",
-                            HomeNumber = "666/666",
-                            PostCode = "66-666",
-                            Street = "Ozzy'ego Osbourna"
-                        });
                 });
 
             modelBuilder.Entity("Model.Models.Employee", b =>
@@ -94,18 +76,6 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Birthday = new DateTime(1978, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Login = "admin",
-                            Name = "Mariusz",
-                            Password = "0DPiKuNIrrVmD8IUCuw1hQxNqZc=",
-                            Pesel = "EZG 34XD23",
-                            Surname = "Pudzianowski"
-                        });
                 });
 
             modelBuilder.Entity("Model.Models.Employment", b =>
@@ -132,7 +102,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("StorePlaceId")
+                    b.Property<int>("StorePlaceId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -144,18 +114,6 @@ namespace Data.Migrations
                     b.HasIndex("StorePlaceId");
 
                     b.ToTable("Employments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EmployeeId = 1,
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            PositionId = 1,
-                            Salary = 20000f,
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Model.Models.Parcel", b =>
@@ -250,50 +208,6 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Positions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            MaxSalary = 25000f,
-                            MinSalary = 5000f,
-                            Name = "Administrator"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            MaxSalary = 1000f,
-                            MinSalary = 500f,
-                            Name = "HR"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            MaxSalary = 2000f,
-                            MinSalary = 1500f,
-                            Name = "Kurier"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            MaxSalary = 3000f,
-                            MinSalary = 2500f,
-                            Name = "Logistyk"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            MaxSalary = 1800f,
-                            MinSalary = 1500f,
-                            Name = "Magazynier"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            MaxSalary = 1800f,
-                            MinSalary = 1200f,
-                            Name = "Rejestracja"
-                        });
                 });
 
             modelBuilder.Entity("Model.Models.Route", b =>
@@ -436,7 +350,9 @@ namespace Data.Migrations
 
                     b.HasOne("Model.Models.StorePlace", "StorePlace")
                         .WithMany()
-                        .HasForeignKey("StorePlaceId");
+                        .HasForeignKey("StorePlaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Models.Parcel", b =>
