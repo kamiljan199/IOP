@@ -18,14 +18,14 @@ namespace View
 {
     public partial class CourierForm : Form
     {
-        private readonly EmployeeController _employeeController;
-        //private readonly Employee _employee;
+        private  EmployeeController _employeeController;
+        private  Employee _employee;
         public bool isClosed = false;
         private readonly StorePlaceController _storePlaceController;
         private readonly ParcelController _parcelController;
-        private readonly Employment _employment;
-        private readonly StorePlace _storePlace;
-        private readonly ParcelsDTO _parcelsDTO;
+        private  Employment _employment;
+        private  StorePlace _storePlace;
+        private  ParcelsDTO _parcelsDTO;
 
         public CourierForm(StorePlaceController storePlaceController, ParcelController parcelController,EmployeeController employeeController)
         {
@@ -33,24 +33,7 @@ namespace View
             _parcelController = parcelController;
             _employeeController = employeeController;
 
-            ///_employee = _employeeController.GetLoggedEmployee();
-            if (employeeController.GetLoggedEmployee() != null)
-            {
-                _employment = employeeController.GetLoggedEmployee().ActiveEmployments[0];
-                _storePlace = _storePlaceController.GetById(_employment.StorePlaceId);
-                _parcelsDTO = _storePlaceController.GetCouriersParcels(_storePlace, employeeController.GetLoggedEmployee().Id);
-                if (_parcelsDTO.Status == CollectionGetStatus.Success)
-                {
-                    for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
-                    {
-                        listBox1.Items.Add(_parcelsDTO.StorePlaces[i]);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Nieprawidłowe hasło lub login", "Błąd logowania", 0, MessageBoxIcon.Error);
-            }
+            
 
             InitializeComponent();
         }
@@ -117,7 +100,26 @@ namespace View
         {
             listBox1.Enabled = true;
             changeStatus.Enabled = false;
-           
+
+            _employee = _employeeController.GetLoggedEmployee();
+            if (_employee != null)
+            {
+                _employment = _employee.ActiveEmployments[0];
+                _storePlace = _employment.StorePlaceId != null ? _storePlaceController.GetById(_employment.StorePlaceId.GetValueOrDefault()) : null ;
+                _parcelsDTO = _storePlaceController.GetCouriersParcels(_storePlace, _employee.Id);
+                if (_parcelsDTO.Status == CollectionGetStatus.Success)
+                {
+                    for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
+                    {
+                        listBox1.Items.Add(_parcelsDTO.StorePlaces[i]);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nieprawidłowe hasło lub login", "Błąd logowania", 0, MessageBoxIcon.Error);
+            }
+
         }
 
         private int ConvertStringToInt(string intString)
