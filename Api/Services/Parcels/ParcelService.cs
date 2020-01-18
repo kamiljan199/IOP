@@ -133,5 +133,15 @@ namespace Api.Services
                 throw new NothingAddedToDatabaseException(parcelToChange);
             }
         }
+
+        public decimal CalculateParcelCost(Parcel parcel)
+        {
+            decimal cost = _parcelManager.CalculateParcelCost(parcel);
+            if (cost <= 0.0M)
+            {
+                throw new InvalidParcelDimensionsOrWeight(parcel);
+            }
+            return cost;
+        }
     }
 }
