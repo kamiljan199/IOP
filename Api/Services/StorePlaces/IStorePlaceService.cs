@@ -8,6 +8,9 @@ namespace Api.Services
     {
         public StorePlace GetById(int id);
         public Type GetTypeById(int id);
+        public void AddStoreplace(StorePlace storeplace);
+        public void UpdateStoreplace(StorePlace storeplace);
+        public void RemoveStoreplace(int id);
         public List<StorePlace> GetAll();
         public List<Parcel> GetCouriersParcels(StorePlace storePlace, int courierId);
     }

@@ -63,7 +63,7 @@ namespace Api.Controllers
             return parcels;
         }
 
-        public bool PostParcel(StorePlace storePlace, PersonalData senderData, PersonalData receiverData, float height, float length, float width, int priority, string type)
+        public bool PostParcel(StorePlace storePlace, PersonalData senderData, PersonalData receiverData, float height, float length, float width, float weight, int priority, string type)
         {
             var parcel = new Parcel
             {
@@ -73,6 +73,7 @@ namespace Api.Controllers
                 ParcelHeight = height,
                 ParcelWidth = width,
                 ParcelLength = length,
+                ParcelWeight = weight,
                 Priority = priority,
                 ReferenceId = 0,
                 ParcelStatus = ParcelStatus.AtPostingPoint
@@ -144,6 +145,21 @@ namespace Api.Controllers
                 return false;
             }
             return true;
+        }
+
+        public decimal GetParcelCost(Parcel parcel)
+        {
+            decimal cost = 0;
+            try
+            {
+                cost = _parcelService.CalculateParcelCost(parcel);
+            }
+            catch (InvalidParcelDimensionsOrWeight e)
+            {
+                Console.WriteLine(e);
+                return 0;
+            }
+            return cost;
         }
     }
 }

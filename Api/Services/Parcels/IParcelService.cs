@@ -19,5 +19,6 @@ namespace Api.Services
         public void ReturnParcel(Parcel oldParcel);
         public void AssignCourier(Parcel parcelToChange, int courierId);
         public void UnassignCourier(Parcel parcelToChange);
+        public decimal CalculateParcelCost(Parcel parcel);
     }
 }

@@ -5,6 +5,9 @@ namespace Api.Managers
 {
     public interface IStorePlaceManager
     {
+        public int AddStoreplace(StorePlace storeplace);
+        public int UpdateStoreplace(StorePlace storeplace);
+        public int RemoveStoreplace(int id);
         public StorePlace GetById(int id);
         public List<StorePlace> GetAll();
     }

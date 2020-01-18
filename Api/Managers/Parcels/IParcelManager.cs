@@ -17,5 +17,6 @@ namespace Api.Managers
         public int ChangeParcelStatus(Parcel parcelToChange, ParcelStatus status);
         public int ReturnParcel(Parcel oldParcel);
         public int SetCourierId(Parcel parcelToChange, int? courierId);
+        public decimal CalculateParcelCost(Parcel parcel);
     }
 }
