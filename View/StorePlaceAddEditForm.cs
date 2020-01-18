@@ -53,11 +53,9 @@ namespace View
                     
                     comboBoxStorePlaceType.SelectedIndex = 0;
 
-                    labelStorePlaceDetail.Text = "Menadżer";
-                    counterSendingPointWorkersCount.Enabled = false;
-                    counterSendingPointWorkersCount.Visible = false;
+                    labelStorePlaceManager.Text = "Menadżer";
+                    counterStorePlaceWorkersCount.Enabled = false;
                     textBoxWarehouseManagerName.Enabled = true;
-                    textBoxWarehouseManagerName.Visible = true;
 
                     if(storePlace.Type != -1)
                     {
@@ -70,12 +68,10 @@ namespace View
 
                     var sendingPoint = storePlace as SendingPoint;
 
-                    labelStorePlaceDetail.Text = "Ilość pracowników";
+                    labelStorePlaceManager.Text = "Ilość pracowników";
                     textBoxWarehouseManagerName.Enabled = false;
-                    textBoxWarehouseManagerName.Visible = false;
-                    counterSendingPointWorkersCount.Enabled = true;
-                    counterSendingPointWorkersCount.Visible = true;
-                    counterSendingPointWorkersCount.Value = sendingPoint.WorkersCount;
+                    counterStorePlaceWorkersCount.Enabled = true;
+                    counterStorePlaceWorkersCount.Value = sendingPoint.WorkersCount;
 
                     break;
             }
@@ -133,7 +129,7 @@ namespace View
                     {
                         Name = textBoxStorePlaceName.Text,
                         Address = address,
-                        ManagerName = textBoxStorePlaceManagerName.Text,
+                        ManagerName = textBoxWarehouseManagerName.Text,
                         Type = 0
                     };
 
@@ -144,7 +140,7 @@ namespace View
                     {
                         Name = textBoxStorePlaceName.Text,
                         Address = address,
-                        WorkersCount = (int) counterSendingPointWorkersCount.Value,
+                        WorkersCount = (int) counterStorePlaceWorkersCount.Value,
                         Type = 1
                     };
 
@@ -170,11 +166,9 @@ namespace View
             {
                 case 0:
 
-                    labelStorePlaceDetail.Text = "Menadżer";
-                    counterSendingPointWorkersCount.Enabled = false;
-                    counterSendingPointWorkersCount.Visible = false;
+                    labelStorePlaceManager.Text = "Menadżer";
+                    counterStorePlaceWorkersCount.Enabled = false;
                     textBoxWarehouseManagerName.Enabled = true;
-                    textBoxWarehouseManagerName.Visible = true;
 
                     if (storePlace.Type != -1)
                     {
@@ -185,15 +179,13 @@ namespace View
 
                 case 1:
 
-                    labelStorePlaceDetail.Text = "Ilość pracowników";
+                    labelStorePlaceManager.Text = "Ilość pracowników";
                     textBoxWarehouseManagerName.Enabled = false;
-                    textBoxWarehouseManagerName.Visible = false;
-                    counterSendingPointWorkersCount.Enabled = true;
-                    counterSendingPointWorkersCount.Visible = true;
+                    counterStorePlaceWorkersCount.Enabled = true;
 
                     if(storePlace.Type != -1)
                     {
-                        counterSendingPointWorkersCount.Value = (storePlace as SendingPoint).WorkersCount;
+                        counterStorePlaceWorkersCount.Value = (storePlace as SendingPoint).WorkersCount;
                     }
 
                     break;

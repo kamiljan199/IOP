@@ -44,8 +44,11 @@
             this.indexColumn,
             this.nameColumn,
             this.typeColumn});
+            this.listStorePlace.FullRowSelect = true;
+            this.listStorePlace.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listStorePlace.HideSelection = false;
             this.listStorePlace.Location = new System.Drawing.Point(12, 12);
+            this.listStorePlace.MultiSelect = false;
             this.listStorePlace.Name = "listStorePlace";
             this.listStorePlace.Size = new System.Drawing.Size(776, 364);
             this.listStorePlace.TabIndex = 0;

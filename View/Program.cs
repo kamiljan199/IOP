@@ -31,7 +31,7 @@ namespace View
             Bootstrap();
             using (var scope = container.BeginLifetimeScope())
             {
-                Application.Run(container.Resolve<MainForm>());
+                Application.Run(container.Resolve<StorePlaceListForm>());
             }
         }
 

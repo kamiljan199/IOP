@@ -53,10 +53,11 @@
             this.listView1.FullRowSelect = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(23, 13);
+            this.listView1.Location = new System.Drawing.Point(26, 17);
+            this.listView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(765, 375);
+            this.listView1.Size = new System.Drawing.Size(874, 499);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -94,9 +95,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(30, 395);
+            this.button1.Location = new System.Drawing.Point(34, 527);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(86, 31);
             this.button1.TabIndex = 1;
             this.button1.Text = "Dodaj";
             this.button1.UseVisualStyleBackColor = true;
@@ -105,9 +107,10 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(123, 395);
+            this.button2.Location = new System.Drawing.Point(141, 527);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(86, 31);
             this.button2.TabIndex = 2;
             this.button2.Text = "Edytuj";
             this.button2.UseVisualStyleBackColor = true;
@@ -116,9 +119,10 @@
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(356, 395);
+            this.button3.Location = new System.Drawing.Point(407, 527);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(86, 31);
             this.button3.TabIndex = 3;
             this.button3.Text = "Usuń";
             this.button3.UseVisualStyleBackColor = true;
@@ -127,9 +131,10 @@
             // button4
             // 
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(213, 395);
+            this.button4.Location = new System.Drawing.Point(243, 527);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(137, 23);
+            this.button4.Size = new System.Drawing.Size(157, 31);
             this.button4.TabIndex = 4;
             this.button4.Text = "Edytuj zatrudnienia";
             this.button4.UseVisualStyleBackColor = true;
@@ -137,14 +142,15 @@
             // 
             // EmployeeListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 600);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EmployeeListForm";
             this.Text = "EmployeeListForm";
             this.Load += new System.EventHandler(this.EmployeeListForm_Load);
