@@ -41,7 +41,7 @@ namespace View
                     {
                         if(_employeeController.Login(textBoxUsername.Text, textBoxPassword.Text))
                         {
-                            this.Close();
+                            this.Hide();
                             _moduleChoiceForm._loginForm = this;
                             _moduleChoiceForm.ShowDialog();
                         }
@@ -63,7 +63,7 @@ namespace View
             }
             catch (Exception exc)
             {
-                MessageBox.Show("Nieprawidłowe hasło lub login", "Błąd logowania", 0, MessageBoxIcon.Error);
+                MessageBox.Show(exc.Message);
             }
         }
 

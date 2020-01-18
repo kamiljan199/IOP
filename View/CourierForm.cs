@@ -32,13 +32,8 @@ namespace View
             _storePlaceController = storePlaceController;
             _parcelController = parcelController;
             _employeeController = employeeController;
-
-            
-
             InitializeComponent();
         }
-
-
 
         private void ButtonLogout_Click(object sender, EventArgs e)
         {
@@ -53,43 +48,49 @@ namespace View
             {
                 if (listBox1.SelectedIndex == i)
                 {
-                    changeStatus.Enabled = true;
-                    ParcelStatus status = _parcelController.GetParcelStatusById(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)));
+                    radioButton1.Enabled = true;
+                    radioButton2.Enabled = true;
+                    radioButton3.Enabled = true;
+                    radioButton4.Enabled = true;
+                    radioButton5.Enabled = true;
+                    radioButton6.Enabled = true;
+                    radioButton7.Enabled = true;
+                    ParcelStatus status = _parcelController.GetParcelStatusById(ConvertStringToInt(listBox1.Items[i].ToString()));
                     switch (status)
                     {
                         case ParcelStatus.AtPostingPoint:
                             {
-                                changeStatus.SelectedIndex = 0;
+                                radioButton1.Checked = true;
                                 break;
                             }
                         case ParcelStatus.OnWayToWarehouse:
                             {
-                                changeStatus.SelectedIndex = 1;
+                                radioButton2.Checked = true;
                                 break;
                             }
                         case ParcelStatus.InWarehouse:
                             {
-                                changeStatus.SelectedIndex = 2;
+                                radioButton3.Checked = true;
                                 break;
                             }
                         case ParcelStatus.OnWayToTheCustomer:
                             {
-                                changeStatus.SelectedIndex = 3;
+                                radioButton4.Checked = true;
                                 break;
                             }
                         case ParcelStatus.Returned:
                             {
-                                changeStatus.SelectedIndex = 4;
+                                radioButton5.Checked = true;
                                 break;
                             }
                         case ParcelStatus.Delivered:
                             {
-                                changeStatus.SelectedIndex = 5;
+                                radioButton6.Checked = true;
                                 break;
                             }
                         default:
                             {
-                                changeStatus.SelectedIndex = 6;
+                                radioButton7.Checked = true;
                                 break;
                             }
                     }
@@ -98,12 +99,10 @@ namespace View
         }
         private void CourierWindow_Load(object sender, EventArgs e)
         {
-            listBox1.Enabled = true;
-            changeStatus.Enabled = false;
-
             _employee = _employeeController.GetLoggedEmployee();
             if (_employee != null)
             {
+                listBox1.Items.Clear();
                 _employment = _employee.ActiveEmployments[0];
                 _storePlace = _employment.StorePlaceId != null ? _storePlaceController.GetById(_employment.StorePlaceId.GetValueOrDefault()) : null ;
                 _parcelsDTO = _storePlaceController.GetCouriersParcels(_storePlace, _employee.Id);
@@ -111,15 +110,10 @@ namespace View
                 {
                     for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
                     {
-                        listBox1.Items.Add(_parcelsDTO.StorePlaces[i]);
+                        listBox1.Items.Add(_parcelsDTO.StorePlaces[i].Id);
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("Nieprawidłowe hasło lub login", "Błąd logowania", 0, MessageBoxIcon.Error);
-            }
-
         }
 
         private int ConvertStringToInt(string intString)
@@ -132,62 +126,37 @@ namespace View
             return i;
         }
 
-        private void changeStatus_SelectedIndexChanged(object sender, EventArgs e)
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            switch (changeStatus.SelectedIndex)
-            {
-                case 0:
-                    {
-                        _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.AtPostingPoint);
-                        break;
-                    }
-                case 1:
-                    {
-                        _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.OnWayToWarehouse);
-                        break;
-                    }
-                case 2:
-                    {
-                        _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.InWarehouse);
-                        break;
-                    }
-                case 3:
-                    {
-                        _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.OnWayToTheCustomer);
-                        break;
-                    }
-                case 4:
-                    {
-                        _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.Returned);
-                        break;
-                    }
-                case 5:
-                    {
-                        _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.Delivered);
-                        break;
-                    }
-                default:
-                    {
-                        _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.Unknown);
-                        break;
-                    }
-
-            }
+            _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.AtPostingPoint);
+        }
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.OnWayToWarehouse);
+        }
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.InWarehouse);
         }
 
-        private void pickParcel_SelectedIndexChanged(object sender, EventArgs e)
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            
-        }
-       
-        private void Status_Click(object sender, EventArgs e)
-        {
-
+            _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.OnWayToTheCustomer);
         }
 
-        private void StatusLabel_Click(object sender, EventArgs e)
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
+            _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.Returned);
+        }
 
-        }      
+        private void radioButton6_CheckedChanged(object sender, EventArgs e)
+        {
+            _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.Delivered);
+        }
+
+        private void radioButton7_CheckedChanged(object sender, EventArgs e)
+        {
+            _parcelController.ChangeParcelStatus(ConvertStringToInt(listBox1.GetItemText(listBox1.SelectedItem)), ParcelStatus.Unknown);
+        }
     }
 }
