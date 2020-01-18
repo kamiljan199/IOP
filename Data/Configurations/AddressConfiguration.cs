@@ -37,6 +37,20 @@ namespace Data.Configurations
                     Street = "Ozzy'ego Osbourna",
                     HomeNumber = "666/666",
                     ApartmentNumber = 666
+                },
+                new Address
+                {
+                    Id = 1,
+                    City = "Łuć",
+                    Street = "Skrzywana",
+                    PostCode = "98-205"
+                },
+                new Address
+                {
+                    Id = 2,
+                    City = "Łuć",
+                    Street = "Radwańska",
+                    PostCode = "98-205"
                 }
             );
         }
