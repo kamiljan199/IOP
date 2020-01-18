@@ -13,6 +13,7 @@ namespace Api.Services
         private List<Parcel> _parcels;
         private List<Parcel> _parcelsToClients;
         private List<Parcel> _parcelsToOtherStorePlace;
+        private StorePlace storePlace;
         private readonly IParcelManager _parcelManager;
 
         public SortService(IParcelManager parcelManager)
@@ -25,34 +26,68 @@ namespace Api.Services
 
         public void GetParcelsInMagazine()
         {
-            //Parcel[] parcels = _parcelManager.GetParcelsByStorePlace(_storePlace);
-            //for(int  i = 0; i < parcels.Length; i++)
-            //{
-            //    _parcels.Add(parcels[i]);
-            //}
+            Parcel[] parcels = _parcelManager.GetParcelsByStorePlace(storePlace);
+            for(int  i = 0; i < parcels.Length; i++)
+            {
+                _parcels.Add(parcels[i]);
+            }
         }
 
         public void PrintGuidelines()
         {
+            String street;
+            String city;
+            bool firstTime = true;
+            int storePlaceID;
             List<String> instructions = new List<string>();
-            instructions.Add("\nParcels to send to Clients\n");
-            foreach (var p in _parcelsToClients)
+            instructions.Add("==================\nParcels to send to Clients\n==================");
+
+            street = _parcels[0].ReceiverData.PersonalAddress.Street;
+            storePlaceID = _parcels[0].StorePlaceId;
+            city = _parcels[0].ReceiverData.PersonalAddress.City;
+
+            instructions.Add("STORE PLACE: " + storePlaceID);
+            instructions.Add("CITY: " + city);
+            instructions.Add("STREET: " + street);
+
+            foreach (var p in _parcels)
             {
-                instructions.Add(p.ReceiverData.PersonalAddress.City + " " + p.ReceiverData.PersonalAddress.Street +
+                if (storePlaceID != p.StorePlaceId ||
+                    city != p.ReceiverData.PersonalAddress.City ||
+                    street != p.ReceiverData.PersonalAddress.Street)
+                {
+                    instructions.Add("===================================");
+                }
+                if (storePlaceID != p.StorePlaceId)
+                {
+                    if (firstTime)
+                    {
+                        firstTime = false;
+                        instructions.Add("==================\nParcels to send to different Warehouse\n==================");
+                    }
+
+                    storePlaceID = p.StorePlaceId;
+                    instructions.Add("STORE PLACE: " + storePlaceID);
+                }
+                if (city != p.ReceiverData.PersonalAddress.City)
+                {
+                    city = p.ReceiverData.PersonalAddress.City;
+                    instructions.Add("CITY: " + city);
+
+                }
+                if (street != p.ReceiverData.PersonalAddress.Street)
+                {
+                    street = p.ReceiverData.PersonalAddress.Street;
+                    instructions.Add("STREET: " + street);
+                }
+                instructions.Add("________________________\n" +
+                                 p.ReceiverData.PersonalAddress.City + " " +
+                                 p.ReceiverData.PersonalAddress.Street +
                                  " " + p.ReceiverData.PersonalAddress.HomeNumber +
                                  " " + p.StorePlaceId);
-                //                Console.WriteLine();
             }
-            instructions.Add("\nParcels to send to different Warehouse\n");
-            //            Console.WriteLine("\n");
-            foreach (var p in _parcelsToOtherStorePlace)
-            {
-                instructions.Add(p.ReceiverData.PersonalAddress.City + " " + p.ReceiverData.PersonalAddress.Street +
-                                 " " + p.ReceiverData.PersonalAddress.HomeNumber +
-                                 " " + p.StorePlaceId);
-            }
-            //Path yet to decide
-            //System.IO.File.WriteAllLines(@"..\..\..\Data\Instructions.txt", instructions);
+
+            System.IO.File.WriteAllLines(@"..\..\..\Instructions.txt", instructions);
         }
 
         public void Sort(StorePlace _storePlace)
