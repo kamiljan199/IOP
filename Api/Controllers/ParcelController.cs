@@ -90,6 +90,22 @@ namespace Api.Controllers
             return true;
         }
 
+        public bool PostParcel(Parcel parcel)
+        {
+            parcel.ParcelStatus = ParcelStatus.AtPostingPoint;
+            parcel.ReferenceId = 0;
+            try
+            {
+                _parcelService.PostParcel(parcel);
+            }
+            catch (NothingAddedToDatabaseException e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            return true;
+        }
+
         public bool ChangeParcelPriority(int id, int priority)
         {
             try

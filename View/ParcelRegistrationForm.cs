@@ -14,6 +14,8 @@ namespace View
     public partial class ParcelRegistrationForm : Form
     {
         private readonly ParcelController _parcelController;
+        private bool isParcelDataValid = false;
+        private string parcelType = "";
 
         public ParcelRegistrationForm(ParcelController parcelController)
         {
@@ -29,35 +31,38 @@ namespace View
 
         private void OnParcelAddClick(object sender, EventArgs e)
         {
-            ValidateData();
-            SendData();
+            bool isPersonalDataValid = ValidateData();
+
+            if (isPersonalDataValid && isParcelDataValid)
+                SendData();
         }
 
         private void UpdateParcelType(object sender, EventArgs e)
         {
-            bool isValid = true;
+            isParcelDataValid = true;
 
             if (parcelPriorityComboBox.SelectedIndex == -1)
-                isValid = false;
+                isParcelDataValid = false;
 
             double parcelWeight;
             if (!double.TryParse(parcelWeightTextBox.Text, out parcelWeight))
-                isValid = false;
+                isParcelDataValid = false;
 
             float x, y, z;
 
             if (!float.TryParse(parcelDimensionsXTextBox.Text, out x))
-                isValid = false;
+                isParcelDataValid = false;
             if (!float.TryParse(parcelDimensionsYTextBox.Text, out y))
-                isValid = false;
+                isParcelDataValid = false;
             if (!float.TryParse(parcelDimensionsZTextBox.Text, out z))
-                isValid = false;
+                isParcelDataValid = false;
 
-            if (isValid)
+            if (isParcelDataValid)
             {
                 string type = _parcelController.GetParcelType(parcelWeight, x, y, z);
 
                 parcelTypeBox.Text = type;
+                parcelType = type;
 
                 if (type == "A")
                     parcelTypeBox.BackColor = Color.Green;
@@ -98,14 +103,65 @@ namespace View
 
         private void SendData()
         {
+            int? senderApartment, recieverApartment;
+            int senderAp, recieverAp;
+            if (int.TryParse(senderApartmentNumberTextBox.Text, out senderAp))
+                senderApartment = senderAp;
+            else
+                senderApartment = null;
+
+            if (int.TryParse(recieverApartmentNumberTextBox.Text, out recieverAp))
+                recieverApartment = senderAp;
+            else
+                recieverApartment = null;
+
+
             Parcel parcelToAdd = new Parcel
             {
                 SenderData = new PersonalData
                 {
-                    FirstName = senderFirstNameTextBox.Text
-
+                    FirstName = senderFirstNameTextBox.Text,
+                    LastName = senderLastNameTextBox.Text,
+                    PhoneNumber = senderPhoneNumberTextBox.Text,
+                    PersonalAddress = new Address
+                    {
+                        City = senderCityTextBox.Text,
+                        PostCode = senderPostalCodeTextBox.Text,
+                        Street = senderStreetTextBox.Text,
+                        HomeNumber = senderHouseNumberTextBox.Text,
+                        ApartmentNumber = senderApartment
+                    }
                 },
+                ReceiverData = new PersonalData
+                {
+                    FirstName = recieverFirstNameTextBox.Text,
+                    LastName = recieverLastNameTextBox.Text,
+                    PhoneNumber = recieverPhoneNumberTextBox.Text,
+                    PersonalAddress = new Address
+                    {
+                        City = recieverCityTextBox.Text,
+                        PostCode = recieverPostalCodeTextBox.Text,
+                        Street = recieverStreetTextBox.Text,
+                        HomeNumber = recieverHouseNumberTextBox.Text,
+                        ApartmentNumber = recieverApartment
+                    }
+                },
+                ParcelHeight = float.Parse(parcelDimensionsXTextBox.Text),
+                ParcelWidth = float.Parse(parcelDimensionsYTextBox.Text),
+                ParcelLength = float.Parse(parcelDimensionsZTextBox.Text),
+                ParcelType = parcelType,
+                ParcelWeight = float.Parse(parcelWeightTextBox.Text),
+                Priority = parcelPriorityComboBox.SelectedIndex,
             };
+
+            if (_parcelController.PostParcel(parcelToAdd))
+            {
+                // Display success message and ask for label
+            }
+            else
+            {
+                // Display failure message
+            }
         }
 
         private bool ValidateData()
@@ -155,10 +211,10 @@ namespace View
             if (!CheckHouseNumberValidity(recieverHouseNumberTextBox))
                 isValid = false;
 
-            if (!CheckHouseNumberValidity(senderApartmentNumberTextBox))
+            if (!CheckNumberValidity(senderApartmentNumberTextBox))
                 isValid = false;
 
-            if (!CheckHouseNumberValidity(recieverApartmentNumberTextBox))
+            if (!CheckNumberValidity(recieverApartmentNumberTextBox))
                 isValid = false;
 
             return isValid;
@@ -219,6 +275,23 @@ namespace View
         private bool CheckHouseNumberValidity(TextBox textBox)
         {
             Regex numberRegex = new Regex(@"\w+");
+            if (!numberRegex.IsMatch(textBox.Text))
+            {
+                textBox.BackColor = Color.Red;
+                textBox.ForeColor = Color.White;
+                return false;
+            }
+            else
+            {
+                textBox.BackColor = Color.White;
+                textBox.ForeColor = Color.Black;
+                return true;
+            }
+        }
+
+        private bool CheckNumberValidity(TextBox textBox)
+        {
+            Regex numberRegex = new Regex(@"[0-9]*");
             if (!numberRegex.IsMatch(textBox.Text))
             {
                 textBox.BackColor = Color.Red;
