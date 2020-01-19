@@ -41,11 +41,13 @@
             this.textBoxCity = new System.Windows.Forms.TextBox();
             this.textBoxPostCode = new System.Windows.Forms.TextBox();
             this.textBoxStreet = new System.Windows.Forms.TextBox();
-            this.textBoxHomeNumber = new System.Windows.Forms.TextBox();
+            this.textBoxApartmentNumber = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.counterStorePlaceWorkersCount = new System.Windows.Forms.NumericUpDown();
             this.labelStorePlaceWorkersCount = new System.Windows.Forms.Label();
+            this.labelApartmentNumber = new System.Windows.Forms.Label();
+            this.textBoxHomeNumber = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.counterStorePlaceWorkersCount)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +107,7 @@
             // labelAdressCity
             // 
             this.labelAdressCity.AutoSize = true;
-            this.labelAdressCity.Location = new System.Drawing.Point(12, 213);
+            this.labelAdressCity.Location = new System.Drawing.Point(25, 215);
             this.labelAdressCity.Name = "labelAdressCity";
             this.labelAdressCity.Size = new System.Drawing.Size(54, 20);
             this.labelAdressCity.TabIndex = 6;
@@ -115,7 +117,7 @@
             // labelPostCode
             // 
             this.labelPostCode.AutoSize = true;
-            this.labelPostCode.Location = new System.Drawing.Point(12, 245);
+            this.labelPostCode.Location = new System.Drawing.Point(25, 247);
             this.labelPostCode.Name = "labelPostCode";
             this.labelPostCode.Size = new System.Drawing.Size(104, 20);
             this.labelPostCode.TabIndex = 7;
@@ -124,7 +126,7 @@
             // labelStreet
             // 
             this.labelStreet.AutoSize = true;
-            this.labelStreet.Location = new System.Drawing.Point(12, 278);
+            this.labelStreet.Location = new System.Drawing.Point(25, 280);
             this.labelStreet.Name = "labelStreet";
             this.labelStreet.Size = new System.Drawing.Size(42, 20);
             this.labelStreet.TabIndex = 8;
@@ -134,7 +136,7 @@
             // labelHomeNumber
             // 
             this.labelHomeNumber.AutoSize = true;
-            this.labelHomeNumber.Location = new System.Drawing.Point(12, 311);
+            this.labelHomeNumber.Location = new System.Drawing.Point(25, 316);
             this.labelHomeNumber.Name = "labelHomeNumber";
             this.labelHomeNumber.Size = new System.Drawing.Size(104, 20);
             this.labelHomeNumber.TabIndex = 9;
@@ -161,16 +163,16 @@
             this.textBoxStreet.Size = new System.Drawing.Size(292, 27);
             this.textBoxStreet.TabIndex = 12;
             // 
-            // textBoxHomeNumber
+            // textBoxApartmentNumber
             // 
-            this.textBoxHomeNumber.Location = new System.Drawing.Point(142, 310);
-            this.textBoxHomeNumber.Name = "textBoxHomeNumber";
-            this.textBoxHomeNumber.Size = new System.Drawing.Size(292, 27);
-            this.textBoxHomeNumber.TabIndex = 13;
+            this.textBoxApartmentNumber.Location = new System.Drawing.Point(142, 346);
+            this.textBoxApartmentNumber.Name = "textBoxApartmentNumber";
+            this.textBoxApartmentNumber.Size = new System.Drawing.Size(292, 27);
+            this.textBoxApartmentNumber.TabIndex = 13;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(62, 369);
+            this.buttonSave.Location = new System.Drawing.Point(72, 407);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(132, 39);
             this.buttonSave.TabIndex = 14;
@@ -180,7 +182,7 @@
             // 
             // buttonBack
             // 
-            this.buttonBack.Location = new System.Drawing.Point(258, 369);
+            this.buttonBack.Location = new System.Drawing.Point(268, 407);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(132, 39);
             this.buttonBack.TabIndex = 15;
@@ -198,32 +200,50 @@
             // labelStorePlaceWorkersCount
             // 
             this.labelStorePlaceWorkersCount.AutoSize = true;
-            this.labelStorePlaceWorkersCount.Location = new System.Drawing.Point(19, 152);
+            this.labelStorePlaceWorkersCount.Location = new System.Drawing.Point(25, 152);
             this.labelStorePlaceWorkersCount.Name = "labelStorePlaceWorkersCount";
             this.labelStorePlaceWorkersCount.Size = new System.Drawing.Size(131, 20);
             this.labelStorePlaceWorkersCount.TabIndex = 17;
             this.labelStorePlaceWorkersCount.Text = "Ilość pracowników";
             // 
+            // labelApartmentNumber
+            // 
+            this.labelApartmentNumber.AutoSize = true;
+            this.labelApartmentNumber.Location = new System.Drawing.Point(25, 349);
+            this.labelApartmentNumber.Name = "labelApartmentNumber";
+            this.labelApartmentNumber.Size = new System.Drawing.Size(97, 20);
+            this.labelApartmentNumber.TabIndex = 18;
+            this.labelApartmentNumber.Text = "Numer domu";
+            // 
+            // textBoxHomeNumber
+            // 
+            this.textBoxHomeNumber.Location = new System.Drawing.Point(142, 313);
+            this.textBoxHomeNumber.Name = "textBoxHomeNumber";
+            this.textBoxHomeNumber.Size = new System.Drawing.Size(292, 27);
+            this.textBoxHomeNumber.TabIndex = 19;
+            // 
             // StorePlaceAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 435);
-            this.Controls.Add(this.textBoxStorePlaceName);
-            this.Controls.Add(this.comboBoxStorePlaceType);
-            this.Controls.Add(this.textBoxWarehouseManagerName);
-            this.Controls.Add(this.textBoxHomeNumber);
-            this.Controls.Add(this.textBoxStreet);
-            this.Controls.Add(this.textBoxPostCode);
-            this.Controls.Add(this.textBoxCity);
-            this.Controls.Add(this.counterStorePlaceWorkersCount);
+            this.ClientSize = new System.Drawing.Size(476, 473);
             this.Controls.Add(this.labelStorePlaceWorkersCount);
+            this.Controls.Add(this.labelApartmentNumber);
             this.Controls.Add(this.labelHomeNumber);
             this.Controls.Add(this.labelStreet);
             this.Controls.Add(this.labelPostCode);
             this.Controls.Add(this.labelAdressCity);
-            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.textBoxApartmentNumber);
+            this.Controls.Add(this.textBoxHomeNumber);
             this.Controls.Add(this.buttonBack);
+            this.Controls.Add(this.textBoxStorePlaceName);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.comboBoxStorePlaceType);
+            this.Controls.Add(this.textBoxWarehouseManagerName);
+            this.Controls.Add(this.textBoxStreet);
+            this.Controls.Add(this.textBoxPostCode);
+            this.Controls.Add(this.textBoxCity);
+            this.Controls.Add(this.counterStorePlaceWorkersCount);
             this.Controls.Add(this.labelStorePlaceManager);
             this.Controls.Add(this.labelStorePlaceType);
             this.Controls.Add(this.labelStorePlaceName);
@@ -254,10 +274,12 @@
         private System.Windows.Forms.TextBox textBoxCity;
         private System.Windows.Forms.TextBox textBoxPostCode;
         private System.Windows.Forms.TextBox textBoxStreet;
-        private System.Windows.Forms.TextBox textBoxHomeNumber;
+        private System.Windows.Forms.TextBox textBoxApartmentNumber;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.NumericUpDown counterStorePlaceWorkersCount;
         private System.Windows.Forms.Label labelStorePlaceWorkersCount;
+        private System.Windows.Forms.Label labelApartmentNumber;
+        private System.Windows.Forms.TextBox textBoxHomeNumber;
     }
 }

@@ -11,5 +11,6 @@ namespace Api.Managers
         public StorePlace GetById(int id);
         public StorePlace GetByIdWithAddress(int id);
         public List<StorePlace> GetAll();
+        public int SaveChanges();
     }
 }

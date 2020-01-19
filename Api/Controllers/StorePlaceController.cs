@@ -168,7 +168,7 @@ namespace Api.Controllers
         {
             try
             {
-                _storePlaceService.UpdateStoreplace(storeplace);
+                _storePlaceService.ModifyStorePlace(storeplace);
                 return true;
             }
             catch

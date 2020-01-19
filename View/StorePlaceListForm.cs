@@ -34,7 +34,7 @@ namespace View
         private void SynchronizeStorePlaces()
         {
             _storePlacesDTO = _storePlaceController.GetAllStorePlaces();
-            listStorePlace.Clear();
+            listStorePlace.Items.Clear();
 
             switch(_storePlacesDTO.Status)
             {
@@ -68,7 +68,7 @@ namespace View
                         {
                             sp.Id.ToString(),
                             sp.Name.ToString(),
-                            sp.GetType().ToString()
+                            sp.Type == 0 ? "Magazyn" : "Punkt wysyłki"
                         };
 
                         listStorePlace.Items.Add(new ListViewItem(storePlaceInfo));
@@ -118,9 +118,8 @@ namespace View
 
         private void listStorePlace_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            var isStorePlaceSelected = listStorePlace.SelectedItems.Count == 0;
+            var isStorePlaceSelected = listStorePlace.SelectedItems.Count == 1;
 
-            addButton.Enabled = isStorePlaceSelected;
             editButton.Enabled = isStorePlaceSelected;
             removeButton.Enabled = isStorePlaceSelected;
         }

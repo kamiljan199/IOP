@@ -14,5 +14,6 @@ namespace Api.Services
         public void RemoveStoreplace(int id);
         public List<StorePlace> GetAll();
         public List<Parcel> GetCouriersParcels(StorePlace storePlace, int courierId);
+        public void ModifyStorePlace(StorePlace storePlace);
     }
 }

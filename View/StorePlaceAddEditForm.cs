@@ -41,7 +41,8 @@ namespace View
                 textBoxCity.Text = storePlace.Address.City;
                 textBoxPostCode.Text = storePlace.Address.PostCode;
                 textBoxStreet.Text = storePlace.Address.Street;
-                textBoxHomeNumber.Text = storePlace.Address.ApartmentNumber.ToString();
+                textBoxHomeNumber.Text = storePlace.Address.HomeNumber;
+                textBoxApartmentNumber.Text = storePlace.Address.ApartmentNumber.ToString();
             }
 
             switch(storePlace.Type)
@@ -53,7 +54,6 @@ namespace View
                     
                     comboBoxStorePlaceType.SelectedIndex = 0;
 
-                    labelStorePlaceManager.Text = "Menadżer";
                     counterStorePlaceWorkersCount.Enabled = false;
                     textBoxWarehouseManagerName.Enabled = true;
 
@@ -68,7 +68,8 @@ namespace View
 
                     var sendingPoint = storePlace as SendingPoint;
 
-                    labelStorePlaceManager.Text = "Ilość pracowników";
+                    comboBoxStorePlaceType.SelectedIndex = 1;
+
                     textBoxWarehouseManagerName.Enabled = false;
                     counterStorePlaceWorkersCount.Enabled = true;
                     counterStorePlaceWorkersCount.Value = sendingPoint.WorkersCount;
@@ -97,6 +98,10 @@ namespace View
                     {
                         (control as ComboBox).SelectedIndex = -1;
                     }
+                    else if(control is NumericUpDown)
+                    {
+                        (control as NumericUpDown).Value = 0;
+                    }
                     else
                     {
                         func(control.Controls);
@@ -119,7 +124,10 @@ namespace View
                 City = textBoxCity.Text,
                 PostCode = textBoxPostCode.Text,
                 Street = textBoxStreet.Text,
-                ApartmentNumber = Int32.Parse(textBoxHomeNumber.Text)
+                HomeNumber = textBoxHomeNumber.Text,
+                ApartmentNumber = Int32.Parse(textBoxApartmentNumber.Text)
+
+                // TODO: String HomeNumber needs to be filled too
             };
 
             switch(comboBoxStorePlaceType.SelectedIndex)
@@ -154,6 +162,8 @@ namespace View
             else
             {
                 editedStorePlace.Id = storePlace.Id;
+                editedStorePlace.AddressId = storePlace.AddressId;
+                editedStorePlace.Address.Id = storePlace.AddressId;
                 _storePlaceController.UpdateStoreplace(editedStorePlace);
             }
 

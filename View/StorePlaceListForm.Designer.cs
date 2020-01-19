@@ -76,7 +76,8 @@
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(24, 408);
+            this.editButton.Enabled = false;
+            this.editButton.Location = new System.Drawing.Point(152, 408);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(130, 30);
             this.editButton.TabIndex = 1;
@@ -86,7 +87,7 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(160, 408);
+            this.addButton.Location = new System.Drawing.Point(11, 408);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(122, 30);
             this.addButton.TabIndex = 2;
@@ -96,6 +97,7 @@
             // 
             // removeButton
             // 
+            this.removeButton.Enabled = false;
             this.removeButton.Location = new System.Drawing.Point(288, 408);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(122, 30);
@@ -119,10 +121,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.removeButton);
-            this.Controls.Add(this.addButton);
-            this.Controls.Add(this.backButton);
             this.Controls.Add(this.editButton);
+            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.removeButton);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.listStorePlace);
             this.Name = "StorePlaceListForm";
             this.Text = "StorePlaceListForm";

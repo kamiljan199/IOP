@@ -111,5 +111,36 @@ namespace Api.Services
                 throw new Exception("Databse wasn't changed");
             }
         }
+
+        public void ModifyStorePlace(StorePlace editStorePlace)
+        {
+            var storePlace = _storePlaceManager.GetByIdWithAddress(editStorePlace.Id);
+            if(storePlace == default(StorePlace))
+            {
+                throw new Exception($"Something while editing store place { editStorePlace.Id }.");
+            }
+
+            storePlace.Name = editStorePlace.Name;
+            storePlace.Type = editStorePlace.Type;
+
+            switch(editStorePlace.Type)
+            {
+                case 0:
+                    (storePlace as Warehouse).ManagerName = (editStorePlace as Warehouse).ManagerName;
+                    break;
+
+                case 1:
+                    (storePlace as SendingPoint).WorkersCount = (editStorePlace as SendingPoint).WorkersCount;
+                    break;
+            }
+
+            storePlace.Address.City = editStorePlace.Address.City;
+            storePlace.Address.Street = editStorePlace.Address.Street;
+            storePlace.Address.PostCode = editStorePlace.Address.PostCode;
+            storePlace.Address.HomeNumber = editStorePlace.Address.HomeNumber;
+            storePlace.Address.ApartmentNumber = editStorePlace.Address.ApartmentNumber;
+
+            _storePlaceManager.SaveChanges();
+        }
     }
 }
