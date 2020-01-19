@@ -15,6 +15,11 @@ namespace Data.Configurations
                     entity
                         .Property(e => e.Id)
                         .ValueGeneratedOnAdd();
+                    entity
+                        .HasDiscriminator<int>(e => e.Type)
+                        .HasValue<Warehouse>(0)
+                        .HasValue<SendingPoint>(1)
+                        .HasValue<StorePlace>(2);
                 });
         }
 

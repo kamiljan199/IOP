@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class EmploeesAndStorePlacesSeeder : Migration
+    public partial class StorePlaceManagementRequirements : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,6 +23,10 @@ namespace Data.Migrations
                 name: "FK_StorePlaces_Addresses_AddressId",
                 table: "StorePlaces");
 
+            migrationBuilder.DropColumn(
+                name: "Discriminator",
+                table: "StorePlaces");
+
             migrationBuilder.AlterColumn<int>(
                 name: "AddressId",
                 table: "StorePlaces",
@@ -30,6 +34,12 @@ namespace Data.Migrations
                 oldClrType: typeof(int),
                 oldType: "int",
                 oldNullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "Type",
+                table: "StorePlaces",
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.AlterColumn<int>(
                 name: "VehicleId",
@@ -80,21 +90,17 @@ namespace Data.Migrations
             migrationBuilder.InsertData(
                 table: "Employments",
                 columns: new[] { "Id", "EmployeeId", "EndDate", "IsActive", "PositionId", "Salary", "StartDate", "StorePlaceId" },
-                values: new object[,]
-                {
-                    { 2, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 2, 950f, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 4, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 4, 2800f, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
-                });
+                values: new object[] { 2, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 2, 950f, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null });
 
             migrationBuilder.InsertData(
                 table: "StorePlaces",
-                columns: new[] { "Id", "AddressId", "Discriminator", "Name", "ManagerName" },
-                values: new object[] { 1, 1, "Warehouse", "Magazyn", "Tak" });
+                columns: new[] { "Id", "AddressId", "Name", "Type", "WorkersCount" },
+                values: new object[] { 2, 2, "Magazyn", 1, 2 });
 
             migrationBuilder.InsertData(
                 table: "StorePlaces",
-                columns: new[] { "Id", "AddressId", "Discriminator", "Name", "WorkersCount" },
-                values: new object[] { 2, 2, "SendingPoint", "Magazyn", 2 });
+                columns: new[] { "Id", "AddressId", "Name", "Type", "ManagerName" },
+                values: new object[] { 1, 1, "Magazyn", 0, "Tak" });
 
             migrationBuilder.InsertData(
                 table: "Employments",
@@ -102,6 +108,7 @@ namespace Data.Migrations
                 values: new object[,]
                 {
                     { 3, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 3, 1600f, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 4, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 4, 2800f, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
                     { 5, 5, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 5, 1750f, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
                     { 6, 6, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 6, 1300f, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
                     { 7, 7, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 3, 1700f, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 }
@@ -238,12 +245,23 @@ namespace Data.Migrations
                 keyColumn: "Id",
                 keyValue: 2);
 
+            migrationBuilder.DropColumn(
+                name: "Type",
+                table: "StorePlaces");
+
             migrationBuilder.AlterColumn<int>(
                 name: "AddressId",
                 table: "StorePlaces",
                 type: "int",
                 nullable: true,
                 oldClrType: typeof(int));
+
+            migrationBuilder.AddColumn<string>(
+                name: "Discriminator",
+                table: "StorePlaces",
+                type: "longtext CHARACTER SET utf8mb4",
+                nullable: false,
+                defaultValue: "");
 
             migrationBuilder.AlterColumn<int>(
                 name: "VehicleId",

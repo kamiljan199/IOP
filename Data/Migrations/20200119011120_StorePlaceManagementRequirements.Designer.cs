@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200118232333_LogisticWarehouseId")]
-    partial class LogisticWarehouseId
+    [Migration("20200119011120_StorePlaceManagementRequirements")]
+    partial class StorePlaceManagementRequirements
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -495,12 +495,11 @@ namespace Data.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -508,7 +507,7 @@ namespace Data.Migrations
 
                     b.ToTable("StorePlaces");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("StorePlace");
+                    b.HasDiscriminator<int>("Type").HasValue(2);
                 });
 
             modelBuilder.Entity("Model.Models.Vehicle", b =>
@@ -552,7 +551,7 @@ namespace Data.Migrations
                     b.Property<int>("WorkersCount")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("SendingPoint");
+                    b.HasDiscriminator().HasValue(1);
 
                     b.HasData(
                         new
@@ -560,6 +559,7 @@ namespace Data.Migrations
                             Id = 2,
                             AddressId = 2,
                             Name = "Magazyn",
+                            Type = 0,
                             WorkersCount = 2
                         });
                 });
@@ -572,7 +572,7 @@ namespace Data.Migrations
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
-                    b.HasDiscriminator().HasValue("Warehouse");
+                    b.HasDiscriminator().HasValue(0);
 
                     b.HasData(
                         new
@@ -580,6 +580,7 @@ namespace Data.Migrations
                             Id = 1,
                             AddressId = 1,
                             Name = "Magazyn",
+                            Type = 0,
                             ManagerName = "Tak"
                         });
                 });

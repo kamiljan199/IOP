@@ -67,8 +67,20 @@
     <Compile Remove="Migrations\20200116214710_HrVehicleEmploymentUpdate.Designer.cs" />
     <Compile Remove="Migrations\20200118000556_HrSeedData.cs" />
     <Compile Remove="Migrations\20200118000556_HrSeedData.Designer.cs" />
+    <Compile Remove="Migrations\20200118133045_StorePlace_AddedRelatedAddressVirtual.cs" />
+    <Compile Remove="Migrations\20200118133045_StorePlace_AddedRelatedAddressVirtual.Designer.cs" />
+    <Compile Remove="Migrations\20200118175956_AddingTypeDiscriminatorToStorePlace.cs" />
+    <Compile Remove="Migrations\20200118175956_AddingTypeDiscriminatorToStorePlace.Designer.cs" />
     <Compile Remove="Migrations\20200118231010_emploees and storeplaces seeded.cs" />
     <Compile Remove="Migrations\20200118231010_emploees and storeplaces seeded.Designer.cs" />
+    <Compile Remove="Migrations\20200118231717_EmploeesAndStorePlacesSeeder.cs" />
+    <Compile Remove="Migrations\20200118231717_EmploeesAndStorePlacesSeeder.Designer.cs" />
+    <Compile Remove="Migrations\20200118232333_LogisticWarehouseId.cs" />
+    <Compile Remove="Migrations\20200118232333_LogisticWarehouseId.Designer.cs" />
+    <Compile Remove="Migrations\20200119010704_StorePlaceManagementRequirements.cs" />
+    <Compile Remove="Migrations\20200119010704_StorePlaceManagementRequirements.Designer.cs" />
+    <Compile Remove="Migrations\20200119010815_StorePlaceManagementRequirements.cs" />
+    <Compile Remove="Migrations\20200119010815_StorePlaceManagementRequirements.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
