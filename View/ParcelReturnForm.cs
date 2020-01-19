@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace View
 {
-    public partial class RegisterParcelForm : Form
+    public partial class ParcelReturnForm : Form
     {
-        public RegisterParcelForm()
+        public ParcelReturnForm()
         {
             InitializeComponent();
         }

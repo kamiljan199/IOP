@@ -32,6 +32,11 @@ namespace View
             SendData();
         }
 
+        private void UpdateParcelType(object sender, EventArgs e)
+        {
+            Console.WriteLine("Updated type");
+        }
+
         private void SendData()
         {
             Parcel parcelToAdd = new Parcel
@@ -46,24 +51,127 @@ namespace View
 
         private bool ValidateData()
         {
+            bool isValid = true;
             // First / Last name validity
-            Regex nameRegex = new Regex(@"\w");
 
-            if (!nameRegex.IsMatch(senderFirstNameTextBox.Text))
+            if (!CheckNameValidity(senderFirstNameTextBox))
+                isValid = false;
+
+            if (!CheckNameValidity(senderLastNameTextBox))
+                isValid = false;
+
+            if (!CheckNameValidity(recieverFirstNameTextBox))
+                isValid = false;
+
+            if (!CheckNameValidity(recieverLastNameTextBox))
+                isValid = false;
+
+            if (!CheckPhoneNumberValidity(senderPhoneNumberTextBox))
+                isValid = false;
+
+            if (!CheckPhoneNumberValidity(recieverPhoneNumberTextBox))
+                isValid = false;
+
+            if (!CheckNameValidity(senderCityTextBox))
+                isValid = false;
+
+            if (!CheckNameValidity(recieverCityTextBox))
+                isValid = false;
+
+            if (!CheckNameValidity(senderStreetTextBox))
+                isValid = false;
+
+            if (!CheckNameValidity(recieverStreetTextBox))
+                isValid = false;
+
+            if (!CheckPostalCodeValidity(senderPostalCodeTextBox))
+                isValid = false;
+
+            if (!CheckPostalCodeValidity(recieverPostalCodeTextBox))
+                isValid = false;
+
+            if (!CheckHouseNumberValidity(senderHouseNumberTextBox))
+                isValid = false;
+
+            if (!CheckHouseNumberValidity(recieverHouseNumberTextBox))
+                isValid = false;
+
+            if (!CheckHouseNumberValidity(senderApartmentNumberTextBox))
+                isValid = false;
+
+            if (!CheckHouseNumberValidity(recieverApartmentNumberTextBox))
+                isValid = false;
+
+            return isValid;
+        }
+
+        private bool CheckNameValidity(TextBox textBox)
+        {
+            Regex nameRegex = new Regex(@"[^A-ZĄŻŹĆĘŁŃÓa-zążźćęłóń]+");
+            if (nameRegex.IsMatch(textBox.Text) || textBox.Text.Length <= 0)
             {
-                senderFirstNameTextBox.BackColor = Color.Red;
-                senderFirstNameTextBox.ForeColor = Color.White;
+                textBox.BackColor = Color.Red;
+                textBox.ForeColor = Color.White;
                 return false;
             }
             else
             {
-                senderFirstNameTextBox.BackColor = Color.White;
-                senderFirstNameTextBox.ForeColor = Color.Black;
+                textBox.BackColor = Color.White;
+                textBox.ForeColor = Color.Black;
+                return true;
+            }
+        }
+
+        private bool CheckPhoneNumberValidity(TextBox textBox)
+        {
+            Regex phoneRegex = new Regex(@"[^0-9]+");
+            if (phoneRegex.IsMatch(textBox.Text) || textBox.Text.Length <= 0 || textBox.Text.Length > 9)
+            {
+                textBox.BackColor = Color.Red;
+                textBox.ForeColor = Color.White;
+                return false;
+            }
+            else
+            {
+                textBox.BackColor = Color.White;
+                textBox.ForeColor = Color.Black;
+                return true;
+            }
+        }
+
+        private bool CheckPostalCodeValidity(TextBox textBox)
+        {
+            Regex postalRegex = new Regex(@"\d{2}-\d{3}");
+            if (!postalRegex.IsMatch(textBox.Text))
+            {
+                textBox.BackColor = Color.Red;
+                textBox.ForeColor = Color.White;
+                return false;
+            }
+            else
+            {
+                textBox.BackColor = Color.White;
+                textBox.ForeColor = Color.Black;
+                return true;
             }
 
+        }
 
-
-            return true;
+        private bool CheckHouseNumberValidity(TextBox textBox)
+        {
+            Regex numberRegex = new Regex(@"\w+");
+            if (!numberRegex.IsMatch(textBox.Text))
+            {
+                textBox.BackColor = Color.Red;
+                textBox.ForeColor = Color.White;
+                return false;
+            }
+            else
+            {
+                textBox.BackColor = Color.White;
+                textBox.ForeColor = Color.Black;
+                return true;
+            }
         }
     };
 }

@@ -35,7 +35,7 @@
             this.senderFirstNameTextBox = new System.Windows.Forms.TextBox();
             this.senderLastNameTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.phoneNumberTextBox = new System.Windows.Forms.TextBox();
+            this.senderPhoneNumberTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.senderCityTextBox = new System.Windows.Forms.TextBox();
@@ -74,12 +74,12 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.parcelDimensionsYTextBox = new System.Windows.Forms.TextBox();
-            this.parcelPriorityTextBox = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.parcelDimensionsZTextBox = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -146,12 +146,12 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Last name";
             // 
-            // phoneNumberTextBox
+            // senderPhoneNumberTextBox
             // 
-            this.phoneNumberTextBox.Location = new System.Drawing.Point(144, 157);
-            this.phoneNumberTextBox.Name = "phoneNumberTextBox";
-            this.phoneNumberTextBox.Size = new System.Drawing.Size(169, 23);
-            this.phoneNumberTextBox.TabIndex = 3;
+            this.senderPhoneNumberTextBox.Location = new System.Drawing.Point(144, 157);
+            this.senderPhoneNumberTextBox.Name = "senderPhoneNumberTextBox";
+            this.senderPhoneNumberTextBox.Size = new System.Drawing.Size(169, 23);
+            this.senderPhoneNumberTextBox.TabIndex = 3;
             // 
             // label6
             // 
@@ -485,13 +485,6 @@
             this.parcelDimensionsYTextBox.Size = new System.Drawing.Size(139, 23);
             this.parcelDimensionsYTextBox.TabIndex = 3;
             // 
-            // parcelPriorityTextBox
-            // 
-            this.parcelPriorityTextBox.Location = new System.Drawing.Point(120, 423);
-            this.parcelPriorityTextBox.Name = "parcelPriorityTextBox";
-            this.parcelPriorityTextBox.Size = new System.Drawing.Size(193, 23);
-            this.parcelPriorityTextBox.TabIndex = 3;
-            // 
             // textBox17
             // 
             this.textBox17.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -523,6 +516,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Add parcel";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.OnParcelAddClick);
             // 
             // label29
             // 
@@ -541,11 +535,26 @@
             this.parcelDimensionsZTextBox.Size = new System.Drawing.Size(139, 23);
             this.parcelDimensionsZTextBox.TabIndex = 3;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Regular",
+            "Registered",
+            "Express"});
+            this.comboBox1.Location = new System.Drawing.Point(120, 423);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(193, 23);
+            this.comboBox1.TabIndex = 5;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.UpdateParcelType);
+            // 
             // ParcelRegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 583);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.parcelDimensionsXTextBox);
             this.Controls.Add(this.label27);
@@ -555,7 +564,6 @@
             this.Controls.Add(this.parcelDimensionsZTextBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.parcelPriorityTextBox);
             this.Controls.Add(this.textBox17);
             this.Controls.Add(this.parcelWeightTextBox);
             this.Controls.Add(this.label25);
@@ -592,7 +600,7 @@
             this.Controls.Add(this.senderCityTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.phoneNumberTextBox);
+            this.Controls.Add(this.senderPhoneNumberTextBox);
             this.Controls.Add(this.senderFirstNameTextBox);
             this.Controls.Add(this.senderLastNameTextBox);
             this.Controls.Add(this.label4);
@@ -615,7 +623,7 @@
         private System.Windows.Forms.TextBox senderFirstNameTextBox;
         private System.Windows.Forms.TextBox senderLastNameTextBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox phoneNumberTextBox;
+        private System.Windows.Forms.TextBox senderPhoneNumberTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox senderCityTextBox;
@@ -654,11 +662,11 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox parcelDimensionsYTextBox;
-        private System.Windows.Forms.TextBox parcelPriorityTextBox;
         private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox parcelDimensionsZTextBox;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

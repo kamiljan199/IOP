@@ -20,11 +20,11 @@ namespace View
         private readonly HrForm _hrForm;
         private readonly WarehouseForm _warehouseForm;
         private readonly StorePlaceListForm _storePlaceListForm;
-        private readonly RegisterParcelForm _registerParcelForm;
+        private readonly ParcelRegistrationForm _parcelRegistrationForm;
         public LoginForm _loginForm;
 
         public ModuleChoiceForm(EmployeeController employeeController, CourierForm courierForm, LogisticsForm logisticsForm,
-            HrForm hrForm, WarehouseForm warehouseForm, StorePlaceListForm storePlaceListForm, RegisterParcelForm registerParcelForm)
+            HrForm hrForm, WarehouseForm warehouseForm, StorePlaceListForm storePlaceListForm, ParcelRegistrationForm parcelRegistrationForm)
         {
             _employeeController = employeeController;
             _courierForm = courierForm;
@@ -32,13 +32,13 @@ namespace View
             _hrForm = hrForm;
             _warehouseForm = warehouseForm;
             _storePlaceListForm = storePlaceListForm;
-            _registerParcelForm = registerParcelForm;
+            _parcelRegistrationForm = parcelRegistrationForm;
             InitializeComponent();
         }   
 
         private void ButtonOpenPostingWindow_Click(object sender, EventArgs e)
         {
-            _registerParcelForm.ShowDialog();
+            _parcelRegistrationForm.ShowDialog();
         }
 
         private void ButtonOpenWarehouseWindow_Click(object sender, EventArgs e)
