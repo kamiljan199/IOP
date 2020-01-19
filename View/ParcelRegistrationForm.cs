@@ -19,6 +19,7 @@ namespace View
         {
             _parcelController = parcelController;
             InitializeComponent();
+            Console.WriteLine(parcelPriorityComboBox.SelectedIndex);
         }
 
         private void ParcelRegistrationForm_Load(object sender, EventArgs e)
@@ -34,7 +35,65 @@ namespace View
 
         private void UpdateParcelType(object sender, EventArgs e)
         {
-            Console.WriteLine("Updated type");
+            bool isValid = true;
+
+            if (parcelPriorityComboBox.SelectedIndex == -1)
+                isValid = false;
+
+            double parcelWeight;
+            if (!double.TryParse(parcelWeightTextBox.Text, out parcelWeight))
+                isValid = false;
+
+            float x, y, z;
+
+            if (!float.TryParse(parcelDimensionsXTextBox.Text, out x))
+                isValid = false;
+            if (!float.TryParse(parcelDimensionsYTextBox.Text, out y))
+                isValid = false;
+            if (!float.TryParse(parcelDimensionsZTextBox.Text, out z))
+                isValid = false;
+
+            if (isValid)
+            {
+                string type = _parcelController.GetParcelType(parcelWeight, x, y, z);
+
+                parcelTypeBox.Text = type;
+
+                if (type == "A")
+                    parcelTypeBox.BackColor = Color.Green;
+                else if (type == "B")
+                    parcelTypeBox.BackColor = Color.Orange;
+                else if (type == "C")
+                    parcelTypeBox.BackColor = Color.Blue;
+                else if (type == "None")
+                    parcelTypeBox.BackColor = Color.Red;
+                else
+                    parcelTypeBox.BackColor = Color.Gray;
+
+                parcelPriorityComboBox.BackColor = Color.White;
+                parcelPriorityComboBox.ForeColor = Color.Black;
+                parcelWeightTextBox.BackColor = Color.White;
+                parcelWeightTextBox.ForeColor = Color.Black;
+                parcelDimensionsXTextBox.BackColor = Color.White;
+                parcelDimensionsXTextBox.ForeColor = Color.Black;
+                parcelDimensionsYTextBox.BackColor = Color.White;
+                parcelDimensionsYTextBox.ForeColor = Color.Black;
+                parcelDimensionsZTextBox.BackColor = Color.White;
+                parcelDimensionsZTextBox.ForeColor = Color.Black;
+            }
+            else
+            {
+                parcelPriorityComboBox.BackColor = Color.Red;
+                parcelPriorityComboBox.ForeColor = Color.White;
+                parcelWeightTextBox.BackColor = Color.Red;
+                parcelWeightTextBox.ForeColor = Color.White;
+                parcelDimensionsXTextBox.BackColor = Color.Red;
+                parcelDimensionsXTextBox.ForeColor = Color.White;
+                parcelDimensionsYTextBox.BackColor = Color.Red;
+                parcelDimensionsYTextBox.ForeColor = Color.White;
+                parcelDimensionsZTextBox.BackColor = Color.Red;
+                parcelDimensionsZTextBox.ForeColor = Color.White;
+            }
         }
 
         private void SendData()

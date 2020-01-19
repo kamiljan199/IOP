@@ -74,12 +74,12 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.parcelDimensionsYTextBox = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.parcelTypeBox = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.parcelDimensionsZTextBox = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.parcelPriorityComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -430,6 +430,7 @@
             this.parcelWeightTextBox.Name = "parcelWeightTextBox";
             this.parcelWeightTextBox.Size = new System.Drawing.Size(193, 23);
             this.parcelWeightTextBox.TabIndex = 3;
+            this.parcelWeightTextBox.TextChanged += new System.EventHandler(this.UpdateParcelType);
             // 
             // label25
             // 
@@ -447,6 +448,7 @@
             this.parcelDimensionsXTextBox.Name = "parcelDimensionsXTextBox";
             this.parcelDimensionsXTextBox.Size = new System.Drawing.Size(139, 23);
             this.parcelDimensionsXTextBox.TabIndex = 3;
+            this.parcelDimensionsXTextBox.TextChanged += new System.EventHandler(this.UpdateParcelType);
             // 
             // label26
             // 
@@ -484,18 +486,19 @@
             this.parcelDimensionsYTextBox.Name = "parcelDimensionsYTextBox";
             this.parcelDimensionsYTextBox.Size = new System.Drawing.Size(139, 23);
             this.parcelDimensionsYTextBox.TabIndex = 3;
+            this.parcelDimensionsYTextBox.TextChanged += new System.EventHandler(this.UpdateParcelType);
             // 
-            // textBox17
+            // parcelTypeBox
             // 
-            this.textBox17.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.textBox17.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox17.Location = new System.Drawing.Point(120, 481);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.ReadOnly = true;
-            this.textBox17.Size = new System.Drawing.Size(193, 23);
-            this.textBox17.TabIndex = 3;
-            this.textBox17.Text = "Type";
-            this.textBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.parcelTypeBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.parcelTypeBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.parcelTypeBox.Location = new System.Drawing.Point(120, 481);
+            this.parcelTypeBox.Name = "parcelTypeBox";
+            this.parcelTypeBox.ReadOnly = true;
+            this.parcelTypeBox.Size = new System.Drawing.Size(193, 23);
+            this.parcelTypeBox.TabIndex = 3;
+            this.parcelTypeBox.Text = "Type";
+            this.parcelTypeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label24
             // 
@@ -534,27 +537,28 @@
             this.parcelDimensionsZTextBox.Name = "parcelDimensionsZTextBox";
             this.parcelDimensionsZTextBox.Size = new System.Drawing.Size(139, 23);
             this.parcelDimensionsZTextBox.TabIndex = 3;
+            this.parcelDimensionsZTextBox.TextChanged += new System.EventHandler(this.UpdateParcelType);
             // 
-            // comboBox1
+            // parcelPriorityComboBox
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.parcelPriorityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.parcelPriorityComboBox.FormattingEnabled = true;
+            this.parcelPriorityComboBox.Items.AddRange(new object[] {
             "Regular",
             "Registered",
             "Express"});
-            this.comboBox1.Location = new System.Drawing.Point(120, 423);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(193, 23);
-            this.comboBox1.TabIndex = 5;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.UpdateParcelType);
+            this.parcelPriorityComboBox.Location = new System.Drawing.Point(120, 423);
+            this.parcelPriorityComboBox.Name = "parcelPriorityComboBox";
+            this.parcelPriorityComboBox.Size = new System.Drawing.Size(193, 23);
+            this.parcelPriorityComboBox.TabIndex = 5;
+            this.parcelPriorityComboBox.SelectedIndexChanged += new System.EventHandler(this.UpdateParcelType);
             // 
             // ParcelRegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 583);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.parcelPriorityComboBox);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.parcelDimensionsXTextBox);
             this.Controls.Add(this.label27);
@@ -564,7 +568,7 @@
             this.Controls.Add(this.parcelDimensionsZTextBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.textBox17);
+            this.Controls.Add(this.parcelTypeBox);
             this.Controls.Add(this.parcelWeightTextBox);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label22);
@@ -662,11 +666,11 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox parcelDimensionsYTextBox;
-        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.TextBox parcelTypeBox;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox parcelDimensionsZTextBox;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox parcelPriorityComboBox;
     }
 }
