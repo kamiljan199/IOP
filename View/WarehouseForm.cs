@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Api.Controllers;
 using Model.Models;
+using Api.DTOs;
 
 namespace View
 {
@@ -20,13 +21,20 @@ namespace View
 
         private Dictionary<Vehicle, List<ListViewItem>> vehiclesCargoDictionary;
 
-        public WarehouseForm(EmployeeController employeeController, SortController sortController)
+        private readonly StorePlaceController _storePlaceController;
+        private StorePlacesDTO _storePlacesDTO;
+        private readonly ParcelController _parcelController;
+
+        public WarehouseForm(EmployeeController employeeController, SortController sortController,
+            StorePlaceController storePlaceController, ParcelController parcelController)
         {
             _employeeController = employeeController;
             _sortController = sortController;
             vehiclesCargoDictionary = new Dictionary<Vehicle, List<ListViewItem>>();
             _availableVehicles = new List<Vehicle>();
             _availableParcels = new List<ListViewItem>();
+            _storePlaceController = storePlaceController;
+            _parcelController = parcelController;
             InitializeComponent();
         }
 
@@ -37,70 +45,98 @@ namespace View
 
         private void WarehouseForm_Load(object sender, EventArgs e)
         {
-            if (_employeeController.GetLoggedEmployee() != null)
+            chooseStorePlaceCombobox.Items.Clear();
+            _storePlacesDTO = _storePlaceController.GetAllWarehouses();
+
+            if (_storePlacesDTO.Status == Api.Enums.CollectionGetStatus.Success)
             {
-                chooseVehicleTextbox.Text = "Id pracownika: " + _employeeController.GetLoggedEmployee().Id +
-                " Magazyn: " + "controller.getStorePlaceForEmployee(id).Id";
+                foreach (var storePlace in _storePlacesDTO.StorePlaces)
+                {
+                    string storePlaceInfo = storePlace.Id + " " + storePlace.Name;
+                    chooseStorePlaceCombobox.Items.Add(storePlaceInfo);
+                }
             }
 
-            string[] parcelInfo1 = { "1", "abc", "def" };
-            string[] parcelInfo2 = { "2", "def", "ghi" };
-
-            parcelsListView.Items.Add(new ListViewItem(parcelInfo1));
-            parcelsListView.Items.Add(new ListViewItem(parcelInfo2));
-
-            _availableParcels.Add(parcelsListView.Items[0]);
-            _availableParcels.Add(parcelsListView.Items[1]);
-
-            //StorePlace storePlace = employeeController.GetemployeesStorePlace(_employeeController.GetLoggedEmployee());
-            //List<Parcel> parcels = parcelController.GetParcelsByStorePlace(storePlace);
-
-            //foreach (var parcel in parcels)
+            ////foreach (var parcel in parcels)
+            ////{
+            ////    string[] parcelInfo = { parcel.Id.ToString(),
+            ////        parcel.SenderData.PersonalAddress.Street +", "+
+            ////        parcel.SenderData.PersonalAddress.ApartmentNumber+"/"+
+            ////        parcel.SenderData.PersonalAddress.HomeNumber + ", "+
+            ////        parcel.SenderData.PersonalAddress.PostCode+" "+
+            ////        parcel.SenderData.PersonalAddress.City,
+            ////    parcel.ReceiverData.PersonalAddress.Street +", "+
+            ////        parcel.ReceiverData.PersonalAddress.ApartmentNumber+"/"+
+            ////        parcel.ReceiverData.PersonalAddress.HomeNumber + ", "+
+            ////        parcel.ReceiverData.PersonalAddress.PostCode+" "+
+            ////        parcel.ReceiverData.PersonalAddress.City};
+            ////    parcelsListView.Items.Add(new ListViewItem(parcelInfo));
+            ////    _availableParcels.Add(parcelsListView.Items[parcelsListView.Items.Count-1]);
+            ////}
+            //if (_employeeController.GetLoggedEmployee() != null)
             //{
-            //    string[] parcelInfo = { parcel.Id.ToString(),
-            //        parcel.SenderData.PersonalAddress.Street +", "+
-            //        parcel.SenderData.PersonalAddress.ApartmentNumber+"/"+
-            //        parcel.SenderData.PersonalAddress.HomeNumber + ", "+
-            //        parcel.SenderData.PersonalAddress.PostCode+" "+
-            //        parcel.SenderData.PersonalAddress.City,
-            //    parcel.ReceiverData.PersonalAddress.Street +", "+
-            //        parcel.ReceiverData.PersonalAddress.ApartmentNumber+"/"+
-            //        parcel.ReceiverData.PersonalAddress.HomeNumber + ", "+
-            //        parcel.ReceiverData.PersonalAddress.PostCode+" "+
-            //        parcel.ReceiverData.PersonalAddress.City};
-            //    parcelsListView.Items.Add(new ListViewItem(parcelInfo));
-            //    _availableParcels.Add(parcelsListView.Items[parcelsListView.Items.Count-1]);
+            //    chooseVehicleTextbox.Text = "Id pracownika: " + _employeeController.GetLoggedEmployee().Id +
+            //    " Magazyn: " + "controller.getStorePlaceForEmployee(id).Id";
             //}
 
-            //load Vehicles to combobox
+            //string[] parcelInfo1 = { "1", "abc", "def" };
+            //string[] parcelInfo2 = { "2", "def", "ghi" };
 
-            //List<Vehicles> vechicles = _vehicleController.getVehiclesByStorePlace(controller.getStorePlaceForEmployee(id).Id);
+            //parcelsListView.Items.Add(new ListViewItem(parcelInfo1));
+            //parcelsListView.Items.Add(new ListViewItem(parcelInfo2));
 
-            _availableVehicles.Clear();
+            //_availableParcels.Add(parcelsListView.Items[0]);
+            //_availableParcels.Add(parcelsListView.Items[1]);
 
-            Vehicle v = new Vehicle();
-            v.Brand = "MAN";
-            v.Model = "TGX";
-            v.Registration = "EPD3G53";
+            ////StorePlace storePlace = employeeController.GetemployeesStorePlace(_employeeController.GetLoggedEmployee());
+            ////List<Parcel> parcels = parcelController.GetParcelsByStorePlace(storePlace);
 
-            Vehicle v1 = new Vehicle();
-            v1.Brand = "MAN";
-            v1.Model = "TGL";
-            v1.Registration = "EPD3G54";
+            ////foreach (var parcel in parcels)
+            ////{
+            ////    string[] parcelInfo = { parcel.Id.ToString(),
+            ////        parcel.SenderData.PersonalAddress.Street +", "+
+            ////        parcel.SenderData.PersonalAddress.ApartmentNumber+"/"+
+            ////        parcel.SenderData.PersonalAddress.HomeNumber + ", "+
+            ////        parcel.SenderData.PersonalAddress.PostCode+" "+
+            ////        parcel.SenderData.PersonalAddress.City,
+            ////    parcel.ReceiverData.PersonalAddress.Street +", "+
+            ////        parcel.ReceiverData.PersonalAddress.ApartmentNumber+"/"+
+            ////        parcel.ReceiverData.PersonalAddress.HomeNumber + ", "+
+            ////        parcel.ReceiverData.PersonalAddress.PostCode+" "+
+            ////        parcel.ReceiverData.PersonalAddress.City};
+            ////    parcelsListView.Items.Add(new ListViewItem(parcelInfo));
+            ////    _availableParcels.Add(parcelsListView.Items[parcelsListView.Items.Count-1]);
+            ////}
 
-            _availableVehicles.Add(v);
-            _availableVehicles.Add(v1);
+            ////load Vehicles to combobox
 
-            foreach (var vehicle in _availableVehicles)
-            {
-                string vehicleInfo = vehicle.Brand + " " + vehicle.Model;
-                chooseVehicleCombobox.Items.Add(vehicleInfo);
-            }
+            ////List<Vehicles> vechicles = _vehicleController.getVehiclesByStorePlace(controller.getStorePlaceForEmployee(id).Id);
 
-            if (_availableVehicles.Count != 0)
-            {
-                //chooseVehicleCombobox.SelectedItem = chooseVehicleCombobox.Items[0];
-            }
+            //_availableVehicles.Clear();
+
+            //Vehicle v = new Vehicle();
+            //v.Brand = "MAN";
+            //v.Model = "TGX";
+            //v.Registration = "EPD3G53";
+
+            //Vehicle v1 = new Vehicle();
+            //v1.Brand = "MAN";
+            //v1.Model = "TGL";
+            //v1.Registration = "EPD3G54";
+
+            //_availableVehicles.Add(v);
+            //_availableVehicles.Add(v1);
+
+            //foreach (var vehicle in _availableVehicles)
+            //{
+            //    string vehicleInfo = vehicle.Brand + " " + vehicle.Model;
+            //    chooseVehicleCombobox.Items.Add(vehicleInfo);
+            //}
+
+            //if (_availableVehicles.Count != 0)
+            //{
+            //    //chooseVehicleCombobox.SelectedItem = chooseVehicleCombobox.Items[0];
+            //}
         }
 
         private void ButtonSort_Click(object sender, EventArgs e)
@@ -140,6 +176,8 @@ namespace View
             List<Parcel> sortedParcels;
             sortedParcels = _sortController.Sort(parcels);
 
+            parcelsListView.Items.Clear();
+
             foreach (var parcel in sortedParcels)
             {
                 string[] parcelInfo = { parcel.Id.ToString(),
@@ -163,42 +201,82 @@ namespace View
             buttonPost.Enabled = parcelsListView.SelectedItems.Count > 0;
         }
 
-        private void ChooseVehicleCombobox_SelectedValueChanged(object sender, EventArgs e)
+        private void ChooseStorePlaceCombobox_SelectedValueChanged(object sender, EventArgs e)
         {
-            buttonLoad.Enabled = chooseVehicleCombobox.SelectedItem != null;
+            Parcel[] parcels = _parcelController.GetParcelsByStorePlace(
+                _storePlaceController.GetById(int.Parse(
+                    chooseStorePlaceCombobox.SelectedItem.ToString().
+                    Substring(0, chooseStorePlaceCombobox.SelectedItem.ToString().IndexOf(" ")))));
 
-            foreach (ListViewItem parcel in parcelsListView.Items)
+            parcelsListView.Items.Clear();
+
+            if (chooseStorePlaceCombobox.SelectedItem != null)
             {
-                parcel.Selected = false;
-
-                if (!_availableParcels.Contains(parcel))
+                foreach (var parcel in parcels)
                 {
-                    parcelsListView.Items.Remove(parcel);
+                    string[] parcelInfo = { parcel.Id.ToString(),
+                        parcel.SenderData.PersonalAddress.Street +", "+
+                        parcel.SenderData.PersonalAddress.ApartmentNumber+"/"+
+                        parcel.SenderData.PersonalAddress.HomeNumber + ", "+
+                        parcel.SenderData.PersonalAddress.PostCode+" "+
+                        parcel.SenderData.PersonalAddress.City,
+                    parcel.ReceiverData.PersonalAddress.Street +", "+
+                        parcel.ReceiverData.PersonalAddress.ApartmentNumber+"/"+
+                        parcel.ReceiverData.PersonalAddress.HomeNumber + ", "+
+                        parcel.ReceiverData.PersonalAddress.PostCode+" "+
+                        parcel.ReceiverData.PersonalAddress.City};
+                    parcelsListView.Items.Add(new ListViewItem(parcelInfo));
                 }
             }
 
-            if (chooseVehicleCombobox.SelectedItem != null && vehiclesCargoDictionary.ContainsKey(_availableVehicles[chooseVehicleCombobox.SelectedIndex]))
-            {
-                foreach (ListViewItem item in vehiclesCargoDictionary[_availableVehicles[chooseVehicleCombobox.SelectedIndex]])
-                {
-                    parcelsListView.Items.Add(item);
-                    item.Selected = true;
-                }
-            }
+            string[] parcelInfo1 = { "12",
+                        "test, "+
+                        "12/"+
+                        "12, ",
+                    "test"};
+                    parcelsListView.Items.Add(new ListViewItem(parcelInfo1));
 
-            //if (chooseVehicleCombobox.SelectedItem != null && vehiclesCargoDictionary.ContainsKey(_availableVehicles[chooseVehicleCombobox.SelectedIndex]))
+            string[] parcelInfo2 = { "12",
+                        "abc, "+
+                        "12/"+
+                        "12, ",
+                    "abc"};
+            parcelsListView.Items.Add(new ListViewItem(parcelInfo2));
+
+            //buttonLoad.Enabled = chooseStorePlaceCombobox.SelectedItem != null;
+
+            //foreach (ListViewItem parcel in parcelsListView.Items)
             //{
-            //    foreach(ListViewItem parcel in parcelsListView.Items)
+            //    parcel.Selected = false;
+
+            //    if (!_availableParcels.Contains(parcel))
             //    {
-            //        if (vehiclesCargoDictionary[_availableVehicles[chooseVehicleCombobox.SelectedIndex]].
-            //            Contains(parcel))
-            //        {
-            //            parcel.Selected = true;
-            //        }
+            //        parcelsListView.Items.Remove(parcel);
             //    }
             //}
 
-            parcelsListView.Select();
+            //if (chooseStorePlaceCombobox.SelectedItem != null && vehiclesCargoDictionary.ContainsKey(_availableVehicles[chooseStorePlaceCombobox.SelectedIndex]))
+            //{
+            //    foreach (ListViewItem item in vehiclesCargoDictionary[_availableVehicles[chooseStorePlaceCombobox.SelectedIndex]])
+            //    {
+            //        parcelsListView.Items.Add(item);
+            //        item.Selected = true;
+            //    }
+            //}
+
+            ////if (chooseVehicleCombobox.SelectedItem != null && vehiclesCargoDictionary.ContainsKey(_availableVehicles[chooseVehicleCombobox.SelectedIndex]))
+            ////{
+            ////    foreach(ListViewItem parcel in parcelsListView.Items)
+            ////    {
+            ////        if (vehiclesCargoDictionary[_availableVehicles[chooseVehicleCombobox.SelectedIndex]].
+            ////            Contains(parcel))
+            ////        {
+            ////            parcel.Selected = true;
+            ////        }
+            ////    }
+            ////}
+
+            //parcelsListView.Select();
         }
 
         private void ButtonPost_Click(object sender, EventArgs e)
@@ -216,7 +294,7 @@ namespace View
 
         private void ButtonLoad_Click(object sender, EventArgs e)
         {
-            Vehicle selectedVehicle = _availableVehicles[chooseVehicleCombobox.SelectedIndex];
+            Vehicle selectedVehicle = _availableVehicles[chooseStorePlaceCombobox.SelectedIndex];
 
             if (vehiclesCargoDictionary.ContainsKey(selectedVehicle))
             {

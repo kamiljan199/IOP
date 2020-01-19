@@ -41,7 +41,7 @@ namespace View
 
         private void ButtonOpenWarehouseWindow_Click(object sender, EventArgs e)
         {
-
+            _warehouseForm.ShowDialog();
         }
 
         private void ButtonOpenLogisticsWindow_Click(object sender, EventArgs e)

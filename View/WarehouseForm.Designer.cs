@@ -28,28 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.informationTextbox = new System.Windows.Forms.TextBox();
             this.logoutButton = new System.Windows.Forms.Button();
             this.buttonSort = new System.Windows.Forms.Button();
             this.parcelsListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.buttonLoad = new System.Windows.Forms.Button();
-            this.vehicleSpaceTakenRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.chooseVehicleTextbox = new System.Windows.Forms.TextBox();
-            this.chooseVehicleCombobox = new System.Windows.Forms.ComboBox();
+            this.chooseStorePlaceCombobox = new System.Windows.Forms.ComboBox();
             this.buttonPost = new System.Windows.Forms.Button();
+            this.chooseVehicleTextbox = new System.Windows.Forms.TextBox();
+            this.chooseStorePlaceTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // informationTextbox
-            // 
-            this.informationTextbox.Location = new System.Drawing.Point(12, 12);
-            this.informationTextbox.Name = "informationTextbox";
-            this.informationTextbox.ReadOnly = true;
-            this.informationTextbox.Size = new System.Drawing.Size(556, 31);
-            this.informationTextbox.TabIndex = 0;
-            this.informationTextbox.Text = "Dane magazynu: ";
             // 
             // logoutButton
             // 
@@ -101,42 +90,14 @@
             this.columnHeader3.Text = "Adres odbiorcy";
             this.columnHeader3.Width = 200;
             // 
-            // buttonLoad
+            // chooseStorePlaceCombobox
             // 
-            this.buttonLoad.Location = new System.Drawing.Point(724, 140);
-            this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(191, 41);
-            this.buttonLoad.TabIndex = 4;
-            this.buttonLoad.Text = "Załaduj";
-            this.buttonLoad.UseVisualStyleBackColor = true;
-            this.buttonLoad.Click += new System.EventHandler(this.ButtonLoad_Click);
-            // 
-            // vehicleSpaceTakenRichTextBox
-            // 
-            this.vehicleSpaceTakenRichTextBox.Enabled = false;
-            this.vehicleSpaceTakenRichTextBox.Location = new System.Drawing.Point(724, 72);
-            this.vehicleSpaceTakenRichTextBox.Name = "vehicleSpaceTakenRichTextBox";
-            this.vehicleSpaceTakenRichTextBox.Size = new System.Drawing.Size(190, 62);
-            this.vehicleSpaceTakenRichTextBox.TabIndex = 5;
-            this.vehicleSpaceTakenRichTextBox.Text = "Ładowność: 0%\nPojemność: 0%";
-            // 
-            // chooseVehicleTextbox
-            // 
-            this.chooseVehicleTextbox.Enabled = false;
-            this.chooseVehicleTextbox.Location = new System.Drawing.Point(12, 49);
-            this.chooseVehicleTextbox.Name = "chooseVehicleTextbox";
-            this.chooseVehicleTextbox.Size = new System.Drawing.Size(143, 31);
-            this.chooseVehicleTextbox.TabIndex = 6;
-            this.chooseVehicleTextbox.Text = "Wybierz pojazd:";
-            // 
-            // chooseVehicleCombobox
-            // 
-            this.chooseVehicleCombobox.FormattingEnabled = true;
-            this.chooseVehicleCombobox.Location = new System.Drawing.Point(161, 47);
-            this.chooseVehicleCombobox.Name = "chooseVehicleCombobox";
-            this.chooseVehicleCombobox.Size = new System.Drawing.Size(197, 33);
-            this.chooseVehicleCombobox.TabIndex = 7;
-            this.chooseVehicleCombobox.SelectedValueChanged += new System.EventHandler(this.ChooseVehicleCombobox_SelectedValueChanged);
+            this.chooseStorePlaceCombobox.FormattingEnabled = true;
+            this.chooseStorePlaceCombobox.Location = new System.Drawing.Point(187, 49);
+            this.chooseStorePlaceCombobox.Name = "chooseStorePlaceCombobox";
+            this.chooseStorePlaceCombobox.Size = new System.Drawing.Size(381, 33);
+            this.chooseStorePlaceCombobox.TabIndex = 7;
+            this.chooseStorePlaceCombobox.SelectedValueChanged += new System.EventHandler(this.ChooseStorePlaceCombobox_SelectedValueChanged);
             // 
             // buttonPost
             // 
@@ -148,18 +109,33 @@
             this.buttonPost.UseVisualStyleBackColor = true;
             this.buttonPost.Click += new System.EventHandler(this.ButtonPost_Click);
             // 
+            // chooseVehicleTextbox
+            // 
+            this.chooseVehicleTextbox.Enabled = false;
+            this.chooseVehicleTextbox.Location = new System.Drawing.Point(12, 49);
+            this.chooseVehicleTextbox.Name = "chooseVehicleTextbox";
+            this.chooseVehicleTextbox.Size = new System.Drawing.Size(143, 31);
+            this.chooseVehicleTextbox.TabIndex = 6;
+            this.chooseVehicleTextbox.Text = "Wybierz pojazd:";
+            // 
+            // chooseStorePlaceTextbox
+            // 
+            this.chooseStorePlaceTextbox.Enabled = false;
+            this.chooseStorePlaceTextbox.Location = new System.Drawing.Point(12, 49);
+            this.chooseStorePlaceTextbox.Name = "chooseStorePlaceTextbox";
+            this.chooseStorePlaceTextbox.Size = new System.Drawing.Size(160, 31);
+            this.chooseStorePlaceTextbox.TabIndex = 9;
+            this.chooseStorePlaceTextbox.Text = "Wybierz magazyn:";
+            // 
             // WarehouseForm
             // 
             this.ClientSize = new System.Drawing.Size(938, 407);
+            this.Controls.Add(this.chooseStorePlaceCombobox);
+            this.Controls.Add(this.chooseStorePlaceTextbox);
             this.Controls.Add(this.buttonPost);
-            this.Controls.Add(this.buttonLoad);
-            this.Controls.Add(this.chooseVehicleCombobox);
-            this.Controls.Add(this.chooseVehicleTextbox);
-            this.Controls.Add(this.vehicleSpaceTakenRichTextBox);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.parcelsListView);
             this.Controls.Add(this.buttonSort);
-            this.Controls.Add(this.informationTextbox);
             this.Name = "WarehouseForm";
             this.Load += WarehouseForm_Load;
             this.ResumeLayout(false);
@@ -168,18 +144,15 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox informationTextbox;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.Button buttonSort;
         private System.Windows.Forms.ListView parcelsListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.Button buttonLoad;
-        private System.Windows.Forms.RichTextBox vehicleSpaceTakenRichTextBox;
-        private System.Windows.Forms.TextBox chooseVehicleTextbox;
-        private System.Windows.Forms.ComboBox chooseVehicleCombobox;
+        private System.Windows.Forms.ComboBox chooseStorePlaceCombobox;
         private System.Windows.Forms.Button buttonPost;
+        private System.Windows.Forms.TextBox chooseVehicleTextbox;
+        private System.Windows.Forms.TextBox chooseStorePlaceTextbox;
     }
 }

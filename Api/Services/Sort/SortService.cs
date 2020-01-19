@@ -90,7 +90,7 @@ namespace Api.Services
             System.IO.File.WriteAllLines(@"..\..\..\Instructions.txt", instructions);
         }
 
-        public void Sort(StorePlace _storePlace)
+        public void Sort(List<Parcel> parcels)
         {
 
             _parcels = _parcels
@@ -102,14 +102,14 @@ namespace Api.Services
 
             int index = 0;
 
-            for (int i = 0; i < _parcels.Count; i++)
-            {
-                if (_parcels[i].StorePlaceId == _storePlace.Id)
-                {
-                    _parcels.Insert(index++, _parcels[i]);
-                    _parcels.RemoveAt(i + 1);
-                }
-            }
+            //for (int i = 0; i < _parcels.Count; i++)
+            //{
+            //    if (_parcels[i].StorePlaceId == _storePlace.Id)
+            //    {
+            //        _parcels.Insert(index++, _parcels[i]);
+            //        _parcels.RemoveAt(i + 1);
+            //    }
+            //}
 
             //List<Parcel> sortedParcels;
             //SortParcelsByStorePlace();
