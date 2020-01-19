@@ -21,7 +21,15 @@ namespace Data.Configurations
 
         public void SeedData(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Warehouse>().HasData(
+                new Warehouse
+                {
+                    Id = 1,
+                    Name = "Magazyn",
+                    ManagerName = "Tak",
+                    AddressId = 1
+                }
+            );
         }
     }
 }

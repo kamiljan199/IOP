@@ -127,6 +127,18 @@ namespace Api.Controllers
             }
         }
 
+        public StorePlace GetByIdWithAddress(int id)
+        {
+            try
+            {
+                return _storePlaceService.GetByIdWithAddress(id);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public Type GetTypeById(int id)
         {
             try
@@ -156,7 +168,7 @@ namespace Api.Controllers
         {
             try
             {
-                _storePlaceService.UpdateStoreplace(storeplace);
+                _storePlaceService.ModifyStorePlace(storeplace);
                 return true;
             }
             catch

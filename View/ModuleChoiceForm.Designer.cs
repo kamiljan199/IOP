@@ -33,6 +33,7 @@
             this.buttonOpenWarehouseWindow = new System.Windows.Forms.Button();
             this.buttonOpenCourierWindow = new System.Windows.Forms.Button();
             this.buttonOpenHRWindow = new System.Windows.Forms.Button();
+            this.buttonOpenStorePlaceList = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonOpenPostingWindow
@@ -94,11 +95,23 @@
             this.buttonOpenHRWindow.UseVisualStyleBackColor = true;
             this.buttonOpenHRWindow.Click += new System.EventHandler(this.ButtonOpenHRWindow_Click);
             // 
+            // buttonOpenStorePlaceList
+            // 
+            this.buttonOpenStorePlaceList.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonOpenStorePlaceList.Location = new System.Drawing.Point(85, 292);
+            this.buttonOpenStorePlaceList.Name = "buttonOpenStorePlaceList";
+            this.buttonOpenStorePlaceList.Size = new System.Drawing.Size(170, 50);
+            this.buttonOpenStorePlaceList.TabIndex = 5;
+            this.buttonOpenStorePlaceList.Text = "Zarządaj placówkami";
+            this.buttonOpenStorePlaceList.UseVisualStyleBackColor = true;
+            this.buttonOpenStorePlaceList.Click += new System.EventHandler(this.storePlaceListButton_Click);
+            // 
             // ModuleChoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(331, 344);
+            this.ClientSize = new System.Drawing.Size(331, 367);
+            this.Controls.Add(this.buttonOpenStorePlaceList);
             this.Controls.Add(this.buttonOpenHRWindow);
             this.Controls.Add(this.buttonOpenCourierWindow);
             this.Controls.Add(this.buttonOpenLogisticsWindow);
@@ -119,5 +132,6 @@
         private System.Windows.Forms.Button buttonOpenWarehouseWindow;
         private System.Windows.Forms.Button buttonOpenCourierWindow;
         private System.Windows.Forms.Button buttonOpenHRWindow;
+        private System.Windows.Forms.Button buttonOpenStorePlaceList;
     }
 }

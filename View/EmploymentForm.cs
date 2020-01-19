@@ -111,9 +111,46 @@ namespace View
         {
             Employment.PositionId = _positionsDTO.Positions.Find(p => { return p.Name.Equals(positionComboBox.SelectedItem.ToString()); }).Id;
             Employment.StorePlaceId = _storePlacesDTO.StorePlaces.Find(s => { return s.Name.Equals(warehouseComboBox.SelectedItem.ToString()); }).Id;
-            Employment.Salary = float.Parse(salaryTextBox.Text);
-            Employment.StartDate = DateTime.Parse(startDateTextBox.Text);
-            Employment.EndDate = DateTime.Parse(endDateTextBox.Text);
+            try
+            {
+                float salary = float.Parse(salaryTextBox.Text);
+                if (salary < _positionsDTO.Positions.Find(p => { return p.Name.Equals(positionComboBox.SelectedItem.ToString()); }).MinSalary)
+                    salary = _positionsDTO.Positions.Find(p => { return p.Name.Equals(positionComboBox.SelectedItem.ToString()); }).MinSalary;
+                else if (salary > _positionsDTO.Positions.Find(p => { return p.Name.Equals(positionComboBox.SelectedItem.ToString()); }).MaxSalary)
+                    salary = _positionsDTO.Positions.Find(p => { return p.Name.Equals(positionComboBox.SelectedItem.ToString()); }).MaxSalary;
+
+                Employment.Salary = salary;
+
+            }
+            catch (FormatException exception)
+            {
+                Console.WriteLine(exception.Message.ToString());
+                Console.WriteLine("Salary is set to minimal");
+                Employment.Salary = _positionsDTO.Positions.Find(p => { return p.Name.Equals(positionComboBox.SelectedItem.ToString()); }).MinSalary;
+            }
+            try
+            {
+                Employment.StartDate = DateTime.Parse(startDateTextBox.Text);
+            }           
+            catch (FormatException exception)
+            {
+                Console.WriteLine(exception.Message.ToString());
+                Console.WriteLine("Employment now have default StartDate date - 1970-01-01");
+                Employment.StartDate = DateTime.Parse("1970-01-01");
+
+            }
+            try
+            {
+                Employment.EndDate = DateTime.Parse(endDateTextBox.Text);
+                if (Employment.EndDate < Employment.StartDate)
+                    Employment.EndDate = Employment.StartDate.AddDays(1.0);
+            }
+            catch (FormatException exception)
+            {
+                Console.WriteLine(exception.Message.ToString());
+                Console.WriteLine("Employment now have default EndDate date - 1970-01-02");
+                Employment.EndDate = DateTime.Parse("1970-01-02");
+            }
             if (Employment.Id.Equals(0))
             {
                 Employment.EmployeeId = Employee.Id;
