@@ -25,7 +25,6 @@ namespace Data.Configurations
 
         public void SeedData(ModelBuilder modelBuilder)
         {
-            // Nothing to seed right here my boys :3
         }
     }
 }

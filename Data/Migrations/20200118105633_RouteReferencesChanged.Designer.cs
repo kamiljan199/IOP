@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200118133045_StorePlace_AddedRelatedAddressVirtual")]
-    partial class StorePlace_AddedRelatedAddressVirtual
+    [Migration("20200118105633_RouteReferencesChanged")]
+    partial class RouteReferencesChanged
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -307,10 +307,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("EmployeeId")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("VehicleId")
+                    b.Property<int>("VehicleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -330,7 +330,7 @@ namespace Data.Migrations
                     b.Property<int>("Index")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ParcelId")
+                    b.Property<int>("ParcelId")
                         .HasColumnType("int");
 
                     b.HasKey("RouteId", "Index");
@@ -348,7 +348,7 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("Discriminator")
@@ -463,18 +463,24 @@ namespace Data.Migrations
                 {
                     b.HasOne("Model.Models.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmployeeId");
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Model.Models.Vehicle", "Vehicle")
                         .WithMany()
-                        .HasForeignKey("VehicleId");
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Models.RoutePoint", b =>
                 {
                     b.HasOne("Model.Models.Parcel", "Parcel")
                         .WithMany()
-                        .HasForeignKey("ParcelId");
+                        .HasForeignKey("ParcelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Model.Models.Route", "Route")
                         .WithMany("RoutePoints")
@@ -487,9 +493,7 @@ namespace Data.Migrations
                 {
                     b.HasOne("Model.Models.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AddressId");
                 });
 
             modelBuilder.Entity("Model.Models.Vehicle", b =>

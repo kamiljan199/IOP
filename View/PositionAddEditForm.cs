@@ -39,8 +39,32 @@ namespace View
         private void SaveButton_Click(object sender, EventArgs e)
         {
             position.Name = nameTextBox.Text;
-            position.MinSalary = float.Parse(minSalaryTextBox.Text);
-            position.MaxSalary = float.Parse(maxSalaryTextBox.Text);
+            try
+            {
+                position.MinSalary = float.Parse(minSalaryTextBox.Text);
+            }
+            catch (FormatException exception)
+            {
+                Console.WriteLine(exception.Message.ToString());
+                Console.WriteLine("Minimal salary set to default - 500");
+                position.MinSalary = 500.0f;
+            }
+            try
+            {
+                position.MaxSalary = float.Parse(maxSalaryTextBox.Text);
+            }            
+             catch (FormatException exception)
+            {
+                Console.WriteLine(exception.Message.ToString());
+                Console.WriteLine("Maximal salary set to default - 1000");
+                position.MaxSalary = 1000.0f;
+            }
+            if (position.MinSalary > position.MaxSalary)
+            {
+                Console.WriteLine("Minimal salary cannot be greater than maximal - now they are equal");
+                position.MinSalary = position.MaxSalary;
+            }
+                
             if (position.Id.Equals(0))
             {
                 _positionController.AddPosition(position, true);
