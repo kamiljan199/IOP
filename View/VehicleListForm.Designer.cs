@@ -47,9 +47,9 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
+            this.columnHeader4,
             this.columnHeader7,
             this.columnHeader8,
-            this.columnHeader4,
             this.columnHeader6});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
@@ -78,7 +78,7 @@
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "Maks. ładowność";
+            this.columnHeader7.Text = "Maks. pojemność";
             this.columnHeader7.Width = 110;
             // 
             // columnHeader8
