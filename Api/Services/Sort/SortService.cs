@@ -15,10 +15,12 @@ namespace Api.Services
         private List<Parcel> _parcelsToOtherStorePlace;
         private StorePlace storePlace;
         private readonly IParcelManager _parcelManager;
+        private readonly IRouteManager _routeManager;
 
-        public SortService(IParcelManager parcelManager)
+        public SortService(IParcelManager parcelManager, IRouteManager routeManager)
         {
             _parcelManager = parcelManager;
+            _routeManager = routeManager;
             _parcels = new List<Parcel>();
             _parcelsToClients = new List<Parcel>();
             _parcelsToOtherStorePlace = new List<Parcel>();
@@ -90,10 +92,10 @@ namespace Api.Services
             System.IO.File.WriteAllLines(@"..\..\..\Instructions.txt", instructions);
         }
 
-        public void Sort(List<Parcel> parcels)
+        public List<Parcel> Sort(List<Parcel> parcels)
         {
 
-            _parcels = _parcels
+            parcels = parcels
                 .OrderBy(e => e.StorePlaceId)
                 .ThenBy(e => e.ReceiverData.PersonalAddress.City)
                 .ThenBy(e => e.ReceiverData.PersonalAddress.Street)
@@ -102,62 +104,22 @@ namespace Api.Services
 
             int index = 0;
 
-            //for (int i = 0; i < _parcels.Count; i++)
-            //{
-            //    if (_parcels[i].StorePlaceId == _storePlace.Id)
-            //    {
-            //        _parcels.Insert(index++, _parcels[i]);
-            //        _parcels.RemoveAt(i + 1);
-            //    }
-            //}
+            /*for (int i = 0; i < _parcels.Count; i++)
+            {
+                if (_parcels[i].StorePlaceId == storePlace.Id)
+                {
+                    _parcels.Insert(index++, _parcels[i]);
+                    _parcels.RemoveAt(i + 1);
+                }
+            }*/
 
-            //List<Parcel> sortedParcels;
-            //SortParcelsByStorePlace();
-            //sortedParcels = SortParcelsByAddress(parcelsToSort);
-            //SortParcelsByAddress(_parcelsToOtherStorePlace);
+            return parcels;
+        }   
 
-            //return sortedParcels;
-        }
-
-        public List<Parcel> SortParcelsByAddress(List<Parcel> sortedParcels)
+        public void SendParcelsToWarehouses()
         {
-            sortedParcels = sortedParcels
-                .OrderBy(e => e.ReceiverData.PersonalAddress.City)
-                .ThenBy(e => e.ReceiverData.PersonalAddress.Street)
-                .ThenBy(e => e.ReceiverData.PersonalAddress.HomeNumber)
-                .ThenBy(e => e.StorePlaceId)
-                .ToList();
-
-            return sortedParcels;
-
-            //if (sortedParcels[0].StorePlaceId == _storePlace.Id)
-            //{
-            //    _parcelsToClients = sortedParcels;
-            //}
-            //else
-            //{
-            //    _parcelsToOtherStorePlace = sortedParcels;
-            //}
-        }
-
-        public void SortParcelsByStorePlace()
-        {
-            //foreach(var parcel in _parcels)
-            //{
-            //    if (parcel.StorePlaceId == _storePlace.Id)
-            //    {
-            //        _parcelsToClients.Add(parcel);
-            //    }
-            //    else
-            //    {
-            //        _parcelsToOtherStorePlace.Add(parcel);
-            //    }
-            //}
-        }
-
-        public void SortParcelsByPrivilage()
-        {
-
+            //IRouteService route;
+            //route.CreateRoute()
         }
     }
 }
