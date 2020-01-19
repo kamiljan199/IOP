@@ -32,14 +32,13 @@
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // listView1
@@ -51,7 +50,6 @@
             this.columnHeader7,
             this.columnHeader8,
             this.columnHeader4,
-            this.columnHeader5,
             this.columnHeader6});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
@@ -78,15 +76,20 @@
             this.columnHeader3.Text = "Marka";
             this.columnHeader3.Width = 90;
             // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Maks. ładowność";
+            this.columnHeader7.Width = 110;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Maks. obciążenie";
+            this.columnHeader8.Width = 110;
+            // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Model";
             this.columnHeader4.Width = 90;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Kierowca";
-            this.columnHeader5.Width = 120;
             // 
             // columnHeader6
             // 
@@ -125,16 +128,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Maks. ładowność";
-            this.columnHeader7.Width = 110;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Maks. obciążenie";
-            this.columnHeader8.Width = 110;
-            // 
             // VehicleListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -161,7 +154,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;

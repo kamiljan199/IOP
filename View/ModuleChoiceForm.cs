@@ -7,25 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Api.Controllers;
 
 namespace View
 {
    
     public partial class ModuleChoiceForm : Form
     {
+        private readonly EmployeeController _employeeController;
         private readonly CourierForm _courierForm;
         private readonly LogisticsForm _logisticsForm;
         private readonly HrForm _hrForm;
         private readonly WarehouseForm _warehouseForm;
+        private readonly StorePlaceListForm _storePlaceListForm;
         public LoginForm _loginForm;
 
-        public ModuleChoiceForm(CourierForm courierForm, LogisticsForm logisticsForm,
-            HrForm hrForm, WarehouseForm warehouseForm)
+        public ModuleChoiceForm(EmployeeController employeeController, CourierForm courierForm, LogisticsForm logisticsForm,
+            HrForm hrForm, WarehouseForm warehouseForm, StorePlaceListForm storePlaceListForm)
         {
+            _employeeController = employeeController;
             _courierForm = courierForm;
             _logisticsForm = logisticsForm;
             _hrForm = hrForm;
             _warehouseForm = warehouseForm;
+            _storePlaceListForm = storePlaceListForm;
             InitializeComponent();
         }   
 
@@ -54,56 +59,76 @@ namespace View
         {
             _hrForm.ShowDialog();
         }
-              
+
+        private void storePlaceListButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            _storePlaceListForm.ShowDialog();
+        }
+
         private void ModuleChoiceWindow_Load(object sender, EventArgs e)
         {
-            if (_loginForm.textBoxUsername.Text == "Courier")
+            if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Kurier")).Count() > 0)
             {
                 buttonOpenWarehouseWindow.Enabled = false;
                 buttonOpenLogisticsWindow.Enabled = false;
                 buttonOpenCourierWindow.Enabled = true;
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = false;
+                buttonOpenStorePlaceList.Enabled = false;
             }
-            if (_loginForm.textBoxUsername.Text == "Logistic")
+            else if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Logistyk")).Count() > 0)
             {
                 buttonOpenWarehouseWindow.Enabled = false;
                 buttonOpenLogisticsWindow.Enabled = true;
                 buttonOpenCourierWindow.Enabled = false;
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = false;
+                buttonOpenStorePlaceList.Enabled = false;
             }
-            if (_loginForm.textBoxUsername.Text == "Warehouse")
+            else if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Magazynier")).Count() > 0)
             {
                 buttonOpenWarehouseWindow.Enabled = true;
                 buttonOpenLogisticsWindow.Enabled = false;
                 buttonOpenCourierWindow.Enabled = false;
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = false;
+                buttonOpenStorePlaceList.Enabled = true;
             }
-            if (_loginForm.textBoxUsername.Text == "Registration")
+            else if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Rejestracja")).Count() > 0)
             {
                 buttonOpenWarehouseWindow.Enabled = false;
                 buttonOpenLogisticsWindow.Enabled = false;
                 buttonOpenCourierWindow.Enabled = false;
                 buttonOpenPostingWindow.Enabled = true;
                 buttonOpenHRWindow.Enabled = false;
+                buttonOpenStorePlaceList.Enabled = false;
             }
-            if (_loginForm.textBoxUsername.Text == "HR")
+            else if(_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("HR")).Count() > 0)
             {
                 buttonOpenWarehouseWindow.Enabled = false;
                 buttonOpenLogisticsWindow.Enabled = false;
                 buttonOpenCourierWindow.Enabled = false;
                 buttonOpenPostingWindow.Enabled = false;
                 buttonOpenHRWindow.Enabled = true;
+                buttonOpenStorePlaceList.Enabled = false;
             }
-            if (_loginForm.textBoxUsername.Text == "Admin")
+            else if (_employeeController.GetLoggedEmployee().ActiveEmployments.Where(em => em.Position.Name.Equals("Administrator")).Count() > 0)
             {
                 buttonOpenWarehouseWindow.Enabled = true;
                 buttonOpenLogisticsWindow.Enabled = true;
                 buttonOpenCourierWindow.Enabled = true;
                 buttonOpenPostingWindow.Enabled = true;
                 buttonOpenHRWindow.Enabled = true;
+                buttonOpenStorePlaceList.Enabled = true;
+            }
+            else
+            {
+                buttonOpenWarehouseWindow.Enabled = false;
+                buttonOpenLogisticsWindow.Enabled = false;
+                buttonOpenCourierWindow.Enabled = false;
+                buttonOpenPostingWindow.Enabled = false;
+                buttonOpenHRWindow.Enabled = false;
             }
         }
     }

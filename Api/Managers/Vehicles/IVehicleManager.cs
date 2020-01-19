@@ -8,7 +8,6 @@ namespace Api.Managers
     public interface IVehicleManager
     {
         public Vehicle GetVehicleByID(int vehicleID);
-        public Vehicle GetVehicleByDriverID(int driverID);
         public void AddVehicle(Vehicle vehicle, bool detach = false);
         public List<Vehicle> GetAllVehicles();
         public int SaveChanges();

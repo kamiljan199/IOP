@@ -13,6 +13,7 @@ namespace Model.Models
         public float ParcelWidth { get; set; }
         public float ParcelHeight { get; set; }
         public float ParcelLength { get; set; }
+        public float ParcelWeight { get; set; }
         public string ParcelType { get; set; }
         public int Priority { get; set; }
         public int ReferenceId { get; set; }

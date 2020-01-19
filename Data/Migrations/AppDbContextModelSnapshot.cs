@@ -41,6 +41,42 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Addresses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2137,
+                            ApartmentNumber = 420,
+                            City = "Wadowice",
+                            HomeNumber = "JP2/GMD",
+                            PostCode = "69-666",
+                            Street = "Papieżowa"
+                        },
+                        new
+                        {
+                            Id = 666,
+                            ApartmentNumber = 666,
+                            City = "Piekło",
+                            HomeNumber = "666/666",
+                            PostCode = "66-666",
+                            Street = "Ozzy'ego Osbourna"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            ApartmentNumber = 0,
+                            City = "Łuć",
+                            PostCode = "98-205",
+                            Street = "Skrzywana"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ApartmentNumber = 0,
+                            City = "Łuć",
+                            PostCode = "98-205",
+                            Street = "Radwańska"
+                        });
                 });
 
             modelBuilder.Entity("Model.Models.Employee", b =>
@@ -74,6 +110,78 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Birthday = new DateTime(1978, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Login = "admin",
+                            Name = "Mariusz",
+                            Password = "0DPiKuNIrrVmD8IUCuw1hQxNqZc=",
+                            Pesel = "EZG 34XD23",
+                            Surname = "Pudzianowski"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Birthday = new DateTime(1984, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Login = "jan84",
+                            Name = "Jan",
+                            Password = "0DPiKuNIrrVmD8IUCuw1hQxNqZc=",
+                            Pesel = "84110926511",
+                            Surname = "Drzewski"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Birthday = new DateTime(1965, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Login = "PolskiMichelBay",
+                            Name = "Patryk",
+                            Password = "0DPiKuNIrrVmD8IUCuw1hQxNqZc=",
+                            Pesel = "6584421212",
+                            Surname = "Vege"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Birthday = new DateTime(2010, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Login = "EeeexD",
+                            Name = "Ignacy",
+                            Password = "0DPiKuNIrrVmD8IUCuw1hQxNqZc=",
+                            Pesel = "10040158425",
+                            Surname = "Luduba"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Birthday = new DateTime(1985, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Login = "Tryglaw",
+                            Name = "Czcibor",
+                            Password = "0DPiKuNIrrVmD8IUCuw1hQxNqZc=",
+                            Pesel = "85101220686",
+                            Surname = "Piast"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Birthday = new DateTime(1995, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Login = "CoolSkeleton95",
+                            Name = "Joanna",
+                            Password = "0DPiKuNIrrVmD8IUCuw1hQxNqZc=",
+                            Pesel = "95050135841",
+                            Surname = "Sosna"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Birthday = new DateTime(1973, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Login = "YourBestNightmare",
+                            Name = "Janusz",
+                            Password = "0DPiKuNIrrVmD8IUCuw1hQxNqZc=",
+                            Pesel = "73021164841",
+                            Surname = "Tracz"
+                        });
                 });
 
             modelBuilder.Entity("Model.Models.Employment", b =>
@@ -100,7 +208,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("WarehouseId")
+                    b.Property<int?>("StorePlaceId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -109,9 +217,86 @@ namespace Data.Migrations
 
                     b.HasIndex("PositionId");
 
-                    b.HasIndex("WarehouseId");
+                    b.HasIndex("StorePlaceId");
 
                     b.ToTable("Employments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EmployeeId = 1,
+                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            PositionId = 1,
+                            Salary = 20000f,
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EmployeeId = 2,
+                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            PositionId = 2,
+                            Salary = 950f,
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EmployeeId = 3,
+                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            PositionId = 3,
+                            Salary = 1600f,
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StorePlaceId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            EmployeeId = 4,
+                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            PositionId = 4,
+                            Salary = 2800f,
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StorePlaceId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            EmployeeId = 5,
+                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            PositionId = 5,
+                            Salary = 1750f,
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StorePlaceId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            EmployeeId = 6,
+                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            PositionId = 6,
+                            Salary = 1300f,
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StorePlaceId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            EmployeeId = 7,
+                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            PositionId = 3,
+                            Salary = 1700f,
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StorePlaceId = 2
+                        });
                 });
 
             modelBuilder.Entity("Model.Models.Parcel", b =>
@@ -134,6 +319,9 @@ namespace Data.Migrations
 
                     b.Property<string>("ParcelType")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<float>("ParcelWeight")
+                        .HasColumnType("float");
 
                     b.Property<float>("ParcelWidth")
                         .HasColumnType("float");
@@ -206,6 +394,50 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Positions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MaxSalary = 25000f,
+                            MinSalary = 5000f,
+                            Name = "Administrator"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MaxSalary = 1000f,
+                            MinSalary = 500f,
+                            Name = "HR"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MaxSalary = 2000f,
+                            MinSalary = 1500f,
+                            Name = "Kurier"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            MaxSalary = 3000f,
+                            MinSalary = 2500f,
+                            Name = "Logistyk"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            MaxSalary = 1800f,
+                            MinSalary = 1500f,
+                            Name = "Magazynier"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            MaxSalary = 1800f,
+                            MinSalary = 1200f,
+                            Name = "Rejestracja"
+                        });
                 });
 
             modelBuilder.Entity("Model.Models.Route", b =>
@@ -217,10 +449,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("EmployeeId")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("VehicleId")
+                    b.Property<int>("VehicleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -240,7 +472,7 @@ namespace Data.Migrations
                     b.Property<int>("Index")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ParcelId")
+                    b.Property<int>("ParcelId")
                         .HasColumnType("int");
 
                     b.HasKey("RouteId", "Index");
@@ -258,15 +490,14 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("AddressId")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -274,7 +505,7 @@ namespace Data.Migrations
 
                     b.ToTable("StorePlaces");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("StorePlace");
+                    b.HasDiscriminator<int>("Type").HasValue(2);
                 });
 
             modelBuilder.Entity("Model.Models.Vehicle", b =>
@@ -286,9 +517,6 @@ namespace Data.Migrations
                     b.Property<string>("Brand")
                         .HasColumnType("varchar(20) CHARACTER SET utf8mb4")
                         .HasMaxLength(20);
-
-                    b.Property<int?>("DriverId")
-                        .HasColumnType("int");
 
                     b.Property<float>("MaxCapacity")
                         .HasColumnType("float");
@@ -304,14 +532,12 @@ namespace Data.Migrations
                         .HasColumnType("varchar(15) CHARACTER SET utf8mb4")
                         .HasMaxLength(15);
 
-                    b.Property<int?>("WarehouseId")
+                    b.Property<int?>("StorePlaceId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DriverId");
-
-                    b.HasIndex("WarehouseId");
+                    b.HasIndex("StorePlaceId");
 
                     b.ToTable("Vehicles");
                 });
@@ -323,7 +549,17 @@ namespace Data.Migrations
                     b.Property<int>("WorkersCount")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("SendingPoint");
+                    b.HasDiscriminator().HasValue(1);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            AddressId = 2,
+                            Name = "Magazyn",
+                            Type = 0,
+                            WorkersCount = 2
+                        });
                 });
 
             modelBuilder.Entity("Model.Models.Warehouse", b =>
@@ -334,7 +570,17 @@ namespace Data.Migrations
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
-                    b.HasDiscriminator().HasValue("Warehouse");
+                    b.HasDiscriminator().HasValue(0);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressId = 1,
+                            Name = "Magazyn",
+                            Type = 0,
+                            ManagerName = "Tak"
+                        });
                 });
 
             modelBuilder.Entity("Model.Models.Employment", b =>
@@ -351,9 +597,9 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Models.Warehouse", "Warehouse")
+                    b.HasOne("Model.Models.StorePlace", "StorePlace")
                         .WithMany()
-                        .HasForeignKey("WarehouseId");
+                        .HasForeignKey("StorePlaceId");
                 });
 
             modelBuilder.Entity("Model.Models.Parcel", b =>
@@ -378,18 +624,24 @@ namespace Data.Migrations
                 {
                     b.HasOne("Model.Models.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmployeeId");
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Model.Models.Vehicle", "Vehicle")
                         .WithMany()
-                        .HasForeignKey("VehicleId");
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Models.RoutePoint", b =>
                 {
                     b.HasOne("Model.Models.Parcel", "Parcel")
                         .WithMany()
-                        .HasForeignKey("ParcelId");
+                        .HasForeignKey("ParcelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Model.Models.Route", "Route")
                         .WithMany("RoutePoints")
@@ -402,18 +654,16 @@ namespace Data.Migrations
                 {
                     b.HasOne("Model.Models.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId");
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Models.Vehicle", b =>
                 {
-                    b.HasOne("Model.Models.Employee", "Driver")
+                    b.HasOne("Model.Models.StorePlace", "StorePlace")
                         .WithMany()
-                        .HasForeignKey("DriverId");
-
-                    b.HasOne("Model.Models.Warehouse", "Warehouse")
-                        .WithMany()
-                        .HasForeignKey("WarehouseId");
+                        .HasForeignKey("StorePlaceId");
                 });
 #pragma warning restore 612, 618
         }

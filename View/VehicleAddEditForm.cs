@@ -16,15 +16,13 @@ namespace View
         public Vehicle vehicle;
 
         private readonly VehicleController _vehicleController;
-        private readonly EmployeeController _employeeController;
+        private readonly StorePlaceController _storePlaceController;
 
-        //private readonly WarehousesDTO warehouseDTO;
-
-        private EmployeesDTO _employeesDTO;
-        public VehicleAddEditForm(VehicleController vehicleController, EmployeeController employeeController)
+        private StorePlacesDTO _storePlacesDTO;
+        public VehicleAddEditForm(VehicleController vehicleController, StorePlaceController storePlaceController)
         {
             _vehicleController = vehicleController;
-            _employeeController = employeeController;
+            _storePlaceController = storePlaceController;
             InitializeComponent();
         }
 
@@ -35,8 +33,7 @@ namespace View
 
         private void VehicleAddEditForm_Load(object sender, EventArgs e)
         {
-            SynchronizeDrivers();
-            //Magazyny
+            SynchronizeStorePlaces();
             if (!vehicle.Id.Equals(0))
             {
                 registrationTextBox.Text = vehicle.Registration;
@@ -44,9 +41,9 @@ namespace View
                 modelTextBox.Text = vehicle.Model;
                 maxLoadTextBox.Text = vehicle.MaxLoad.ToString();
                 maxCapacityTextBox.Text = vehicle.MaxCapacity.ToString();
-                if (vehicle.DriverId != null)
+                if (vehicle.StorePlaceId != null)
                 {
-                    driverComboBox.SelectedIndex = ((List<Employee>)_employeesDTO.Employees).FindIndex(e => { return e.Id.Equals(vehicle.DriverId); });
+                    warehouseComboBox.SelectedIndex = _storePlacesDTO.StorePlaces.FindIndex(s => { return s.Id.Equals(vehicle.StorePlaceId); });
                 }
                 //mag
             }
@@ -54,18 +51,37 @@ namespace View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (driverComboBox.SelectedIndex > -1)
+            if (warehouseComboBox.SelectedIndex > -1)
             {
-                vehicle.DriverId = ((List<Employee>)_employeesDTO.Employees)[driverComboBox.SelectedIndex].Id;
-            } else
+                vehicle.StorePlaceId = _storePlacesDTO.StorePlaces[warehouseComboBox.SelectedIndex].Id;
+            }
+            else
             {
-                vehicle.DriverId = null;
+                vehicle.StorePlaceId = null;
             }
             vehicle.Registration = registrationTextBox.Text;
             vehicle.Brand = brandTextBox.Text;
             vehicle.Model = modelTextBox.Text;
-            vehicle.MaxLoad = float.Parse(maxLoadTextBox.Text);
-            vehicle.MaxCapacity = float.Parse(maxCapacityTextBox.Text);
+            try
+            {
+                vehicle.MaxLoad = float.Parse(maxLoadTextBox.Text);
+            }
+            catch (FormatException exception)
+            {
+                Console.WriteLine(exception.Message.ToString());
+                Console.WriteLine("Vehicle max load set to default - 500");
+                vehicle.MaxLoad = 500.0f;
+            }
+            try
+            {
+                vehicle.MaxCapacity = float.Parse(maxCapacityTextBox.Text);
+            }            
+            catch (FormatException exception)
+            {
+                Console.WriteLine(exception.Message.ToString());
+                Console.WriteLine("Vehicle max capacity set to default - 500");
+                vehicle.MaxCapacity = 500.0f;
+            }
             //mag
             if (vehicle.Id.Equals(0))
             {
@@ -78,16 +94,16 @@ namespace View
             this.Close();
         }
 
-        private void SynchronizeDrivers()
+        private void SynchronizeStorePlaces()
         {
-            _employeesDTO = _employeeController.GetAllEmployees();
-            driverComboBox.Items.Clear();
+            _storePlacesDTO = _storePlaceController.GetAllStorePlaces();
+            warehouseComboBox.Items.Clear();
 
-            if (_employeesDTO.Employees != null)
+            if (_storePlacesDTO.StorePlaces!= null)
             {
-                foreach (var e in _employeesDTO.Employees)
+                foreach (var s in _storePlacesDTO.StorePlaces)
                 {
-                    driverComboBox.Items.Add(e.Name + " " + e.Surname + " (" + e.Pesel + ")");
+                    warehouseComboBox.Items.Add(s.Name);
                 }
             }
         }
