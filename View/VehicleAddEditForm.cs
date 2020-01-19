@@ -130,5 +130,10 @@ namespace View
 
             func(Controls);
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
