@@ -127,14 +127,14 @@
             this.senderFirstNameTextBox.Location = new System.Drawing.Point(120, 99);
             this.senderFirstNameTextBox.Name = "senderFirstNameTextBox";
             this.senderFirstNameTextBox.Size = new System.Drawing.Size(193, 23);
-            this.senderFirstNameTextBox.TabIndex = 3;
+            this.senderFirstNameTextBox.TabIndex = 1;
             // 
             // senderLastNameTextBox
             // 
             this.senderLastNameTextBox.Location = new System.Drawing.Point(120, 128);
             this.senderLastNameTextBox.Name = "senderLastNameTextBox";
             this.senderLastNameTextBox.Size = new System.Drawing.Size(193, 23);
-            this.senderLastNameTextBox.TabIndex = 3;
+            this.senderLastNameTextBox.TabIndex = 2;
             // 
             // label5
             // 
@@ -178,7 +178,7 @@
             this.senderCityTextBox.Location = new System.Drawing.Point(68, 223);
             this.senderCityTextBox.Name = "senderCityTextBox";
             this.senderCityTextBox.Size = new System.Drawing.Size(245, 23);
-            this.senderCityTextBox.TabIndex = 3;
+            this.senderCityTextBox.TabIndex = 7;
             // 
             // label8
             // 
@@ -195,7 +195,7 @@
             this.senderPostalCodeTextBox.Location = new System.Drawing.Point(120, 252);
             this.senderPostalCodeTextBox.Name = "senderPostalCodeTextBox";
             this.senderPostalCodeTextBox.Size = new System.Drawing.Size(193, 23);
-            this.senderPostalCodeTextBox.TabIndex = 3;
+            this.senderPostalCodeTextBox.TabIndex = 8;
             // 
             // label9
             // 
@@ -212,7 +212,7 @@
             this.senderStreetTextBox.Location = new System.Drawing.Point(81, 281);
             this.senderStreetTextBox.Name = "senderStreetTextBox";
             this.senderStreetTextBox.Size = new System.Drawing.Size(232, 23);
-            this.senderStreetTextBox.TabIndex = 3;
+            this.senderStreetTextBox.TabIndex = 9;
             // 
             // label10
             // 
@@ -229,7 +229,7 @@
             this.senderHouseNumberTextBox.Location = new System.Drawing.Point(142, 310);
             this.senderHouseNumberTextBox.Name = "senderHouseNumberTextBox";
             this.senderHouseNumberTextBox.Size = new System.Drawing.Size(171, 23);
-            this.senderHouseNumberTextBox.TabIndex = 3;
+            this.senderHouseNumberTextBox.TabIndex = 10;
             // 
             // label11
             // 
@@ -256,7 +256,7 @@
             this.senderApartmentNumberTextBox.Location = new System.Drawing.Point(174, 339);
             this.senderApartmentNumberTextBox.Name = "senderApartmentNumberTextBox";
             this.senderApartmentNumberTextBox.Size = new System.Drawing.Size(139, 23);
-            this.senderApartmentNumberTextBox.TabIndex = 3;
+            this.senderApartmentNumberTextBox.TabIndex = 11;
             // 
             // label13
             // 
@@ -283,7 +283,7 @@
             this.recieverApartmentNumberTextBox.Location = new System.Drawing.Point(555, 337);
             this.recieverApartmentNumberTextBox.Name = "recieverApartmentNumberTextBox";
             this.recieverApartmentNumberTextBox.Size = new System.Drawing.Size(139, 23);
-            this.recieverApartmentNumberTextBox.TabIndex = 3;
+            this.recieverApartmentNumberTextBox.TabIndex = 16;
             // 
             // label15
             // 
@@ -300,7 +300,7 @@
             this.recieverHouseNumberTextBox.Location = new System.Drawing.Point(523, 308);
             this.recieverHouseNumberTextBox.Name = "recieverHouseNumberTextBox";
             this.recieverHouseNumberTextBox.Size = new System.Drawing.Size(171, 23);
-            this.recieverHouseNumberTextBox.TabIndex = 3;
+            this.recieverHouseNumberTextBox.TabIndex = 15;
             // 
             // label16
             // 
@@ -317,7 +317,7 @@
             this.recieverStreetTextBox.Location = new System.Drawing.Point(462, 279);
             this.recieverStreetTextBox.Name = "recieverStreetTextBox";
             this.recieverStreetTextBox.Size = new System.Drawing.Size(232, 23);
-            this.recieverStreetTextBox.TabIndex = 3;
+            this.recieverStreetTextBox.TabIndex = 14;
             // 
             // label17
             // 
@@ -334,7 +334,7 @@
             this.recieverPostalCodeTextBox.Location = new System.Drawing.Point(501, 250);
             this.recieverPostalCodeTextBox.Name = "recieverPostalCodeTextBox";
             this.recieverPostalCodeTextBox.Size = new System.Drawing.Size(193, 23);
-            this.recieverPostalCodeTextBox.TabIndex = 3;
+            this.recieverPostalCodeTextBox.TabIndex = 13;
             // 
             // label18
             // 
@@ -351,7 +351,7 @@
             this.recieverCityTextBox.Location = new System.Drawing.Point(449, 221);
             this.recieverCityTextBox.Name = "recieverCityTextBox";
             this.recieverCityTextBox.Size = new System.Drawing.Size(245, 23);
-            this.recieverCityTextBox.TabIndex = 3;
+            this.recieverCityTextBox.TabIndex = 12;
             // 
             // label19
             // 
@@ -378,21 +378,21 @@
             this.recieverPhoneNumberTextBox.Location = new System.Drawing.Point(525, 155);
             this.recieverPhoneNumberTextBox.Name = "recieverPhoneNumberTextBox";
             this.recieverPhoneNumberTextBox.Size = new System.Drawing.Size(169, 23);
-            this.recieverPhoneNumberTextBox.TabIndex = 3;
+            this.recieverPhoneNumberTextBox.TabIndex = 6;
             // 
             // recieverFirstNameTextBox
             // 
             this.recieverFirstNameTextBox.Location = new System.Drawing.Point(501, 97);
             this.recieverFirstNameTextBox.Name = "recieverFirstNameTextBox";
             this.recieverFirstNameTextBox.Size = new System.Drawing.Size(193, 23);
-            this.recieverFirstNameTextBox.TabIndex = 3;
+            this.recieverFirstNameTextBox.TabIndex = 4;
             // 
             // recieverLastNameTextBox
             // 
             this.recieverLastNameTextBox.Location = new System.Drawing.Point(501, 126);
             this.recieverLastNameTextBox.Name = "recieverLastNameTextBox";
             this.recieverLastNameTextBox.Size = new System.Drawing.Size(193, 23);
-            this.recieverLastNameTextBox.TabIndex = 3;
+            this.recieverLastNameTextBox.TabIndex = 5;
             // 
             // label21
             // 
@@ -429,7 +429,7 @@
             this.parcelWeightTextBox.Location = new System.Drawing.Point(120, 452);
             this.parcelWeightTextBox.Name = "parcelWeightTextBox";
             this.parcelWeightTextBox.Size = new System.Drawing.Size(193, 23);
-            this.parcelWeightTextBox.TabIndex = 3;
+            this.parcelWeightTextBox.TabIndex = 18;
             this.parcelWeightTextBox.TextChanged += new System.EventHandler(this.UpdateParcelType);
             // 
             // label25
@@ -447,7 +447,7 @@
             this.parcelDimensionsXTextBox.Location = new System.Drawing.Point(555, 421);
             this.parcelDimensionsXTextBox.Name = "parcelDimensionsXTextBox";
             this.parcelDimensionsXTextBox.Size = new System.Drawing.Size(139, 23);
-            this.parcelDimensionsXTextBox.TabIndex = 3;
+            this.parcelDimensionsXTextBox.TabIndex = 19;
             this.parcelDimensionsXTextBox.TextChanged += new System.EventHandler(this.UpdateParcelType);
             // 
             // label26
@@ -485,7 +485,7 @@
             this.parcelDimensionsYTextBox.Location = new System.Drawing.Point(555, 450);
             this.parcelDimensionsYTextBox.Name = "parcelDimensionsYTextBox";
             this.parcelDimensionsYTextBox.Size = new System.Drawing.Size(139, 23);
-            this.parcelDimensionsYTextBox.TabIndex = 3;
+            this.parcelDimensionsYTextBox.TabIndex = 20;
             this.parcelDimensionsYTextBox.TextChanged += new System.EventHandler(this.UpdateParcelType);
             // 
             // parcelTypeBox
@@ -496,7 +496,7 @@
             this.parcelTypeBox.Name = "parcelTypeBox";
             this.parcelTypeBox.ReadOnly = true;
             this.parcelTypeBox.Size = new System.Drawing.Size(193, 23);
-            this.parcelTypeBox.TabIndex = 3;
+            this.parcelTypeBox.TabIndex = 99;
             this.parcelTypeBox.Text = "Type";
             this.parcelTypeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -516,7 +516,7 @@
             this.button1.Location = new System.Drawing.Point(227, 529);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(246, 42);
-            this.button1.TabIndex = 4;
+            this.button1.TabIndex = 22;
             this.button1.Text = "Add parcel";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.OnParcelAddClick);
@@ -536,7 +536,7 @@
             this.parcelDimensionsZTextBox.Location = new System.Drawing.Point(555, 479);
             this.parcelDimensionsZTextBox.Name = "parcelDimensionsZTextBox";
             this.parcelDimensionsZTextBox.Size = new System.Drawing.Size(139, 23);
-            this.parcelDimensionsZTextBox.TabIndex = 3;
+            this.parcelDimensionsZTextBox.TabIndex = 21;
             this.parcelDimensionsZTextBox.TextChanged += new System.EventHandler(this.UpdateParcelType);
             // 
             // parcelPriorityComboBox
@@ -550,7 +550,7 @@
             this.parcelPriorityComboBox.Location = new System.Drawing.Point(120, 423);
             this.parcelPriorityComboBox.Name = "parcelPriorityComboBox";
             this.parcelPriorityComboBox.Size = new System.Drawing.Size(193, 23);
-            this.parcelPriorityComboBox.TabIndex = 5;
+            this.parcelPriorityComboBox.TabIndex = 17;
             this.parcelPriorityComboBox.SelectedIndexChanged += new System.EventHandler(this.UpdateParcelType);
             // 
             // ParcelRegistrationForm
