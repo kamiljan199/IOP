@@ -38,6 +38,12 @@
             this.buttonPost = new System.Windows.Forms.Button();
             this.chooseVehicleTextbox = new System.Windows.Forms.TextBox();
             this.chooseStorePlaceTextbox = new System.Windows.Forms.TextBox();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // logoutButton
@@ -52,9 +58,9 @@
             // 
             // buttonSort
             // 
-            this.buttonSort.Location = new System.Drawing.Point(724, 324);
+            this.buttonSort.Location = new System.Drawing.Point(843, 324);
             this.buttonSort.Name = "buttonSort";
-            this.buttonSort.Size = new System.Drawing.Size(190, 48);
+            this.buttonSort.Size = new System.Drawing.Size(88, 48);
             this.buttonSort.TabIndex = 2;
             this.buttonSort.Text = "Sortuj";
             this.buttonSort.UseVisualStyleBackColor = true;
@@ -65,12 +71,18 @@
             this.parcelsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9});
             this.parcelsListView.FullRowSelect = true;
             this.parcelsListView.HideSelection = false;
             this.parcelsListView.Location = new System.Drawing.Point(12, 86);
             this.parcelsListView.Name = "parcelsListView";
-            this.parcelsListView.Size = new System.Drawing.Size(706, 286);
+            this.parcelsListView.Size = new System.Drawing.Size(825, 286);
             this.parcelsListView.TabIndex = 3;
             this.parcelsListView.UseCompatibleStateImageBehavior = false;
             this.parcelsListView.View = System.Windows.Forms.View.Details;
@@ -101,9 +113,9 @@
             // 
             // buttonPost
             // 
-            this.buttonPost.Location = new System.Drawing.Point(724, 274);
+            this.buttonPost.Location = new System.Drawing.Point(843, 274);
             this.buttonPost.Name = "buttonPost";
-            this.buttonPost.Size = new System.Drawing.Size(190, 44);
+            this.buttonPost.Size = new System.Drawing.Size(88, 44);
             this.buttonPost.TabIndex = 8;
             this.buttonPost.Text = "Nadaj";
             this.buttonPost.UseVisualStyleBackColor = true;
@@ -127,15 +139,39 @@
             this.chooseStorePlaceTextbox.TabIndex = 9;
             this.chooseStorePlaceTextbox.Text = "Wybierz magazyn:";
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Wysokość";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Długość";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Szerokość";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Waga";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Priorytet";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Typ";
+            // 
             // WarehouseForm
             // 
             this.ClientSize = new System.Drawing.Size(938, 407);
+            this.Controls.Add(this.buttonPost);
+            this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.chooseStorePlaceCombobox);
             this.Controls.Add(this.chooseStorePlaceTextbox);
-            this.Controls.Add(this.buttonPost);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.parcelsListView);
-            this.Controls.Add(this.buttonSort);
             this.Name = "WarehouseForm";
             this.Load += WarehouseForm_Load;
             this.ResumeLayout(false);
@@ -154,5 +190,11 @@
         private System.Windows.Forms.Button buttonPost;
         private System.Windows.Forms.TextBox chooseVehicleTextbox;
         private System.Windows.Forms.TextBox chooseStorePlaceTextbox;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }

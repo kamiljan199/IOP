@@ -224,7 +224,14 @@ namespace View
                         parcel.ReceiverData.PersonalAddress.ApartmentNumber+"/"+
                         parcel.ReceiverData.PersonalAddress.HomeNumber + ", "+
                         parcel.ReceiverData.PersonalAddress.PostCode+" "+
-                        parcel.ReceiverData.PersonalAddress.City};
+                        parcel.ReceiverData.PersonalAddress.City,
+                        parcel.ParcelHeight.ToString(),
+                        parcel.ParcelLength.ToString(),
+                        parcel.ParcelWidth.ToString(),
+                        parcel.ParcelWeight.ToString(),
+                        parcel.Priority.ToString(),
+                        parcel.ParcelType
+                    };
                     parcelsListView.Items.Add(new ListViewItem(parcelInfo));
                 }
             }
@@ -290,6 +297,18 @@ namespace View
             {
                 parcelsListView.SelectedItems[0].SubItems[0].Text = "null";
             }
+
+            //for(int i=0; i < parcelsListView.SelectedItems.Count; i++)
+            //{
+            //    _parcelController.PostParcel(,parcelsListView.SelectedItems[i].SubItems[1],
+            //        parcelsListView.SelectedItems[i].SubItems[2],
+            //        parcelsListView.SelectedItems[i].SubItems[3],
+            //        parcelsListView.SelectedItems[i].SubItems[4],
+            //        parcelsListView.SelectedItems[i].SubItems[5],
+            //        parcelsListView.SelectedItems[i].SubItems[6],
+            //        parcelsListView.SelectedItems[i].SubItems[7],
+            //        parcelsListView.SelectedItems[i].SubItems[8])
+            //}
         }
 
         private void ButtonLoad_Click(object sender, EventArgs e)
