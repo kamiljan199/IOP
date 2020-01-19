@@ -48,16 +48,21 @@ namespace View
             switch(storePlace.Type)
             {
                 case -1:
+                    comboBoxStorePlaceType.Enabled = true;
+                    counterStorePlaceWorkersCount.Enabled = false;
+                    textBoxWarehouseManagerName.Enabled = false;
+                    break;
                 case 0:
 
                     var warehouse = storePlace as Warehouse;
                     
                     comboBoxStorePlaceType.SelectedIndex = 0;
+                    comboBoxStorePlaceType.Enabled = false;
 
                     counterStorePlaceWorkersCount.Enabled = false;
                     textBoxWarehouseManagerName.Enabled = true;
 
-                    if(storePlace.Type != -1)
+                    if(warehouse.ManagerName != null)
                     {
                         textBoxWarehouseManagerName.Text = warehouse.ManagerName;
                     }
@@ -69,6 +74,7 @@ namespace View
                     var sendingPoint = storePlace as SendingPoint;
 
                     comboBoxStorePlaceType.SelectedIndex = 1;
+                    comboBoxStorePlaceType.Enabled = false;
 
                     textBoxWarehouseManagerName.Enabled = false;
                     counterStorePlaceWorkersCount.Enabled = true;
@@ -176,11 +182,10 @@ namespace View
             {
                 case 0:
 
-                    labelStorePlaceManager.Text = "Menadżer";
                     counterStorePlaceWorkersCount.Enabled = false;
                     textBoxWarehouseManagerName.Enabled = true;
 
-                    if (storePlace.Type != -1)
+                    if (storePlace.Type == 0)
                     {
                         textBoxWarehouseManagerName.Text = (storePlace as Warehouse).ManagerName;
                     }
@@ -193,7 +198,7 @@ namespace View
                     textBoxWarehouseManagerName.Enabled = false;
                     counterStorePlaceWorkersCount.Enabled = true;
 
-                    if(storePlace.Type != -1)
+                    if(storePlace.Type == 1)
                     {
                         counterStorePlaceWorkersCount.Value = (storePlace as SendingPoint).WorkersCount;
                     }
