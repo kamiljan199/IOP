@@ -140,7 +140,7 @@ namespace Api.Managers
 
         public int SetCourierId(Parcel parcelToChange, int? courierId)
         {
-            Parcel parcel = _context.Parcels.Find(parcelToChange);
+            Parcel parcel = _context.Parcels.Find(parcelToChange.Id);
             if (parcel != null)
             {
                 parcel.CourierID = courierId;

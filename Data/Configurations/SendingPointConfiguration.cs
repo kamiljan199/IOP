@@ -18,7 +18,7 @@ namespace Data.Configurations
                 new SendingPoint
                 {
                     Id = 2,
-                    Name = "Magazyn",
+                    Name = "Punkt nadania",
                     WorkersCount = 2,
                     AddressId = 2
                 }
