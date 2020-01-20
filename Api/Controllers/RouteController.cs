@@ -29,6 +29,7 @@ namespace Api.Controllers
 
                 foreach (RoutePoint point in route.RoutePoints)
                 {
+                    _parcelService.AssignCourier(point.Parcel, driverId);
                     _parcelService.ChangeParcelStatus(point.Parcel, Model.Enums.ParcelStatus.OnWayToTheCustomer);
                 }
                 dto = new NewRouteDTO()
