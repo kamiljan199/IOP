@@ -152,7 +152,7 @@
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EmployeeListForm";
-            this.Text = "EmployeeListForm";
+            this.Text = "Lista Pracowników";
             this.Load += new System.EventHandler(this.EmployeeListForm_Load);
             this.ResumeLayout(false);
 
