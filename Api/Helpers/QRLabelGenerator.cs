@@ -75,7 +75,7 @@ namespace Api.Helpers
             BorderUShape(isReturned);
             tab.AddCell(isReturned);
 
-            PdfPCell gauge = new PdfPCell(new Phrase("Gabaryt: " + referencedParcel.ParcelType, textFont));
+            PdfPCell gauge = new PdfPCell(new Phrase("Typ paczki: " + referencedParcel.ParcelType, textFont));
             SetDefaultCellAttributes(gauge);
             BorderNShape(gauge);
             tab.AddCell(gauge);
@@ -84,7 +84,7 @@ namespace Api.Helpers
             SetDefaultCellAttributes(sender);
             tab.AddCell(sender);
 
-            PdfPCell size = new PdfPCell(new Phrase(SizeToString(), textFont));
+            PdfPCell size = new PdfPCell(new Phrase(SizeToString() + referencedParcel.ParcelWeight.ToString("F1") + " kg\n", textFont));
             SetDefaultCellAttributes(size);
             BorderUShape(size);
             tab.AddCell(size);
@@ -154,7 +154,7 @@ namespace Api.Helpers
             string temp = "Rozmiar: ";
             temp += referencedParcel.ParcelWidth.ToString("F1") + " x ";
             temp += referencedParcel.ParcelHeight.ToString("F1") + " x ";
-            temp += referencedParcel.ParcelLength.ToString("F1") + " cm";
+            temp += referencedParcel.ParcelLength.ToString("F1") + " cm\n";
             return temp;
         }
     }
