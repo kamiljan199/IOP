@@ -6,10 +6,10 @@ namespace Api.Helpers
 {
     public class CargoDetails
     {
-        public double CurrentWeight { get; private set; }
-        public double MaxWeight { get; private set; }
-        public double CurrentVolume { get; private set; }
-        public double MaxVolume { get; private set; }
+        public double CurrentWeight { get; set; }
+        public double MaxWeight { get; set; }
+        public double CurrentVolume { get; set; }
+        public double MaxVolume { get; set; }
 
         public CargoDetails(double currentWeight, double maxWeight, double currentVolume, double maxVolume)
         {
