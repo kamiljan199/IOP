@@ -16,14 +16,22 @@ namespace Api.Services
         private StorePlace storePlace;
         private readonly IParcelManager _parcelManager;
         private readonly IRouteManager _routeManager;
+        private readonly IStorePlaceManager _storePlaceManager;
 
-        public SortService(IParcelManager parcelManager, IRouteManager routeManager)
+        public SortService(IParcelManager parcelManager, IRouteManager routeManager, IStorePlaceManager storePlaceManager)
         {
             _parcelManager = parcelManager;
             _routeManager = routeManager;
+            _storePlaceManager = storePlaceManager;
             _parcels = new List<Parcel>();
             _parcelsToClients = new List<Parcel>();
             _parcelsToOtherStorePlace = new List<Parcel>();
+        }
+
+
+        public void setStorePlace(int place)
+        {
+            storePlace = _storePlaceManager.GetById(place);
         }
 
         public void GetParcelsInMagazine()
@@ -35,7 +43,7 @@ namespace Api.Services
             }
         }
 
-        public void PrintGuidelines()
+        public void PrintGuidelines(string filePath)
         {
             String street;
             String city;
@@ -89,7 +97,7 @@ namespace Api.Services
                                  " " + p.StorePlaceId);
             }
 
-            System.IO.File.WriteAllLines(@"..\..\..\Instructions.txt", instructions);
+            System.IO.File.WriteAllLines(filePath, instructions);
         }
 
         public List<Parcel> Sort(List<Parcel> parcels)
@@ -116,10 +124,68 @@ namespace Api.Services
             return parcels;
         }   
 
+        public void GetParcelsFromPoints()
+        {
+            List<StorePlace> storePlaces;
+            Parcel[] parcels;
+            List<Parcel> allParcels = new List<Parcel>();
+            storePlaces = _storePlaceManager.GetAll();
+            foreach(var point in storePlaces)
+            {
+                if (point.Type == 1)
+                {
+                    parcels = _parcelManager.GetParcelsByStorePlace(point);
+                    foreach (var parcel in parcels)
+                    {
+                        allParcels.Add(parcel);
+                    }
+                }
+                
+            }
+            //_parcelManager.sendTodifferentWarehouse(allParcels, storePlace);
+        }
+
         public void SendParcelsToWarehouses()
         {
-            //IRouteService route;
-            //route.CreateRoute()
+            List<Parcel> toSend = new List<Parcel>();
+            List<Parcel> inWarehouse = new List<Parcel>();
+            inWarehouse = _parcels;
+            int spID = storePlace.Id;
+            while (isAnymoreToSend()) {
+                foreach (var parcel in inWarehouse)
+                {
+                    if (parcel.StorePlaceId != storePlace.Id)
+                    {
+                        spID = parcel.StorePlaceId;
+                        break;
+                    }
+                }
+
+                foreach (var parcel in inWarehouse)
+                {
+                    if (parcel.StorePlaceId == spID && 
+                        parcel.StorePlaceId != storePlace.Id)
+                    {
+                        toSend.Add(parcel);
+                        inWarehouse.Remove(parcel);
+                    } 
+                }
+
+                //_parcelManager.sendTodifferentWarehouse(toSend, _storePlaceManager.GetById(toSend[0].StorePlaceId));
+                toSend.Clear();
+            }
+        }
+
+        private bool isAnymoreToSend()
+        {
+            foreach (var parcel in _parcels)
+            {
+                if(parcel.StorePlaceId != storePlace.Id)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
