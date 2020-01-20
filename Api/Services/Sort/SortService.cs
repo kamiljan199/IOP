@@ -47,6 +47,7 @@ namespace Api.Services
 
         public void PrintGuidelines(string filePath)
         {
+            
             String street;
             String city;
             bool firstTime = true;
@@ -105,7 +106,7 @@ namespace Api.Services
         public List<Parcel> Sort(List<Parcel> parcels)
         {
 
-            parcels = parcels
+            _parcels = parcels
                 .OrderBy(e => e.StorePlaceId)
                 .ThenBy(e => e.ReceiverData.PersonalAddress.City)
                 .ThenBy(e => e.ReceiverData.PersonalAddress.Street)
@@ -123,7 +124,7 @@ namespace Api.Services
                 }
             }
 
-            return parcels;
+            return _parcels;
         }
 
         public void GetParcelsFromPoints()
@@ -139,15 +140,17 @@ namespace Api.Services
                     parcels = _parcelManager.GetParcelsByStorePlace(point);
                     foreach (var parcel in parcels)
                     {
-                        allParcels.Add(parcel);
+                        _parcelManager.ChangeParcelStorePlace(parcel, storePlace.Id);
+                        _parcelManager.ChangeParcelStatus(parcel, Model.Enums.ParcelStatus.InWarehouse);
+                        //allParcels.Add(parcel);
                     }
                 }
 
             }
-            foreach (var par in allParcels)
+            /*foreach (var par in allParcels)
             {
                 _parcelManager.ChangeParcelStorePlace(par, storePlace.Id);
-            }
+            }*/
         }
 
         public void SendParcelsToWarehouses()

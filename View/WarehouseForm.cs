@@ -174,6 +174,8 @@ namespace View
                     };
                 parcelsListView.Items.Add(new ListViewItem(parcelInfo));
             }
+            //_sortController.printGuidelines(@"C:\User\Gortyn\Desktop\Intructions.txt");
+            SaveGuidelines();
         }
 
         private void ParcelListView_ItemSelectionChanged(object sender, EventArgs e)
@@ -226,7 +228,7 @@ namespace View
                 }
             }
 
-            string[] parcelInfo1 = { "12",
+            /*string[] parcelInfo1 = { "12",
                         "test, "+
                         "12/"+
                         "12, ",
@@ -238,7 +240,7 @@ namespace View
                         "12/"+
                         "12, ",
                     "abc"};
-            parcelsListView.Items.Add(new ListViewItem(parcelInfo2));
+            parcelsListView.Items.Add(new ListViewItem(parcelInfo2));*/
 
             //buttonLoad.Enabled = chooseStorePlaceCombobox.SelectedItem != null;
 
