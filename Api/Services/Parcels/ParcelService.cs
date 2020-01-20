@@ -108,7 +108,7 @@ namespace Api.Services
             bool isCourier = false;
             foreach ( var employment in emploee.ActiveEmployments )
             {
-                if( employment.IsActive && employment.Position.Name.ToLower() == "courier" )
+                if( employment.IsActive && employment.Position.Name.Equals("Kurier"))
                 {
                     isCourier = true;
                     break;

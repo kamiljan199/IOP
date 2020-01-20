@@ -142,10 +142,6 @@ namespace View
             {
                 foreach (var parcel in parcels)
                 {
-                    if (parcel == null)
-                    {
-
-                    }
                     Address addr = parcel.ReceiverData.PersonalAddress;
                     string addressText = string.Format("{0} {1}/{2}, {3}, {4}", addr.Street, addr.HomeNumber, addr.ApartmentNumber, addr.PostCode, addr.City);
                     int weight = (int)parcel.ParcelWeight;
