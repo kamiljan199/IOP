@@ -48,7 +48,7 @@ namespace Api.Managers
 
         public List<StorePlace> GetAll()
         {
-            return _context.StorePlaces.ToList();
+            return _context.StorePlaces.AsNoTracking().ToList();
         }
 
         public int SaveChanges()
