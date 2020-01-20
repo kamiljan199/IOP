@@ -45,7 +45,7 @@ namespace Api.Services
             instructions.Add("==================\nParcels to send to Clients\n==================");
 
             street = _parcels[0].ReceiverData.PersonalAddress.Street;
-            storePlaceID = _parcels[0].StorePlaceId;
+            storePlaceID = (int)_parcels[0].StorePlaceId;
             city = _parcels[0].ReceiverData.PersonalAddress.City;
 
             instructions.Add("STORE PLACE: " + storePlaceID);
@@ -68,7 +68,7 @@ namespace Api.Services
                         instructions.Add("==================\nParcels to send to different Warehouse\n==================");
                     }
 
-                    storePlaceID = p.StorePlaceId;
+                    storePlaceID = (int)p.StorePlaceId;
                     instructions.Add("STORE PLACE: " + storePlaceID);
                 }
                 if (city != p.ReceiverData.PersonalAddress.City)

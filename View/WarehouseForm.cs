@@ -183,7 +183,7 @@ namespace View
 
         private void ChooseStorePlaceCombobox_SelectedValueChanged(object sender, EventArgs e)
         {
-            Parcel[] parcels = _parcelController.GetParcelsByStorePlace(
+            Parcel[] parcels = _parcelController.GetParcelsByStorePlaceWithAddress(
                 _storePlaceController.GetById(int.Parse(
                     chooseStorePlaceCombobox.SelectedItem.ToString().
                     Substring(0, chooseStorePlaceCombobox.SelectedItem.ToString().IndexOf(" ")))));
