@@ -170,9 +170,15 @@ namespace View
                         parcel.ParcelWidth.ToString(),
                         parcel.ParcelWeight.ToString(),
                         parcel.Priority.ToString(),
-                        parcel.ParcelType
+                        parcel.ParcelType,
+                        parcel.ParcelStatus.ToString()
                     };
-                parcelsListView.Items.Add(new ListViewItem(parcelInfo));
+
+                if (!parcel.ParcelStatus.ToString().Equals("OnWayToTheCustomer") &&
+                       !parcel.ParcelStatus.ToString().Equals("Delivered"))
+                {
+                    parcelsListView.Items.Add(new ListViewItem(parcelInfo));
+                }
             }
             //_sortController.printGuidelines(@"C:\User\Gortyn\Desktop\Intructions.txt");
             SaveGuidelines();
@@ -222,9 +228,15 @@ namespace View
                         parcel.ParcelWidth.ToString(),
                         parcel.ParcelWeight.ToString(),
                         parcel.Priority.ToString(),
-                        parcel.ParcelType
+                        parcel.ParcelType,
+                        parcel.ParcelStatus.ToString()
                     };
-                    parcelsListView.Items.Add(new ListViewItem(parcelInfo));
+
+                    if (!parcel.ParcelStatus.ToString().Equals("OnWayToTheCustomer") &&
+                       !parcel.ParcelStatus.ToString().Equals("Delivered"))
+                    {
+                        parcelsListView.Items.Add(new ListViewItem(parcelInfo));
+                    }
                 }
             }
 
