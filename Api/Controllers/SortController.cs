@@ -17,7 +17,7 @@ namespace Api.Controllers
 
         public List<Parcel> Sort(List<Parcel> parcelsToSort)
         {
-            return null;
+            return _sortService.Sort(parcelsToSort);
         }
     }
 }

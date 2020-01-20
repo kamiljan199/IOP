@@ -25,6 +25,8 @@ namespace View
         private StorePlacesDTO _storePlacesDTO;
         private readonly ParcelController _parcelController;
 
+        private List<Parcel> _parcels;
+
         public WarehouseForm(EmployeeController employeeController, SortController sortController,
             StorePlaceController storePlaceController, ParcelController parcelController)
         {
@@ -33,6 +35,7 @@ namespace View
             vehiclesCargoDictionary = new Dictionary<Vehicle, List<ListViewItem>>();
             _availableVehicles = new List<Vehicle>();
             _availableParcels = new List<ListViewItem>();
+            _parcels = new List<Parcel>();
             _storePlaceController = storePlaceController;
             _parcelController = parcelController;
             InitializeComponent();
@@ -143,38 +146,9 @@ namespace View
         {
             parcelsListView.Items.Clear();
 
-            List<Parcel> parcels = new List<Parcel>();
-
-            Address adressA = new Address();
-            adressA.Street = "b";
-
-            Address adressB = new Address();
-            adressB.Street = "c";
-
-            PersonalData dataAS = new PersonalData();
-            dataAS.PersonalAddress = adressA;
-            PersonalData dataAR = new PersonalData();
-            dataAR.PersonalAddress = adressB;
-            PersonalData dataBS = new PersonalData();
-            dataBS.PersonalAddress = adressB;
-            PersonalData dataBR = new PersonalData();
-            dataBR.PersonalAddress = adressA;
-
-            Parcel a = new Parcel();
-            a.Id = 22;
-            a.SenderData = dataAS;
-            a.ReceiverData = dataAR;
-
-            Parcel b = new Parcel();
-            b.Id = 17;
-            b.SenderData = dataBS;
-            b.ReceiverData = dataBR;
-
-            parcels.Add(a);
-            parcels.Add(b);//getting our parcels
-
             List<Parcel> sortedParcels;
-            sortedParcels = _sortController.Sort(parcels);
+
+            sortedParcels = _sortController.Sort(_parcels);
 
             parcelsListView.Items.Clear();
 
@@ -192,7 +166,6 @@ namespace View
                     parcel.ReceiverData.PersonalAddress.PostCode+" "+
                     parcel.ReceiverData.PersonalAddress.City};
                 parcelsListView.Items.Add(new ListViewItem(parcelInfo));
-                _availableParcels.Add(new ListViewItem(parcelInfo));
             }
         }
 
@@ -208,11 +181,18 @@ namespace View
                     chooseStorePlaceCombobox.SelectedItem.ToString().
                     Substring(0, chooseStorePlaceCombobox.SelectedItem.ToString().IndexOf(" ")))));
 
+
             parcelsListView.Items.Clear();
+            _parcels.Clear();
+
+            foreach(Parcel parcel in parcels)
+            {
+                _parcels.Add(parcel);
+            }
 
             if (chooseStorePlaceCombobox.SelectedItem != null)
             {
-                foreach (var parcel in parcels)
+                foreach (var parcel in _parcels)
                 {
                     string[] parcelInfo = { parcel.Id.ToString(),
                         parcel.SenderData.PersonalAddress.Street +", "+
