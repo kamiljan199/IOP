@@ -16,12 +16,17 @@ namespace View
     public partial class ParcelRegistrationForm : Form
     {
         private readonly ParcelController _parcelController;
+        private readonly EmployeeController _employeeController;
+        private readonly EmploymentController _employmentController;
+
         private bool isParcelDataValid = false;
         private string parcelType = "";
 
-        public ParcelRegistrationForm(ParcelController parcelController)
+        public ParcelRegistrationForm(ParcelController parcelController, EmployeeController employeeController, EmploymentController employmentController)
         {
             _parcelController = parcelController;
+            _employeeController = employeeController;
+            _employmentController = employmentController;
             InitializeComponent();
             Console.WriteLine(parcelPriorityComboBox.SelectedIndex);
         }
@@ -174,6 +179,7 @@ namespace View
             else
                 recieverApartment = null;
 
+            int? storePlace = _employmentController.GetEmploymentById(_employeeController.GetLoggedEmployee().Id).StorePlaceId;
 
             Parcel parcelToAdd = new Parcel
             {
@@ -211,6 +217,7 @@ namespace View
                 ParcelType = parcelType,
                 ParcelWeight = float.Parse(parcelWeightTextBox.Text),
                 Priority = parcelPriorityComboBox.SelectedIndex,
+                StorePlaceId = storePlace,
             };
 
             addedParcel = parcelToAdd;
