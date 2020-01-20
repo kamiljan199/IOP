@@ -52,6 +52,18 @@ namespace Api.Services
             return parcels;
         }
 
+        public Parcel[] GetParcelsByStorePlaceWithAddress(StorePlace storePlace)
+        {
+            Parcel[] parcels = _parcelManager.GetParcelsByStorePlaceWithAddress(storePlace);
+            if (parcels.Length == 0)
+            {
+                throw new ParcelNotFoundInDatabaseException(storePlace);
+            }
+
+
+            return parcels;
+        }
+
         public Parcel[] GetParcelsFromStorePlaceByStatus(StorePlace storePlace, ParcelStatus status)
         {
             Parcel[] parcels = _parcelManager.GetParcelsFromStorePlaceByStatus(storePlace, status);
