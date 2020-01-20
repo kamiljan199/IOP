@@ -52,7 +52,7 @@ namespace View
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
+            for (int i = 0; i < listBox1.Items.Count; i++)
             {
                 if (listBox1.SelectedIndex == i)
                 {
@@ -114,14 +114,24 @@ namespace View
                 try
                 {
                     listBox1.Items.Clear();
-                    _employment = _employee.ActiveEmployments[0];
-                    _storePlace = _employment.StorePlaceId != null ? _storePlaceController.GetById(_employment.StorePlaceId.GetValueOrDefault()) : null;
-                    _parcelsDTO = _storePlaceController.GetCouriersParcels(_storePlace, _employee.Id);
-                    if (_parcelsDTO.Status == CollectionGetStatus.Success)
+                    if (_employee.ActiveEmployments.Where(em => em.Position.Name.Equals("Administrator")).Count() > 0)
                     {
-                        for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
+                        for (int i = 0; i < _parcelController.GetAllParcels().Length; i++)
                         {
-                            listBox1.Items.Add(_parcelsDTO.StorePlaces[i].Id);
+                            listBox1.Items.Add(_parcelController.GetAllParcels()[i].Id);
+                        }
+                    }
+                    else
+                    {
+                        _employment = _employee.ActiveEmployments[0];
+                        _storePlace = _employment.StorePlaceId != null ? _storePlaceController.GetById(_employment.StorePlaceId.GetValueOrDefault()) : null;
+                        _parcelsDTO = _storePlaceController.GetCouriersParcels(_storePlace, _employee.Id);
+                        if (_parcelsDTO.Status == CollectionGetStatus.Success)
+                        {
+                            for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
+                            {
+                                listBox1.Items.Add(_parcelsDTO.StorePlaces[i].Id);
+                            }
                         }
                     }
                 }
