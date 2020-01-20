@@ -27,16 +27,10 @@ namespace Api.Controllers
             {
                 Route route = _routeService.CreateRoute(driverId, carId, parcelIds);
 
-                // TODO: maybe different method for that?
-                // maybe add RouteStatus?
-                /*
                 foreach (RoutePoint point in route.RoutePoints)
                 {
-                    _parcelService.AssignCourier(point.Parcel, route.EmployeeId);
                     _parcelService.ChangeParcelStatus(point.Parcel, Model.Enums.ParcelStatus.OnWayToTheCustomer);
                 }
-                */
-
                 dto = new NewRouteDTO()
                 {
                     Route = route,
