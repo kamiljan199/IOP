@@ -80,7 +80,7 @@ namespace Api.Helpers
             SetDefaultCellAttributes(sender);
             tab.AddCell(sender);
 
-            PdfPCell size = new PdfPCell(new Phrase(SizeToString() + referencedParcel.ParcelWeight.ToString("F1") + " kg\n", textFont));
+            PdfPCell size = new PdfPCell(new Phrase(SizeToString() + "Waga: " + referencedParcel.ParcelWeight.ToString("F1") + " kg\n", textFont));
             SetDefaultCellAttributes(size);
             BorderUShape(size);
             tab.AddCell(size);
@@ -133,7 +133,7 @@ namespace Api.Helpers
         private static string AddressToString(Address address)
         {
             string temp = "ul. " + address.Street + " " + address.HomeNumber;
-            if (address.ApartmentNumber != 0)
+            if (address.ApartmentNumber != 0 && address.ApartmentNumber != null)
             {
                 temp += "/" + address.ApartmentNumber + "\n";
             }
