@@ -108,6 +108,13 @@ namespace View
         private void CourierWindow_Load(object sender, EventArgs e)
         {
             listBox1.Enabled = true;
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
+            radioButton5.Checked = false;
+            radioButton6.Checked = false;
+            radioButton7.Checked = false;
             _employee = _employeeController.GetLoggedEmployee();
             if (_employee != null)
             {
