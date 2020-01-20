@@ -84,7 +84,7 @@ namespace Api.Helpers
             }
             catch(iTextSharp.text.DocumentException dex)
             {
-
+                Console.WriteLine(dex.Message);
             }
 
             new Process

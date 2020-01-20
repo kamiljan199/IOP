@@ -30,7 +30,7 @@ namespace Api.Controllers
                     Status = TestStatus.Success,
                     SenderName = parcel.SenderData.FirstName,
                     ReceiverName = parcel.ReceiverData.FirstName,
-                    StoragePointId = parcel.StorePlaceId
+                    StoragePointId = (int)parcel.StorePlaceId
                 };
 
                 return result;

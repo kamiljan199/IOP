@@ -7,7 +7,7 @@ namespace Model.Models
     public class Parcel
     {
         public int Id { get; set; }
-        public int StorePlaceId { get; set; }
+        public int? StorePlaceId { get; set; }
         public virtual PersonalData SenderData { get; set; }
         public virtual PersonalData ReceiverData { get; set; }
         public float ParcelWidth { get; set; }

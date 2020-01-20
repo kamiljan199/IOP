@@ -42,6 +42,13 @@ namespace Api.Managers
             return query.Include(s => s.ReceiverData).ThenInclude(s => s.PersonalAddress).ToArray();
         }
 
+        public Parcel[] GetAllParcels()
+        {
+            var query = from e in _context.Parcels
+                        select e;
+            return query.ToArray();
+        }
+
         public int PostParcel(Parcel newParcel)
         {
             _context.Parcels.Add(newParcel);
@@ -69,6 +76,20 @@ namespace Api.Managers
             if (parcel != null)
             {
                 parcel.ParcelStatus = status;
+                _context.Parcels.Update(parcel);
+                return _context.SaveChanges();
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public int ChangeParcelStorePlace(Parcel parcelToChange, int storePlaceID)
+        {
+            Parcel parcel = _context.Parcels.Find(parcelToChange.Id);
+            if (parcel != null)
+            {
+                parcel.StorePlaceId = storePlaceID;
                 _context.Parcels.Update(parcel);
                 return _context.SaveChanges();
             }
