@@ -51,13 +51,13 @@ namespace Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseMySql(Configuration.GetConnectionString("localhost"));
-            optionsBuilder.UseMySql("server=localhost;database=iop;uid=root;pwd=;");
+            //optionsBuilder.UseMySql("server=localhost;database=iop;uid=root;pwd=;");
 
             //optionsBuilder.UseMySql(Configuration.GetConnectionString("db4free.net"));
             //optionsBuilder.UseMySql("server=db4free.net;database=pawelkun1;uid=pawelkun1;pwd=k44wy3p51;");
 
             //optionsBuilder.UseMySql(Configuration.GetConnectionString("bartek"));
-            //optionsBuilder.UseMySql("server=136.243.132.217;database=bartek97_io;uid=bartek97_io;pwd=1(CI1(33)d3G@e_;");
+            optionsBuilder.UseMySql("server=136.243.132.217;database=bartek97_io;uid=bartek97_io;pwd=1(CI1(33)d3G@e_;");
 
             base.OnConfiguring(optionsBuilder);
         }
