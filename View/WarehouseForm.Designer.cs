@@ -34,16 +34,17 @@
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.chooseStorePlaceCombobox = new System.Windows.Forms.ComboBox();
-            this.buttonPost = new System.Windows.Forms.Button();
-            this.chooseVehicleTextbox = new System.Windows.Forms.TextBox();
-            this.chooseStorePlaceTextbox = new System.Windows.Forms.TextBox();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+            this.chooseStorePlaceCombobox = new System.Windows.Forms.ComboBox();
+            this.buttonPost = new System.Windows.Forms.Button();
+            this.chooseVehicleTextbox = new System.Windows.Forms.TextBox();
+            this.chooseStorePlaceTextbox = new System.Windows.Forms.TextBox();
+            this.getParcelsFromPointsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // logoutButton
@@ -102,6 +103,30 @@
             this.columnHeader3.Text = "Adres odbiorcy";
             this.columnHeader3.Width = 200;
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Wysokość";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Długość";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Szerokość";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Waga";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Priorytet";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Typ";
+            // 
             // chooseStorePlaceCombobox
             // 
             this.chooseStorePlaceCombobox.FormattingEnabled = true;
@@ -139,33 +164,20 @@
             this.chooseStorePlaceTextbox.TabIndex = 9;
             this.chooseStorePlaceTextbox.Text = "Wybierz magazyn:";
             // 
-            // columnHeader4
+            // getParcelsFromPointsButton
             // 
-            this.columnHeader4.Text = "Wysokość";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Długość";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Szerokość";
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Waga";
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Priorytet";
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Typ";
+            this.getParcelsFromPointsButton.Location = new System.Drawing.Point(574, 49);
+            this.getParcelsFromPointsButton.Name = "getParcelsFromPointsButton";
+            this.getParcelsFromPointsButton.Size = new System.Drawing.Size(309, 31);
+            this.getParcelsFromPointsButton.TabIndex = 10;
+            this.getParcelsFromPointsButton.Text = "Pobierz paczki z punktów";
+            this.getParcelsFromPointsButton.UseVisualStyleBackColor = true;
+            this.getParcelsFromPointsButton.Click += new System.EventHandler(getParcelsFromPointsButton_Click);
             // 
             // WarehouseForm
             // 
             this.ClientSize = new System.Drawing.Size(938, 407);
+            this.Controls.Add(this.getParcelsFromPointsButton);
             this.Controls.Add(this.buttonPost);
             this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.chooseStorePlaceCombobox);
@@ -196,5 +208,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.Button getParcelsFromPointsButton;
     }
 }

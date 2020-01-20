@@ -278,6 +278,8 @@ namespace View
 
         private void ButtonPost_Click(object sender, EventArgs e)
         {
+            _sortController.SendParcelsToWarehouses();
+
             //nadawanie przesyłek
             if ( _employeeController.GetLoggedEmployee() != null)
             {
@@ -361,6 +363,11 @@ namespace View
                         fileNameCorrect = true;
                 }
             }
+        }
+
+        private void getParcelsFromPointsButton_Click(object sender, EventArgs e)
+        {
+            _sortController.GetParcelsFromPoints();
         }
     }
 }

@@ -36,6 +36,8 @@ namespace Api.Services
 
         public void GetParcelsInMagazine()
         {
+            _parcels.Clear();
+
             Parcel[] parcels = _parcelManager.GetParcelsByStorePlace(storePlace);
             for(int  i = 0; i < parcels.Length; i++)
             {
@@ -150,6 +152,8 @@ namespace Api.Services
 
         public void SendParcelsToWarehouses()
         {
+            GetParcelsInMagazine();
+
             int? spID = storePlace.Id;
 
             foreach (var parcel in _parcels)
