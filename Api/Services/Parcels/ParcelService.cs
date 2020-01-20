@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Api.Managers;
 using Model.Enums;
 using Model.Models;
@@ -13,9 +11,10 @@ namespace Api.Services
         private readonly IParcelManager _parcelManager;
         private readonly IEmployeeManager _employeeManager;
 
-        public ParcelService(IParcelManager parcelManager)
+        public ParcelService(IParcelManager parcelManager, IEmployeeManager employeeManager)
         {
             _parcelManager = parcelManager;
+            _employeeManager = employeeManager;
         }
 
         public Parcel GetById(int id)
@@ -60,7 +59,15 @@ namespace Api.Services
             {
                 throw new ParcelNotFoundInDatabaseException(storePlace);
             }
-
+            return parcels;
+        }
+        public Parcel[] GetAllParcels()
+        {
+            Parcel[] parcels = _parcelManager.GetAllParcels();
+            if (parcels.Length == 0)
+            {
+                throw new ParcelNotFoundInDatabaseException();
+            }
             return parcels;
         }
 
@@ -87,6 +94,14 @@ namespace Api.Services
             }
         }
 
+        public void ChangeParcelStorePlace(Parcel parcelToChange, int storePlaceID)
+        {
+            if (_parcelManager.ChangeParcelStorePlace(parcelToChange, storePlaceID) == 0)
+            {
+                throw new NothingAddedToDatabaseException(parcelToChange);
+            }
+        }
+
         public void ReturnParcel(Parcel oldParcel)
         {
             if (_parcelManager.ReturnParcel(oldParcel) == 0)
@@ -108,7 +123,7 @@ namespace Api.Services
             bool isCourier = false;
             foreach ( var employment in emploee.ActiveEmployments )
             {
-                if( employment.IsActive && employment.Position.Name.Equals("Kurier"))
+                if( employment.IsActive && employment.Position.Name.ToLower().Equals("kurier") )
                 {
                     isCourier = true;
                     break;

@@ -3,14 +3,16 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200119185225_VirtualPersonalData")]
+    partial class VirtualPersonalData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,7 +25,7 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("ApartmentNumber")
+                    b.Property<int>("ApartmentNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("City")
@@ -64,6 +66,7 @@ namespace Data.Migrations
                         new
                         {
                             Id = 1,
+                            ApartmentNumber = 0,
                             City = "Łuć",
                             PostCode = "98-205",
                             Street = "Skrzywana"
@@ -71,6 +74,7 @@ namespace Data.Migrations
                         new
                         {
                             Id = 2,
+                            ApartmentNumber = 0,
                             City = "Łuć",
                             PostCode = "98-205",
                             Street = "Radwańska"

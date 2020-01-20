@@ -92,6 +92,8 @@ namespace View
                 _storePlaceAddEditForm.storePlace = storePlace;
                 _storePlaceAddEditForm.ShowDialog();
             }
+
+            EditDeleteButtonEnablement();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -101,6 +103,8 @@ namespace View
                 Type = -1,
             };
             _storePlaceAddEditForm.ShowDialog();
+
+            EditDeleteButtonEnablement();
         }
 
         private void removeButton_Click(object sender, EventArgs e)
@@ -114,16 +118,21 @@ namespace View
 
                 SynchronizeStorePlaces();
             }
+
+            EditDeleteButtonEnablement();
         }
 
         private void listStorePlace_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            EditDeleteButtonEnablement();
+        }
+
+        private void EditDeleteButtonEnablement()
         {
             var isStorePlaceSelected = listStorePlace.SelectedItems.Count == 1;
 
             editButton.Enabled = isStorePlaceSelected;
             removeButton.Enabled = isStorePlaceSelected;
         }
-
-
     }
 }
