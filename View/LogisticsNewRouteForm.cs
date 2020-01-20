@@ -62,52 +62,73 @@ namespace View
             List<Employee> couriersTemp = new List<Employee>();
 
             vehicles = _vehicleController.GetAllVehicles();
-            foreach (var item in routes.Routes)
+            couriers = _employeeController.GetEmployeesByPositionId(courierPosition.Id);
+
+            if (routes.Routes.Count() == 0)
             {
-                
                 foreach (var vehicle in vehicles.Vehicles)
-                {
-                    if (vehicle.Id != item.VehicleId)
-                        vehiclesTemp.Add(vehicle);
-                }
-            }
-            
-            if (vehiclesTemp.Count == 0)
-            {
-                MessageBox.Show("Za mała ilość danych w bazie. Brak pojazdów w danym magazynie.", "Błąd bazy danych", 0, MessageBoxIcon.Error);
-                this.Close();
-            }
-            else
-            {
-                foreach (var vehicle in vehiclesTemp)
                 {
                     comboBoxVehicle.Items.Add(string.Format(
                         "{0} {1} ({2})", vehicle.Brand, vehicle.Model, vehicle.Registration
                         ));
                 }
-            }
 
-            couriers = _employeeController.GetEmployeesByPositionId(courierPosition.Id);
-            foreach (var item in routes.Routes)
-            {
                 foreach (var courier in couriers.Employees)
                 {
-                    if (courier.Id != item.EmployeeId)
-                        couriersTemp.Add(courier);
+                    comboBoxDriver.Items.Add(string.Format(
+                           "{0} {1}", courier.Name, courier.Surname
+                           ));
                 }
             }
-            if (couriersTemp.Count == 0)
-            {
-                MessageBox.Show("Za mała ilość danych w bazie. Brak pracowników na stanowisku kurier", "Błąd bazy danych", 0, MessageBoxIcon.Error);
-                this.Close();
-            }
+
             else
             {
-                foreach (var courier in couriersTemp)
+                foreach (var item in routes.Routes)
                 {
-                    comboBoxDriver.Items.Add(string.Format(
-                        "{0} {1}", courier.Name, courier.Surname
-                        ));
+
+                    foreach (var vehicle in vehicles.Vehicles)
+                    {
+                        if (vehicle.Id != item.VehicleId)
+                            vehiclesTemp.Add(vehicle);
+                    }
+                }
+
+                if (vehiclesTemp.Count() == 0)
+                {
+                    MessageBox.Show("Za mała ilość danych w bazie. Brak pojazdów w danym magazynie.", "Błąd bazy danych", 0, MessageBoxIcon.Error);
+                    this.Close();
+                }
+                else
+                {
+                    foreach (var vehicle in vehiclesTemp)
+                    {
+                        comboBoxVehicle.Items.Add(string.Format(
+                            "{0} {1} ({2})", vehicle.Brand, vehicle.Model, vehicle.Registration
+                            ));
+                    }
+                }
+
+                foreach (var item in routes.Routes)
+                {
+                    foreach (var courier in couriers.Employees)
+                    {
+                        if (courier.Id != item.EmployeeId)
+                            couriersTemp.Add(courier);
+                    }
+                }
+                if (couriersTemp.Count() == 0)
+                {
+                    MessageBox.Show("Za mała ilość danych w bazie. Brak pracowników na stanowisku kurier", "Błąd bazy danych", 0, MessageBoxIcon.Error);
+                    this.Close();
+                }
+                else
+                {
+                    foreach (var courier in couriersTemp)
+                    {
+                        comboBoxDriver.Items.Add(string.Format(
+                            "{0} {1}", courier.Name, courier.Surname
+                            ));
+                    }
                 }
             }
 
