@@ -109,7 +109,7 @@ namespace View
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Czy na pewno chcesz usunąć wybrane rekordy?", "Potwierdzenie", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show("Czy na pewno chcesz usunąć wybraną placówkę z rejestru?", "Potwierdzenie", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 foreach (ListViewItem s in listStorePlace.SelectedItems)
                 {
