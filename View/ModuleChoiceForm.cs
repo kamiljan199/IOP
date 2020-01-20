@@ -53,7 +53,6 @@ namespace View
 
         public void ButtonOpenCourierWindow_Click(object sender, EventArgs e)
         {
-            this.Close();
             _courierForm.ShowDialog();
         }
 
@@ -64,7 +63,6 @@ namespace View
 
         private void storePlaceListButton_Click(object sender, EventArgs e)
         {
-            this.Close();
             _storePlaceListForm.ShowDialog();
         }
 
