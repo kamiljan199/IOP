@@ -188,6 +188,9 @@ namespace View
                     chooseStorePlaceCombobox.SelectedItem.ToString().
                     Substring(0, chooseStorePlaceCombobox.SelectedItem.ToString().IndexOf(" ")))));
 
+            _sortController.setStorePlace(int.Parse(
+                    chooseStorePlaceCombobox.SelectedItem.ToString().
+                    Substring(0, chooseStorePlaceCombobox.SelectedItem.ToString().IndexOf(" "))));
 
             parcelsListView.Items.Clear();
             _parcels.Clear();
@@ -320,6 +323,44 @@ namespace View
             vehiclesCargoDictionary.Add(selectedVehicle, items);
 
             parcelsListView.Select();
+        }
+
+        private void SaveGuidelines()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Pliki txt (*.txt)|*.txt";
+            saveFileDialog.FilterIndex = 0;
+            saveFileDialog.RestoreDirectory = true;
+
+            saveFileDialog.FileName = "Instructions_" + DateTime.Now.ToString("dd-MM-yy_H-mm-ss");
+
+            bool fileNameCorrect = false;
+            while (!fileNameCorrect)
+            {
+                saveFileDialog.ShowDialog();
+
+                if (saveFileDialog.FileName != "")
+                {
+                    //FileStream fs = (FileStream)saveFileDialog.OpenFile();
+                    _sortController.printGuidelines(saveFileDialog.FileName);
+                    fileNameCorrect = true;
+                }
+                else
+                {
+                    // Display dialog that filename is incorrect
+                    string message = "File name incorrect. Retry?";
+                    string caption = "Operation failure";
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                    DialogResult result;
+                    result = MessageBox.Show(message, caption, buttons);
+
+                    if (result == DialogResult.Yes)
+                        fileNameCorrect = false;
+                    else if (result == DialogResult.No)
+                        fileNameCorrect = true;
+                }
+            }
         }
     }
 }

@@ -19,5 +19,25 @@ namespace Api.Controllers
         {
             return _sortService.Sort(parcelsToSort);
         }
+
+        public void setStorePlace(int placeId)
+        {
+            _sortService.setStorePlace(placeId);
+        }
+
+        public void printGuidelines(string filePath)
+        {
+            _sortService.PrintGuidelines(filePath);
+        }
+
+        public void GetParcelsFromPoints()
+        {
+            _sortService.GetParcelsFromPoints();
+        }
+
+        public void SendParcelsToWarehouses()
+        {
+            _sortService.SendParcelsToWarehouses();
+        }
     }
 }

@@ -9,7 +9,9 @@ namespace Api.Services
     {
         void GetParcelsInMagazine();
         List<Parcel> Sort(List<Parcel> parcels);
-        void PrintGuidelines();
+        void PrintGuidelines(string filePath);
         public void SendParcelsToWarehouses();
+        public void GetParcelsFromPoints();
+        public void setStorePlace(int place);
     }
 }
