@@ -26,13 +26,21 @@ namespace View
         private  Employment _employment;
         private  StorePlace _storePlace;
         private  ParcelsDTO _parcelsDTO;
+        private ParcelReturnForm _parcelReturnForm;
 
-        public CourierForm(StorePlaceController storePlaceController, ParcelController parcelController,EmployeeController employeeController)
+        public CourierForm(StorePlaceController storePlaceController, ParcelController parcelController,
+            EmployeeController employeeController, ParcelReturnForm parcelReturnForm)
         {
             _storePlaceController = storePlaceController;
             _parcelController = parcelController;
             _employeeController = employeeController;
+            _parcelReturnForm = parcelReturnForm;
             InitializeComponent();
+        }
+
+        private void ButtonReturn_Click(object sender, EventArgs e)
+        {
+            _parcelReturnForm.ShowDialog();
         }
 
         private void ButtonLogout_Click(object sender, EventArgs e)

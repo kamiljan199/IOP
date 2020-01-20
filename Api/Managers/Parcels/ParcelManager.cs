@@ -80,7 +80,7 @@ namespace Api.Managers
 
         public int ReturnParcel(Parcel oldParcel)
         {
-            Parcel parcelToReturn = _context.Parcels.Find(oldParcel);
+            Parcel parcelToReturn = _context.Parcels.Find(oldParcel.Id);
             if (parcelToReturn != null)
             {
                 parcelToReturn.ParcelStatus = ParcelStatus.Returned;

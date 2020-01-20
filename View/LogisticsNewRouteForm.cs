@@ -57,37 +57,105 @@ namespace View
 
             Position courierPosition = _positionController.GetPositionByName("Kurier");
             currentWarehouse = _storePlaceController.GetAllWarehouses().StorePlaces[0];
+            RoutesDTO routes = _routeController.GetAllRoutes();
+            List<Vehicle> vehiclesTemp = new List<Vehicle>();
+            List<Employee> couriersTemp = new List<Employee>();
 
             vehicles = _vehicleController.GetAllVehicles();
             couriers = _employeeController.GetEmployeesByPositionId(courierPosition.Id);
+
+            if (routes.Routes.Count() == 0)
+            {
+                foreach (var vehicle in vehicles.Vehicles)
+                {
+                    comboBoxVehicle.Items.Add(string.Format(
+                        "{0} {1} ({2})", vehicle.Brand, vehicle.Model, vehicle.Registration
+                        ));
+                }
+
+                foreach (var courier in couriers.Employees)
+                {
+                    comboBoxDriver.Items.Add(string.Format(
+                           "{0} {1}", courier.Name, courier.Surname
+                           ));
+                }
+            }
+
+            else
+            {
+                foreach (var item in routes.Routes)
+                {
+
+                    foreach (var vehicle in vehicles.Vehicles)
+                    {
+                        if (vehicle.Id != item.VehicleId)
+                            vehiclesTemp.Add(vehicle);
+                    }
+                }
+
+                if (vehiclesTemp.Count() == 0)
+                {
+                    MessageBox.Show("Za mała ilość danych w bazie. Brak pojazdów w danym magazynie.", "Błąd bazy danych", 0, MessageBoxIcon.Error);
+                    this.Close();
+                }
+                else
+                {
+                    foreach (var vehicle in vehiclesTemp)
+                    {
+                        comboBoxVehicle.Items.Add(string.Format(
+                            "{0} {1} ({2})", vehicle.Brand, vehicle.Model, vehicle.Registration
+                            ));
+                    }
+                }
+
+                foreach (var item in routes.Routes)
+                {
+                    foreach (var courier in couriers.Employees)
+                    {
+                        if (courier.Id != item.EmployeeId)
+                            couriersTemp.Add(courier);
+                    }
+                }
+                if (couriersTemp.Count() == 0)
+                {
+                    MessageBox.Show("Za mała ilość danych w bazie. Brak pracowników na stanowisku kurier", "Błąd bazy danych", 0, MessageBoxIcon.Error);
+                    this.Close();
+                }
+                else
+                {
+                    foreach (var courier in couriersTemp)
+                    {
+                        comboBoxDriver.Items.Add(string.Format(
+                            "{0} {1}", courier.Name, courier.Surname
+                            ));
+                    }
+                }
+            }
+
             parcels = _parcelController.GetParcelsFromStorePlaceByStatus(currentWarehouse, Model.Enums.ParcelStatus.InWarehouse);
-
-
-            foreach (var vehicle in vehicles.Vehicles)
+            if (parcels.Length == 0)
             {
-                comboBoxVehicle.Items.Add(string.Format(
-                    "{0} {1} ({2})", vehicle.Brand, vehicle.Model, vehicle.Registration
-                    ));
+                MessageBox.Show("Za mała ilość danych w bazie. Brak paczek do doręczenia", "Błąd bazy danych", 0, MessageBoxIcon.Error);
+                this.Close();
             }
-
-            foreach (var courier in couriers.Employees)
+            else
             {
-                comboBoxDriver.Items.Add(string.Format(
-                    "{0} {1}", courier.Name, courier.Surname
-                    ));
-            }
+                foreach (var parcel in parcels)
+                {
+                    if (parcel == null)
+                    {
 
-            foreach (var parcel in parcels)
-            {
-                Address addr = parcel.ReceiverData.PersonalAddress;
-                string addressText = string.Format("{0} {1}/{2}, {3}, {4}", addr.Street, addr.HomeNumber, addr.ApartmentNumber, addr.PostCode, addr.City);
-                int weight = (int)parcel.ParcelWeight;
-                int volume = (int)(parcel.ParcelLength * parcel.ParcelHeight * parcel.ParcelWidth);
-                ListViewItem item = new ListViewItem(new string[] { "", addressText, weight.ToString(), volume.ToString() });
-                item.Tag = parcel.Id;
-                if (parcel.Priority > 0)
-                    item.BackColor = Color.LightGoldenrodYellow;
-                listViewWarehouseParcels.Items.Add(item);
+                    }
+                    Address addr = parcel.ReceiverData.PersonalAddress;
+                    string addressText = string.Format("{0} {1}/{2}, {3}, {4}", addr.Street, addr.HomeNumber, addr.ApartmentNumber, addr.PostCode, addr.City);
+                    int weight = (int)parcel.ParcelWeight;
+                    int volume = (int)(parcel.ParcelLength * parcel.ParcelHeight * parcel.ParcelWidth);
+                    ListViewItem item = new ListViewItem(new string[] { "", addressText, weight.ToString(), volume.ToString() });
+                    item.Tag = parcel.Id;
+                    if (parcel.Priority > 0)
+                        item.BackColor = Color.LightGoldenrodYellow;
+                    listViewWarehouseParcels.Items.Add(item);
+                }
             }
 
             ReordereOrdinNumbers(listViewWarehouseParcels);

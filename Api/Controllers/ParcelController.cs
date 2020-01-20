@@ -90,6 +90,22 @@ namespace Api.Controllers
             return true;
         }
 
+        public bool PostParcel(Parcel parcel)
+        {
+            parcel.ParcelStatus = ParcelStatus.AtPostingPoint;
+            parcel.ReferenceId = 0;
+            try
+            {
+                _parcelService.PostParcel(parcel);
+            }
+            catch (NothingAddedToDatabaseException e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            return true;
+        }
+
         public bool ChangeParcelPriority(int id, int priority)
         {
             try
@@ -149,7 +165,7 @@ namespace Api.Controllers
 
         public decimal GetParcelCost(Parcel parcel)
         {
-            decimal cost = 0;
+            decimal cost;
             try
             {
                 cost = _parcelService.CalculateParcelCost(parcel);
@@ -160,6 +176,27 @@ namespace Api.Controllers
                 return 0;
             }
             return cost;
+        }
+
+        public string GetParcelType(double weight, float x, float y, float z)
+        {
+            string type = "None";
+            float edgeSum = Math.Min(x, Math.Min(y, z)) +
+                            Math.Max(x, Math.Max(y, z));
+            if (edgeSum < 35.0 && weight < 1.0)
+            {
+                type = "A";
+            }
+            else if (edgeSum < 75.0 && weight < 10.0)
+            {
+                type = "B";
+            }
+            else if (edgeSum < 180.0 && weight < 31.5)
+            {
+                type = "C";
+            }
+
+            return type;
         }
     }
 }

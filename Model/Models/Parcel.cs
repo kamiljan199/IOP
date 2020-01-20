@@ -8,8 +8,8 @@ namespace Model.Models
     {
         public int Id { get; set; }
         public int StorePlaceId { get; set; }
-        public PersonalData SenderData { get; set; }
-        public PersonalData ReceiverData { get; set; }
+        public virtual PersonalData SenderData { get; set; }
+        public virtual PersonalData ReceiverData { get; set; }
         public float ParcelWidth { get; set; }
         public float ParcelHeight { get; set; }
         public float ParcelLength { get; set; }
