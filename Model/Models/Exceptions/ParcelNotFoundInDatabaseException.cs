@@ -6,6 +6,12 @@ namespace Model.Models.Exceptions
 {
     public class ParcelNotFoundInDatabaseException : Exception
     {
+        public ParcelNotFoundInDatabaseException() :
+            base("Parcels not found in database.\n")
+        {
+
+        }
+
         public ParcelNotFoundInDatabaseException(Parcel parcel) :
             base("Parcel " + parcel.ToString() + " not found in the database.\n")
         {

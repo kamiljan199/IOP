@@ -62,6 +62,19 @@ namespace Api.Controllers
 
             return parcels;
         }
+        public Parcel[] GetAllParcels()
+        {
+            Parcel[] parcels = { };
+            try
+            {
+                parcels = _parcelService.GetAllParcels();
+            }
+            catch (ParcelNotFoundInDatabaseException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return parcels;
+        }
 
         public bool PostParcel(StorePlace storePlace, PersonalData senderData, PersonalData receiverData, float height, float length, float width, float weight, int priority, string type)
         {
@@ -144,6 +157,20 @@ namespace Api.Controllers
             return true;
         }
 
+        public bool ChangeParcelStorePlace(Parcel parcelToChange, int storePlaceID)
+        {
+            try
+            {
+                _parcelService.ChangeParcelStorePlace(parcelToChange, storePlaceID);
+            }
+            catch (NothingAddedToDatabaseException e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            return true;
+        }
+
         public bool ReturnParcel(int id)
         {
             try
@@ -197,6 +224,30 @@ namespace Api.Controllers
             }
 
             return type;
+        }
+
+        public void AssignCourier(Parcel parcelToChange, int courierId)
+        {
+            try
+            {
+                _parcelService.AssignCourier(parcelToChange, courierId);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public void UnassignCourier(Parcel parcelToChange)
+        {
+            try
+            {
+                _parcelService.UnassignCourier(parcelToChange);
+            }
+            catch(NothingAddedToDatabaseException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
