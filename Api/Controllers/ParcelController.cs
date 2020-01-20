@@ -48,6 +48,21 @@ namespace Api.Controllers
             return parcels;
         }
 
+        public Parcel[] GetParcelsByStorePlaceWithAddress(StorePlace storePlace)
+        {
+            Parcel[] parcels = { };
+            try
+            {
+                parcels = _parcelService.GetParcelsByStorePlaceWithAddress(storePlace);
+            }
+            catch (ParcelNotFoundInDatabaseException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return parcels;
+        }
+
         public Parcel[] GetParcelsFromStorePlaceByStatus(StorePlace storePlace, ParcelStatus status)
         {
             Parcel[] parcels = { };

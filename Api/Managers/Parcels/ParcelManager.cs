@@ -34,6 +34,15 @@ namespace Api.Managers
             return query.ToArray();
         }
 
+        public Parcel[] GetParcelsByStorePlaceWithAddress(StorePlace storePlace)
+        {
+            var query = from e in _context.Parcels
+                        where e.StorePlaceId == storePlace.Id
+                        select e;
+            return query.Include(e => e.ReceiverData.PersonalAddress).
+                Include(e => e.SenderData.PersonalAddress).ToArray();
+        }
+
         public Parcel[] GetParcelsFromStorePlaceByStatus(StorePlace storePlace, ParcelStatus status)
         {
             var query = from e in _context.Parcels

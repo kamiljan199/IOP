@@ -125,16 +125,30 @@ namespace View
         private void buttonSave_Click(object sender, EventArgs e)
         {
             StorePlace editedStorePlace = null;
-            var address = new Address
+            Address address;
+            
+            try
             {
-                City = textBoxCity.Text,
-                PostCode = textBoxPostCode.Text,
-                Street = textBoxStreet.Text,
-                HomeNumber = textBoxHomeNumber.Text,
-                ApartmentNumber = Int32.Parse(textBoxApartmentNumber.Text)
+                var apartmentNumber = Int32.Parse(textBoxApartmentNumber.Text);
+                if(apartmentNumber < 0)
+                {
+                    throw new FormatException();
+                }
 
-                // TODO: String HomeNumber needs to be filled too
-            };
+                address = new Address
+                {
+                    City = textBoxCity.Text,
+                    PostCode = textBoxPostCode.Text,
+                    Street = textBoxStreet.Text,
+                    HomeNumber = textBoxHomeNumber.Text,
+                    ApartmentNumber = apartmentNumber
+                };
+            }
+            catch(FormatException ex)
+            {
+                MessageBox.Show("Numer domu jest nieujemną liczbą typu całkowitego. Wprowadzono nieprawidłową wartość.", "Nieprawidłowa wartość", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             switch(comboBoxStorePlaceType.SelectedIndex)
             {

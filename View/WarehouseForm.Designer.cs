@@ -28,57 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.logoutButton = new System.Windows.Forms.Button();
-            this.sortButton = new System.Windows.Forms.Button();
+            this.buttonSort = new System.Windows.Forms.Button();
             this.parcelsListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+            this.chooseStorePlaceCombobox = new System.Windows.Forms.ComboBox();
+            this.buttonPost = new System.Windows.Forms.Button();
+            this.chooseVehicleTextbox = new System.Windows.Forms.TextBox();
+            this.chooseStorePlaceTextbox = new System.Windows.Forms.TextBox();
+            this.getParcelsFromPointsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(556, 31);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Dane magazynu: ";
             // 
             // logoutButton
             // 
-            this.logoutButton.Location = new System.Drawing.Point(709, 17);
+            this.logoutButton.Location = new System.Drawing.Point(724, 7);
             this.logoutButton.Name = "logoutButton";
-            this.logoutButton.Size = new System.Drawing.Size(206, 73);
+            this.logoutButton.Size = new System.Drawing.Size(191, 41);
             this.logoutButton.TabIndex = 1;
             this.logoutButton.Text = "Wyloguj się";
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.ButtonLogout_Click);
             // 
-            // sortButton
+            // buttonSort
             // 
-            this.sortButton.Location = new System.Drawing.Point(724, 241);
-            this.sortButton.Name = "sortButton";
-            this.sortButton.Size = new System.Drawing.Size(190, 131);
-            this.sortButton.TabIndex = 2;
-            this.sortButton.Text = "Sortuj";
-            this.sortButton.UseVisualStyleBackColor = true;
+            this.buttonSort.Location = new System.Drawing.Point(843, 324);
+            this.buttonSort.Name = "buttonSort";
+            this.buttonSort.Size = new System.Drawing.Size(88, 48);
+            this.buttonSort.TabIndex = 2;
+            this.buttonSort.Text = "Sortuj";
+            this.buttonSort.UseVisualStyleBackColor = true;
+            this.buttonSort.Click += new System.EventHandler(this.ButtonSort_Click);
             // 
             // parcelsListView
             // 
             this.parcelsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.parcelsListView.FullRowSelect = true;
             this.parcelsListView.HideSelection = false;
-            this.parcelsListView.Location = new System.Drawing.Point(12, 61);
+            this.parcelsListView.Location = new System.Drawing.Point(12, 86);
             this.parcelsListView.Name = "parcelsListView";
-            this.parcelsListView.Size = new System.Drawing.Size(629, 311);
+            this.parcelsListView.Size = new System.Drawing.Size(825, 286);
             this.parcelsListView.TabIndex = 3;
             this.parcelsListView.UseCompatibleStateImageBehavior = false;
             this.parcelsListView.View = System.Windows.Forms.View.Details;
-            //this.parcelsListView.SelectedIndexChanged += new System.EventHandler(this.parcelsListView_SelectedIndexChanged);
+            this.parcelsListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ParcelListView_ItemSelectionChanged);
             // 
             // columnHeader1
             // 
@@ -94,27 +103,111 @@
             this.columnHeader3.Text = "Adres odbiorcy";
             this.columnHeader3.Width = 200;
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Wysokość";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Długość";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Szerokość";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Waga";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Priorytet";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Typ";
+            // 
+            // chooseStorePlaceCombobox
+            // 
+            this.chooseStorePlaceCombobox.FormattingEnabled = true;
+            this.chooseStorePlaceCombobox.Location = new System.Drawing.Point(187, 49);
+            this.chooseStorePlaceCombobox.Name = "chooseStorePlaceCombobox";
+            this.chooseStorePlaceCombobox.Size = new System.Drawing.Size(381, 33);
+            this.chooseStorePlaceCombobox.TabIndex = 7;
+            this.chooseStorePlaceCombobox.SelectedValueChanged += new System.EventHandler(this.ChooseStorePlaceCombobox_SelectedValueChanged);
+            // 
+            // buttonPost
+            // 
+            this.buttonPost.Location = new System.Drawing.Point(843, 274);
+            this.buttonPost.Name = "buttonPost";
+            this.buttonPost.Size = new System.Drawing.Size(88, 44);
+            this.buttonPost.TabIndex = 8;
+            this.buttonPost.Text = "Nadaj";
+            this.buttonPost.UseVisualStyleBackColor = true;
+            this.buttonPost.Click += new System.EventHandler(this.ButtonPost_Click);
+            // 
+            // chooseVehicleTextbox
+            // 
+            this.chooseVehicleTextbox.Enabled = false;
+            this.chooseVehicleTextbox.Location = new System.Drawing.Point(12, 49);
+            this.chooseVehicleTextbox.Name = "chooseVehicleTextbox";
+            this.chooseVehicleTextbox.Size = new System.Drawing.Size(143, 31);
+            this.chooseVehicleTextbox.TabIndex = 6;
+            this.chooseVehicleTextbox.Text = "Wybierz pojazd:";
+            // 
+            // chooseStorePlaceTextbox
+            // 
+            this.chooseStorePlaceTextbox.Enabled = false;
+            this.chooseStorePlaceTextbox.Location = new System.Drawing.Point(12, 49);
+            this.chooseStorePlaceTextbox.Name = "chooseStorePlaceTextbox";
+            this.chooseStorePlaceTextbox.Size = new System.Drawing.Size(160, 31);
+            this.chooseStorePlaceTextbox.TabIndex = 9;
+            this.chooseStorePlaceTextbox.Text = "Wybierz magazyn:";
+            // 
+            // getParcelsFromPointsButton
+            // 
+            this.getParcelsFromPointsButton.Location = new System.Drawing.Point(574, 49);
+            this.getParcelsFromPointsButton.Name = "getParcelsFromPointsButton";
+            this.getParcelsFromPointsButton.Size = new System.Drawing.Size(309, 31);
+            this.getParcelsFromPointsButton.TabIndex = 10;
+            this.getParcelsFromPointsButton.Text = "Pobierz paczki z punktów";
+            this.getParcelsFromPointsButton.UseVisualStyleBackColor = true;
+            this.getParcelsFromPointsButton.Click += new System.EventHandler(getParcelsFromPointsButton_Click);
+            // 
             // WarehouseForm
             // 
             this.ClientSize = new System.Drawing.Size(938, 407);
-            this.Controls.Add(this.parcelsListView);
-            this.Controls.Add(this.sortButton);
+            this.Controls.Add(this.getParcelsFromPointsButton);
+            this.Controls.Add(this.buttonPost);
+            this.Controls.Add(this.buttonSort);
+            this.Controls.Add(this.chooseStorePlaceCombobox);
+            this.Controls.Add(this.chooseStorePlaceTextbox);
             this.Controls.Add(this.logoutButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.parcelsListView);
             this.Name = "WarehouseForm";
+            this.Load += WarehouseForm_Load;
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button logoutButton;
-        private System.Windows.Forms.Button sortButton;
+        private System.Windows.Forms.Button buttonSort;
         private System.Windows.Forms.ListView parcelsListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ComboBox chooseStorePlaceCombobox;
+        private System.Windows.Forms.Button buttonPost;
+        private System.Windows.Forms.TextBox chooseVehicleTextbox;
+        private System.Windows.Forms.TextBox chooseStorePlaceTextbox;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.Button getParcelsFromPointsButton;
     }
 }
