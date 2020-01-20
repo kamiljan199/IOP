@@ -48,7 +48,7 @@ namespace Api.Services
             String street;
             String city;
             bool firstTime = true;
-            int storePlaceID;
+            int? storePlaceID;
             List<String> instructions = new List<string>();
             instructions.Add("==================\nParcels to send to Clients\n==================");
 
@@ -112,17 +112,17 @@ namespace Api.Services
 
             int index = 0;
 
-            /*for (int i = 0; i < _parcels.Count; i++)
+            for (int i = 0; i < _parcels.Count; i++)
             {
                 if (_parcels[i].StorePlaceId == storePlace.Id)
                 {
                     _parcels.Insert(index++, _parcels[i]);
                     _parcels.RemoveAt(i + 1);
                 }
-            }*/
+            }
 
             return parcels;
-        }   
+        }
 
         public void GetParcelsFromPoints()
         {
@@ -130,7 +130,7 @@ namespace Api.Services
             Parcel[] parcels;
             List<Parcel> allParcels = new List<Parcel>();
             storePlaces = _storePlaceManager.GetAll();
-            foreach(var point in storePlaces)
+            foreach (var point in storePlaces)
             {
                 if (point.Type == 1)
                 {
@@ -140,40 +140,24 @@ namespace Api.Services
                         allParcels.Add(parcel);
                     }
                 }
-                
+
             }
-            //_parcelManager.sendTodifferentWarehouse(allParcels, storePlace);
+            foreach (var par in allParcels)
+            {
+                _parcelManager.ChangeParcelStorePlace(par, storePlace.Id);
+            }
         }
 
         public void SendParcelsToWarehouses()
         {
-            List<Parcel> toSend = new List<Parcel>();
-            List<Parcel> inWarehouse = new List<Parcel>();
-            inWarehouse = _parcels;
-            int spID = storePlace.Id;
-            while (isAnymoreToSend()) {
-                foreach (var parcel in inWarehouse)
-                {
-                    if (parcel.StorePlaceId != storePlace.Id)
-                    {
-                        spID = parcel.StorePlaceId;
-                        break;
-                    }
-                }
+            int? spID = storePlace.Id;
 
-                foreach (var parcel in inWarehouse)
-                {
-                    if (parcel.StorePlaceId == spID && 
-                        parcel.StorePlaceId != storePlace.Id)
-                    {
-                        toSend.Add(parcel);
-                        inWarehouse.Remove(parcel);
-                    } 
-                }
-
-                //_parcelManager.sendTodifferentWarehouse(toSend, _storePlaceManager.GetById(toSend[0].StorePlaceId));
-                toSend.Clear();
+            foreach (var parcel in _parcels)
+            {
+                spID = parcel.StorePlaceId;
+                _parcelManager.ChangeParcelStorePlace(parcel, spID.Value);
             }
+            
         }
 
         private bool isAnymoreToSend()

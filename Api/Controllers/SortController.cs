@@ -29,5 +29,15 @@ namespace Api.Controllers
         {
             _sortService.PrintGuidelines(filePath);
         }
+
+        public void GetParcelsFromPoints()
+        {
+            _sortService.GetParcelsFromPoints();
+        }
+
+        public void SendParcelsToWarehouses()
+        {
+            _sortService.SendParcelsToWarehouses();
+        }
     }
 }
