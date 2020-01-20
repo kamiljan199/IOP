@@ -1,10 +1,12 @@
 ﻿using Api.Controllers;
+using Api.Helpers;
 using Model.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -34,7 +36,64 @@ namespace View
             bool isPersonalDataValid = ValidateData();
 
             if (isPersonalDataValid && isParcelDataValid)
-                SendData();
+            {
+                Parcel addedParcel;
+                if (SendData(out addedParcel))
+                {
+                    string message = "Parcel registration successful!";
+                    string caption = "Operation successful";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    MessageBox.Show(message, caption, buttons);
+
+                    SaveSticker(addedParcel);
+                }
+                else
+                {
+                    string message = "Failed to register parcel in database!";
+                    string caption = "Operation failure";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    MessageBox.Show(message, caption, buttons);
+                }
+            }
+
+        }
+
+        private void SaveSticker(Parcel parcel)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Pliki pdf (*.pdf)|*.pdf";
+            saveFileDialog.FilterIndex = 0;
+            saveFileDialog.RestoreDirectory = true;
+
+            saveFileDialog.FileName = parcel.Id + "_parcel_" +  DateTime.Now.ToString("dd-MM-yy_H-mm-ss");
+
+            bool fileNameCorrect = false;
+            while(!fileNameCorrect)
+            {
+                saveFileDialog.ShowDialog();
+
+                if (saveFileDialog.FileName != "")
+                {
+                    //FileStream fs = (FileStream)saveFileDialog.OpenFile();
+                    QRLabelGenerator.MakeLabel(saveFileDialog.FileName, parcel);
+                    fileNameCorrect = true;
+                }
+                else
+                {
+                    // Display dialog that filename is incorrect
+                    string message = "File name incorrect. Retry?";
+                    string caption = "Operation failure";
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                    DialogResult result;
+                    result = MessageBox.Show(message, caption, buttons);
+
+                    if (result == DialogResult.Yes)
+                        fileNameCorrect = false;
+                    else if (result == DialogResult.No)
+                        fileNameCorrect = true;
+                }
+            }
         }
 
         private void UpdateParcelType(object sender, EventArgs e)
@@ -101,7 +160,7 @@ namespace View
             }
         }
 
-        private void SendData()
+        private bool SendData(out Parcel addedParcel)
         {
             int? senderApartment, recieverApartment;
             int senderAp, recieverAp;
@@ -154,14 +213,8 @@ namespace View
                 Priority = parcelPriorityComboBox.SelectedIndex,
             };
 
-            if (_parcelController.PostParcel(parcelToAdd))
-            {
-                // Display success message and ask for label
-            }
-            else
-            {
-                // Display failure message
-            }
+            addedParcel = parcelToAdd;
+            return _parcelController.PostParcel(parcelToAdd);
         }
 
         private bool ValidateData()

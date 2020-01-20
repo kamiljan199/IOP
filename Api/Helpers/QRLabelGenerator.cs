@@ -7,21 +7,17 @@ using Model.Models;
 
 namespace Api.Helpers
 {
-    public class QRLabelGenerator
+    public static class QRLabelGenerator
     {
-        private string QRMessage;
-        private Parcel referencedParcel;
+        private static string QRMessage;
+        private static Parcel referencedParcel;
 
         private static BaseFont bfTimes = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1257, false);
         private static Font headerFont = new Font(bfTimes, 14, Font.BOLD);
         private static Font textFont = new Font(bfTimes, 12, Font.NORMAL);
-        public void MakeLabel(string filePath, Parcel parcelToSend)
+        public static void MakeLabel(string filePath, Parcel parcelToSend)
         {
-            if(parcelToSend == null)
-            {
-                throw new System.NullReferenceException();
-            }
-            referencedParcel = parcelToSend;
+            referencedParcel = parcelToSend ?? throw new System.NullReferenceException();
             QRMessage = parcelToSend.Id.ToString();
             FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
             if (fs != null)
@@ -37,14 +33,14 @@ namespace Api.Helpers
             fs.Close();
         }
 
-        private void SetDefaultCellAttributes(PdfPCell cell)
+        private static void SetDefaultCellAttributes(PdfPCell cell)
         {
             cell.Padding = 6.0f;
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             cell.VerticalAlignment = Element.ALIGN_CENTER;
         }
 
-        private void GenerateTable(PdfPTable tab)
+        private static void GenerateTable(PdfPTable tab)
         {
             AddQRCodeToTable( Image.GetInstance(GenerateQRCodeImage(), BaseColor.WHITE), tab );
             
@@ -84,7 +80,7 @@ namespace Api.Helpers
             SetDefaultCellAttributes(sender);
             tab.AddCell(sender);
 
-            PdfPCell size = new PdfPCell(new Phrase(SizeToString() + referencedParcel.ParcelWeight.ToString("F1") + " kg\n", textFont));
+            PdfPCell size = new PdfPCell(new Phrase(SizeToString() + "Waga: " + referencedParcel.ParcelWeight.ToString("F1") + " kg\n", textFont));
             SetDefaultCellAttributes(size);
             BorderUShape(size);
             tab.AddCell(size);
@@ -94,19 +90,19 @@ namespace Api.Helpers
             tab.AddCell(senderAddress);
         }
 
-        private void BorderNShape(PdfPCell cell)
+        private static void BorderNShape(PdfPCell cell)
         {
             cell.Border = Rectangle.NO_BORDER;
             cell.Border = Rectangle.LEFT_BORDER + Rectangle.RIGHT_BORDER + Rectangle.TOP_BORDER;
         }
 
-        private void BorderUShape(PdfPCell cell)
+        private static void BorderUShape(PdfPCell cell)
         {
             cell.Border = Rectangle.NO_BORDER;
             cell.Border = Rectangle.BOTTOM_BORDER + Rectangle.LEFT_BORDER + Rectangle.RIGHT_BORDER;
         }
 
-        private System.Drawing.Image GenerateQRCodeImage()
+        private static System.Drawing.Image GenerateQRCodeImage()
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(QRMessage, QRCodeGenerator.ECCLevel.Q);
@@ -114,7 +110,7 @@ namespace Api.Helpers
             return qrCode.GetGraphic(20);
         }
 
-        private void AddQRCodeToTable(Image img, PdfPTable tab)
+        private static void AddQRCodeToTable(Image img, PdfPTable tab)
         {
             img.ScaleToFit(150f, 150f);
             PdfPCell sticker = new PdfPCell(img);
@@ -126,7 +122,7 @@ namespace Api.Helpers
         }
 
 
-        private string PersonalDataToString(PersonalData data)
+        private static string PersonalDataToString(PersonalData data)
         {
             string temp = data.FirstName + " " + data.LastName + "\n";
             temp += AddressToString(data.PersonalAddress);
@@ -134,10 +130,10 @@ namespace Api.Helpers
             return temp;
         }
 
-        private string AddressToString(Address address)
+        private static string AddressToString(Address address)
         {
             string temp = "ul. " + address.Street + " " + address.HomeNumber;
-            if (address.ApartmentNumber != 0)
+            if (address.ApartmentNumber != 0 && address.ApartmentNumber != null)
             {
                 temp += "/" + address.ApartmentNumber + "\n";
             }
@@ -149,7 +145,7 @@ namespace Api.Helpers
             return temp;
         }
 
-        private string SizeToString()
+        private static string SizeToString()
         {
             string temp = "Rozmiar: ";
             temp += referencedParcel.ParcelWidth.ToString("F1") + " x ";
