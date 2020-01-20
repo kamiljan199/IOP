@@ -155,16 +155,23 @@ namespace View
             foreach (var parcel in sortedParcels)
             {
                 string[] parcelInfo = { parcel.Id.ToString(),
-                    parcel.SenderData.PersonalAddress.Street +", "+
-                    parcel.SenderData.PersonalAddress.ApartmentNumber+"/"+
-                    parcel.SenderData.PersonalAddress.HomeNumber + ", "+
-                    parcel.SenderData.PersonalAddress.PostCode+" "+
-                    parcel.SenderData.PersonalAddress.City,
-                parcel.ReceiverData.PersonalAddress.Street +", "+
-                    parcel.ReceiverData.PersonalAddress.ApartmentNumber+"/"+
-                    parcel.ReceiverData.PersonalAddress.HomeNumber + ", "+
-                    parcel.ReceiverData.PersonalAddress.PostCode+" "+
-                    parcel.ReceiverData.PersonalAddress.City};
+                        parcel.SenderData.PersonalAddress.Street +", "+
+                        parcel.SenderData.PersonalAddress.ApartmentNumber+"/"+
+                        parcel.SenderData.PersonalAddress.HomeNumber + ", "+
+                        parcel.SenderData.PersonalAddress.PostCode+" "+
+                        parcel.SenderData.PersonalAddress.City,
+                    parcel.ReceiverData.PersonalAddress.Street +", "+
+                        parcel.ReceiverData.PersonalAddress.ApartmentNumber+"/"+
+                        parcel.ReceiverData.PersonalAddress.HomeNumber + ", "+
+                        parcel.ReceiverData.PersonalAddress.PostCode+" "+
+                        parcel.ReceiverData.PersonalAddress.City,
+                        parcel.ParcelHeight.ToString(),
+                        parcel.ParcelLength.ToString(),
+                        parcel.ParcelWidth.ToString(),
+                        parcel.ParcelWeight.ToString(),
+                        parcel.Priority.ToString(),
+                        parcel.ParcelType
+                    };
                 parcelsListView.Items.Add(new ListViewItem(parcelInfo));
             }
         }
