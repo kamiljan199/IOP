@@ -134,7 +134,7 @@ namespace Api.Managers
                     ParcelHeight = parcelToReturn.ParcelHeight,
                     Priority = parcelToReturn.Priority,
                     ParcelType = parcelToReturn.ParcelType,
-                    ParcelStatus = ParcelStatus.OnWayToWarehouse
+                    ParcelStatus = ParcelStatus.InWarehouse
                 };
                 _context.Parcels.Add(newReturnParcel);
                 return _context.SaveChanges();
