@@ -125,7 +125,6 @@ namespace View
                     {
                         for (int i = 0; i < _parcelController.GetAllParcels().Length; i++)
                         {
-                            if(_parcelController.GetAllParcels()[i].ParcelStatus.Equals(ParcelStatus.OnWayToTheCustomer))
                                 listBox1.Items.Add(_parcelController.GetAllParcels()[i].Id);
                         }
                     }
@@ -136,10 +135,11 @@ namespace View
                         _parcelsDTO = _storePlaceController.GetCouriersParcels(_storePlace, _employee.Id);
                         if (_parcelsDTO.Status == CollectionGetStatus.Success)
                         {
-                            for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
-                            {
-                                listBox1.Items.Add(_parcelsDTO.StorePlaces[i].Id);
-                            }
+                                for (int i = 0; i < _parcelsDTO.StorePlaces.Count; i++)
+                                {
+                                    if (_parcelsDTO.StorePlaces[i].ParcelStatus.Equals(ParcelStatus.OnWayToTheCustomer))
+                                        listBox1.Items.Add(_parcelsDTO.StorePlaces[i].Id);
+                                }
                         }
                     }
                 }
