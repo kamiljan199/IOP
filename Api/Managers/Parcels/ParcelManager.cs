@@ -45,10 +45,11 @@ namespace Api.Managers
 
         public Parcel[] GetParcelsFromStorePlaceByStatus(StorePlace storePlace, ParcelStatus status)
         {
-            var query = from e in _context.Parcels
-                        where e.StorePlaceId == storePlace.Id && e.ParcelStatus == status
-                        select e;
-            return query.Include(s => s.ReceiverData).ThenInclude(s => s.PersonalAddress).ToArray();
+            return _context.Parcels.AsNoTracking()
+                .Where(p => p.StorePlaceId == storePlace.Id && p.ParcelStatus == status)
+               .Include(p => p.ReceiverData)
+               .ThenInclude(p => p.PersonalAddress)
+               .ToArray();
         }
 
         public Parcel[] GetAllParcels()
@@ -110,8 +111,14 @@ namespace Api.Managers
 
         public int ReturnParcel(Parcel oldParcel)
         {
-            Parcel parcelToReturn = _context.Parcels.Find(oldParcel.Id);
-            if (parcelToReturn != null)
+            Parcel parcelToReturn = _context.Parcels
+                .Include(p => p.ReceiverData)
+                    .ThenInclude(d => d.PersonalAddress)
+                .Include(p => p.SenderData)
+                    .ThenInclude(d => d.PersonalAddress)
+                .Where(p => p.Id == oldParcel.Id)
+                .FirstOrDefault();
+            if (parcelToReturn != default(Parcel))
             {
                 parcelToReturn.ParcelStatus = ParcelStatus.Returned;
                 _context.Parcels.Update(parcelToReturn);
