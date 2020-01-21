@@ -125,7 +125,8 @@ namespace View
                     {
                         for (int i = 0; i < _parcelController.GetAllParcels().Length; i++)
                         {
-                            listBox1.Items.Add(_parcelController.GetAllParcels()[i].Id);
+                            if(_parcelController.GetAllParcels()[i].ParcelStatus.Equals(ParcelStatus.OnWayToTheCustomer))
+                                listBox1.Items.Add(_parcelController.GetAllParcels()[i].Id);
                         }
                     }
                     else
