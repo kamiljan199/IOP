@@ -83,6 +83,27 @@ namespace View
 
             else
             {
+                foreach (var vehicle in vehicles.Vehicles)
+                {
+                    bool isFree = true;
+                    foreach (var route in routes.Routes)
+                    {
+                        if (isFree && route.VehicleId == vehicle.Id)
+                        {
+                            foreach (var point in route.RoutePoints)
+                            {
+                                if (point.Parcel.ParcelStatus == Model.Enums.ParcelStatus.OnWayToTheCustomer)
+                                {
+                                    isFree = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (isFree)
+                        vehiclesTemp.Add(vehicle);
+                }
+                /*
                 foreach (var item in routes.Routes)
                 {
 
@@ -92,6 +113,7 @@ namespace View
                             vehiclesTemp.Add(vehicle);
                     }
                 }
+                */
 
                 if (vehiclesTemp.Count() == 0)
                 {
@@ -108,6 +130,28 @@ namespace View
                     }
                 }
 
+
+                foreach (var courier in couriers.Employees)
+                {
+                    bool isFree = true;
+                    foreach (var route in routes.Routes)
+                    {
+                        if (isFree && route.EmployeeId == courier.Id)
+                        {
+                            foreach (var point in route.RoutePoints)
+                            {
+                                if (point.Parcel.ParcelStatus == Model.Enums.ParcelStatus.OnWayToTheCustomer)
+                                {
+                                    isFree = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (isFree)
+                        couriersTemp.Add(courier);
+                }
+                /*
                 foreach (var item in routes.Routes)
                 {
                     foreach (var courier in couriers.Employees)
@@ -116,6 +160,7 @@ namespace View
                             couriersTemp.Add(courier);
                     }
                 }
+                */
                 if (couriersTemp.Count() == 0)
                 {
                     MessageBox.Show("Za mała ilość danych w bazie. Brak pracowników na stanowisku kurier", "Błąd bazy danych", 0, MessageBoxIcon.Error);

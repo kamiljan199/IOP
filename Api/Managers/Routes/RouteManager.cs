@@ -73,6 +73,8 @@ namespace Api.Managers
             return _context.Routes.AsNoTracking()
                 .Include(r => r.Employee)
                 .Include(r => r.Vehicle)
+                .Include(r => r.RoutePoints)
+                .ThenInclude(p => p.Parcel)
                 .ToArray();
         }
     }
